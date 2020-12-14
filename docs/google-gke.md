@@ -45,7 +45,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl create secret tls boldbi-tls --key <key-path> --cert <certificate-path>
 ```
 
-14. Now uncomment the `tls` section in ingress spec and save the file.
+14. Now uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
 ![ingress DNS](images/ingress_yaml.png)
 
@@ -66,7 +66,8 @@ Repeat the above command till you get the IP address in ADDRESS tab like in belo
 17.	Note the ingress IP address and map it with your DNS if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, you can use the ingress IP address.
 
 18. Open the **deployment.yaml** file from the downloaded files on **step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
-    Ex: http://example.com, https://example.com, http://<ingress_ip_address>
+    
+    Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
 19. Read the optional client library license agreement from the following link,
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries)

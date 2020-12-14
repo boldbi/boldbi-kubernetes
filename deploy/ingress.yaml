@@ -425,7 +425,7 @@ spec:
     # - example.com
     # secretName: boldbi-tls
   rules:
-  - host: #example.com
+  - #host: example.com
     http:
       paths:
       - path: /
