@@ -1,7 +1,7 @@
 # Bold BI on Googke Kubernetes Engine
 Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
 
-1.	Download the following files for Bold BI deployment in GKE,
+1. Download the following files for Bold BI deployment in GKE,
 
     * [pvclaim_gke.yaml](../deploy/pvclaim_gke.yaml)
     * [deployment.yaml](../deploy/deployment.yaml)
@@ -12,26 +12,26 @@ Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
 https://console.cloud.google.com/kubernetes 
 
-3.	Create a Google filestore instance to store the shared folders for applications’ usage.
+3. Create a Google filestore instance to store the shared folders for applications’ usage.
 https://console.cloud.google.com/filestore 
 
-4.	Note the **File share name** and **IP address** after creating filestore instance,
-![File Share details](images/file_share_details.png)
+4. Note the **File share name** and **IP address** after creating filestore instance,
+![File Share details](images/gke_file_share_details.png)
 
-5.	Open **pvclaim_gke.yaml** file, downloaded in **step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+5. Open **pvclaim_gke.yaml** file, downloaded in **step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
-![PV Claim](images/pvclaim.png)
+![PV Claim](images/gke_pvclaim.png)
 
-6.	Set your project and newly created cluster in Google cloud shell,
+6. Set your project and newly created cluster in Google cloud shell,
 https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
-7.	Deploy the latest Nginx ingress controller to your cluster using the following command,
+7. Deploy the latest Nginx ingress controller to your cluster using the following command,
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
 ```
 
-8.	Navigate to the folder where the deployment files were downloaded from **Step 1**.
+8. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
 9. If you have a DNS to map with the application you can continue the following steps, else skip to **Step 15**. 
 

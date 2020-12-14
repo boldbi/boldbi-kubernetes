@@ -20,7 +20,7 @@ spec:
  storageClassName: azurefile
  azureFile:
    secretName: boldbi-azure-secret
-   shareName: boldbidev
+   shareName: <file_share_name>
    readOnly: false
 ---
 apiVersion: v1
