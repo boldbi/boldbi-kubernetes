@@ -2,7 +2,7 @@
 Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
 
 1.	Download the files required for Bold BI deployment in GKE from following location,
-[deploy](deploy/)
+[deploy](../deploy/)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
 https://console.cloud.google.com/kubernetes 
@@ -21,16 +21,21 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 
 7.	Deploy the Nginx ingress controller to your cluster using the following command,
 
-`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml`
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+```
 
 8.	Next, run the following command for applying the Bold BI ingress to get the IP address of nginx ingress,
 
-`kubectl apply -f ingress.yaml`
+```sh
+kubectl apply -f ingress.yaml
+```
 
 9.	Now run the following command to get the ingress IP address,
 
-`kubectl get ingress`
-
+```sh
+kubectl get ingress
+```
 Repeat the above command till you get the IP address in ADDRESS tab like in below image.
 ![Ingress Address](images/ingress_address.png) 
 
@@ -41,19 +46,29 @@ Repeat the above command till you get the IP address in ADDRESS tab like in belo
 
 12.	Now run the following commands one by one in Google cloud shell,
 
-`kubectl apply -f pvclaim_gke.yaml`
+```sh
+kubectl apply -f pvclaim_gke.yaml
+```
 
-`kubectl apply -f deployment.yaml`
+```sh
+kubectl apply -f deployment.yaml
+```
 
-`kubectl apply -f service.yaml`
+```sh
+kubectl apply -f service.yaml
+```
 
-`kubectl apply -f ingress.yaml`
+```sh
+kubectl apply -f ingress.yaml
+```
 
 13.	Now wait for some time to deploy the Bold BI On-Premise application in your Google Kubernetes cluster. 
 
 14.	Use the following command to get the pods’ status,
 
-`kubectl get pods`
+```sh
+kubectl get pods
+```
 ![Pod status](images/pod_status.png) 
 
 15.	Wait till you see all applications were in running state. Some applications may go get error and go to CrashLoopBackoff state. But they will change to Running state after some time.
