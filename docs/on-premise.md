@@ -1,26 +1,17 @@
-# Bold BI on Googke Kubernetes Engine
-Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
+# Bold BI on On-Premise Kubernetes Cluster
+Please follow the below steps to deploy Bold BI application in your On-Premise machine kubernetes cluster.
 
-1.	Download the following files for Bold BI deployment in GKE,
+1.	Download the following files for Bold BI deployment in On-Premise,
 
-    * [pvclaim_gke.yaml](../deploy/pvclaim_gke.yaml)
+    * [pvclaim_onpremise.yaml](../deploy/pvclaim_onpremise.yaml)
     * [deployment.yaml](../deploy/deployment.yaml)
     * [hpa.yaml](../deploy/hpa.yaml)
     * [service.yaml](../deploy/service.yaml)
     * [ingress.yaml](../deploy/ingress.yaml)
 
-2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
-https://console.cloud.google.com/kubernetes 
+2.	Open **pvclaim_onpremise.yaml** file, downloaded in above step. Replace the directory path in your host machine to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
-3.	Create a Google filestore instance to store the shared folders for applications’ usage.
-https://console.cloud.google.com/filestore 
-
-4.	Note the **File share name** and **IP address** after creating filestore instance,
-![File Share details](images/file_share_details.png)
-
-5.	Open **pvclaim_gke.yaml** file, downloaded in **step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
-
-![PV Claim](images/pvclaim.png)
+![PV Claim](images/onpremise_pvclaim.png)
 
 6.	Set your project and newly created cluster in Google cloud shell,
 https://cloud.google.com/kubernetes-engine/docs/quickstart 
