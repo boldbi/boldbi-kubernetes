@@ -3,36 +3,36 @@
 By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB and Snowflake.Data, you can install the following libraries in your system. Bold BI uses these client libraries to connect with their respective SQL database variants. Check the check boxes after reading about the licenses of each library to give consent for installation. 
 
 ## mongo-csharp-driver
-    * MongoDB
-    [Apache License, Version 2.0](https://github.com/mongodb/mongo-csharp-driver/blob/master/License.txt)
+* MongoDB
+[Apache License, Version 2.0](https://github.com/mongodb/mongo-csharp-driver/blob/master/License.txt)
 
 ## Snowflake.Data
-    * Snowflake.Data
-    [Apache License, Version 2.0](https://github.com/snowflakedb/snowflake-connector-net/blob/master/LICENSE)
+* Snowflake.Data
+[Apache License, Version 2.0](https://github.com/snowflakedb/snowflake-connector-net/blob/master/LICENSE)
 
 ## Oracle.ManagedDataAccess
-    * Oracle
-    [Oracle License](https://www.oracle.com/downloads/licenses/distribution-license.html)
+* Oracle
+[Oracle License](https://www.oracle.com/downloads/licenses/distribution-license.html)
 
 ## Npgsql 4.0.0
-    * PostgreSQL
-    * Amazon Redshift
-    * Google Cloud - PostgreSQL
-    * Amazon Aurora - PostgreSQL
-    [PostgreSQL License](https://github.com/npgsql/npgsql/blob/dev/LICENSE)
+* PostgreSQL
+* Amazon Redshift
+* Google Cloud - PostgreSQL
+* Amazon Aurora - PostgreSQL
+[PostgreSQL License](https://github.com/npgsql/npgsql/blob/dev/LICENSE)
 
 ## MySQLConnector 0.45.1
-    * MySQL
-    * MemSQL
-    * MariaDB
-    * Google Cloud – MySQL
-    * Amazon Aurora - MySQL
-    * CDATA
-    [MIT License](https://github.com/mysql-net/MySqlConnector/blob/master/LICENSE)
+* MySQL
+* MemSQL
+* MariaDB
+* Google Cloud – MySQL
+* Amazon Aurora - MySQL
+* CDATA
+[MIT License](https://github.com/mysql-net/MySqlConnector/blob/master/LICENSE)
 
 ## InfluxData.Net
-    * InfluxDB
-    [MIT License](https://github.com/pootzko/InfluxData.Net/blob/master/LICENSE)
+* InfluxDB
+[MIT License](https://github.com/pootzko/InfluxData.Net/blob/master/LICENSE)
 
 ## PhantomJS WebKit
 
