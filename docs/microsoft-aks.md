@@ -15,7 +15,7 @@ Please follow the below steps to deploy Bold BI On-Premise in Microsoft Azure Ku
 
 4. Encode the storage account name and storage key in base64 format.
 
-5. Open **pvclaim_aks.yaml** file, downloaded in **step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+5. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
 ![PV Claim](images/aks_pvclaim.png)
 
@@ -61,7 +61,7 @@ Repeat the above command till you get the IP address in ADDRESS tab like in belo
 
 16. Note the ingress IP address and map it with your DNS if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, you can use the ingress IP address.
 
-17. Open the **deployment.yaml** file from the downloaded files on **step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
+17. Open the **deployment.yaml** file from the downloaded files on **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
     
     Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
@@ -101,7 +101,7 @@ kubectl get pods
 
 23.	Wait till you see all applications were in running state. Some applications may go get error and go to CrashLoopBackoff state. But they will change to Running state after some time.
 
-24.	Then use the ingress IP address, you got on **step 9** to access the application in browser. The Bold BI On-Premise application will run on the ingress IP address.
+24.	Then use your DNS or ingress IP address you got from **Step 15** to access the application in browser.
 
 25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
     https://help.boldbi.com/embedded-bi/application-startup
