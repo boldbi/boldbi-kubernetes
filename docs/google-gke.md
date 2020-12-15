@@ -10,9 +10,11 @@ Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes 
     * [ingress.yaml](../deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
+
 https://console.cloud.google.com/kubernetes 
 
 3. Create a Google filestore instance to store the shared folders for applications’ usage.
+
 https://console.cloud.google.com/filestore 
 
 4. Note the **File share name** and **IP address** after creating filestore instance,
@@ -23,6 +25,7 @@ https://console.cloud.google.com/filestore
 ![PV Claim](images/gke_pvclaim.png)
 
 6. Set your project and newly created cluster in Google cloud shell,
+
 https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
 7. Deploy the latest Nginx ingress controller to your cluster using the following command,
@@ -70,7 +73,8 @@ Repeat the above command till you get the IP address in ADDRESS tab like in belo
     Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
 18. Read the optional client library license agreement from the following link,
-    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries)
+
+    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
 19. Note the optional client libraries from the above link as comma separated names and replace in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
@@ -108,4 +112,5 @@ kubectl get pods
 24.	Then use the ingress IP address, you got on **step 9** to access the application in browser. The Bold BI On-Premise application will run on the ingress IP address.
 
 25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
+    
     https://help.boldbi.com/embedded-bi/application-startup
