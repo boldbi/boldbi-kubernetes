@@ -36,7 +36,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 8. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-9. If you have a DNS to map with the application you can continue the following steps, else skip to **Step 14**. 
+9. If you have a DNS to map with the application you can continue with the following steps, else skip to **Step 14**. 
 
 10. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
@@ -98,7 +98,7 @@ kubectl apply -f hpa_gke.yaml
 kubectl apply -f service.yaml
 ```
 
-21.	Now wait for some time to deploy the Bold BI On-Premise application in your Google Kubernetes cluster. 
+21.	Now wait for some time till the Bold BI On-Premise application deployed to your Google Kubernetes cluster. 
 
 22.	Use the following command to get the pods’ status,
 
@@ -107,10 +107,8 @@ kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-23.	Wait till you see all applications were in running state. Some applications may go get error and go to CrashLoopBackoff state. But they will change to Running state after some time.
+23. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 15** to access the application in browser.
 
-24.	Then use your DNS or ingress IP address you got from **Step 15** to access the application in browser.
-
-25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
+24.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
     
     https://help.boldbi.com/embedded-bi/application-startup

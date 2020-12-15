@@ -15,7 +15,7 @@ Please follow the below steps to deploy Bold BI On-Premise in Microsoft Azure Ku
 
 4. Encode the storage account name and storage key in base64 format.
 
-5. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+5. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
 
 ![PV Claim](images/aks_pvclaim.png)
 
@@ -29,7 +29,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 8. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-9. If you have a DNS to map with the application you can continue the following steps, else skip to **Step 14**. 
+9. If you have a DNS to map with the application you can continue with the following steps, else skip to **Step 14**. 
 
 10. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
@@ -66,7 +66,8 @@ Repeat the above command till you get the IP address in ADDRESS tab like in belo
     Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
 18. Read the optional client library license agreement from the following link,
-    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries)
+
+    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
 19. Note the optional client libraries from the above link as comma separated names and replace in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
@@ -90,7 +91,7 @@ kubectl apply -f hpa.yaml
 kubectl apply -f service.yaml
 ```
 
-21. Now wait for some time to deploy the Bold BI On-Premise application in your Google Kubernetes cluster. 
+21. Now wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
 
 22. Use the following command to get the pods’ status,
 
@@ -99,9 +100,8 @@ kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-23.	Wait till you see all applications were in running state. Some applications may go get error and go to CrashLoopBackoff state. But they will change to Running state after some time.
+23. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 15** to access the application in browser.
 
-24.	Then use your DNS or ingress IP address you got from **Step 15** to access the application in browser.
-
-25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
+24.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
+    
     https://help.boldbi.com/embedded-bi/application-startup

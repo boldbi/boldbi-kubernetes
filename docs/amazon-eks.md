@@ -20,13 +20,13 @@ Please follow the below steps to deploy Bold BI On-Premise in Amazon Elastic Kub
 4. Note the **File system ID** after creating EFS file system,
 ![AWS EFS](images/aws-efs.png)
 
-5. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+5. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
 
 ![PV Claim](images/eks_pvclaim.png)
 
 6. Connect with your Amazon EKS cluster.
 
-7. You can skip this step if your cluster already has a CNI (Container Network Interface) running. However if you your cluster does nothave any CNI or if you face any CNI related issues when deploying, you can install the Calico CNI using the following command in your EKS cluster.
+7. You can skip this step if your cluster already has a CNI (Container Network Interface) running. However if your cluster does not have any CNI or if you face any CNI related issues when deploying, you can install the Calico CNI using the following command in your EKS cluster.
     
     https://docs.projectcalico.org/about/about-calico
 
@@ -34,7 +34,7 @@ Please follow the below steps to deploy Bold BI On-Premise in Amazon Elastic Kub
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
-8. Deploy the EFS CSI Driver to manage the lifecycle of Amazon EFS file systems in container,
+8. Deploy the EFS CSI Driver to manage the lifecycle of Amazon EFS file systems in kubernetes containers,
 
     https://github.com/kubernetes-sigs/aws-efs-csi-driver
 
@@ -50,7 +50,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 10. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-11. If you have a DNS to map with the application, you can continue the following steps, else skip to **Step 16**. 
+11. If you have a DNS to map with the application, you can continue the with following steps, else skip to **Step 16**. 
 
 12. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
@@ -118,7 +118,7 @@ kubectl apply -f hpa.yaml
 kubectl apply -f service.yaml
 ```
 
-24.	Now wait for some time to deploy the Bold BI On-Premise application in your Amazon EKS cluster. 
+24.	Now wait for some time till the Bold BI On-Premise application deployed to your Amazon EKS cluster. 
 
 25.	Use the following command to get the pods’ status,
 
@@ -127,10 +127,8 @@ kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-26.	Wait till you see all applications were in running state. Some applications may go get error and go to CrashLoopBackoff state. But they will change to Running state after some time.
+26. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 17** to access the application in browser.
 
-27.	Then use your DNS or ingress IP address you got from **Step 17** to access the application in browser.
-
-28.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
+27.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup,
     
     https://help.boldbi.com/embedded-bi/application-startup
