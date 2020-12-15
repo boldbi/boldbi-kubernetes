@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: id-web
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -19,8 +19,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         env:
         - name: APP_BASE_URL
           value: <application_base_url>
@@ -49,7 +49,7 @@ spec:
   selector:
     matchLabels:
       app: id-api
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -62,8 +62,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -87,7 +87,7 @@ spec:
   selector:
     matchLabels:
       app: id-ums
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -100,8 +100,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -125,7 +125,7 @@ spec:
   selector:
     matchLabels:
       app: bi-web
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -138,8 +138,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -163,7 +163,7 @@ spec:
   selector:
     matchLabels:
       app: bi-api
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -176,8 +176,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -201,7 +201,7 @@ spec:
   selector:
     matchLabels:
       app: bi-jobs
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -214,8 +214,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 150m
+            memory: 400Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -239,7 +239,7 @@ spec:
   selector:
     matchLabels:
       app: bi-dataservice
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -252,8 +252,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 700m
-            memory: 1Gi
+            cpu: 200m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check

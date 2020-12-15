@@ -15,7 +15,7 @@ Please follow the below steps to deploy Bold BI On-Premise in Microsoft Azure Ku
 
 4. Encode the storage account name and storage key in base64 format.
 
-5. Open **pvclaim_aks.yaml** file, downloaded in **step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to the `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+5. Open **pvclaim_aks.yaml** file, downloaded in **step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key** and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>` and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
 ![PV Claim](images/aks_pvclaim.png)
 

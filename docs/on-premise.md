@@ -9,28 +9,27 @@ Please follow the below steps to deploy Bold BI application in your On-Premise m
     * [service.yaml](../deploy/service.yaml)
     * [ingress.yaml](../deploy/ingress.yaml)
 
-2.	Open **pvclaim_onpremise.yaml** file, downloaded in above step. Replace the directory path in your host machine to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+2.	Open **pvclaim_onpremise.yaml** file, downloaded in above step. Replace the directory path in your host machine to the `<local_directory>` place in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+
+    Ex: D://app/shared -> /run/desktop/mnt/host/**d/app/shared**
 
 ![PV Claim](images/onpremise_pvclaim.png)
 
-6.	Set your project and newly created cluster in Google cloud shell,
-https://cloud.google.com/kubernetes-engine/docs/quickstart 
-
-7.	Deploy the latest Nginx ingress controller to your cluster using the following command,
+3.	Deploy the latest Nginx ingress controller to your cluster using the following command,
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
 ```
 
-8.	Navigate to the folder where the deployment files were downloaded from **Step 1**.
+4.	Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-9. If you have a DNS to map with the application you can continue the following steps, else skip to **Step 15**. 
+5. Map your DNS in which you want to access the application to your machine IP address.
 
-10. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+6. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
-11. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
+7. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
 
-13. Run the following command to create a TLS secret with your SSL certificate,
+8. Run the following command to create a TLS secret with your SSL certificate,
 
 ```sh
 kubectl create secret tls boldbi-tls --key <key-path> --cert <certificate-path>

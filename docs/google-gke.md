@@ -1,11 +1,11 @@
-# Bold BI on Googke Kubernetes Engine
+# Bold BI on Google Kubernetes Engine
 Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
 
 1. Download the following files for Bold BI deployment in GKE,
 
     * [pvclaim_gke.yaml](../deploy/pvclaim_gke.yaml)
     * [deployment.yaml](../deploy/deployment.yaml)
-    * [hpa.yaml](../deploy/hpa.yaml)
+    * [hpa_gke.yaml](../deploy/hpa_gke.yaml)
     * [service.yaml](../deploy/service.yaml)
     * [ingress.yaml](../deploy/ingress.yaml)
 
@@ -87,7 +87,7 @@ kubectl apply -f deployment.yaml
 ```
 
 ```sh
-kubectl apply -f hpa.yaml
+kubectl apply -f hpa_gke.yaml
 ```
 
 ```sh
