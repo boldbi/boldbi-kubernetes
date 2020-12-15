@@ -1,6 +1,6 @@
 # Consent to deploy client libraries
 
-By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB and Snowflake.Data, you can install the following libraries in your system. Bold BI uses these client libraries to connect with their respective SQL database variants. Check the check boxes after reading about the licenses of each library to give consent for installation. 
+By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
 
 ## mongo-csharp-driver
 * MongoDB
@@ -23,7 +23,7 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 * Google Cloud - PostgreSQL
 * Amazon Aurora - PostgreSQL
 
-[PostgreSQL License](https://github.com/npgsql/npgsql/blob/dev/LICENSE)
+[PostgreSQL License](https://github.com/npgsql/npgsql/blob/main/LICENSE)
 
 ## MySQLConnector 0.45.1
 * MySQL
@@ -64,7 +64,7 @@ Find the names of client libraries which needs to be passed as a comma separated
 | InfluxData.Net            | influxdb      |
 | PhantomJS WebKit          | phantomjs     |
 
-If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` envrionment variable. You need to add the names only for the libraries which you are consenting to deply.
+If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` envrionment variable. You need to add the names only for the libraries which you are consenting to use with Bold BI application.
 
 `phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql`
 
