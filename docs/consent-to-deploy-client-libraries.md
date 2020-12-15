@@ -4,14 +4,17 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 
 ## mongo-csharp-driver
 * MongoDB
+
 [Apache License, Version 2.0](https://github.com/mongodb/mongo-csharp-driver/blob/master/License.txt)
 
 ## Snowflake.Data
 * Snowflake.Data
+
 [Apache License, Version 2.0](https://github.com/snowflakedb/snowflake-connector-net/blob/master/LICENSE)
 
 ## Oracle.ManagedDataAccess
 * Oracle
+
 [Oracle License](https://www.oracle.com/downloads/licenses/distribution-license.html)
 
 ## Npgsql 4.0.0
@@ -19,6 +22,7 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 * Amazon Redshift
 * Google Cloud - PostgreSQL
 * Amazon Aurora - PostgreSQL
+
 [PostgreSQL License](https://github.com/npgsql/npgsql/blob/dev/LICENSE)
 
 ## MySQLConnector 0.45.1
@@ -28,10 +32,12 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 * Google Cloud – MySQL
 * Amazon Aurora - MySQL
 * CDATA
+
 [MIT License](https://github.com/mysql-net/MySqlConnector/blob/master/LICENSE)
 
 ## InfluxData.Net
 * InfluxDB
+
 [MIT License](https://github.com/pootzko/InfluxData.Net/blob/master/LICENSE)
 
 ## PhantomJS WebKit
