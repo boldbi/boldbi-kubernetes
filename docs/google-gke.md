@@ -10,12 +10,10 @@ Please follow the below steps to deploy Bold BI On-Premise in Google Kubernetes 
     * [ingress.yaml](../deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
-
-https://console.cloud.google.com/kubernetes 
+   https://console.cloud.google.com/kubernetes 
 
 3. Create a Google filestore instance to store the shared folders for applications’ usage.
-
-https://console.cloud.google.com/filestore 
+   https://console.cloud.google.com/filestore 
 
 4. Note the **File share name** and **IP address** after creating filestore instance,
 ![File Share details](images/gke_file_share_details.png)
@@ -25,8 +23,7 @@ https://console.cloud.google.com/filestore
 ![PV Claim](images/gke_pvclaim.png)
 
 6. Set your project and newly created cluster in Google cloud shell,
-
-https://cloud.google.com/kubernetes-engine/docs/quickstart 
+   https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
 7. Deploy the latest Nginx ingress controller to your cluster using the following command,
 
