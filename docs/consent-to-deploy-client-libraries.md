@@ -1,6 +1,6 @@
 # Consent to deploy client libraries
 
-By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
+By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB, InfluxDB and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
 
 ## mongo-csharp-driver
 * MongoDB
