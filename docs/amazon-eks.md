@@ -26,7 +26,7 @@ Please follow the below steps to deploy Bold BI On-Premise in Amazon Elastic Kub
 
 6. Connect with your Amazon EKS cluster.
 
-7. You can skip this step if your cluster already has a CNI (Container Network Interface) running. However if your cluster does not have any CNI or if you face any CNI related issues when deploying, you can install the Calico CNI using the following command in your EKS cluster.
+7. You can skip this step if your cluster already has a CNI (Container Network Interface) running. However, if your cluster does not have any CNI or if you face any CNI related issues when deploying, you can install the Calico CNI using the following command in your EKS cluster.
     
     https://docs.projectcalico.org/about/about-calico
 

@@ -84,7 +84,7 @@ kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-16.	After deployment wait for sometime to Horizontal Pod Autoscaler (HPA) gets the metrics from pods. Use the following command to get HPA status,
+16.	After deployment wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from pods. Use the following command to get HPA status,
 
 ```sh
 kubectl get hpa
