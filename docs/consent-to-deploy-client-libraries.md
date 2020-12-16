@@ -1,6 +1,6 @@
 # Consent to deploy client libraries
 
-By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB, InfluxDB and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
+By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB, InfluxDB, and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
 
 ## mongo-csharp-driver
 * MongoDB
@@ -42,17 +42,17 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 
 ## PhantomJS WebKit
 
-PhantomJS is a headless WebKit scriptable with JavaScript. It is a free software/open source that may contain MIT, BSD, LGPL, GPL, or other similar licenses. 
-It contains third-party code. This executable file is necessary to achieve Image and PDF export functionalities in dashboard, widgets, and schedules. 
+PhantomJS is a headless WebKit scriptable with JavaScript. It is a free software or open source that may contain MIT, BSD, LGPL, GPL, or other similar licenses. 
+It contains third-party code. This executable file is necessary to achieve the Image and PDF export functionalities in dashboard, widgets, and schedules. 
 Without this file, the Image and PDF export options in dashboard, widgets, and schedules will no longer be available. 
-It is your decision if you choose to download Phantom JS, but you must accept all of its terms and conditions if you want to use it with Syncfusion’s products.
+It is your decision to download Phantom JS, but you must accept all its terms and conditions, if you want to use it with Syncfusion’s products.
   
 You can read the [License](https://github.com/ariya/phantomjs/blob/master/LICENSE.BSD) and [Third-Party](https://github.com/ariya/phantomjs/blob/master/third-party.txt) documents.
 
 
 # Client library names as arguments for Bold BI deployment in Kubernetes
 
-Find the names of client libraries which needs to be passed as a comma separated string for an environment variable in **deployment.yaml** file.
+Find the names of client libraries, which needs to be passed as a comma separated string for an environment variable in **deployment.yaml** file.
 
 | Library                   | Name          |
 | -------------             | ------------- |
@@ -64,7 +64,7 @@ Find the names of client libraries which needs to be passed as a comma separated
 | InfluxData.Net            | influxdb      |
 | PhantomJS WebKit          | phantomjs     |
 
-If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` environment variable. You need to add the names only for the libraries which you are consenting to use with Bold BI application.
+If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` environment variable. You need to add the names only for the libraries, which you are consenting to use with Bold BI application.
 
 `phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql`
 
