@@ -19,8 +19,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         env:
         - name: APP_BASE_URL
           value: <application_base_url>
@@ -62,8 +62,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -100,8 +100,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -138,8 +138,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -176,8 +176,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -214,8 +214,8 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 150m
-            memory: 400Mi
+            cpu: 250m
+            memory: 750Mi
         readinessProbe:
           httpGet:
             path: /health-check
@@ -252,7 +252,7 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 200m
+            cpu: 250m
             memory: 750Mi
         readinessProbe:
           httpGet:
