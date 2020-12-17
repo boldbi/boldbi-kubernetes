@@ -9,7 +9,7 @@ Please follow these steps to deploy Bold BI On-Premise in Amazon Elastic Kuberne
     * [service.yaml](../deploy/service.yaml)
     * [ingress.yaml](../deploy/ingress.yaml)
 
-2. Create a Kubernetes cluster in Amazon EKS to deploy the Bold BI On-Premise application.
+2. Create a Kubernetes cluster, and a node group inside your cluster in Amazon EKS to deploy the Bold BI On-Premise application.
 
    https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
 
