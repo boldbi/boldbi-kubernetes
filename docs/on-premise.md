@@ -3,11 +3,11 @@ Please follow these steps to deploy Bold BI application in your On-Premise machi
 
 1. Download the following files for Bold BI deployment in On-Premise:
 
-    * [pvclaim_onpremise.yaml](../deploy/pvclaim_onpremise.yaml)
-    * [deployment.yaml](../deploy/deployment.yaml)
-    * [hpa.yaml](../deploy/hpa.yaml)
-    * [service.yaml](../deploy/service.yaml)
-    * [ingress.yaml](../deploy/ingress.yaml)
+    * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/pvclaim_onpremise.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
 2. Create a folder in your machine to store the shared folders for applications’ usage.
 
