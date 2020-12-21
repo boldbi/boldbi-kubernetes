@@ -3,11 +3,11 @@ Please follow these steps to deploy Bold BI On-Premise in Google Kubernetes Engi
 
 1. Download the following files for Bold BI deployment in GKE:
 
-    * [pvclaim_gke.yaml](../deploy/pvclaim_gke.yaml)
-    * [deployment.yaml](../deploy/deployment.yaml)
-    * [hpa_gke.yaml](../deploy/hpa_gke.yaml)
-    * [service.yaml](../deploy/service.yaml)
-    * [ingress.yaml](../deploy/ingress.yaml)
+    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/pvclaim_gke.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/deployment.yaml)
+    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/hpa_gke.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
 
@@ -25,11 +25,11 @@ Please follow these steps to deploy Bold BI On-Premise in Google Kubernetes Engi
 
 ![PV Claim](images/gke_pvclaim.png)
 
-6. Set your project and newly created cluster in the Google cloud shell.
+6. Connect with your GKE cluster.
 
    https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
-7. Deploy the latest Nginx ingress controller to your cluster using the following command.
+7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml

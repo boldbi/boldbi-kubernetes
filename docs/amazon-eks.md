@@ -3,11 +3,11 @@ Please follow these steps to deploy Bold BI On-Premise in Amazon Elastic Kuberne
 
 1. Download the following files for Bold BI deployment in Amazon EKS:
 
-    * [pvclaim_eks.yaml](../deploy/pvclaim_eks.yaml)
-    * [deployment.yaml](../deploy/deployment.yaml)
-    * [hpa.yaml](../deploy/hpa.yaml)
-    * [service.yaml](../deploy/service.yaml)
-    * [ingress.yaml](../deploy/ingress.yaml)
+    * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/pvclaim_eks.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster, and a node group inside your cluster in Amazon EKS to deploy the Bold BI On-Premise application.
 
