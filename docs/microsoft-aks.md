@@ -9,7 +9,7 @@ Please follow these steps to deploy Bold BI On-Premise in Microsoft Azure Kubern
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
-2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy the Bold BI On-Premise application.
+2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
 
 3. Create a File share instance in your storage account and note the File share name to store the shared folders for applications’ usage.
 
