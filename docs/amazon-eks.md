@@ -9,11 +9,11 @@ Please follow these steps to deploy Bold BI On-Premise in Amazon Elastic Kuberne
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
-2. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy the Bold BI On-Premise application.
+2. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
 
    https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
 
-3. Connect with your Amazon EKS cluster.
+3. Connect to your Amazon EKS cluster.
 
 4. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for applications’ usage by following the below link.
 
