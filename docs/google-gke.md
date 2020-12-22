@@ -9,7 +9,7 @@ Please follow these steps to deploy Bold BI On-Premise in Google Kubernetes Engi
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
 
-2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy the Bold BI On-Premise application.
+2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
    https://console.cloud.google.com/kubernetes 
 
