@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-web-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -45,6 +46,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-api-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -83,6 +85,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-ums-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -121,6 +124,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-web-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -159,6 +163,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-api-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -197,6 +202,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-jobs-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -235,6 +241,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-dataservice-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
