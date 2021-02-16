@@ -1,8 +1,6 @@
 # Upgrading Bold BI to 4.1.1
 
-This section explains how to upgrade Bold BI to 4.1.1 version in your Kubernetes cluster.
-
-Before upgrading, you can refer to the features and enhancements from the [Release Notes](https://www.boldbi.com/release-history/enterprise/).
+This section explains how to upgrade Bold BI to 4.1.1 version in your Kubernetes cluster. You can refer to the features and enhancements from the [Release Notes](https://www.boldbi.com/release-history/enterprise/).
 
 
 ## Backup the existing data
@@ -21,7 +19,7 @@ You can download the upgrade script from this [link](https://raw.githubuserconte
 Run the below command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version=4.1.1 --namespace=default
+./upgrade.sh --version="4.1.1" --namespace="default"
 ```
 
 <table>
