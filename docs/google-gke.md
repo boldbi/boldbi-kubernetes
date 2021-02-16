@@ -1,8 +1,6 @@
 # Bold BI on Google Kubernetes Engine
 
-If you are upgrading Bold BI to 4.1.1, please follow the steps from below link.
-
-[Upgrade Bold BI](upgrade.md)
+If you are upgrading Bold BI to 4.1.1, please follow the steps in this [link](upgrade.md).
 
 For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
 
@@ -109,11 +107,11 @@ kubectl apply -f service.yaml
 22.	Use the following command to get the pods’ status.
 
 ```sh
-kubectl get pods --watch
+kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-23. Wait till you see all the applications in running state and press `Ctrl + c` to exit the watch. Then, use your DNS or ingress IP address you got from **Step 15** to access the application in the browser.
+23. Wait till you see the applications in running state. Then, use your DNS or ingress IP address you got from **Step 15** to access the application in the browser.
 
 24.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
