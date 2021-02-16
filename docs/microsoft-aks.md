@@ -1,13 +1,17 @@
 # Bold BI on Microsoft Azure Kubernetes Service
-Please follow these steps to deploy Bold BI On-Premise in Microsoft Azure Kubernetes Service (AKS).
+If you are upgrading Bold BI to 4.1.1, please follow the steps from below link.
+
+[Upgrade Bold BI](upgrade.md)
+
+For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Microsoft Azure Kubernetes Service (AKS).
 
 1. Download the following files for Bold BI deployment in AKS:
 
-    * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/pvclaim_aks.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
+    * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/pvclaim_aks.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
 
@@ -96,11 +100,11 @@ kubectl apply -f service.yaml
 22. Use the following command to get the pods’ status.
 
 ```sh
-kubectl get pods
+kubectl get pods --watch
 ```
 ![Pod status](images/pod_status.png) 
 
-23. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 15** to access the application in the browser.
+23. Wait till you see all the applications in running state and press `Ctrl + c` to exit the watch. Then use your DNS or ingress IP address you got from **Step 15** to access the application in the browser.
 
 24.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     

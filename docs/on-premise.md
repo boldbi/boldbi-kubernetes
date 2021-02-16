@@ -1,13 +1,17 @@
 # Bold BI on On-Premise Kubernetes Cluster
-Please follow these steps to deploy Bold BI application in your On-Premise machine kubernetes cluster.
+If you are upgrading Bold BI to 4.1.1, please follow the steps from below link.
+
+[Upgrade Bold BI](upgrade.md)
+
+For fresh installation, continue with the following steps to deploy Bold BI application in your On-Premise machine kubernetes cluster.
 
 1. Download the following files for Bold BI deployment in On-Premise:
 
-    * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/pvclaim_onpremise.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v3.3.40/deploy/ingress.yaml)
+    * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/pvclaim_onpremise.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/ingress.yaml)
 
 2. Create a folder in your machine to store the shared folders for applications’ usage.
 
@@ -80,11 +84,13 @@ kubectl apply -f ingress.yaml
 15.	Use the following command to get the pods’ status.
 
 ```sh
-kubectl get pods
+kubectl get pods --watch
 ```
 ![Pod status](images/pod_status.png) 
 
-16.	After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
+16.	Wait till you see all the applications in running state and press `Ctrl + c` to exit the watch. 
+
+17. After deployment wait for some time, so that Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
 
 ```sh
 kubectl get hpa
@@ -95,8 +101,8 @@ If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 ```
 
-17.	Use your DNS hostname to access the application in the browser.
+18.	Use your DNS hostname to access the application in the browser.
 
-18.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+19.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
