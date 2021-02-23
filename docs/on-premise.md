@@ -31,31 +31,37 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 6. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-7. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
-
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+7. Run the following command to create the namespace for deploying Bold BI.
 
 ```sh
-kubectl create secret tls boldbi-tls --key <key-path> --cert <certificate-path>
+kubectl apply -f namespace.yaml
 ```
 
-9. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+8. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+
+9. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+
+```sh
+kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+```
+
+10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
 ![ingress DNS](images/ingress_yaml.png)
 
-10. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS in `<application_base_url>` place.
+11. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS in `<application_base_url>` place.
     
     Ex: `http://example.com`, `https://example.com`
 
-11. Read the optional client library license agreement from the following link.
+12. Read the optional client library license agreement from the following link.
     
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-12. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+13. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
 ![deployment.yaml](images/deployment_yaml.png) 
 
-13.	Now, run the following commands one by one:
+14.	Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_onpremise.yaml
@@ -77,19 +83,19 @@ kubectl apply -f service.yaml
 kubectl apply -f ingress.yaml
 ```
 
-14.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
+15.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
 
-15.	Use the following command to get the pods’ status.
+16.	Use the following command to get the pods’ status.
 
 ```sh
-kubectl get pods
+kubectl get pods -n boldbi
 ```
 ![Pod status](images/pod_status.png) 
 
-16. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
+17. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
 
 ```sh
-kubectl get hpa
+kubectl get hpa -n boldbi
 ```
 If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then you do not have any metrics server running inside your cluster. Use the following command to deploy metrics server in your cluster to enable the autoscaling feature by HPA.
     
@@ -97,8 +103,8 @@ If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 ```
 
-17.	Use your DNS hostname to access the application in the browser.
+18.	Use your DNS hostname to access the application in the browser.
 
-18.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+19.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
