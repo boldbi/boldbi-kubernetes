@@ -20,8 +20,10 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-name: "boldbi.k8s.pod.id"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "300"
     nginx.ingress.kubernetes.io/server-snippet: |      
+      set $boldbi_namespace "boldbi";
+      
       location ~* "^/bi/api(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -49,7 +51,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-api-service-6005";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-api-service-6005";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -89,7 +91,7 @@ metadata:
       }
       
       location ~* "^/bi/jobs(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -117,7 +119,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-jobs-service-6006";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-jobs-service-6006";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -157,7 +159,7 @@ metadata:
       }
       
       location ~* "^/bi/designer(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -185,7 +187,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-dataservice-service-6007";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-dataservice-service-6007";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -225,7 +227,7 @@ metadata:
       }
       
       location ~* "^/bi(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -253,7 +255,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-web-service-6004";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-web-service-6004";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -301,7 +303,7 @@ metadata:
       }
       
       location ~* "^/api(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -329,7 +331,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-id-api-service-6001";
+        set $proxy_upstream_name "${boldbi_namespace}-id-api-service-6001";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -369,7 +371,7 @@ metadata:
       }
       
       location ~* "^/ums(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -397,7 +399,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-id-ums-service-6002";
+        set $proxy_upstream_name "${boldbi_namespace}-id-ums-service-6002";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;

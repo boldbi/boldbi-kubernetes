@@ -19,7 +19,7 @@ then
 else	
 	if [ -z "$namespace" ]
 	then
-		$namespace="default"
+		namespace="default"
 	fi
 	
 	kubectl set image deployment/id-web-deployment id-web-container=gcr.io/boldbi-294612/boldbi-identity:$version --namespace=$namespace --record 
