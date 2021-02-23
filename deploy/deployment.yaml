@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/boldbi-identity:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-identity:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -24,9 +24,9 @@ spec:
             memory: 750Mi
         env:
         - name: APP_BASE_URL
-          value: https://k8s-gcp.boldbi.com
+          value: <application_base_url>
         - name: INSTALL_OPTIONAL_LIBS
-          value: phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql
+          value: <comma_separated_library_names>
         readinessProbe:
           httpGet:
             path: /health-check
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/boldbi-identity-api:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-identity-api:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/boldbi-ums:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-ums:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -137,7 +137,7 @@ spec:
     spec:
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-server:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -176,7 +176,7 @@ spec:
     spec:
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-server-api:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -215,7 +215,7 @@ spec:
     spec:
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.1.1
         ports:
         - containerPort: 80
         resources:
@@ -254,7 +254,7 @@ spec:
     spec:
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:4.1.1_feb22_01
+        image: gcr.io/boldbi-294612/boldbi-designer:4.1.1
         ports:
         - containerPort: 80
         resources:
