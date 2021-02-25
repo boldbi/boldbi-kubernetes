@@ -1,14 +1,14 @@
 # Upgrading Bold BI to 4.1.1
 
-This section explains how to upgrade Bold BI to 4.1.1 version in your Kubernetes cluster. You can refer to the features and enhancements from the [Release Notes](https://www.boldbi.com/release-history/enterprise/).
+This section explains how to upgrade Bold BI to 4.1.1 version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/enterprise/).
 
 
 ## Backup the existing data
 Before upgrading the Bold BI to latest version, make sure to take the backup of the following items.
 
-* Files and folders from shared location which you have mounted to the deployments through persistent volume claims (pvclaim_*.yaml).
+* Files and folders from the shared location, which you have mounted to the deployments by persistent volume claims (pvclaim_*.yaml).
 
-* Database backup - Take a backup of Database to restore incase if the upgrade was not successfull or if applications not working properly after upgrade.
+* Database backup - Take a backup of Database, to restore incase if the upgrade was not successful or if applications are not working properly after the upgrade.
 
 
 ## Proceeding with upgrade
@@ -16,7 +16,7 @@ Bold BI updates the database schema of your current version to the latest versio
 
 You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/upgrade.sh).
 
-Run the below command to execute the shell script to upgrade Bold BI.
+Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
 ./upgrade.sh --version="4.1.1" --namespace="default"
@@ -28,7 +28,7 @@ Run the below command to execute the shell script to upgrade Bold BI.
        version
       </td>
       <td>
-      Image tag of the current version which you are going to upgrade.
+      Image tag of the current version, which you are going to upgrade.
       </td>
     </tr>
     <tr>
