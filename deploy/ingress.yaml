@@ -291,15 +291,7 @@ metadata:
         proxy_next_upstream_tries               3;
         rewrite "(?i)/biweb6004/bi(/|$)(.*)" /$2 break;
         proxy_pass http://upstream_balancer;
-        proxy_redirect                          off;
-        
-        if ($request_filename ~* ^.*?/([^/]*?)$)
-          {
-              set $filename $1;
-          }
-          if ($filename ~* ^.*?\.(eot)|(ttf)|(woff)$){
-              add_header Access-Control-Allow-Origin *;
-          }
+        proxy_redirect                          off;        
       }
       
       location ~* "^/api(/|$)(.*)" {

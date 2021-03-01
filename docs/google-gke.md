@@ -1,16 +1,16 @@
 # Bold BI on Google Kubernetes Engine
 
-If you are upgrading Bold BI to 4.1.1, please follow the steps in this [link](upgrade.md).
+If you are upgrading Bold BI to 4.1.36, please follow the steps in this [link](upgrade.md).
 
 For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
 
 1. Download the following files for Bold BI deployment in GKE:
 
-    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/pvclaim_gke.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/deployment.yaml)
-    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/hpa_gke.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.1/deploy/ingress.yaml)
+    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/pvclaim_gke.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/deployment.yaml)
+    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/hpa_gke.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
