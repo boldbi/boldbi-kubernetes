@@ -19,7 +19,9 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
     nginx.ingress.kubernetes.io/session-cookie-name: "boldbi.k8s.pod.id"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "300"
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/server-snippet: |      
+      client_max_body_size 200m;
       set $boldbi_namespace "boldbi";
       
       location ~* "^/bi/api(/|$)(.*)" {
@@ -58,7 +60,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -126,7 +127,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -194,7 +194,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -262,7 +261,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -330,7 +328,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -398,7 +395,6 @@ metadata:
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
