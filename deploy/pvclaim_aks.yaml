@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: boldbi-azure-secret
+  namespace: boldbi
 type: Opaque
 data:
   azurestorageaccountname: <base64_azurestorageaccountname>
@@ -11,6 +12,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
  name: boldbi-fileserver
+ namespace: boldbi
 spec:
  capacity:
    storage: 3Gi
@@ -27,6 +29,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
  name: boldbi-fileserver-claim
+ namespace: boldbi
 spec:
  accessModes:
  - ReadWriteMany

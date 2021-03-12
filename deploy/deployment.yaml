@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-web-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/boldbi-identity:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-identity:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -45,6 +46,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-api-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -57,7 +59,7 @@ spec:
     spec:
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/boldbi-identity-api:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-identity-api:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -83,6 +85,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-ums-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -95,7 +98,7 @@ spec:
     spec:
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/boldbi-ums:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-ums:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -121,6 +124,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-web-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -133,7 +137,7 @@ spec:
     spec:
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-server:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -159,6 +163,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-api-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -171,7 +176,7 @@ spec:
     spec:
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-server-api:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -197,6 +202,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-jobs-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -209,7 +215,7 @@ spec:
     spec:
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.1.36
         ports:
         - containerPort: 80
         resources:
@@ -235,6 +241,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-dataservice-deployment
+  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -247,7 +254,7 @@ spec:
     spec:
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:3.3.40
+        image: gcr.io/boldbi-294612/boldbi-designer:4.1.36
         ports:
         - containerPort: 80
         resources:

@@ -2,6 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
  name: boldbi-storageclass
+ namespace: boldbi
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ---
@@ -9,6 +10,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
  name: boldbi-fileserver
+ namespace: boldbi
 spec:
  capacity:
    storage: 3Gi
@@ -22,6 +24,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
  name: boldbi-fileserver-claim
+ namespace: boldbi
 spec:
  accessModes:
  - ReadWriteMany

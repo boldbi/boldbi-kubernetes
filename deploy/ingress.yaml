@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: boldbi-ingress
+  namespace: boldbi
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -17,10 +18,14 @@ metadata:
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
     nginx.ingress.kubernetes.io/session-cookie-name: "boldbi.k8s.pod.id"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "300"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "600"
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/server-snippet: |      
+      client_max_body_size 200m;
+      set $boldbi_namespace "boldbi";
+      
       location ~* "^/bi/api(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -48,14 +53,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-api-service-6005";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-api-service-6005";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -88,7 +92,7 @@ metadata:
       }
       
       location ~* "^/bi/jobs(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -116,14 +120,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-jobs-service-6006";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-jobs-service-6006";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -156,7 +159,7 @@ metadata:
       }
       
       location ~* "^/bi/designer(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -184,14 +187,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-dataservice-service-6007";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-dataservice-service-6007";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -224,7 +226,7 @@ metadata:
       }
       
       location ~* "^/bi(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -252,14 +254,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-bi-web-service-6004";
+        set $proxy_upstream_name "${boldbi_namespace}-bi-web-service-6004";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -288,19 +289,11 @@ metadata:
         proxy_next_upstream_tries               3;
         rewrite "(?i)/biweb6004/bi(/|$)(.*)" /$2 break;
         proxy_pass http://upstream_balancer;
-        proxy_redirect                          off;
-        
-        if ($request_filename ~* ^.*?/([^/]*?)$)
-          {
-              set $filename $1;
-          }
-          if ($filename ~* ^.*?\.(eot)|(ttf)|(woff)$){
-              add_header Access-Control-Allow-Origin *;
-          }
+        proxy_redirect                          off;        
       }
       
       location ~* "^/api(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -328,14 +321,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-id-api-service-6001";
+        set $proxy_upstream_name "${boldbi_namespace}-id-api-service-6001";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
@@ -368,7 +360,7 @@ metadata:
       }
       
       location ~* "^/ums(/|$)(.*)" {
-        set $namespace      "default";
+        set $namespace      $boldbi_namespace;
         set $ingress_name   "boldbi-ingress";
         set $service_name   "";
         set $service_port   "";
@@ -396,14 +388,13 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "default-id-ums-service-6002";
+        set $proxy_upstream_name "${boldbi_namespace}-id-ums-service-6002";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
         set $best_http_host      $http_host;
         set $pass_port           $pass_server_port;
         set $proxy_alternative_upstream_name "";
-        client_max_body_size                    1m;
         proxy_set_header Host                   $best_http_host;
         proxy_set_header                        Upgrade           $http_upgrade;
         proxy_set_header                        Connection        $connection_upgrade;
