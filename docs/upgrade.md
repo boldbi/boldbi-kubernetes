@@ -1,43 +1,26 @@
 # Upgrading Bold BI to 4.1.36
 
-This section explains how to upgrade Bold BI to 4.1.36 version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/enterprise/).
+Please follow the below steps to upgrade Bold BI to 4.1.36 from 3.4.12 in your Kubernetes cluster.
 
+1.  Download the following files to upgrade Bold BI in AKS:
 
-## Backup the existing data
-Before upgrading the Bold BI to latest version, make sure to take the backup of the following items.
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36_istio_gateway/deploy/deployment.yaml)
+    * [destination_rule.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36_istio_gateway/deploy/destination_rule.yaml)
 
-* Files and folders from the shared location, which you have mounted to the deployments by persistent volume claims (pvclaim_*.yaml).
+2.	Connect with your Microsoft AKS cluster.
 
-* Database backup - Take a backup of Database, to restore incase if the upgrade was not successful or if applications are not working properly after the upgrade.
+3.	Open the deployment.yaml file from the downloaded files in Step 1. Replace `<application_base_url>` and `<comma_separated_library_names>` from previous deployment.
 
+4. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key in `widget_bing_map_api_key` value on **deployment.yaml** and save the file.
 
-## Proceeding with upgrade
-Bold BI updates the database schema of your current version to the latest version. The upgrade process will retain all the resources and settings from the previous deployment.
+    ![Bing Map](images/bing_map_key.png) 
 
-You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/upgrade.sh).
-
-Run the following command to execute the shell script to upgrade Bold BI.
+5. Run the following commands one by one:
 
 ```sh
-./upgrade.sh --version="4.1.36" --namespace="default"
+kubectl apply -f deployment.yaml
 ```
 
-<table>
-    <tr>
-      <td>
-       version
-      </td>
-      <td>
-      Image tag of the current version, which you are going to upgrade.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       namespace (optional)
-      </td>
-      <td>
-       namespace in which your existing Bold BI application was running. </br>
-       Default value: <i>default</i>
-      </td>
-    </tr>
-</table>
+```sh
+kubectl apply -f destination_rule.yaml
+```

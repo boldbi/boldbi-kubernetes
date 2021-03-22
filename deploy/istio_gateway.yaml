@@ -1,0 +1,94 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: boldbi-gateway
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    # tls:
+      # httpsRedirect: true
+    hosts:
+    - "*"
+    # - example.com
+  # - port:
+      # number: 443
+      # name: https
+      # protocol: HTTPS
+    # tls:
+      # mode: SIMPLE
+      # credentialName: boldbi-tls
+    # hosts:
+    # - example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: boldbi-virtual-service
+spec:
+  hosts:
+  - "*"
+  # - example.com
+  gateways:
+  - boldbi-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /bi/api
+    route:
+    - destination:
+        port:
+          number: 6005
+        host: bi-api-service
+  - match:
+    - uri:
+        prefix: /bi/jobs
+    route:
+    - destination:
+        port:
+          number: 6006
+        host: bi-jobs-service
+  - match:
+    - uri:
+        prefix: /bi/designer
+    route:
+    - destination:
+        port:
+          number: 6007
+        host: bi-dataservice-service
+  - match:
+    - uri:
+        prefix: /bi
+    route:
+    - destination:
+        port:
+          number: 6004
+        host: bi-web-service
+  - match:
+    - uri:
+        prefix: /api
+    route:
+    - destination:
+        port:
+          number: 6001
+        host: id-api-service
+  - match:
+    - uri:
+        prefix: /ums
+    route:
+    - destination:
+        port:
+          number: 6002
+        host: id-ums-service
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 6000
+        host: id-web-service

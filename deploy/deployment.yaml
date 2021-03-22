@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-web-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -46,7 +45,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-api-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -85,7 +83,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-ums-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -124,7 +121,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-web-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -163,7 +159,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-api-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -202,7 +197,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-jobs-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -241,7 +235,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-dataservice-deployment
-  namespace: boldbi
 spec:
   selector:
     matchLabels:
@@ -257,6 +250,11 @@ spec:
         image: gcr.io/boldbi-294612/boldbi-designer:4.1.36
         ports:
         - containerPort: 80
+        env:
+        - name: widget_bing_map_enable
+          value: ""
+        - name: widget_bing_map_api_key
+          value: ""
         resources:
           requests:
             cpu: 250m
