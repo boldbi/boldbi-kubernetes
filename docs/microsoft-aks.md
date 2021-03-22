@@ -1,7 +1,5 @@
 # Bold BI on Microsoft Azure Kubernetes Service with Istio Gateway
-If you are upgrading Bold BI to 4.1.36, please follow the steps in this [link](upgrade.md).
-
-For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Microsoft Azure Kubernetes Service (AKS) with Istio Gateway.
+Please follow the below steps to deploy Bold BI On-Premise in Microsoft Azure Kubernetes Service (AKS) with Istio Gateway.
 
 1. Download the following files for Bold BI deployment in AKS:
 
@@ -25,6 +23,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 6. Connect with your Microsoft AKS cluster.
 
 7.	Install istio ingress gateway in your AKS cluster by following the below link,
+
     https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install
 
 8.	Wait and get istio ingress gateway externa IP using the following command.
@@ -39,7 +38,7 @@ kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.l
 
 11.	Open **istio_gateway.yaml** file downloaded from Step 1.
 
-12.	Remove the line `*` from hosts, uncomment the next line and replace your DNS host name with example.com and save the file.
+12.	Remove the line `*` from hosts, uncomment the next line and replace your DNS host name with **example.com** and save the file.
 
     ![Istio Gateway Hosts](images/istio_gateway_host.png)
 
@@ -51,7 +50,7 @@ kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.l
 kubectl create -n istio-system secret tls boldbi-tls --key <key-path> --cert <certificate-path>
 ```
 
-15.	Now, uncomment the following section in istio_gateway.yaml file and replace your DNS hostname with `example.com` and save the file.
+15.	Now, uncomment the following section in **istio_gateway.yaml** file and replace your DNS hostname with `example.com` and save the file.
 
     ![Istio Gateway SSL](images/istio_gateway_ssl.png)
 
