@@ -61,19 +61,19 @@ kubectl create -n istio-system secret tls boldbi-tls --key <key-path> --cert <ce
         `https://example.com`
         `http://<istio_ingress_gateway_externa_IP_address>`
 
-19. Read the optional client library license agreement from the following link.
+17. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-20. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+18. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
     ![deployment.yaml](images/deployment_yaml.png) 
 
-20. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key in `widget_bing_map_api_key` value on **deployment.yaml** file.
+19. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key in `widget_bing_map_api_key` value on **deployment.yaml** file.
 
     ![Bing Map](images/bing_map_key.png) 
 
-21. Now, run the following commands one by one:
+20. Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_aks.yaml
@@ -99,6 +99,8 @@ kubectl apply -f istio_gateway.yaml
 kubectl apply -f destination_rule.yaml
 ```
 
+21. If you face any error while applying the **hpa.yaml**, try to use **hpa_gke.yaml**. The **hpa_gke.yaml** does not contain scaledown behavior which will not support in some clusters.
+
 22. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
 
 23. Use the following command to get the pods’ status.
@@ -108,7 +110,7 @@ kubectl get pods
 ```
 ![Pod status](images/pod_status.png) 
 
-24. 22.	Wait till you see the applications in running state. Then use your DNS or istio ingress gateway externa IP address you got from **Step 8** to access the application in the browser.
+24.	Wait till you see the applications in running state. Then use your DNS or istio ingress gateway externa IP address you got from **Step 8** to access the application in the browser.
 
 25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
