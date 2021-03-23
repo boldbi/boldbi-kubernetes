@@ -1,4 +1,4 @@
-# Bold BI on AKS using Istio ingress gateway
+# Bold BI on AKS using Istio gateway
 
 Bold BI can be deployed on Azure Kubernetes cluster using Istio ingress gateway. Please follow the below documents for Bold BI deployment.
 
