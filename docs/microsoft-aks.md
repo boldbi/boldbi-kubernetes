@@ -81,7 +81,11 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
 ![deployment.yaml](images/deployment_yaml.png) 
 
-21. Now, run the following commands one by one:
+21. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
+
+    ![Bing Map](images/bing_map_key.png) 
+
+22. Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_aks.yaml
@@ -99,17 +103,17 @@ kubectl apply -f hpa.yaml
 kubectl apply -f service.yaml
 ```
 
-22. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
+23. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
 
-23. Use the following command to get the pods’ status.
+24. Use the following command to get the pods’ status.
 
 ```sh
 kubectl get pods -n boldbi
 ```
 ![Pod status](images/pod_status.png) 
 
-24. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
+25. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
 
-25.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+26.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup

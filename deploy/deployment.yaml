@@ -257,6 +257,11 @@ spec:
         image: gcr.io/boldbi-294612/boldbi-designer:4.1.36
         ports:
         - containerPort: 80
+        env:
+        - name: widget_bing_map_enable
+          value: ""
+        - name: widget_bing_map_api_key
+          value: ""
         resources:
           requests:
             cpu: 250m

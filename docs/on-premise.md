@@ -61,7 +61,11 @@ kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certific
 
 ![deployment.yaml](images/deployment_yaml.png) 
 
-14.	Now, run the following commands one by one:
+14. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
+
+    ![Bing Map](images/bing_map_key.png) 
+
+15.	Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_onpremise.yaml
@@ -83,16 +87,16 @@ kubectl apply -f service.yaml
 kubectl apply -f ingress.yaml
 ```
 
-15.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
+16.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
 
-16.	Use the following command to get the pods’ status.
+17.	Use the following command to get the pods’ status.
 
 ```sh
 kubectl get pods -n boldbi
 ```
 ![Pod status](images/pod_status.png) 
 
-17. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
+18. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
 
 ```sh
 kubectl get hpa -n boldbi
@@ -103,8 +107,8 @@ If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 ```
 
-18.	Use your DNS hostname to access the application in the browser.
+19.	Use your DNS hostname to access the application in the browser.
 
-19.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+20.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
