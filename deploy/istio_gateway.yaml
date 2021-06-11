@@ -44,6 +44,9 @@ spec:
         port:
           number: 6005
         host: bi-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /bi/jobs
@@ -52,6 +55,9 @@ spec:
         port:
           number: 6006
         host: bi-jobs-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /bi/designer
@@ -60,6 +66,9 @@ spec:
         port:
           number: 6007
         host: bi-dataservice-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /bi
@@ -68,6 +77,9 @@ spec:
         port:
           number: 6004
         host: bi-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /api
@@ -76,6 +88,9 @@ spec:
         port:
           number: 6001
         host: id-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /ums
@@ -84,6 +99,9 @@ spec:
         port:
           number: 6002
         host: id-ums-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
         prefix: /
@@ -92,3 +110,6 @@ spec:
         port:
           number: 6000
         host: id-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
