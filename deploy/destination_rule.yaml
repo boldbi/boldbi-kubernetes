@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: id-web-rule
 spec:
-  host: id-web-service.default.svc.cluster.local
+  host: id-web-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
@@ -16,7 +16,7 @@ kind: DestinationRule
 metadata:
   name: id-api-rule
 spec:
-  host: id-api-service.default.svc.cluster.local
+  host: id-api-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
@@ -29,7 +29,7 @@ kind: DestinationRule
 metadata:
   name: id-ums-rule
 spec:
-  host: id-ums-service.default.svc.cluster.local
+  host: id-ums-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
@@ -42,7 +42,7 @@ kind: DestinationRule
 metadata:
   name: bi-web-rule
 spec:
-  host: bi-web-service.default.svc.cluster.local
+  host: bi-web-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
@@ -55,7 +55,7 @@ kind: DestinationRule
 metadata:
   name: bi-api-rule
 spec:
-  host: bi-api-service.default.svc.cluster.local
+  host: bi-api-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
@@ -68,12 +68,12 @@ kind: DestinationRule
 metadata:
   name: bi-jobs-rule
 spec:
-  host: bi-jobs-service.default.svc.cluster.local
+  host: bi-jobs-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
         httpCookie:
-          name: boldbi.k8s.bi-jobs.pod.id
+          name: boldbi.k8s.bi.jobs.pod.id
           ttl: 600s
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -81,7 +81,7 @@ kind: DestinationRule
 metadata:
   name: bi-dataservice-rule
 spec:
-  host: bi-dataservice-service.default.svc.cluster.local
+  host: bi-dataservice-service
   trafficPolicy:
     loadBalancer:
       consistentHash:
