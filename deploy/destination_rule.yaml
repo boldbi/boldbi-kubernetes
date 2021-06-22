@@ -1,0 +1,90 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: id-web-rule
+spec:
+  host: id-web-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.id.web.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: id-api-rule
+spec:
+  host: id-api-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.id.api.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: id-ums-rule
+spec:
+  host: id-ums-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.id.ums.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bi-web-rule
+spec:
+  host: bi-web-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.bi.web.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bi-api-rule
+spec:
+  host: bi-api-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.bi.api.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bi-jobs-rule
+spec:
+  host: bi-jobs-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.bi.jobs.pod.id
+          ttl: 600s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bi-dataservice-rule
+spec:
+  host: bi-dataservice-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: boldbi.k8s.bi.dataservice.pod.id
+          ttl: 600s
