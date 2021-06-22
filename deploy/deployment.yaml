@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/boldbi-identity:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-identity:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -35,11 +36,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: id-web-volume
+        - mountPath: /boldbi/idp/web/logs
+          name: log4net-config-volume
       volumes:
       - name: id-web-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -57,7 +63,8 @@ spec:
     spec:
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/boldbi-identity-api:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-identity-api:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -73,11 +80,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: id-api-volume
+        - mountPath: /boldbi/idp/api/logs
+          name: log4net-config-volume
       volumes:
       - name: id-api-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -95,7 +107,8 @@ spec:
     spec:
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/boldbi-ums:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-ums:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -111,11 +124,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: id-ums-volume
+        - mountPath: /boldbi/idp/ums/logs
+          name: log4net-config-volume
       volumes:
       - name: id-ums-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -133,7 +151,8 @@ spec:
     spec:
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-server:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -149,11 +168,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: bi-web-volume
+        - mountPath: /boldbi/bi/web/logs
+          name: log4net-config-volume
       volumes:
       - name: bi-web-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -171,7 +195,8 @@ spec:
     spec:
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-server-api:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -187,11 +212,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: bi-api-volume
+        - mountPath: /boldbi/bi/api/logs
+          name: log4net-config-volume
       volumes:
       - name: bi-api-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -209,7 +239,8 @@ spec:
     spec:
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
@@ -225,11 +256,16 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: bi-jobs-volume
+        - mountPath: /boldbi/bi/jobs/logs
+          name: log4net-config-volume
       volumes:
       - name: bi-jobs-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -247,7 +283,8 @@ spec:
     spec:
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:4.1.36
+        image: gcr.io/boldbi-294612/boldbi-designer:4.1.45_20210622
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
@@ -268,8 +305,13 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: bi-dataservice-volume
+        - mountPath: /boldbi/bi/dataservice/logs
+          name: log4net-config-volume
       volumes:
       - name: bi-dataservice-volume
         persistentVolumeClaim:
           claimName: boldbi-fileserver-claim
           readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
