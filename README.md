@@ -1,10 +1,13 @@
-# Bold BI
+# Bold BI on Kubernetes
 
 With [Bold BI](https://www.boldbi.com/) embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
 
-This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can create Kubernetes cluster on either cloud or on-premise infrastructure. The following links explain Bold BI Kubernetes deployment in a specific cloud and on-premise environments.
-    
-* [Google Kubernetes Engine (GKE)](docs/google-gke.md)
-* [Amazon Elastic Kubernetes Service (EKS)](docs/amazon-eks.md)
-* [Azure Kubernetes Service (AKS)](docs/microsoft-aks.md)
-* [On-premise](docs/on-premise.md)
+This chart installs Bold BI on [Kubernetes](http://kubernetes.io).
+
+## Usage
+
+[Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
+
+<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
+Once Helm is set up properly, add the repo following the Chart documentation which is available in [Bold BI directory](https://github.com/boldbi/boldbi-kubernetes/blob/v4.2_dev/helm/README.md).
