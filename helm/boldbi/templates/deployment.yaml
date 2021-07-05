@@ -1,0 +1,94 @@
+{{- range $service := .Values.instanceConfig}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    helm.sh/chart: {{ $.Chart.Name }}_{{ $.Chart.Version }}
+    app.kubernetes.io/name: {{ $service.app }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    {{- if $.Chart.AppVersion }}
+    app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}
+    {{- end }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+  name: {{ $service.app }}-deployment
+  {{- if eq $.Release.Namespace "default" }}
+  namespace: {{ $.Values.namespace }}
+  {{- else }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ $service.app }}
+      app.kubernetes.io/instance: {{ $.Release.Name }}
+  replicas: {{ $service.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ $service.app }}
+        app.kubernetes.io/instance: {{ $.Release.Name }}
+    spec:
+      {{- if ne $service.app "id-web" }}
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup id-web-service.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for id-web; sleep 10; done"]
+      {{- end }}
+      containers:
+      - name: {{ $service.app }}-container
+        {{- if eq $service.app "id-web" }}
+        image: "{{ $.Values.image.repo }}/boldbi-identity:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "id-api" }}
+        image: "{{ $.Values.image.repo }}/boldbi-identity-api:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "id-ums" }}
+        image: "{{ $.Values.image.repo }}/boldbi-ums:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "bi-web" }}
+        image: "{{ $.Values.image.repo }}/boldbi-server:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "bi-api" }}
+        image: "{{ $.Values.image.repo }}/boldbi-server-api:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "bi-jobs" }}
+        image: "{{ $.Values.image.repo }}/boldbi-server-jobs:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "bi-dataservice" }}
+        image: "{{ $.Values.image.repo }}/boldbi-designer:{{ $.Values.image.tag }}"
+        {{- end }}
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: {{ $service.cpuResourceRequests }}
+            memory: {{ $service.memoryResourceRequests }}
+        {{- if eq $service.app "id-web" }}
+        env:
+        - name: APP_BASE_URL
+          value: {{ $.Values.appBaseUrl }}
+        {{- if $.Values.optionalLibs }}
+        - name: INSTALL_OPTIONAL_LIBS
+          value: {{ $.Values.optionalLibs }}
+        {{- end }}
+        {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
+        env:
+        - name: widget_bing_map_enable
+          value: "{{ $.Values.bingMapWidget.enabled }}"
+        - name: widget_bing_map_api_key
+          value: "{{ $.Values.bingMapWidget.apiKey }}"
+        {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          {{- if eq $service.app "id-web" }}
+          initialDelaySeconds: 30
+          {{- else }}
+          initialDelaySeconds: 20
+          {{- end }}
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /boldbi/app_data
+          name: {{ $service.app }}-volume
+      volumes:
+      - name: {{ $service.app }}-volume
+        persistentVolumeClaim:
+          claimName: {{ $.Values.persistentVolume.name }}-claim
+          readOnly: false
+---
+{{- end }}
