@@ -89,29 +89,10 @@ spec:
         volumeMounts:
         - mountPath: /boldbi/app_data
           name: {{ $service.app }}-volume
-        {{- if eq $service.app "id-web" }}
-        - mountPath: /boldbi/idp/web/logs
-        {{- else if eq $service.app "id-api" }}
-        - mountPath: /boldbi/idp/api/logs
-        {{- else if eq $service.app "id-ums" }}
-        - mountPath: /boldbi/idp/ums/logs
-        {{- else if eq $service.app "bi-web" }}
-        - mountPath: /boldbi/bi/web/logs
-        {{- else if eq $service.app "bi-api" }}
-        - mountPath: /boldbi/bi/api/logs
-        {{- else if eq $service.app "bi-jobs" }}
-        - mountPath: /boldbi/bi/jobs/logs
-        {{- else if eq $service.app "bi-dataservice" }}
-        - mountPath: /boldbi/bi/dataservice/logs
-        {{- end }}
-          name: log4net-config-volume
       volumes:
       - name: {{ $service.app }}-volume
         persistentVolumeClaim:
           claimName: {{ $.Values.persistentVolume.name }}-claim
           readOnly: false
-      - name: log4net-config-volume
-        configMap:
-          name: log4net-config
 ---
 {{- end }}
