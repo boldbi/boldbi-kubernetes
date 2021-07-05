@@ -1,128 +1,68 @@
 # Bold BI on Google Kubernetes Engine
 
-If you are upgrading Bold BI to 4.1.36, please follow the steps in this [link](upgrade.md).
+## Deployment prerequisites
 
-For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
-
-1. Download the following files for Bold BI deployment in GKE:
-
-    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/pvclaim_gke.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/deployment.yaml)
-    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/hpa_gke.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/ingress.yaml)
-
-2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
+1. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
    https://console.cloud.google.com/kubernetes 
 
-3. Create a Google filestore instance to store the shared folders for applications’ usage.
+2. Create a Google filestore instance to store the shared folders for applications’ usage.
 
    https://console.cloud.google.com/filestore 
 
-4. Note the **File share name** and **IP address** after creating filestore instance.
+3. Note the **File share name** and **IP address** after creating filestore instance.
 
 ![File Share details](images/gke_file_share_details.png)
 
-5. Open **pvclaim_gke.yaml** file, downloaded in **Step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
-
-![PV Claim](images/gke_pvclaim.png)
-
-6. Connect with your GKE cluster.
+4. Connect with your GKE cluster.
 
    https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
-7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
+## Get Repo Info
 
-```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+```console
+$ helm repo add rahul-subash https://rahul-subash.github.io/helm-chart
+$ helm repo update
 ```
 
-8. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+_See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 
-9. Run the following command to create the namespace for deploying Bold BI.
+## Install Chart
 
-```sh
-kubectl apply -f namespace.yaml
+```console
+# Helm 3
+$ helm install [RELEASE_NAME] rahul-subash/boldbi --set clusterType=gke,appBaseUrl=[Host URL],persistentVolume.gke.fileShareName=[File share name],persistentVolume.gke.fileShareIp=[IP address] [flags]
 ```
 
-10. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 15**. 
+_See [configuration](configuration.md) below._
 
-11. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+_See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
-12. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
+## Uninstall Chart
 
-13. Run the following command to create a TLS secret with your SSL certificate.
-
-```sh
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+```console
+# Helm 3
+$ helm uninstall [RELEASE_NAME]
 ```
 
-14. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+This removes all the Kubernetes components associated with the chart and deletes the release.
 
-![ingress DNS](images/ingress_yaml.png)
+_See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
 
-15. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
+## Upgrade Chart
 
-```sh
-kubectl apply -f ingress.yaml
+```console
+# Helm 3
+$ helm upgrade [RELEASE_NAME] rahul-subash/boldbi [flags]
 ```
 
-16.	Now, run the following command to get the ingress IP address,
+_See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
 
-```sh
-kubectl get ingress -n boldbi
-```
-Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
-![Ingress Address](images/ingress_address.png) 
+Visit the chart's [CHANGELOG](./CHANGELOG.md) to view the chart's release history.
+For migration between major version check [migration guide](#migration-guide).
 
-17.	Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
+## Application Startup
 
-18. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
+Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
-    Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
-
-19. Read the optional client library license agreement from the following link.
-
-    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
-
-20. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
-
-![deployment.yaml](images/deployment_yaml.png) 
-
-21. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
-
-    ![Bing Map](images/bing_map_key.png) 
-
-22.	Now, run the following commands one by one:
-
-```sh
-kubectl apply -f pvclaim_gke.yaml
-```
-
-```sh
-kubectl apply -f deployment.yaml
-```
-
-```sh
-kubectl apply -f hpa_gke.yaml
-```
-
-```sh
-kubectl apply -f service.yaml
-```
-
-23.	Wait for some time till the Bold BI On-Premise application deployed to your Google Kubernetes cluster.
-
-24.	Use the following command to get the pods’ status.
-
-```sh
-kubectl get pods -n boldbi
-```
-![Pod status](images/pod_status.png) 
-
-25. Wait till you see the applications in running state. Then, use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
-
-26.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
-    
-    https://help.boldbi.com/embedded-bi/application-startup
+https://help.boldbi.com/embedded-bi/application-startup
