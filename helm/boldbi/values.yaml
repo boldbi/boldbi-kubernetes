@@ -5,6 +5,7 @@ namespace: boldbi
 appBaseUrl: ''
 optionalLibs: ''
 clusterProvider: ''
+sleepTime: 15
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -32,6 +33,22 @@ image:
   tag: 4.1.45_20210622
   pullPolicy: IfNotPresent
 imagePullSecrets: []
+
+ingress:
+  enabled: true
+  # pathType is only for k8s >= 1.18
+  pathType: Prefix
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  secretName: boldbi-tls
+  # tls:
+    # enabled: false
+    # hostArray:
+      # - hosts: 
+          # - kubernetes.docker.internal
+          # - example.com
+        # secretName: boldbi-tls
 
 instanceConfig:
   - app: id-web
@@ -95,19 +112,3 @@ autoscaling:
 bingMapWidget:
   enabled: false
   apiKey: ''
-  
-ingress:
-  enabled: true
-  # pathType is only for k8s >= 1.18
-  pathType: Prefix
-  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-  # ingressClassName: nginx
-  secretName: boldbi-tls
-  # tls:
-    # enabled: false
-    # hostArray:
-      # - hosts: 
-          # - kubernetes.docker.internal
-          # - example.com
-        # secretName: boldbi-tls
