@@ -1,0 +1,127 @@
+{{- if eq .Values.loadBalancer.type "istio" }}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: boldbi-gateway
+{{ include "boldbi.namespace" . | indent 2 }}
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }} 
+    tls:
+      httpsRedirect: true
+    {{- end }}
+    hosts:
+    - {{ (split "/" .Values.appBaseUrl)._2 }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}  
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: boldbi-tls
+    hosts:
+    - {{ (split "/" .Values.appBaseUrl)._2 }}
+  {{- end }}
+---
+{{- end }}
+{{- if eq .Values.loadBalancer.type "istio" }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: boldbi-virtual-service
+{{ include "boldbi.namespace" . | indent 2 }}
+spec:
+  hosts:
+  - {{ (split "/" .Values.appBaseUrl)._2 }}
+  gateways:
+  - boldbi-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /bi/api
+    route:
+    - destination:
+        port:
+          number: 6005
+        host: bi-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi/jobs
+    route:
+    - destination:
+        port:
+          number: 6006
+        host: bi-jobs-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi/designer
+    route:
+    - destination:
+        port:
+          number: 6007
+        host: bi-dataservice-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi
+    route:
+    - destination:
+        port:
+          number: 6004
+        host: bi-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /api
+    route:
+    - destination:
+        port:
+          number: 6001
+        host: id-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /ums
+    route:
+    - destination:
+        port:
+          number: 6002
+        host: id-ums-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 6000
+        host: id-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+{{- end }}
