@@ -5,7 +5,7 @@ To see all configurable options with detailed comments, visit the chart's [value
 
 ```console
 # Helm 3
-$ helm show values rahul-subash/boldbi
+$ helm show values boldbi/boldbi
 ```
 
 ## Client Libraries
@@ -18,7 +18,7 @@ Note the optional client libraries from the above link as comma separated names 
 
 ```console
 # Helm 3
-$ helm install [RELEASE_NAME] rahul-subash/boldbi --set optionalLibs=[comma_separated_library_names] [flags]
+$ helm install [RELEASE_NAME] boldbi/boldbi --set optionalLibs=[comma_separated_library_names] [flags]
 ```
 
 ## Bing Map Widget
@@ -27,5 +27,5 @@ If you need to use **Bing Map** widget feature, enter value for `widget_bing_map
 
 ```console
 # Helm 3
-$ helm install [RELEASE_NAME] rahul-subash/boldbi --set bingMapWidget.enabled=true,bingMapWidget.apiKey=[api-key] [flags]
+$ helm install [RELEASE_NAME] boldbi/boldbi --set bingMapWidget.enabled=true,bingMapWidget.apiKey=[api-key] [flags]
 ```

@@ -21,7 +21,7 @@
 ## Get Repo Info
 
 ```console
-$ helm repo add rahul-subash https://rahul-subash.github.io/helm-chart
+$ helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
 $ helm repo update
 ```
 
@@ -31,7 +31,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 ```console
 # Helm 3
-$ helm install [RELEASE_NAME] rahul-subash/boldbi --set clusterType=gke,appBaseUrl=[Host URL],persistentVolume.gke.fileShareName=[File share name],persistentVolume.gke.fileShareIp=[IP address] [flags]
+$ helm install [RELEASE_NAME] boldbi/boldbi --set clusterType=gke,appBaseUrl=[Host URL],persistentVolume.gke.fileShareName=[File share name],persistentVolume.gke.fileShareIp=[IP address] [flags]
 ```
 
 _See [configuration](configuration.md) below._
@@ -53,7 +53,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 ```console
 # Helm 3
-$ helm upgrade [RELEASE_NAME] rahul-subash/boldbi [flags]
+$ helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
