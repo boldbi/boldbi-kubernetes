@@ -437,27 +437,32 @@ metadata:
         proxy_redirect                          off;
       }
 spec:
-  {{- if and $ingressSupportsIngressClassName .Values.ingress.ingressClassName }}
-  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
+  ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
   {{- end }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  tls:
+  tls:   
+    {{- if .Values.loadBalancer.tls }}
+    {{- range $host := .Values.loadBalancer.tls.hostArray }}
     - hosts:
-      {{- if .Values.ingress.tls }}
-      {{- range $host := .Values.ingress.tls.hosts }}
-      {{- range $dns := $host.hostNames }}
+      {{- range $dns := $host.hosts }}
         - {{ $dns }}
       {{- end }}
       secretName: {{ $host.secretName }}
-      {{- end }}
-      {{- else }}
+    {{- end }}
+    {{- else }}
+    - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
-      secretName: {{ .Values.ingress.secretName }}
-      {{- end }}
+      secretName: {{ .Values.loadBalancer.secretName }}
+    {{- end }}
   {{- end }}
   rules:
+    {{- if .Values.loadBalancer.tls }}
+    - http:
+    {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
+    {{- end }}
         paths:
           - path: /
             {{- if $ingressSupportsPathType }}
