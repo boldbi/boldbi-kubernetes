@@ -10,20 +10,33 @@ mention this location in install command as like below
 	
 Ex: `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`	
 
-## Get Repo Info
+## Running
+
+1. Add the Superset helm repository
 
 ```console
-$ helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
-$ helm repo update
+helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
+helm repo update
+```
+
+2. View charts in repo
+
+```console
+NAME            CHART VERSION   APP VERSION     DESCRIPTION
+boldbi/boldbi   0.1.2           4.1.45          Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 
-## Install Chart
+3. Configure your setting overrides
+
+Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
+
+### Install and run
 
 ```console
 # Helm 3
-$ helm install [RELEASE_NAME] boldbi/boldbi --set clusterType=onpremise,appBaseUrl=[Host URL],persistentVolume.onpremise.hostPath=/run/desktop/mnt/host/[local_directory] [flags]
+helm upgrade --install --values my-values.yaml [RELEASE_NAME] boldbi/boldbi
 ```
 
 _See [configuration](configuration.md) below._
@@ -34,7 +47,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ```console
 # Helm 3
-$ helm uninstall [RELEASE_NAME]
+helm uninstall [RELEASE_NAME]
 ```
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
@@ -45,7 +58,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 ```console
 # Helm 3
-$ helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
+helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
