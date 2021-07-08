@@ -30,6 +30,8 @@ helm repo update
 2. View charts in repo
 
 ```console
+helm search repo boldbi
+
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
 boldbi/boldbi   0.1.2           4.1.45          Embed powerful analytics inside your apps and t...
 ```
