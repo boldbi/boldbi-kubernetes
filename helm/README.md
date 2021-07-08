@@ -23,7 +23,7 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
 
 3. Note the **File share name** and **IP address** after creating filestore instance.
 
-![File Share details](images/gke_file_share_details.png)
+![File Share details](docs/images/gke_file_share_details.png)
 
 4. Connect with your GKE cluster.
 
@@ -44,7 +44,7 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
 4. Note the **File system ID** after creating EFS file system.
-![AWS EFS](images/aws-efs.png)
+![AWS EFS](docs/images/aws-efs.png)
 
 ![Persistent Volume EKS](docs/images/persistent_vol_eks.png)
 
