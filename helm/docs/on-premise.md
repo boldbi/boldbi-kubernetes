@@ -32,14 +32,14 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
 
+_See [configuration](configuration.md) for more details._
+
 ### Install and run
 
 ```console
 # Helm 3
 helm upgrade --install --values my-values.yaml [RELEASE_NAME] boldbi/boldbi
 ```
-
-_See [configuration](configuration.md) below._
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 

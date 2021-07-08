@@ -67,5 +67,3 @@ Find the names of client libraries, which needs to be passed as a comma separate
 If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` environment variable. You need to add the names only for the libraries, which you are consenting to use with Bold BI application.
 
 `phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql`
-
-![Client Libraries](images/client-library.png) 
