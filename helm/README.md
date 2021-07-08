@@ -35,7 +35,7 @@ _See [configuration](docs/configuration.md) for more details._
 
 Replace your DNS or IP address in the appBaseUrl.
 
-Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
    
 ![Persistent Volume GKE](docs/images/persistent_vol_gke.png)
 
@@ -61,7 +61,7 @@ _See [configuration](docs/configuration.md) for more details._
 
 Replace your DNS or IP address in the appBaseUrl.
 
-Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
 ![Persistent Volume EKS](docs/images/persistent_vol_eks.png)
 
@@ -81,7 +81,7 @@ _See [configuration](docs/configuration.md) for more details._
 
 Replace your DNS or IP address in the appBaseUrl.
 
-Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
 ![Persistent Volume AKS](docs/images/persistent_vol_aks.png)
 
@@ -101,7 +101,7 @@ _See [configuration](docs/configuration.md) for more details._
 
 Replace your DNS or IP address in the appBaseUrl.
 
-Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
 ![Persistent Volume OnPremise](docs/images/persistent_vol_onpremise.png)
 
