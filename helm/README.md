@@ -11,7 +11,7 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
 * [Azure Kubernetes Service (AKS)](#AKS)
 * [On-premise](#On-Premise)
 
-## GKE
+### GKE
 
 1. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
@@ -29,9 +29,17 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
 
    https://cloud.google.com/kubernetes-engine/docs/quickstart
    
+Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
+
+_See [configuration](docs/configuration.md) for more details._
+
+Replace your DNS or IP address in the appBaseUrl.
+
+Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+   
 ![Persistent Volume GKE](docs/images/persistent_vol_gke.png)
 
-## EKS
+### EKS
 
 1. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
 
@@ -44,11 +52,20 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
 4. Note the **File system ID** after creating EFS file system.
+
 ![AWS EFS](docs/images/aws-efs.png)
+
+Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
+
+_See [configuration](docs/configuration.md) for more details._
+
+Replace your DNS or IP address in the appBaseUrl.
+
+Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
 ![Persistent Volume EKS](docs/images/persistent_vol_eks.png)
 
-## AKS
+### AKS
 
 1. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
 
@@ -58,9 +75,17 @@ This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can creat
 
 4. Connect with your Microsoft AKS cluster.
 
+Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
+
+_See [configuration](docs/configuration.md) for more details._
+
+Replace your DNS or IP address in the appBaseUrl.
+
+Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+
 ![Persistent Volume AKS](docs/images/persistent_vol_aks.png)
 
-## On-Premise
+### On-Premise
 
 Create a folder in your machine to store the shared folders for applications’ usage.
 
@@ -70,7 +95,35 @@ mention this location in install command as like below
 	
 Ex: `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
-![Persistent Volume OnPremise](docs/images/persistent_vol_onpremise.png)	
+Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
+
+_See [configuration](docs/configuration.md) for more details._
+
+Replace your DNS or IP address in the appBaseUrl.
+
+Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+
+![Persistent Volume OnPremise](docs/images/persistent_vol_onpremise.png)
+
+### Proxying
+
+Currently we have provided support for Nginx and Istio. By default Nginx is used as reverse proxy for Bold BI. If you are using istio then you can change the value as istio in your values.yaml
+
+Deploy the latest Nginx ingress controller to your cluster using the following command.
+
+```console
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+```
+
+If you need to configure Bold BI with Istio, install istio ingress gateway in your cluster.
+
+If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+
+```console
+kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+```
+
+![Load Balancing](docs/images/loadbalancing.png)
 
 ## Running
 
@@ -94,16 +147,14 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 3. Configure your setting overrides
 
-Just like any typical Helm chart, you'll need to craft a values.yaml file that would define/override any of the values exposed into the default values.yaml
-
-_See [configuration](docs/configuration.md) for more details._
-
 ## Install and run
 
 ```console
 # Helm 3
 helm upgrade --install --values my-values.yaml [RELEASE_NAME] boldbi/boldbi
 ```
+
+_See [configuration](docs/configuration.md) for more details._
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
@@ -126,9 +177,6 @@ helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
-
-Visit the chart's [CHANGELOG](./CHANGELOG.md) to view the chart's release history.
-For migration between major version check [migration guide](#migration-guide).	
 
 ## Application Startup
 

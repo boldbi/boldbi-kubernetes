@@ -18,6 +18,20 @@ Note the optional client libraries from the above link as comma separated names 
 
 ![Optional Libraries](images/optional_libs.png)
 
+## Persistent Volume
+
+### Capacity
+
+Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
+
+By default the persistent volume capacity used in Bold BI is `3Gi`. 
+
+### Name
+
+By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
+
+![Persistent Volume](images/persistent_vol.png)
+
 ## Bing Map Widget
 
 If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `widget_bing_map_api_key`.
