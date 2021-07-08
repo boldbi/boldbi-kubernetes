@@ -14,18 +14,12 @@ Read the optional client library license agreement from the following link.
 
 [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-Note the optional client libraries from the above link as comma separated names and replace it in `[comma_separated_library_names]` place.
+Note the optional client libraries from the above link as comma separated names and replace it like below.
 
-```console
-# Helm 3
-helm install [RELEASE_NAME] boldbi/boldbi --set optionalLibs=[comma_separated_library_names] [flags]
-```
+![Optional Libraries](images/optional_libs.png)
 
 ## Bing Map Widget
 
-If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
+If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `widget_bing_map_api_key`.
 
-```console
-# Helm 3
-helm install [RELEASE_NAME] boldbi/boldbi --set bingMapWidget.enabled=true,bingMapWidget.apiKey=[api-key] [flags]
-```
+![Bing Map Widget](images/bing_map_widget.png)
