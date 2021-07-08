@@ -5,7 +5,6 @@ kind: DestinationRule
 metadata:
   labels:
     helm.sh/chart: {{ $.Chart.Name }}_{{ $.Chart.Version }}
-    app.kubernetes.io/name: {{ $service.app }}
     app.kubernetes.io/instance: {{ $.Release.Name }}
     {{- if $.Chart.AppVersion }}
     app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}

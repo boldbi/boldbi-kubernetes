@@ -5,7 +5,6 @@ namespace: boldbi
 appBaseUrl: ''
 optionalLibs: ''
 clusterProvider: ''
-sleepTime: 15
 
 persistentVolume:
   # persistent volumes were global resources. 
