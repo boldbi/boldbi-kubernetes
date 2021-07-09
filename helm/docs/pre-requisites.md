@@ -2,10 +2,10 @@
 
 ## Create a cluster
 
-* [Google Kubernetes Engine (GKE)](#gke_cluster)
-* [Amazon Elastic Kubernetes Service (EKS)](#eks_cluster)
-* [Azure Kubernetes Service (AKS)](#aks_cluster)
-* [On-premise](#on-premise_cluster)
+* [Google Kubernetes Engine (GKE)](#gke-cluster)
+* [Amazon Elastic Kubernetes Service (EKS)](#eks-cluster)
+* [Azure Kubernetes Service (AKS)](#aks-cluster)
+* [On-premise](#on-premise-cluster)
 
 ### GKE Cluster
 
@@ -40,10 +40,10 @@
 
 ## File Storage
 
-* [Google Kubernetes Engine (GKE)](#gke_file_storage)
-* [Amazon Elastic Kubernetes Service (EKS)](#eks_file_storage)
-* [Azure Kubernetes Service (AKS)](#aks_file_storage)
-* [On-premise](#on-premise_file_storage)
+* [Google Kubernetes Engine (GKE)](#gke-file-storage)
+* [Amazon Elastic Kubernetes Service (EKS)](#eks-file-storage)
+* [Azure Kubernetes Service (AKS)](#aks-file-storage)
+* [On-premise](#on-premise-file-storage)
 
 ### GKE File Storage
 

@@ -1,12 +1,12 @@
 # Deploy Bold BI using Helm
 
-This chart installs Bold BI on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. Please follow the below documentation for Bold BI deployment in a specific cloud and on-premise environments.
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. Please follow the below documentation for Bold BI deployment in a specific cloud and on-premise environments.
     
 ## Deployment prerequisites
 
-* [Create a cluster](docs/pre-requisites.md#Create_a_Cluster)
-* [File Storage](docs/pre-requisites.md#File_Storage)
-* [Load Balancing](docs/pre-requisites.md#load_balancing)
+* [Create a cluster](docs/pre-requisites.md#create-a-cluster)
+* [File Storage](docs/pre-requisites.md#file-storage)
+* [Load Balancing](docs/pre-requisites.md#load-balancing)
 
 ## Running
 
