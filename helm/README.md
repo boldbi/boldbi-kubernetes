@@ -77,6 +77,13 @@ helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBas
 * appBaseUrl: Domain or IP address of the machine with http protocol.
 * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
+### Install Bold BI with Istio Ingress Gateway
+
+To install Bold BI with Istio, run the helm install command with the following flag. Please refere [here](docs/configuration.md#istio-ingress-gateway) for more details.
+
+```console
+helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
+```
 
 ## Advanced Installation
 

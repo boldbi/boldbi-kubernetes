@@ -134,6 +134,22 @@ loadBalancer:
   affinityCookieExpiration: 600
 ```
 
+### SSL Termination
+
+If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
+
+Run the following command to create a TLS secret with your SSL certificate.
+
+```console
+# Ingress
+kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+
+# Istio
+kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
+```
+
+> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls`.
+
 ### Map multiple domains
 
 You can map mutiple domains in both Ingress and Istio like below
@@ -143,9 +159,13 @@ loadBalancer:
   tls:
     hostArray:
       - hosts: 
-          - example.cd1.com
-          - example.cd2.com
-        secretName: boldbi-tls
+          - cd1.abc.com
+          - cd2.abc.com
+        secretName: tls-secret1
+      - hosts: 
+          - cd1.xyz.com
+          - cd2.xyz.com
+        secretName: tls-secret2
 ```
 
 

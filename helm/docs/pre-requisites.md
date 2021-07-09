@@ -90,11 +90,6 @@ Currently we have provided support for `Nginx` and `Istio` as Load Balancers in 
 
 If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster
 
-If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
-
-```console
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
-```
 
 ### Istio Ingress Gateway
 
@@ -108,15 +103,3 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
 * AKS cluster: https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install 
 
 * OnPremise cluster: https://istio.io/latest/docs/setup/platform-setup/docker/
-
-If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
-
-```console
-kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
-```
-
-To install Bold BI with Istio, run the helm install command with the following flag
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
-```
