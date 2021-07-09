@@ -40,12 +40,16 @@ loadBalancer:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
   secretName: boldbi-tls
-  # tls:
-    # hostArray:
-      # - hosts: 
-          # - kubernetes.docker.internal
-          # - example.com
-        # secretName: boldbi-tls
+  tls:
+    hostArray:
+      - hosts: 
+          - abc.cd1.com
+          - abc.cd2.com
+        secretName: secret1
+      - hosts: 
+          - xyz.cd1.com
+          - xyz.cd2.com
+        secretName: secret2
 
 instanceConfig:
   - app: id-web
