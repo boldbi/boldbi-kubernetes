@@ -43,8 +43,8 @@ clusterProvider: gke
     
 persistentVolume:
   gke:
-    fileShareName: ''
-    fileShareIp: ''
+    fileShareName: <file_share_name>
+    fileShareIp: <file_share_ip_address>
 ```
 
 ### EKS
@@ -77,7 +77,7 @@ clusterProvider: eks
     
 persistentVolume:
   eks:
-    efsFileSystemId: ''
+    efsFileSystemId: <efs_file_system_id>
 ```
 
 ### AKS
@@ -149,6 +149,17 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ```
 
 If you need to configure Bold BI with Istio, [install istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster.
+
+```console
+# Install istio ingress gateway in your GKE cluster
+https://cloud.google.com/istio/docs/istio-on-gke/installing
+
+# Install istio ingress gateway in your EKS cluster
+https://aws.amazon.com/blogs/opensource/getting-started-istio-eks/
+
+# Install istio ingress gateway in your AKS cluster
+https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install
+```
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
 

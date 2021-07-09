@@ -46,7 +46,7 @@ persistentVolume:
 
 ## Bing Map Widget
 
-If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `<widget_bing_map_api_key>`.
+If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `<widget_bing_map_api_key>`. By default this feature will be set to false.
 
 ```console
 bingMapWidget:
