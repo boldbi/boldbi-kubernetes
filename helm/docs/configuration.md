@@ -14,9 +14,13 @@ Read the optional client library license agreement from the following link.
 
 [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-Note the optional client libraries from the above link as comma separated names and replace it like below.
+Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place.
 
-![Optional Libraries](images/optional_libs.png)
+```console
+appBaseUrl: <app_base_url>
+optionalLibs: <comma_separated_library_names>
+clusterProvider: <cluster_type>
+```
 
 ## Persistent Volume
 
@@ -30,10 +34,24 @@ By default the persistent volume capacity used in Bold BI is `3Gi`.
 
 By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
 
-![Persistent Volume](images/persistent_vol.png)
+```console
+persistentVolume:
+  # persistent volumes were global resources. 
+  # so if you already have Bold BI installed in your cluster, 
+  # then the previous persistent volume name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI persistent volumes.
+  name: boldbi-fileserver
+  capacity: 3Gi
+```
 
 ## Bing Map Widget
 
-If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `widget_bing_map_api_key`.
+If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `<widget_bing_map_api_key>`.
+
+```console
+bingMapWidget:
+  enabled: <true / false>
+  apiKey: <widget_bing_map_api_key>
+```
 
 ![Bing Map Widget](images/bing_map_widget.png)

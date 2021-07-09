@@ -2,7 +2,7 @@
 
 With [Bold BI](https://www.boldbi.com/) embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
 
-This chart installs Bold BI on [Kubernetes](http://kubernetes.io). You can create Kubernetes cluster on either cloud or on-premise infrastructure. The following links explain Bold BI Kubernetes deployment in a specific cloud and on-premise environments.
+This chart installs Bold BI on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. The following links explain Bold BI Kubernetes deployment in a specific cloud and on-premise environments.
     
 ## Deployment prerequisites
 
@@ -33,11 +33,19 @@ Just like any typical Helm chart, you'll need to craft a values.yaml file that w
 
 _See [configuration](docs/configuration.md) for more details._
 
-Replace your DNS or IP address in the appBaseUrl.
+Replace your DNS or IP address in the `<app_base_url>`.
 
 Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
-   
-![Persistent Volume GKE](docs/images/persistent_vol_gke.png)
+
+```console
+appBaseUrl: <app_base_url>
+clusterProvider: gke
+    
+persistentVolume:
+  gke:
+    fileShareName: ''
+    fileShareIp: ''
+```
 
 ### EKS
 
@@ -59,11 +67,18 @@ Just like any typical Helm chart, you'll need to craft a values.yaml file that w
 
 _See [configuration](docs/configuration.md) for more details._
 
-Replace your DNS or IP address in the appBaseUrl.
+Replace your DNS or IP address in the `<app_base_url>`.
 
 Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
-![Persistent Volume EKS](docs/images/persistent_vol_eks.png)
+```console
+appBaseUrl: <app_base_url>
+clusterProvider: eks
+    
+persistentVolume:
+  eks:
+    efsFileSystemId: ''
+```
 
 ### AKS
 
@@ -79,11 +94,22 @@ Just like any typical Helm chart, you'll need to craft a values.yaml file that w
 
 _See [configuration](docs/configuration.md) for more details._
 
-Replace your DNS or IP address in the appBaseUrl.
+Replace your DNS or IP address in the `<app_base_url>`.
 
 Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
-![Persistent Volume AKS](docs/images/persistent_vol_aks.png)
+```console
+appBaseUrl: <app_base_url>
+clusterProvider: aks
+    
+persistentVolume:
+  aks:
+    fileShareName: <file_share_name>
+    # base64 string
+    azureStorageAccountName: <base64_azurestorageaccountname>
+    # base64 string
+    azureStorageAccountKey: <base64_azurestorageaccountkey>
+```
 
 ### On-Premise
 
@@ -99,15 +125,22 @@ Just like any typical Helm chart, you'll need to craft a values.yaml file that w
 
 _See [configuration](docs/configuration.md) for more details._
 
-Replace your DNS or IP address in the appBaseUrl.
+Replace your DNS or IP address in the `<app_base_url>`.
 
 Ex: `http://example.com`, `https://example.com`, `http://<ip_address>`
 
-![Persistent Volume OnPremise](docs/images/persistent_vol_onpremise.png)
+```console
+appBaseUrl: <app_base_url>
+clusterProvider: onpremise
+    
+persistentVolume:
+  onpremise:
+    hostPath: /run/desktop/mnt/host/<local_directory>
+```
 
 ### Proxying
 
-Currently we have provided support for Nginx and Istio. By default Nginx is used as reverse proxy for Bold BI. If you are using istio then you can change the value as istio in your values.yaml
+Currently we have provided support for Nginx and Istio. By default Nginx is used as reverse proxy for Bold BI. If you are using istio then you can change the value as `istio` in your values.yaml
 
 Deploy the latest Nginx ingress controller to your cluster using the following command.
 
@@ -115,19 +148,59 @@ Deploy the latest Nginx ingress controller to your cluster using the following c
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
 ```
 
-If you need to configure Bold BI with Istio, install istio ingress gateway in your cluster.
+If you need to configure Bold BI with Istio, [install istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster.
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
 
 ```console
+# Secret for ingress-nginx
 kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+
+# Secret for istio
+kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
-![Load Balancing](docs/images/loadbalancing.png)
+Change the values accordingly in your own vaues.yaml
+
+```console
+loadBalancer:
+  type: nginx
+  affinityCookieExpiration: 600
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  secretName: boldbi-tls
+  # tls:
+	# hostArray:
+	  # - hosts: 
+		  # - kubernetes.docker.internal
+		  # - example.com
+		# secretName: boldbi-tls
+```
+
+You can map multiple domains in ingress as like below.
+
+```console
+loadBalancer:
+  type: nginx
+  affinityCookieExpiration: 600
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  secretName: boldbi-tls
+   tls:
+	 hostArray:
+	   - hosts: 
+		   - k8s-yokogawa-cd1.boldbi.com
+		   - k8s-yokogawa-cd2.boldbi.com
+		   - k8s-yokogawa-cd3.boldbi.com
+		   - k8s-yokogawa-cd4.boldbi.com
+		 secretName: boldbi-tls
+```
 
 ## Running
 
-1. Add the Superset helm repository
+1. Add the Bold BI helm repository
 
 ```console
 helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
@@ -147,11 +220,11 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 3. Configure your setting overrides
 
-## Install and run
+## Install Chart
 
 ```console
 # Helm 3
-helm upgrade --install --values my-values.yaml [RELEASE_NAME] boldbi/boldbi
+helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml [flags]
 ```
 
 _See [configuration](docs/configuration.md) for more details._
