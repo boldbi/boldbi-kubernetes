@@ -84,9 +84,19 @@ Ex: `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
 ## Load Balancing
 
-Currently we have provided support for Nginx and Istio. By default Nginx is used as reverse proxy for Bold BI. If you are using istio then you can change the value as `istio` in your values.yaml
+Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
+
+### Ingress-Nginx
 
 If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster
+
+If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+
+```console
+kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+```
+
+### Istio Ingress Gateway
 
 If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster.
 
@@ -102,10 +112,6 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
 
 ```console
-# TLS Secret for ingress-nginx
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
-
-# TLS Secret for istio
 kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
