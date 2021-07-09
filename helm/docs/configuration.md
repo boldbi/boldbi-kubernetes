@@ -24,7 +24,7 @@ optionalLibs: <comma_separated_library_names>
 
 ### Name
 
-persistent volumes were global resources. so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
+Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
 
 By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
 
