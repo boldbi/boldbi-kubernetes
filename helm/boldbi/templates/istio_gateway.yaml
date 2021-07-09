@@ -14,13 +14,20 @@ spec:
       number: 80
       name: http
       protocol: HTTP
-    {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }} 
+    {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
     tls:
       httpsRedirect: true
     {{- end }}
+    {{- if .Values.loadBalancer.tls }}
+    hosts:
+    {{- range $host := ( index .Values.loadBalancer.tls.hostArray 0 ).hosts }}
+    - {{ $host }}
+    {{- end }}
+    {{- else }}
     hosts:
     - {{ (split "/" .Values.appBaseUrl)._2 }}
-  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}  
+    {{- end }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   - port:
       number: 443
       name: https
@@ -28,8 +35,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: boldbi-tls
+    {{- if .Values.loadBalancer.tls }}
+    hosts:
+    {{- range $host := ( index .Values.loadBalancer.tls.hostArray 0 ).hosts }}
+    - {{ $host }}
+    {{- end }}
+    {{- else }}
     hosts:
     - {{ (split "/" .Values.appBaseUrl)._2 }}
+    {{- end }}
   {{- end }}
 ---
 {{- end }}
@@ -42,8 +56,15 @@ metadata:
   name: boldbi-virtual-service
 {{ include "boldbi.namespace" . | indent 2 }}
 spec:
+  {{- if .Values.loadBalancer.tls }}
+  hosts:
+  {{- range $host := ( index .Values.loadBalancer.tls.hostArray 0 ).hosts }}
+  - {{ $host }}
+  {{- end }}
+  {{- else }}
   hosts:
   - {{ (split "/" .Values.appBaseUrl)._2 }}
+  {{- end }}
   gateways:
   - boldbi-gateway
   http:
