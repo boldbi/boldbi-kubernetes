@@ -53,5 +53,3 @@ bingMapWidget:
   enabled: <true / false>
   apiKey: <widget_bing_map_api_key>
 ```
-
-![Bing Map Widget](images/bing_map_widget.png)
