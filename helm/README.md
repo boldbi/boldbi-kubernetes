@@ -8,7 +8,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 * [File Storage](docs/pre-requisites.md#file-storage)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
 
-## Running
+## Get Repo Info
 
 1. Add the Bold BI helm repository
 
