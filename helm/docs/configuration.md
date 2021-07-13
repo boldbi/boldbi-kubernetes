@@ -179,7 +179,8 @@ FOr multiple domain scenerio the `singleHost` secret will not be considered, you
 
 ```console
 loadBalancer:
-  singleHost: boldbi-tls
+  singleHost:
+    secretName: boldbi-tls
 
   multipleHost:
     hostArray:
@@ -197,7 +198,8 @@ loadBalancer:
 
 ```console
 loadBalancer:
-  singleHost: boldbi-tls
+  singleHost:
+    secretName: boldbi-tls
 
   multipleHost:
     hostArray:
