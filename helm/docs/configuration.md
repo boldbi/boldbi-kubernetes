@@ -61,6 +61,11 @@ persistentVolume:
     fileShareIp: <file_share_ip_address>
 ```
 
+> **INFO:**  
+* clusterProvider: The type of kubernetes cluster provider you are using.
+* persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
+* persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
+
 2. EKS
 
 ```console
@@ -70,6 +75,10 @@ persistentVolume:
   eks:
     efsFileSystemId: <efs_file_system_id>
 ```
+
+> **INFO:**  
+* clusterProvider: The type of kubernetes cluster provider you are using.
+* persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
 
 3. AKS
 
@@ -85,6 +94,12 @@ persistentVolume:
     azureStorageAccountKey: <base64_azurestorageaccountkey>
 ```
 
+> **INFO:**  
+* clusterProvider: The type of kubernetes cluster provider you are using.
+* persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
+* persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
+* persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+
 4. On-Premise
 
 ```console
@@ -94,6 +109,10 @@ persistentVolume:
   onpremise:
     hostPath: /run/desktop/mnt/host/<local_directory>
 ```
+
+> **INFO:**  
+* clusterProvider: The type of kubernetes cluster provider you are using.
+* persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
 
 ## Load Balancing
@@ -107,12 +126,10 @@ loadBalancer:
   type: nginx
 ```
 
-You can change the `affinityCookieExpiration` time. The default value is `600s`.
 The default `ingressClassName` is `nginx`. Please refer [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation) for more details.
 
 ```console
 loadBalancer:
-  affinityCookieExpiration: 600
   # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
@@ -127,6 +144,8 @@ loadBalancer:
   type: istio
 ```
 
+### sticky session
+
 You can change the affinityCookieExpiration time. The default value is 600s.
 
 ```console
@@ -138,6 +157,8 @@ loadBalancer:
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
+> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls` or else change the secret name in your values.yaml
+
 Run the following command to create a TLS secret with your SSL certificate.
 
 ```console
@@ -148,15 +169,19 @@ kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certific
 kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
-> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls`.
-
 ### Map multiple domains
 
-You can map mutiple domains in both Ingress and Istio like below
+You can map mutiple domains in both Ingress Nginx and Istio like below. While mapping multiple domains you have to include the `appBaseUrl` in any of the matching host array.
+
+FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
+
+`Ingress Nginx`
 
 ```console
 loadBalancer:
-  tls:
+  singleHost: boldbi-tls
+
+  multipleHost:
     hostArray:
       - hosts: 
           - cd1.abc.com
@@ -168,6 +193,19 @@ loadBalancer:
         secretName: tls-secret2
 ```
 
+`Istio Ingress Gateway`
+
+```console
+loadBalancer:
+  singleHost: boldbi-tls
+
+  multipleHost:
+    hostArray:
+      - hosts: 
+          - cd1.abc.com
+          - cd2.abc.com
+        secretName: tls-secret
+```
 
 ## Bing Map Widget
 

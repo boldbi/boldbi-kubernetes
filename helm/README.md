@@ -87,7 +87,7 @@ helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
 
 ## Advanced Installation
 
-Just like any typical Helm chart, you'll need to craft a `values.yaml` file that would define/override any of the values exposed into the default values.yaml
+Just like any typical Helm chart, you'll need to craft a `values.yaml` file that would define/override any of the values exposed into the default [values.yaml](boldbi/values.yaml)
 
 _See [configuration](docs/configuration.md) for more details._
 
