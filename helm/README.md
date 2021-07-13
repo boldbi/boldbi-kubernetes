@@ -42,6 +42,8 @@ helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=gke,appBaseUrl=<
 * persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
 * persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
 
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+
 ### Install Bold BI in EKS cluster
 
 ```console
@@ -52,6 +54,8 @@ helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=eks,appBaseUrl=<
 * clusterProvider: The type of kubernetes cluster provider you are using.
 * appBaseUrl: Domain or IP address of the machine with http protocol.
 * persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
+
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 ### Install Bold BI in AKS cluster
 
@@ -66,6 +70,8 @@ helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=aks,appBaseUrl=<
 * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
 * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
 
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+
 ### Install Bold BI in On-Premise cluster
 
 ```console
@@ -77,6 +83,8 @@ helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBas
 * appBaseUrl: Domain or IP address of the machine with http protocol.
 * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+
 ### Install Bold BI with Istio Ingress Gateway
 
 To install Bold BI with Istio, run the helm install command with the following flag. Please refere [here](docs/configuration.md#istio-ingress-gateway) for more details.
@@ -84,6 +92,8 @@ To install Bold BI with Istio, run the helm install command with the following f
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
 ```
+
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 ## Advanced Installation
 
@@ -93,7 +103,7 @@ Just like any typical Helm chart, you'll need to craft a `values.yaml` file that
 helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
 ```
 
-_See [configuration](docs/configuration.md) for more details._
+Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
