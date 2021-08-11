@@ -12,9 +12,9 @@ data:
       <log4net threshold="ALL">
         <root>
           <level value="ALL" />
-          <!-- <appender-ref ref="FILE_DEBUG_APPENDER" />
-          <appender-ref ref="FILE_ERROR_APPENDER" /> -->
-          <appender-ref ref="ConsoleAppender" />
+          <appender-ref ref="FILE_DEBUG_APPENDER" />
+          <appender-ref ref="FILE_ERROR_APPENDER" />
+          <!-- <appender-ref ref="ConsoleAppender" /> -->
         </root>
         <!-- === File Appender for NON-ERROR messages file === -->
         <appender name="FILE_DEBUG_APPENDER" type="log4net.Appender.RollingFileAppender" class="ch.qos.logback.classic.AsyncAppender">
