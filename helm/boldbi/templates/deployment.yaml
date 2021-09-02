@@ -33,9 +33,9 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        args: ["if [ ! -f /boldbi/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: {{ $service.app }}-volume
       {{- end }}
       containers:
@@ -88,22 +88,22 @@ spec:
           {{- end }}
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: {{ $service.app }}-volume
         {{- if eq $service.app "id-web" }}
-        - mountPath: /boldbi/idp/web/logs
+        - mountPath: /application/idp/web/logs
         {{- else if eq $service.app "id-api" }}
-        - mountPath: /boldbi/idp/api/logs
+        - mountPath: /application/idp/api/logs
         {{- else if eq $service.app "id-ums" }}
-        - mountPath: /boldbi/idp/ums/logs
+        - mountPath: /application/idp/ums/logs
         {{- else if eq $service.app "bi-web" }}
-        - mountPath: /boldbi/bi/web/logs
+        - mountPath: /application/bi/web/logs
         {{- else if eq $service.app "bi-api" }}
-        - mountPath: /boldbi/bi/api/logs
+        - mountPath: /application/bi/api/logs
         {{- else if eq $service.app "bi-jobs" }}
-        - mountPath: /boldbi/bi/jobs/logs
+        - mountPath: /application/bi/jobs/logs
         {{- else if eq $service.app "bi-dataservice" }}
-        - mountPath: /boldbi/bi/dataservice/logs
+        - mountPath: /application/bi/dataservice/logs
         {{- end }}
           name: log4net-config-volume
       volumes:

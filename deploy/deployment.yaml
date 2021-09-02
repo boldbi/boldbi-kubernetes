@@ -36,7 +36,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: id-web-volume
       volumes:
       - name: id-web-volume
@@ -78,7 +78,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: id-api-volume
       volumes:
       - name: id-api-volume
@@ -120,7 +120,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: id-ums-volume
       volumes:
       - name: id-ums-volume
@@ -162,7 +162,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: bi-web-volume
       volumes:
       - name: bi-web-volume
@@ -204,7 +204,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: bi-api-volume
       volumes:
       - name: bi-api-volume
@@ -246,7 +246,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: bi-jobs-volume
       volumes:
       - name: bi-jobs-volume
@@ -292,7 +292,7 @@ spec:
           initialDelaySeconds: 20
           periodSeconds: 10
         volumeMounts:
-        - mountPath: /boldbi/app_data
+        - mountPath: /application/app_data
           name: bi-dataservice-volume
       volumes:
       - name: bi-dataservice-volume
