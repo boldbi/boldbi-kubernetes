@@ -61,8 +61,10 @@ spec:
           requests:
             cpu: {{ $service.cpuResourceRequests }}
             memory: {{ $service.memoryResourceRequests }}
-        {{- if eq $service.app "id-web" }}
         env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        {{- if eq $service.app "id-web" }}
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}
         {{- if $.Values.optionalLibs }}
@@ -70,7 +72,6 @@ spec:
           value: {{ $.Values.optionalLibs }}
         {{- end }}
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
-        env:
         - name: widget_bing_map_enable
           value: "{{ $.Values.bingMapWidget.enabled }}"
         - name: widget_bing_map_api_key

@@ -27,6 +27,8 @@ spec:
           value: <application_base_url>
         - name: INSTALL_OPTIONAL_LIBS
           value: <comma_separated_library_names>
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -66,6 +68,9 @@ spec:
           requests:
             cpu: 250m
             memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -105,6 +110,9 @@ spec:
           requests:
             cpu: 250m
             memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -144,6 +152,9 @@ spec:
           requests:
             cpu: 250m
             memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -183,6 +194,9 @@ spec:
           requests:
             cpu: 250m
             memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -222,6 +236,9 @@ spec:
           requests:
             cpu: 250m
             memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         readinessProbe:
           httpGet:
             path: /health-check
@@ -262,6 +279,8 @@ spec:
           value: ""
         - name: widget_bing_map_api_key
           value: ""
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
         resources:
           requests:
             cpu: 250m
