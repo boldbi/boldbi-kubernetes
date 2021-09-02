@@ -6,6 +6,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 1. Download the following files for Bold BI deployment in AKS:
 
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/namespace.yaml)
+	* [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/log4net_config.yaml)
     * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/pvclaim_aks.yaml)
     * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/deployment.yaml)
     * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/hpa.yaml)
@@ -38,29 +39,35 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl apply -f namespace.yaml
 ```
 
-10. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 15**. 
+10. Run the following command to create the configmap..
 
-11. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+```sh
+kubectl apply -f log4net_config.yaml
+```
 
-12. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
+11. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 15**. 
 
-13. Run the following command to create a TLS secret with your SSL certificate.
+12. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+
+13. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
+
+14. Run the following command to create a TLS secret with your SSL certificate.
 
 ```sh
 kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
 ```
 
-14. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+15. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
 ![ingress DNS](images/ingress_yaml.png)
 
-15. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
+16. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
 
 ```sh
 kubectl apply -f ingress.yaml
 ```
 
-16. Now, run the following command to get the ingress IP address.
+17. Now, run the following command to get the ingress IP address.
 
 ```sh
 kubectl get ingress -n boldbi
@@ -68,25 +75,25 @@ kubectl get ingress -n boldbi
 Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
 ![Ingress Address](images/ingress_address.png) 
 
-17. Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
+18. Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
 
-18. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
+19. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
     
     Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
-19. Read the optional client library license agreement from the following link.
+20. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-20. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+21. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
 ![deployment.yaml](images/deployment_yaml.png) 
 
-21. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
+22. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
 
     ![Bing Map](images/bing_map_key.png) 
 
-22. Now, run the following commands one by one:
+23. Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_aks.yaml
@@ -104,17 +111,17 @@ kubectl apply -f hpa.yaml
 kubectl apply -f service.yaml
 ```
 
-23. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
+24. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
 
-24. Use the following command to get the pods’ status.
+25. Use the following command to get the pods’ status.
 
 ```sh
 kubectl get pods -n boldbi
 ```
 ![Pod status](images/pod_status.png) 
 
-25. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
+26. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
 
-26.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+27.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
