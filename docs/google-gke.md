@@ -48,7 +48,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl apply -f namespace.yaml
 ```
 
-10. Run the following command to create the configmap..
+10. Run the following command to create the configmap.
 
 ```sh
 kubectl apply -f log4net_config.yaml
