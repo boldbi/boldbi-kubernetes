@@ -3,10 +3,10 @@ entries:
   boldbi:
   - apiVersion: v2
     appVersion: 4.2.57
-    created: "2021-09-03T10:32:12.5634333+05:30"
+    created: "2021-09-05T18:23:57.7376963+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
-    digest: b2a3c4bda1fd616b0e248444b36dee02f124fd0451242640a8b553ec2ae2a21d
+    digest: 1c156a3aad03ab21fdcf14b5fac2a40fc99ebd8409b54337c34ee7030de8d461
     home: https://www.boldbi.com/
     icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
     name: boldbi
@@ -16,7 +16,7 @@ entries:
     version: 4.2.57
   - apiVersion: v2
     appVersion: 4.1.45
-    created: "2021-09-03T10:32:12.5622942+05:30"
+    created: "2021-09-05T18:23:57.7335709+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
     digest: eed0b05456656801e4f09fc59520d257c86e16685b7d610792e0d95e92ee084a
@@ -29,7 +29,7 @@ entries:
     version: 4.1.45
   - apiVersion: v2
     appVersion: 4.1.43
-    created: "2021-09-03T10:32:12.4687758+05:30"
+    created: "2021-09-05T18:23:57.430589+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
     digest: 1ce78fcd86648f5a7a6a3246d650cde91cb26471378fed72b3cf94c20cc9f75f
@@ -40,4 +40,4 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.1.43.tgz
     version: 4.1.43
-generated: "2021-09-03T10:32:12.3941492+05:30"
+generated: "2021-09-05T18:23:57.295422+05:30"
