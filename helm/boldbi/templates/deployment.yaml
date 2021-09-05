@@ -91,19 +91,19 @@ spec:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
         {{- if eq $service.app "id-web" }}
-        - mountPath: /application/idp/web/logs
+        - mountPath: /application/idp/web/logs/k8s
         {{- else if eq $service.app "id-api" }}
-        - mountPath: /application/idp/api/logs
+        - mountPath: /application/idp/api/logs/k8s
         {{- else if eq $service.app "id-ums" }}
-        - mountPath: /application/idp/ums/logs
+        - mountPath: /application/idp/ums/logs/k8s
         {{- else if eq $service.app "bi-web" }}
-        - mountPath: /application/bi/web/logs
+        - mountPath: /application/bi/web/logs/k8s
         {{- else if eq $service.app "bi-api" }}
-        - mountPath: /application/bi/api/logs
+        - mountPath: /application/bi/api/logs/k8s
         {{- else if eq $service.app "bi-jobs" }}
-        - mountPath: /application/bi/jobs/logs
+        - mountPath: /application/bi/jobs/logs/k8s
         {{- else if eq $service.app "bi-dataservice" }}
-        - mountPath: /application/bi/dataservice/logs
+        - mountPath: /application/bi/dataservice/logs/k8s
         {{- end }}
           name: log4net-config-volume
       volumes:
