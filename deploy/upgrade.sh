@@ -37,9 +37,11 @@ else
 		[ -n "$app_base_url" ] || read -p 'Enter the app_base_url: ' app_base_url
 		[ -n "$optional_libs" ] || read -p 'Enter the optional libraries needed to be installed [comma seperated]: ' optional_libs
 		
+		if [ ! -d "boldbi_4-2" ]; then mkdir boldbi_4-2; fi
+		
 		# Downloading deployment files.."
-		if [ ! -f "log4net_config.yaml" ]; then curl -o boldbi_4-2/log4net_config.yaml https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2_dev/deploy/log4net_config.yaml; fi
-		if [ ! -f "deployment.yaml" ]; then curl -o boldbi_4-2/deployment.yaml https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2_dev/deploy/deployment.yaml; fi
+		if [ ! -f "boldbi_4-2/log4net_config.yaml" ]; then curl -o boldbi_4-2/log4net_config.yaml https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2_dev/deploy/log4net_config.yaml; fi
+		if [ ! -f "boldbi_4-2/deployment.yaml" ]; then curl -o boldbi_4-2/deployment.yaml https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2_dev/deploy/deployment.yaml; fi
 		
 		# deployment file changes changes
 		sed -i "s/namespace: boldbi/namespace: $namespace/g" boldbi_4-2/log4net_config.yaml
