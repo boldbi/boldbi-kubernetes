@@ -1,0 +1,384 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: id-web-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: id-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: id-web
+    spec:
+      containers:
+      - name: id-web-container
+        image: gcr.io/boldbi-294612/bold-identity:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        - name: APP_BASE_URL
+          value: <application_base_url>
+        - name: INSTALL_OPTIONAL_LIBS
+          value: <comma_separated_library_names>
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: id-web-volume
+        - mountPath: /application/idp/web/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: id-web-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: id-api-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: id-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: id-api
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: id-api-volume
+      containers:
+      - name: id-api-container
+        image: gcr.io/boldbi-294612/bold-identity-api:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: id-api-volume
+        - mountPath: /application/idp/api/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: id-api-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: id-ums-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: id-ums
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: id-ums
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: id-ums-volume
+      containers:
+      - name: id-ums-container
+        image: gcr.io/boldbi-294612/bold-ums:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: id-ums-volume
+        - mountPath: /application/idp/ums/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: id-ums-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bi-web-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: bi-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bi-web
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-web-volume
+      containers:
+      - name: bi-web-container
+        image: gcr.io/boldbi-294612/boldbi-server:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-web-volume
+        - mountPath: /application/bi/web/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bi-web-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bi-api-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: bi-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bi-api
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-api-volume
+      containers:
+      - name: bi-api-container
+        image: gcr.io/boldbi-294612/boldbi-server-api:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-api-volume
+        - mountPath: /application/bi/api/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bi-api-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bi-jobs-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: bi-jobs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bi-jobs
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-jobs-volume
+      containers:
+      - name: bi-jobs-container
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:<image_tag>
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-jobs-volume
+        - mountPath: /application/bi/jobs/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bi-jobs-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bi-dataservice-deployment
+  namespace: <namespace>
+spec:
+  selector:
+    matchLabels:
+      app: bi-dataservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bi-dataservice
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-dataservice-volume
+      containers:
+      - name: bi-dataservice-container
+        image: gcr.io/boldbi-294612/boldbi-designer:<image_tag>
+        ports:
+        - containerPort: 80
+        env:
+        - name: widget_bing_map_enable
+          value: <widget_bing_map_enable>
+        - name: widget_bing_map_api_key
+          value: <widget_bing_map_api_key>
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bi-dataservice-volume
+        - mountPath: /application/bi/dataservice/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bi-dataservice-volume
+        persistentVolumeClaim:
+          claimName: boldbi-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
