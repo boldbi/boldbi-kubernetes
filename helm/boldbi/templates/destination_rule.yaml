@@ -23,19 +23,19 @@ spec:
       consistentHash:
         httpCookie:
           {{- if eq $service.app "id-web" }}
-          name: boldbi.k8s.id.web.pod.id
+          name: bold.k8s.id.web.pod.id
           {{- else if eq $service.app "id-api" }}
-          name: boldbi.k8s.id.api.pod.id
+          name: bold.k8s.id.api.pod.id
           {{- else if eq $service.app "id-ums" }}
-          name: boldbi.k8s.id.ums.pod.id
+          name: bold.k8s.id.ums.pod.id
           {{- else if eq $service.app "bi-web" }}
-          name: boldbi.k8s.bi.web.pod.id
+          name: bold.k8s.bi.web.pod.id
           {{- else if eq $service.app "bi-api" }}
-          name: boldbi.k8s.bi.api.pod.id
+          name: bold.k8s.bi.api.pod.id
           {{- else if eq $service.app "bi-jobs" }}
-          name: boldbi.k8s.bi.jobs.pod.id
+          name: bold.k8s.bi.jobs.pod.id
           {{- else if eq $service.app "bi-dataservice" }}
-          name: boldbi.k8s.bi.dataservice.pod.id
+          name: bold.k8s.bi.dataservice.pod.id
           {{- end }}          
           ttl: {{ $.Values.loadBalancer.affinityCookieExpiration }}s
 ---

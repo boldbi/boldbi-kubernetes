@@ -41,11 +41,11 @@ spec:
       containers:
       - name: {{ $service.app }}-container
         {{- if eq $service.app "id-web" }}
-        image: "{{ $.Values.image.repo }}/boldbi-identity:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-identity:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-api" }}
-        image: "{{ $.Values.image.repo }}/boldbi-identity-api:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-identity-api:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-ums" }}
-        image: "{{ $.Values.image.repo }}/boldbi-ums:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-ums:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "bi-web" }}
         image: "{{ $.Values.image.repo }}/boldbi-server:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "bi-api" }}

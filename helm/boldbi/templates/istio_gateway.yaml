@@ -4,7 +4,7 @@ kind: Gateway
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  name: boldbi-gateway
+  name: bold-gateway
 {{ include "boldbi.namespace" . | indent 2 }}
 spec:
   selector:
@@ -56,7 +56,7 @@ kind: VirtualService
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  name: boldbi-virtual-service
+  name: bold-virtual-service
 {{ include "boldbi.namespace" . | indent 2 }}
 spec:
   {{- if .Values.loadBalancer.multipleHost }}
@@ -69,7 +69,7 @@ spec:
   - {{ (split "/" .Values.appBaseUrl)._2 }}
   {{- end }}
   gateways:
-  - boldbi-gateway
+  - bold-gateway
   http:
   - match:
     - uri:

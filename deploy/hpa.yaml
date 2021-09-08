@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-web-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -38,7 +38,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-api-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -74,7 +74,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-ums-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -110,7 +110,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-web-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -146,7 +146,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-api-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -182,7 +182,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-jobs-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -218,7 +218,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-dataservice-hpa
-  namespace: boldbi
+  namespace: bold-services
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
