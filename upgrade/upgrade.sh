@@ -29,9 +29,6 @@ done
 
 [ -n "$version" ] || read -p 'Enter the version to upgrade: ' version
 
-if [ -z "$bing_map_enable" ]; then bing_map_enable=""; fi
-if [ -z "$bing_map_api_key" ]; then bing_map_api_key=""; fi
-
 if [ -z "$version" ]
 then
 	echo "Version is empty."
@@ -44,7 +41,6 @@ else
 	if [[ "$version" == *"4.2"* ]]
 	then
 		[ -n "$app_base_url" ] || read -p 'Enter the app_base_url: ' app_base_url
-		[ -n "$optional_libs" ] || read -p 'Enter the optional libraries needed to be installed [comma seperated]: ' optional_libs
 		
 		if [ ! -d "boldbi_4-2" ]; then mkdir boldbi_4-2; fi
 		
@@ -60,7 +56,7 @@ else
 		sed -i "s/<comma_separated_library_names>/$optional_libs/g" boldbi_4-2/deployment.yaml
 		sed -i "s/<widget_bing_map_enable>/$bing_map_enable/g" boldbi_4-2/deployment.yaml
 		sed -i "s/<widget_bing_map_api_key>/$bing_map_api_key/g" boldbi_4-2/deployment.yaml
-				
+			
 		# applying new changes to cluster
 		kubectl apply -f boldbi_4-2/log4net_config.yaml
 		kubectl apply -f boldbi_4-2/deployment.yaml
