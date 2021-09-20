@@ -2,8 +2,21 @@ apiVersion: v1
 entries:
   boldbi:
   - apiVersion: v2
+    appVersion: 4.2.67
+    created: "2021-09-20T14:35:13.6569884+05:30"
+    description: Embed powerful analytics inside your apps and turn your customers
+      into success stories with built-in intelligence features.
+    digest: 812e9e71510ed7d0e393adb5d1cbb78cd3aa5f860e72b454d42f9ee3abd1f84c
+    home: https://www.boldbi.com/
+    icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
+    name: boldbi
+    type: application
+    urls:
+    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.2.67.tgz
+    version: 4.2.67
+  - apiVersion: v2
     appVersion: 4.2.60
-    created: "2021-09-06T11:21:11.6665546+05:30"
+    created: "2021-09-20T14:35:13.6558263+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
     digest: 0e3e48ff4ac0b3f9e249b8565aaa3ff6449cfc7baea52ab0b35ec58fbab44c0d
@@ -16,7 +29,7 @@ entries:
     version: 4.2.60
   - apiVersion: v2
     appVersion: 4.1.45
-    created: "2021-09-06T11:21:11.6659909+05:30"
+    created: "2021-09-20T14:35:13.5989211+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
     digest: eed0b05456656801e4f09fc59520d257c86e16685b7d610792e0d95e92ee084a
@@ -29,7 +42,7 @@ entries:
     version: 4.1.45
   - apiVersion: v2
     appVersion: 4.1.43
-    created: "2021-09-06T11:21:11.604558+05:30"
+    created: "2021-09-20T14:35:13.5896773+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
     digest: 1ce78fcd86648f5a7a6a3246d650cde91cb26471378fed72b3cf94c20cc9f75f
@@ -40,4 +53,4 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.1.43.tgz
     version: 4.1.43
-generated: "2021-09-06T11:21:11.447168+05:30"
+generated: "2021-09-20T14:35:13.5109534+05:30"
