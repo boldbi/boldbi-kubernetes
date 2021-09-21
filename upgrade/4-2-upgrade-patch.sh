@@ -5,8 +5,8 @@ utilitiesPath="/boldbi/utilities"
 apt-get install wget
 apt-get install unzip
 
-wget https://www.syncfusion.com/downloads/support/directtrac/general/ze/4-2-upgrader-patch1266244206.zip
-unzip 4-2-upgrader-patch1266244206.zip
+wget https://www.syncfusion.com/downloads/support/directtrac/general/ze/4-2-upgrader-patch-1448030332.zip
+unzip 4-2-upgrader-patch-1448030332.zip
 
 [ ! -d "$utilitiesPath" ] && mkdir -p "$utilitiesPath"
 cp -a 4-2-upgrader-patch/customwidgetupgrader "$utilitiesPath"
