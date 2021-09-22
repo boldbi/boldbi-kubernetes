@@ -1,6 +1,7 @@
 #!/bin/bash
 
 utilitiesPath="/boldbi/utilities"
+workDir="/boldbi/bi/dataservice"
 
 apt-get install wget
 apt-get install unzip
@@ -16,3 +17,7 @@ if [ -d "/boldbi/app_data/bi/dataservice/CustomWidgets" ]; then
     cd "$utilitiesPath/customwidgetupgrader"
     dotnet "CustomWidgetUpgrader.dll" true
 fi
+
+rm -rf "$workDir/4-2-upgrade-patch.sh"
+rm -rf "$workDir/4-2-upgrader-patch"
+rm -rf "$workDir/4-2-upgrader-patch-1448030332.zip"

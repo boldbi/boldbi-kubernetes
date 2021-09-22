@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-dev-296107/bold-identity:<image_tag>
+        image: gcr.io/boldbi-294612/bold-identity:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -74,7 +74,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-dev-296107/bold-identity-api:<image_tag>
+        image: gcr.io/boldbi-294612/bold-identity-api:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -129,7 +129,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-dev-296107/bold-ums:<image_tag>
+        image: gcr.io/boldbi-294612/bold-ums:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -184,7 +184,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-dev-296107/boldbi-server:<image_tag>
+        image: gcr.io/boldbi-294612/boldbi-server:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -239,7 +239,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-dev-296107/boldbi-server-api:<image_tag>
+        image: gcr.io/boldbi-294612/boldbi-server-api:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -294,7 +294,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-dev-296107/boldbi-server-jobs:<image_tag>
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -349,7 +349,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-dev-296107/boldbi-designer:<image_tag>
+        image: gcr.io/boldbi-294612/boldbi-designer:<image_tag>
         ports:
         - containerPort: 80
         env:
