@@ -159,16 +159,16 @@ loadBalancer:
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
-> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls` or else change the secret name in your values.yaml
+> **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
 
 Run the following command to create a TLS secret with your SSL certificate.
 
 ```console
 # Ingress
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 
 # Istio
-kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
 ### Map multiple domains
@@ -182,7 +182,7 @@ FOr multiple domain scenerio the `singleHost` secret will not be considered, you
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
@@ -201,7 +201,7 @@ loadBalancer:
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
