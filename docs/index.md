@@ -6,3 +6,8 @@
 * [Amazon Elastic Kubernetes Service (EKS)](amazon-eks.md)
 * [Azure Kubernetes Service (AKS)](microsoft-aks.md)
 * [On-premise](on-premise.md)
+
+
+# Upgrade Bold BI
+
+If you are upgrading Bold BI to 4.2.68, please follow the steps in this [link](upgrade.md).
