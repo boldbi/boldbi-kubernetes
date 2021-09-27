@@ -33,7 +33,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 ### Install Bold BI in GKE cluster
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=gke,appBaseUrl=<app_base_url>,persistentVolume.gke.fileShareName=<file_share_name>,persistentVolume.gke.fileShareIp=<file_share_ip_address> [flags]
+helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=gke,appBaseUrl=<app_base_url>,persistentVolume.gke.fileShareName=<file_share_name>,persistentVolume.gke.fileShareIp=<file_share_ip_address>
 ```
 
 > **INFO:**  
@@ -47,7 +47,7 @@ Refer [here](docs/configuration.md) for advanced configuration including SSL ter
 ### Install Bold BI in EKS cluster
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=eks,appBaseUrl=<app_base_url>,persistentVolume.eks.efsFileSystemId=<efs_file_system_id> [flags]
+helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=eks,appBaseUrl=<app_base_url>,persistentVolume.eks.efsFileSystemId=<efs_file_system_id>
 ```
 
 > **INFO:**  
@@ -60,7 +60,7 @@ Refer [here](docs/configuration.md) for advanced configuration including SSL ter
 ### Install Bold BI in AKS cluster
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=aks,appBaseUrl=<app_base_url>,persistentVolume.aks.fileShareName=<file_share_name>,persistentVolume.aks.azureStorageAccountName=<base64_azurestorageaccountname>,persistentVolume.aks.azureStorageAccountKey=<base64_azurestorageaccountkey> [flags]
+helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=aks,appBaseUrl=<app_base_url>,persistentVolume.aks.fileShareName=<file_share_name>,persistentVolume.aks.azureStorageAccountName=<base64_azurestorageaccountname>,persistentVolume.aks.azureStorageAccountKey=<base64_azurestorageaccountkey>
 ```
 
 > **INFO:**  
@@ -75,7 +75,7 @@ Refer [here](docs/configuration.md) for advanced configuration including SSL ter
 ### Install Bold BI in On-Premise cluster
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBaseUrl=<app_base_url>,persistentVolume.onpremise.hostPath=/run/desktop/mnt/host/<local_directory> [flags]
+helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBaseUrl=<app_base_url>,persistentVolume.onpremise.hostPath=/run/desktop/mnt/host/<local_directory>
 ```
 
 > **INFO:**  
