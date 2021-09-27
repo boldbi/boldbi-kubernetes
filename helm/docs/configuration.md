@@ -26,7 +26,7 @@ optionalLibs: <comma_separated_library_names>
 
 Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
 
-By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
+By default the persistent volume name used in Bold BI is `bold-fileserver`. 
 
 ```console
 persistentVolume:
@@ -34,7 +34,7 @@ persistentVolume:
   # so if you already have Bold BI installed in your cluster, 
   # then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
-  name: boldbi-fileserver
+  name: bold-fileserver
 ```
 
 ### Capacity
@@ -99,6 +99,8 @@ persistentVolume:
 * persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
 * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
 * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+
+> **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
 4. On-Premise
 
@@ -218,3 +220,5 @@ bingMapWidget:
   enabled: <true / false>
   apiKey: <widget_bing_map_api_key>
 ```
+
+> **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`
