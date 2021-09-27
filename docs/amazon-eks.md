@@ -1,5 +1,4 @@
 # Bold BI on Amazon Elastic Kubernetes Service
-If you are upgrading Bold BI to 4.1.36, please follow the steps in this [link](upgrade.md).
 
 For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Amazon Elastic Kubernetes Service (Amazon EKS).
 
