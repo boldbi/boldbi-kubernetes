@@ -68,7 +68,7 @@ kubectl apply -f log4net_config.yaml
 15. Run the following command to create a TLS secret with your SSL certificate.
 
 ```sh
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 ```
 
 16. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
@@ -84,7 +84,7 @@ kubectl apply -f ingress.yaml
 18.	Now, run the following command to get the ingress IP address,
 
 ```sh
-kubectl get ingress -n boldbi
+kubectl get ingress -n bold-services
 ```
 Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
 ![Ingress Address](images/ingress_address.png) 
@@ -128,7 +128,7 @@ kubectl apply -f service.yaml
 26.	Use the following command to get the pods’ status.
 
 ```sh
-kubectl get pods -n boldbi
+kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
