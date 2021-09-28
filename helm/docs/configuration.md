@@ -26,7 +26,7 @@ optionalLibs: <comma_separated_library_names>
 
 Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
 
-By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
+By default the persistent volume name used in Bold BI is `bold-fileserver`. 
 
 ```console
 persistentVolume:
@@ -34,7 +34,7 @@ persistentVolume:
   # so if you already have Bold BI installed in your cluster, 
   # then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
-  name: boldbi-fileserver
+  name: bold-fileserver
 ```
 
 ### Capacity
@@ -100,6 +100,8 @@ persistentVolume:
 * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
 * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
 
+> **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+
 4. On-Premise
 
 ```console
@@ -157,16 +159,16 @@ loadBalancer:
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
-> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls` or else change the secret name in your values.yaml
+> **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
 
 Run the following command to create a TLS secret with your SSL certificate.
 
 ```console
 # Ingress
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 
 # Istio
-kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
 ### Map multiple domains
@@ -180,7 +182,7 @@ FOr multiple domain scenerio the `singleHost` secret will not be considered, you
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
@@ -199,7 +201,7 @@ loadBalancer:
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
@@ -218,3 +220,5 @@ bingMapWidget:
   enabled: <true / false>
   apiKey: <widget_bing_map_api_key>
 ```
+
+> **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`
