@@ -30,74 +30,28 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 ## Install Chart
 
-### Install Bold BI in GKE cluster
+Just like any typical Helm chart, you'll need to craft a `values.yaml` file that would define/override any of the values exposed into the default `values.yaml`.
 
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=gke,appBaseUrl=<app_base_url>,persistentVolume.gke.fileShareName=<file_share_name>,persistentVolume.gke.fileShareIp=<file_share_ip_address>
-```
+* For `GKE` please find the values.yaml file [here](custom-values/gke-values.yaml).
+* For `EKS` please find the values.yaml file [here](custom-values/eks-values.yaml).
+* For `AKS` please find the values.yaml file [here](custom-values/aks-values.yaml).
+* For `OnPremise` please find the values.yaml file [here](custom-values/onpremise-values.yaml).
 
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
-* persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
+> **INFO:**
+> * clusterProvider: The type of kubernetes cluster provider you are using.
+> * appBaseUrl: Domain or IP address of the machine with http/https protocol. Follow the [SSL Termination](docs/configuration.md#ssl-termination) to configure SSL certificate for https protocol.
+> `Persistant Volume`
+> > * persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
+> > * persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
+> > * persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
+> > * persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
+> > * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
+> > * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+> > * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. The default Load Balancer is `Nginx`. Refer [here](docs/configuration.md#load-balancing) for more details.
 
-### Install Bold BI in EKS cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=eks,appBaseUrl=<app_base_url>,persistentVolume.eks.efsFileSystemId=<efs_file_system_id>
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI in AKS cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=aks,appBaseUrl=<app_base_url>,persistentVolume.aks.fileShareName=<file_share_name>,persistentVolume.aks.azureStorageAccountName=<base64_azurestorageaccountname>,persistentVolume.aks.azureStorageAccountKey=<base64_azurestorageaccountkey>
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
-* persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
-* persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI in On-Premise cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBaseUrl=<app_base_url>,persistentVolume.onpremise.hostPath=/run/desktop/mnt/host/<local_directory>
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI with Istio Ingress Gateway
-
-To install Bold BI with Istio, run the helm install command with the following flag. Please refere [here](docs/configuration.md#istio-ingress-gateway) for more details.
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
-```
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-## Advanced Installation
-
-Just like any typical Helm chart, you'll need to craft a `values.yaml` file that would define/override any of the values exposed into the default [values.yaml](boldbi/values.yaml)
+Run the following command to delpoy Bold BI in your cluster.
 
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
@@ -110,7 +64,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 ## Upgrade Chart
 
 ```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
+helm upgrade [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._

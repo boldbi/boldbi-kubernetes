@@ -13,7 +13,7 @@ For fresh installation, continue with the following steps to deploy Bold BI appl
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/ingress.yaml)
 
-2. Create a folder in your machine to store the shared folders for applications’ usage.
+2. Create a folder in your machine to store the shared folders for application usage.
 
     Ex: `D://app/shared`
 

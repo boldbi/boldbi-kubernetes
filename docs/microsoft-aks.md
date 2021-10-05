@@ -13,7 +13,7 @@
 
 2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
 
-3. Create a File share instance in your storage account and note the File share name to store the shared folders for applications’ usage.
+3. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
 
 4. Encode the storage account name and storage key in base64 format.
 

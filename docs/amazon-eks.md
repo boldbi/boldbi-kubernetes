@@ -19,7 +19,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 3. Connect to your Amazon EKS cluster.
 
-4. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for applications’ usage by following the below link.
+4. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
 
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 

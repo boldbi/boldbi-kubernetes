@@ -47,7 +47,7 @@
 
 ### GKE File Storage
 
-1. Create a Google filestore instance to store the shared folders for applications’ usage.
+1. Create a Google filestore instance to store the shared folders for application usage.
 
    https://console.cloud.google.com/filestore 
 
@@ -57,7 +57,7 @@
 
 ### EKS File Storage
 
-1. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for applications’ usage by following the below link.
+1. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
 
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
@@ -67,17 +67,17 @@
 
 ### AKS File Storage
 
-1. Create a File share instance in your storage account and note the File share name to store the shared folders for applications’ usage.
+1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
 
 2. Encode the storage account name and storage key in base64 format.
 
 ### On-Premise File Storage
 
-Create a folder in your machine to store the shared folders for applications’ usage.
+Create a folder in your machine to store the shared folders for application usage.
 
 Ex: `D://app/shared`
 
-mention this location in install command as like below
+Mention this location in install command as like below,
 	
 Ex: `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
@@ -88,14 +88,13 @@ Currently we have provided support for `Nginx` and `Istio` as Load Balancers in 
 
 ### Ingress-Nginx
 
-If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster
+If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster.
 
 
 ### Istio Ingress Gateway
 
 If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster.
 
-> **INFO:**  Install istio ingress gateway in your cluster
 * GKE cluster: https://cloud.google.com/istio/docs/istio-on-gke/installing
 
 * EKS cluster: https://aws.amazon.com/blogs/opensource/getting-started-istio-eks/

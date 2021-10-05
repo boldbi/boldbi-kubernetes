@@ -17,7 +17,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
    https://console.cloud.google.com/kubernetes 
 
-3. Create a Google filestore instance to store the shared folders for applications’ usage.
+3. Create a Google filestore instance to store the shared folders for application usage.
 
    https://console.cloud.google.com/filestore 
 
