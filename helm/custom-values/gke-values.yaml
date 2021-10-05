@@ -4,7 +4,7 @@
 namespace: bold-services
 appBaseUrl: ''
 optionalLibs: ''
-clusterProvider: ''
+clusterProvider: 'gke'
 
 persistentVolume:
   # persistent volumes were global resources. 

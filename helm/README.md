@@ -40,14 +40,15 @@ Just like any typical Helm chart, you'll need to craft a `values.yaml` file that
 > **INFO:**
 > * clusterProvider: The type of kubernetes cluster provider you are using.
 > * appBaseUrl: Domain or IP address of the machine with http/https protocol. Follow the [SSL Termination](docs/configuration.md#ssl-termination) to configure SSL certificate for https protocol.
-> `Persistant Volume`
-> > * persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
-> > * persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
-> > * persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
-> > * persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
-> > * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
-> > * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
-> > * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
+> 
+>   **Persistant Volume:**
+>     * persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
+>     * persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
+>     * persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
+>     * persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
+>     * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
+>     * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+>     * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. The default Load Balancer is `Nginx`. Refer [here](docs/configuration.md#load-balancing) for more details.
 
