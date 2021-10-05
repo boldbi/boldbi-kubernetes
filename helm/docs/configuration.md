@@ -62,9 +62,9 @@ persistentVolume:
 ```
 
 > **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
-* persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
+> * clusterProvider: The type of kubernetes cluster provider you are using.
+> * persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
+> * persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
 
 2. EKS
 
@@ -77,8 +77,8 @@ persistentVolume:
 ```
 
 > **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
+> * clusterProvider: The type of kubernetes cluster provider you are using.
+> * persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
 
 3. AKS
 
@@ -95,10 +95,10 @@ persistentVolume:
 ```
 
 > **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
-* persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
-* persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+> * clusterProvider: The type of kubernetes cluster provider you are using.
+> * persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
+> * persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
+> * persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
@@ -113,8 +113,8 @@ persistentVolume:
 ```
 
 > **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
+> * clusterProvider: The type of kubernetes cluster provider you are using.
+> * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
 
 ## Load Balancing
