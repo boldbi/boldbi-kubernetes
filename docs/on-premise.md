@@ -102,7 +102,7 @@ kubectl apply -f ingress.yaml
 
 17.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
 
-18.	Use the following command to get the pods’ status.
+18.	Use the following command to get the pods status.
 
 ```sh
 kubectl get pods -n bold-services

@@ -125,14 +125,14 @@ kubectl apply -f service.yaml
 
 25.	Wait for some time till the Bold BI On-Premise application deployed to your Google Kubernetes cluster.
 
-26.	Use the following command to get the pods’ status.
+26.	Use the following command to get the pods status.
 
 ```sh
 kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-27. Wait till you see the applications in running state. Then, use your DNS or ingress IP address you got from **Step 16** to access the application in the browser.
+27. Wait till you see the applications in running state. Then, use your DNS or ingress IP address you got from **Step 18** to access the application in the browser.
 
 28.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     

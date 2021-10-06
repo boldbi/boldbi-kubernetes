@@ -64,7 +64,7 @@ kubectl apply -f log4net_config.yaml
 
 14. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
-15. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 16**.
+15. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 18**.
 
 16. Run the following command to create a TLS secret with your SSL certificate.
 
@@ -127,14 +127,14 @@ kubectl apply -f service.yaml
 
 26.	Wait for some time till the Bold BI On-Premise application deployed to your Amazon EKS cluster. 
 
-27.	Use the following command to get the pods’ status.
+27.	Use the following command to get the pods status.
 
 ```sh
 kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-28. Wait till you see the applications in running state. Then use your DNS or ingress address you got from **Step 17** to access the application in the browser.
+28. Wait till you see the applications in running state. Then use your DNS or ingress address you got from **Step 19** to access the application in the browser.
 
 29.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
