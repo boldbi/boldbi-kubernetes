@@ -15,7 +15,7 @@ For fresh installation, continue with the following steps to deploy Bold BI appl
 
 2. Create a folder in your machine to store the shared folders for application usage.
 
-    Ex: `D://app/shared`
+    Ex:  `D://app/shared`
 
 3. Open **pvclaim_onpremise.yaml** file, downloaded in **Step 1**. Replace the shared folder path in your host machine to the `<local_directory>` place in the file. You can also change the storage size in the YAML file. 
 
@@ -65,7 +65,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 12. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS in `<application_base_url>` place.
     
-    Ex: `http://example.com`, `https://example.com`
+    Ex:  `http://example.com`, `https://example.com`
 
 13. Read the optional client library license agreement from the following link.
     

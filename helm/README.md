@@ -4,7 +4,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
     
 ## Deployment prerequisites
 
-* [install helm](https://helm.sh/docs/intro/install/)
+* [Install Helm](https://helm.sh/docs/intro/install/)
 * [Create a cluster](docs/pre-requisites.md#create-a-cluster)
 * [File Storage](docs/pre-requisites.md#file-storage)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
@@ -50,7 +50,7 @@ Run the following command to delpoy Bold BI in your cluster.
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
 ```
-Ex: `helm install boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
 
 Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
@@ -65,7 +65,7 @@ helm upgrade support will be there after 4.2.68
 ```console
 helm uninstall [RELEASE_NAME]
 ```
-Ex: `helm uninstall boldbi`
+Ex:  `helm uninstall boldbi`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 

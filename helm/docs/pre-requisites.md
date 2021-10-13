@@ -80,11 +80,11 @@
 
 Create a folder in your machine to store the shared folders for application usage.
 
-Ex: `D://app/shared`
+Ex:  `D://app/shared`
 
 Mention this location in install command as like below,
 	
-Ex: `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
+Ex:  `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
 
 ## Load Balancing

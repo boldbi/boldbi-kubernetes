@@ -83,7 +83,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
 20. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
     
-    Ex: `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
 
 21. Read the optional client library license agreement from the following link.
 

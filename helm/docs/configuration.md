@@ -116,7 +116,9 @@ persistentVolume:
 > * clusterProvider: The type of kubernetes cluster provider you are using.
 > * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
-Ex: `D://app/shared`
+Ex: Create a folder in your machine to store the shared folders for application usage.
+
+  `D://app/shared`
 
 ```console
 clusterProvider: onpremise

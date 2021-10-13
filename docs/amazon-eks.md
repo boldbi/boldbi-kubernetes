@@ -94,7 +94,7 @@ Repeat the above command till you get the value in ADDRESS tab.
 
 21. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress address in `<application_base_url>` place.
     
-    Ex: `http://example.com`, `https://example.com`, `http://<ingress_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_address>`
 
 22. Read the optional client library license agreement from the following link.
 
