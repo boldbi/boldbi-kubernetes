@@ -24,12 +24,15 @@
    https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
 
 2. Connect to your Amazon EKS cluster.
+   https://aws.amazon.com/premiumsupport/knowledge-center/eks-cluster-connection/
 
 ### AKS Cluster
 
 1. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
+   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
 
 2. Connect with your Microsoft AKS cluster.
+   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#connect-to-the-cluster
 
 ### On-Premise Cluster
 
@@ -70,6 +73,8 @@
 1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
 
 2. Encode the storage account name and storage key in base64 format.
+
+![File Share details](images/aks-file-storage.png)
 
 ### On-Premise File Storage
 

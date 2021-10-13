@@ -4,6 +4,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
     
 ## Deployment prerequisites
 
+* [install helm](https://helm.sh/docs/intro/install/)
 * [Create a cluster](docs/pre-requisites.md#create-a-cluster)
 * [File Storage](docs/pre-requisites.md#file-storage)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
@@ -23,7 +24,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   0.1.2           4.1.45          Embed powerful analytics inside your apps and t...
+boldbi/boldbi   4.2.68           4.2.68          Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -39,7 +40,7 @@ Just like any typical Helm chart, you'll need to craft a `values.yaml` file that
 
 > **INFO:**
 > * clusterProvider: The type of kubernetes cluster provider you are using.
-> * appBaseUrl: Domain or IP address of the machine with http/https protocol. Follow the [SSL Termination](docs/configuration.md#ssl-termination) to configure SSL certificate for https protocol.
+> * appBaseUrl: Domain or IP address of the machine with http/https protocol. Follow the [SSL Termination](docs/configuration.md#ssl-termination) to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
 > * **Persistent Volume:** Configure the persistent volume for storing the Bold BI application data. To configure persistent volume for your cluster, refer to [Persistent volume configuration](docs/configuration.md#persistent-volume) for each cluster.
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. The default Load Balancer is `Nginx`. Refer [here](docs/configuration.md#load-balancing) for more details.
@@ -49,6 +50,7 @@ Run the following command to delpoy Bold BI in your cluster.
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
 ```
+Ex: `helm install boldbi boldbi/boldbi -f my-values.yaml`
 
 Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
@@ -56,17 +58,14 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ## Upgrade Chart
 
-```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
-```
-
-_See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
+helm upgrade support will be there after 4.2.68
 
 ## Uninstall Chart
 
 ```console
 helm uninstall [RELEASE_NAME]
 ```
+Ex: `helm uninstall boldbi`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 

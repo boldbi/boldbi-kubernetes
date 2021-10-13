@@ -19,6 +19,7 @@ Note the optional client libraries from the above link as comma separated names 
 ```console
 optionalLibs: <comma_separated_library_names>
 ```
+Ex:`optionalLibs:'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'`
 
 ## Persistent Volume
 
@@ -103,7 +104,7 @@ persistentVolume:
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
 4. On-Premise
-
+  
 ```console
 clusterProvider: onpremise
     
@@ -111,11 +112,19 @@ persistentVolume:
   onpremise:
     hostPath: /run/desktop/mnt/host/<local_directory>
 ```
-
 > **INFO:**  
 > * clusterProvider: The type of kubernetes cluster provider you are using.
 > * persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
 
+Ex: `D://app/shared`
+
+```console
+clusterProvider: onpremise
+    
+persistentVolume:
+  onpremise:
+    hostPath: /run/desktop/mnt/host/d/app/shared
+```
 
 ## Load Balancing
 
