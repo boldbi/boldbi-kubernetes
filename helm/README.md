@@ -40,6 +40,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/aks-values.yaml).
 * For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/onpremise-values.yaml).
 
+<br/>
 
 <table>
     <tr>
@@ -64,7 +65,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        appBaseUrl *
       </td>
       <td>
-       Domain or [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) with http/https protocol. Follow the [SSL Termination](docs/configuration.md#ssl-termination) to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+       Domain or <a href='docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='docs/configuration.md#ssl-termination'>SSL Termination</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
       </td>
     </tr>
     <tr>
@@ -74,7 +75,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       <td>
        These are the client libraries used in Bold BI by default.<br/>
        '<i>phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql</i>'<br/>
-       Please refer to [Optional Client Libraries](docs/configuration.md#client-libraries) section to know more.
+       Please refer to <a href='docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -91,7 +92,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        persistentVolume *
       </td>
       <td>
-       Please refer to [this](docs/configuration.md#persistent-volume) section to know more on how to set Persistant Volumes for Bold BI.
+       Please refer to <a href='docs/configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
       </td>
     </tr>
     <tr>
@@ -99,7 +100,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to [this](docs/configuration.md#load-balancing) section for configuring Load balancer for Bold BI.
+       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
       </td>
     </tr>
     <tr>
@@ -107,7 +108,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI. Please refer to [this](docs/configuration.md#auto-scaling) section to configure autoscaling in Bold BI.
+       By default autoscaling is enabled in Bold BI. Please refer to <a href='docs/configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
       </td>
     </tr>
     <tr>
@@ -115,10 +116,11 @@ For Helm chart, you'll need to craft a `values.yaml`.
        bingMapWidget
       </td>
       <td>
-       Please refer to [this](docs/configuration.md#bing-map-widget) section to configure Bing Map Widget in Bold BI.
+       Please refer to <a href='docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
       </td>
     </tr>
 </table>
+<br/>
 
 **Note:** Items marked with `*` are mandatory fields in values.yaml
 

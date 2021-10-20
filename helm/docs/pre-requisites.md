@@ -1,46 +1,5 @@
 # Deployment Pre-requisites
 
-## Create a cluster
-
-* [Google Kubernetes Engine (GKE)](#gke-cluster)
-* [Amazon Elastic Kubernetes Service (EKS)](#eks-cluster)
-* [Azure Kubernetes Service (AKS)](#aks-cluster)
-* [On-premise](#on-premise-cluster)
-
-### GKE Cluster
-
-1. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
-
-   https://console.cloud.google.com/kubernetes 
-
-2. Connect with your GKE cluster.
-
-   https://cloud.google.com/kubernetes-engine/docs/quickstart
-
-### EKS Cluster
-
-1. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
-
-   https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
-
-2. Connect to your Amazon EKS cluster.
-   https://aws.amazon.com/premiumsupport/knowledge-center/eks-cluster-connection/
-
-### AKS Cluster
-
-1. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
-   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
-
-2. Connect with your Microsoft AKS cluster.
-   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#connect-to-the-cluster
-
-### On-Premise Cluster
-
-1. Create a Kubernetes onpremise cluster to deploy Bold BI.
-
-2. Follow the instructions to [Create an On-Premise cluster](https://kubernetes.io/docs/setup/).
-
-
 ## File Storage
 
 * [Google Kubernetes Engine (GKE)](#gke-file-storage)
@@ -93,6 +52,47 @@ Mention this location in install command as like below,
 Ex:  `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
 
+## Create and connect a cluster
+
+* [Google Kubernetes Engine (GKE)](#gke-cluster)
+* [Amazon Elastic Kubernetes Service (EKS)](#eks-cluster)
+* [Azure Kubernetes Service (AKS)](#aks-cluster)
+* [On-premise](#on-premise-cluster)
+
+### GKE Cluster
+
+1. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
+
+   https://console.cloud.google.com/kubernetes 
+
+2. Connect with your GKE cluster.
+
+   https://cloud.google.com/kubernetes-engine/docs/quickstart
+
+### EKS Cluster
+
+1. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
+
+   https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
+
+2. Connect to your Amazon EKS cluster.
+   https://aws.amazon.com/premiumsupport/knowledge-center/eks-cluster-connection/
+
+### AKS Cluster
+
+1. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
+   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
+
+2. Connect with your Microsoft AKS cluster.
+   https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#connect-to-the-cluster
+
+### On-Premise Cluster
+
+1. Create a Kubernetes onpremise cluster to deploy Bold BI.
+
+2. Follow the instructions to [Create an On-Premise cluster](https://kubernetes.io/docs/setup/).
+
+
 ## Load Balancing
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
@@ -101,6 +101,7 @@ Currently we have provided support for `Nginx` and `Istio` as Load Balancers in 
 
 If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster please refer below and run the command accordingly.
 
+<br/>
 <table>
     <tr>
       <td>
@@ -135,11 +136,13 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
       </td>
     </tr>
 </table>
+<br/>
 
 ### Istio Ingress Gateway
 
 If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster please refer to the corresponing reference links
 
+<br/>
 <table>
     <tr>
       <td>
@@ -174,6 +177,7 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
       </td>
     </tr>
 </table>
+<br/>
 
 ### Get Ingress IP
 

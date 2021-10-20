@@ -31,7 +31,7 @@ Run the following command to execute the shell script to upgrade Bold BI.
 > 1. You can ignore `--bing_map_enable` and `--bing_map_api_key` arguments from the above upgrade command if you are not using Bing Map Widget.
 > 2. You can also ignore `--optional_libs` argument if not needed.
 
-
+<br/>
 
 <table>
     <tr>
@@ -86,3 +86,4 @@ Run the following command to execute the shell script to upgrade Bold BI.
       </td>
     </tr>
 </table>
+<br/>

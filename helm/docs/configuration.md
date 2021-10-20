@@ -54,7 +54,7 @@ persistentVolume:
     fileShareName: <file_share_name>
     fileShareIp: <file_share_ip_address>
 ```
-
+<br/>
 <table>
     <tr>
       <td>
@@ -81,6 +81,8 @@ persistentVolume:
       </td>
     </tr>
 </table>
+<br/>
+
 
 2. EKS
 
@@ -92,6 +94,7 @@ persistentVolume:
     efsFileSystemId: <efs_file_system_id>
 ```
 
+<br/>
 <table>
     <tr>
       <td>
@@ -110,6 +113,7 @@ persistentVolume:
       </td>
     </tr>
 </table>
+<br/>
 
 3. AKS
 
@@ -125,6 +129,7 @@ persistentVolume:
     azureStorageAccountKey: <base64_azurestorageaccountkey>
 ```
 
+<br/>
 <table>
     <tr>
       <td>
@@ -159,6 +164,7 @@ persistentVolume:
       </td>
     </tr>
 </table>
+<br/>
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
@@ -172,6 +178,7 @@ persistentVolume:
     hostPath: /run/desktop/mnt/host/<local_directory>
 ```
 
+<br/>
 <table>
     <tr>
       <td>
@@ -194,6 +201,7 @@ persistentVolume:
       </td>
     </tr>
 </table>
+<br/>
 
 ## Load Balancing
 
@@ -306,6 +314,7 @@ autoscaling:
     percentPeriodSeconds: 60
 ```
 
+<br/>
 <table>
     <tr>
       <td>
@@ -358,6 +367,7 @@ autoscaling:
       </td>
     </tr>
 </table>
+<br/>
 
 ## Bing Map Widget
 
