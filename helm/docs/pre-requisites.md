@@ -72,7 +72,13 @@
 
 1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
 
-2. Encode the storage account name and storage key in base64 format.
+2. Encode the storage account name and storage key in `base64` format.
+
+For encoding the values to base64 please run the following command in powershell
+
+```console
+[System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("<plain-text>"))
+```
 
 ![File Share details](images/aks-file-storage.png)
 
@@ -93,17 +99,92 @@ Currently we have provided support for `Nginx` and `Istio` as Load Balancers in 
 
 ### Ingress-Nginx
 
-If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster.
+If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster please refer below and run the command accordingly.
 
+<table>
+    <tr>
+      <td>
+       GKE Cluster
+      </td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       EKS Cluster
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+      </td>
+    </tr>
+    <tr>
+      <td>
+       AKS Cluster
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+      </td>
+    </tr>
+    <tr>
+      <td>
+       OnPremise
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+      </td>
+    </tr>
+</table>
 
 ### Istio Ingress Gateway
 
-If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster.
+If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster please refer to the corresponing reference links
 
-* GKE cluster: https://cloud.google.com/istio/docs/istio-on-gke/installing
+<table>
+    <tr>
+      <td>
+       GKE Cluster
+      </td>
+      <td>
+      https://cloud.google.com/istio/docs/istio-on-gke/installing
+      </td>
+    </tr>
+    <tr>
+      <td>
+       EKS Cluster
+      </td>
+      <td>
+       https://aws.amazon.com/blogs/opensource/getting-started-istio-eks/
+      </td>
+    </tr>
+    <tr>
+      <td>
+       AKS Cluster
+      </td>
+      <td>
+       https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install
+      </td>
+    </tr>
+    <tr>
+      <td>
+       OnPremise
+      </td>
+      <td>
+       https://istio.io/latest/docs/setup/platform-setup/docker/
+      </td>
+    </tr>
+</table>
 
-* EKS cluster: https://aws.amazon.com/blogs/opensource/getting-started-istio-eks/
+### Get Ingress IP
 
-* AKS cluster: https://docs.microsoft.com/en-us/azure/aks/servicemesh-istio-install 
+Run the following command to get the ingress IP address.
 
-* OnPremise cluster: https://istio.io/latest/docs/setup/platform-setup/docker/
+```console
+# Nginx
+kubectl get service/ingress-nginx-controller -n ingress-nginx
+
+# Istio
+kubectl get service/istio-ingressgateway -n istio-system
+```
+
+Note the ingress `EXTERNAL-IP` address and map it with your DNS. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
