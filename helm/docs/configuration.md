@@ -58,6 +58,14 @@ persistentVolume:
 <table>
     <tr>
       <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
        clusterProvider
       </td>
       <td>
@@ -98,6 +106,14 @@ persistentVolume:
 <table>
     <tr>
       <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
        clusterProvider
       </td>
       <td>
@@ -131,6 +147,14 @@ persistentVolume:
 
 <br/>
 <table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
     <tr>
       <td>
        clusterProvider
@@ -180,6 +204,14 @@ persistentVolume:
 
 <br/>
 <table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
     <tr>
       <td>
        clusterProvider
@@ -316,6 +348,14 @@ autoscaling:
 
 <br/>
 <table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
     <tr>
       <td>
        autoscaling.enabled

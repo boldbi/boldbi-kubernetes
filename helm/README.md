@@ -45,10 +45,10 @@ For Helm chart, you'll need to craft a `values.yaml`.
 <table>
     <tr>
       <td>
-       Name
+       <b>Name</b>
       </td>
       <td>
-       Description
+       <b>Description</b>
       </td>
     </tr>
     <tr>

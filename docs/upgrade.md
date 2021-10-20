@@ -36,6 +36,14 @@ Run the following command to execute the shell script to upgrade Bold BI.
 <table>
     <tr>
       <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
        version
       </td>
       <td>

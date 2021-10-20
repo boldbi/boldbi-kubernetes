@@ -105,6 +105,14 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
 <table>
     <tr>
       <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
        GKE Cluster
       </td>
        kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
@@ -144,6 +152,14 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
 
 <br/>
 <table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
     <tr>
       <td>
        GKE Cluster
