@@ -1,8 +1,8 @@
 # Bold BI on Kubernetes
 
-Bold BI can be deployed on Kubernetes cluster. You can create Kubernetes cluster on either cloud or on-premise infrastructure. After completing cluster creation, connect to it and you can download the configuration files [here](deploy/). This directory includes configuration YAML files, which contains all the configuration settings needed to deploy Bold BI on Kubernetes cluster. The following links explain Bold BI Kubernetes deployment in a specific cloud and on-premise environments.
-    
-* [Google Kubernetes Engine (GKE)](docs/google-gke.md)
-* [Amazon Elastic Kubernetes Service (EKS)](docs/amazon-eks.md)
-* [Azure Kubernetes Service (AKS)](docs/microsoft-aks.md)
-* [On-premise](docs/on-premise.md)
+With [Bold BI](https://www.boldbi.com/) embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
+
+There are two ways to deploy Bold BI on Kubernetes cluster. Please follow the below documents for Bold BI deployment.
+
+* [Deploy Bold BI using Helm](helm/README.md)
+* [Deploy Bold BI using kubectl](docs/index.md)

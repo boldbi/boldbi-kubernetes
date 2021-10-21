@@ -1,20 +1,21 @@
 # Bold BI on On-Premise Kubernetes Cluster
-If you are upgrading Bold BI to 4.1.36, please follow the steps in this [link](upgrade.md).
 
 For fresh installation, continue with the following steps to deploy Bold BI application in your On-Premise machine kubernetes cluster.
 
 1. Download the following files for Bold BI deployment in On-Premise:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/namespace.yaml)
-    * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/pvclaim_onpremise.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.1.36/deploy/ingress.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/secrets.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/log4net_config.yaml)
+    * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/pvclaim_onpremise.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/ingress.yaml)
 
-2. Create a folder in your machine to store the shared folders for applications’ usage.
+2. Create a folder in your machine to store the shared folders for application usage.
 
-    Ex: `D://app/shared`
+    Ex:  `D://app/shared`
 
 3. Open **pvclaim_onpremise.yaml** file, downloaded in **Step 1**. Replace the shared folder path in your host machine to the `<local_directory>` place in the file. You can also change the storage size in the YAML file. 
 
@@ -38,35 +39,46 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl apply -f namespace.yaml
 ```
 
-8. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
-
-9. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+8. Run the following command to create the secrets.
 
 ```sh
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+kubectl apply -f secrets.yaml
 ```
 
-10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+8. Run the following command to create the configmap.
+
+```sh
+kubectl apply -f log4net_config.yaml
+```
+
+9. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+
+10. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, run the following command to create a TLS secret with your SSL certificate.
+
+```sh
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
+```
+
+11. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
 ![ingress DNS](images/ingress_yaml.png)
 
-11. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS in `<application_base_url>` place.
+12. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS in `<application_base_url>` place.
     
-    Ex: `http://example.com`, `https://example.com`
+    Ex:  `http://example.com`, `https://example.com`
 
-12. Read the optional client library license agreement from the following link.
+13. Read the optional client library license agreement from the following link.
     
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-13. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+14. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
 
 ![deployment.yaml](images/deployment_yaml.png) 
 
-14. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` on **deployment.yaml** file.
+15. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 
-    ![Bing Map](images/bing_map_key.png) 
 
-15.	Now, run the following commands one by one:
+16.	Now, run the following commands one by one:
 
 ```sh
 kubectl apply -f pvclaim_onpremise.yaml
@@ -88,19 +100,19 @@ kubectl apply -f service.yaml
 kubectl apply -f ingress.yaml
 ```
 
-16.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
+17.	Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster. 
 
-17.	Use the following command to get the pods’ status.
+18.	Use the following command to get the pods status.
 
 ```sh
-kubectl get pods -n boldbi
+kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-18. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
+19. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
 
 ```sh
-kubectl get hpa -n boldbi
+kubectl get hpa -n bold-services
 ```
 If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then you do not have any metrics server running inside your cluster. Use the following command to deploy metrics server in your cluster to enable the autoscaling feature by HPA.
     
@@ -108,8 +120,8 @@ If you get `<unknown>/80%` instead of actual CPU and memory usage of pods, then 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 ```
 
-19.	Use your DNS hostname to access the application in the browser.
+20.	Use your DNS hostname to access the application in the browser.
 
-20.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+21.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup

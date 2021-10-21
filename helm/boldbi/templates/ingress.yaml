@@ -1,10 +1,17 @@
-apiVersion: networking.k8s.io/v1beta1
+{{- if eq .Values.loadBalancer.type "nginx" }}
+{{- $ingressApiIsStable := eq (include "ingress.isStable" .) "true" -}}
+{{- $ingressSupportsIngressClassName := eq (include "ingress.supportsIngressClassName" .) "true" -}}
+{{- $ingressSupportsPathType := eq (include "ingress.supportsPathType" .) "true" -}}
+{{- $ingressPathType := "Prefix" -}}
+apiVersion: {{ template "ingress.apiVersion" . }}
 kind: Ingress
 metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
   name: bold-ingress
-  namespace: bold-services
+{{ include "boldbi.namespace" . | indent 2 }}
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
     nginx.ingress.kubernetes.io/proxy-buffers: "4 256k"
@@ -18,11 +25,15 @@ metadata:
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
     nginx.ingress.kubernetes.io/session-cookie-name: "bold.k8s.pod.id"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "600"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "{{ $.Values.loadBalancer.affinityCookieExpiration }}"
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
-    nginx.ingress.kubernetes.io/server-snippet: |      
+    nginx.ingress.kubernetes.io/server-snippet: |
       client_max_body_size 200m;
-      set $bold_namespace "bold-services";
+      {{- if eq .Release.Namespace "default" }}
+      set $bold_namespace "{{ .Values.namespace }}";
+      {{- else }}
+      set $bold_namespace "{{ .Release.Namespace }}";
+      {{- end }}      
       
       location ~* "^/bi/api(/|$)(.*)" {
         set $namespace      $bold_namespace;
@@ -426,45 +437,135 @@ metadata:
         proxy_redirect                          off;
       }
 spec:
-  # tls:
-  # - hosts:
-    # - example.com
-    # secretName: bold-tls
+  {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
+  ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
+  {{- end }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  tls:   
+    {{- if .Values.loadBalancer.multipleHost }}
+    {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
+    - hosts:
+      {{- range $dns := $host.hosts }}
+        - {{ $dns }}
+      {{- end }}
+      secretName: {{ $host.secretName }}
+    {{- end }}
+    {{- else }}
+    - hosts:
+        - {{ (split "/" .Values.appBaseUrl)._2 }}
+      secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
+  {{- end }}
   rules:
-  - #host: example.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: id-web-service
-          servicePort: 6000
-          
-      - path: /idapi6001(/|$)(.*)
-        backend:
-          serviceName: id-api-service
-          servicePort: 6001
-          
-      - path: /idums6002(/|$)(.*)
-        backend:
-          serviceName: id-ums-service
-          servicePort: 6002
-          
-      - path: /biweb6004(/|$)(.*)
-        backend:
-          serviceName: bi-web-service
-          servicePort: 6004
-          
-      - path: /biapi6005(/|$)(.*)
-        backend:
-          serviceName: bi-api-service
-          servicePort: 6005
-          
-      - path: /bijobs6006(/|$)(.*)
-        backend:
-          serviceName: bi-jobs-service
-          servicePort: 6006
-          
-      - path: /bidataservice6007(/|$)(.*)
-        backend:
-          serviceName: bi-dataservice-service
-          servicePort: 6007
+    {{- if .Values.loadBalancer.multipleHost }}
+    - http:
+    {{- else }}
+    - host: {{ (split "/" .Values.appBaseUrl)._2 }}
+      http:
+    {{- end }}
+        paths:
+          - path: /
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-web-service
+                port:
+                  number: 6000
+              {{- else }}
+              serviceName: id-web-service
+              servicePort: 6000
+              {{- end }}
+              
+          - path: /idapi6001(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-api-service
+                port:
+                  number: 6001
+              {{- else }}
+              serviceName: id-api-service
+              servicePort: 6001
+              {{- end }}
+                  
+          - path: /idums6002(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-ums-service
+                port:
+                  number: 6002
+              {{- else }}
+              serviceName: id-ums-service
+              servicePort: 6002
+              {{- end }}
+                  
+          - path: /biweb6004(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-web-service
+                port:
+                  number: 6004
+              {{- else }}
+              serviceName: bi-web-service
+              servicePort: 6004
+              {{- end }}
+                  
+          - path: /biapi6005(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-api-service
+                port:
+                  number: 6005
+              {{- else }}
+              serviceName: bi-api-service
+              servicePort: 6005
+              {{- end }}
+                  
+          - path: /bijobs6006(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-jobs-service
+                port:
+                  number: 6006
+              {{- else }}
+              serviceName: bi-jobs-service
+              servicePort: 6006
+              {{- end }}
+                  
+          - path: /bidataservice6007(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-dataservice-service
+                port:
+                  number: 6007
+              {{- else }}
+              serviceName: bi-dataservice-service
+              servicePort: 6007
+              {{- end }}
+{{- end }}
