@@ -5,6 +5,7 @@
 />
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/boldbi/boldbi-kubernetes?sort=semver)](https://github.com/boldbi/boldbi-kubernetes/releases/latest)
+[![Documentation](https://img.shields.io/badge/docs-help.boldbi.com-blue.svg)](https://www.boldbi.com/documentation)
 
 # About
 
