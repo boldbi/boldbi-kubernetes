@@ -1,24 +1,18 @@
-# Configuration
-
-See [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing).
-To see all configurable options with detailed comments, visit the chart's [values.yaml](../boldbi/values.yaml), or run these configuration commands:
-
-```console
-# Helm 3
-helm show values boldbi/boldbi
-```
+# Advanced Configuration
 
 ## Client Libraries
+
+The following are the client libraries used in Bold BI.
+
+```console
+optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+```
 
 Read the optional client library license agreement from the following link.
 
 [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place.
-
-```console
-optionalLibs: <comma_separated_library_names>
-```
+If you wish to inlcude only specific client libraries note the optional client libraries from the above link as comma separated names in your values.yaml file.
 
 ## Persistent Volume
 
@@ -26,7 +20,7 @@ optionalLibs: <comma_separated_library_names>
 
 Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
 
-By default the persistent volume name used in Bold BI is `boldbi-fileserver`. 
+By default the persistent volume name used in Bold BI is `bold-fileserver`. 
 
 ```console
 persistentVolume:
@@ -34,7 +28,7 @@ persistentVolume:
   # so if you already have Bold BI installed in your cluster, 
   # then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
-  name: boldbi-fileserver
+  name: bold-fileserver
 ```
 
 ### Capacity
@@ -60,11 +54,43 @@ persistentVolume:
     fileShareName: <file_share_name>
     fileShareIp: <file_share_ip_address>
 ```
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>gke</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.gke.fileShareName
+      </td>
+      <td>
+       The <i>File share name</i> of your filestore instance.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.gke.fileShareIp
+      </td>
+      <td>
+       The <i>IP address</i> of your filestore instance.
+      </td>
+    </tr>
+</table>
+<br/>
 
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
-* persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
 
 2. EKS
 
@@ -76,9 +102,34 @@ persistentVolume:
     efsFileSystemId: <efs_file_system_id>
 ```
 
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>eks</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.eks.efsFileSystemId
+      </td>
+      <td>
+       The <i>File system ID</i> of your EFS file system.
+      </td>
+    </tr>
+</table>
+<br/>
 
 3. AKS
 
@@ -94,14 +145,55 @@ persistentVolume:
     azureStorageAccountKey: <base64_azurestorageaccountkey>
 ```
 
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
-* persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
-* persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>aks</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.aks.fileShareName
+      </td>
+      <td>
+       The <i>File share name</i> of your File share instance.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.aks.azureStorageAccountName
+      </td>
+      <td>
+       The <i>base64 encoded storage account name</i> of the File share instance in your storage account.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.aks.azureStorageAccountKey
+      </td>
+      <td>
+       The <i>base64 encoded storage account key</i> of the File share instance in your storage account.
+      </td>
+    </tr>
+</table>
+<br/>
+
+> **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
 4. On-Premise
-
+  
 ```console
 clusterProvider: onpremise
     
@@ -110,10 +202,38 @@ persistentVolume:
     hostPath: /run/desktop/mnt/host/<local_directory>
 ```
 
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
-
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>onpremise</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.onpremise.hostPath
+      </td>
+      <td>
+       The shared folder path in your host machine.<br/><br/>
+       Ex: Create a folder in your machine to store the shared folders for application usage.
+       <i>D://app/shared</i><br/><br/>
+       The corresponding value for the above shared folder will be,
+       <i>/run/desktop/mnt/host/d/app/shared</i>
+      </td>
+    </tr>
+</table>
+<br/>
 
 ## Load Balancing
 
@@ -157,16 +277,16 @@ loadBalancer:
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
-> **NOTE:**  You have to create the TLS Secret with name `boldbi-tls` or else change the secret name in your values.yaml
+> **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
 
 Run the following command to create a TLS secret with your SSL certificate.
 
 ```console
 # Ingress
-kubectl create secret tls boldbi-tls -n boldbi --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 
 # Istio
-kubectl create secret tls boldbi-tls -n istio-system --key <key-path> --cert <certificate-path>
+kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <certificate-path>
 ```
 
 ### Map multiple domains
@@ -180,7 +300,7 @@ FOr multiple domain scenerio the `singleHost` secret will not be considered, you
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
@@ -199,7 +319,7 @@ loadBalancer:
 ```console
 loadBalancer:
   singleHost:
-    secretName: boldbi-tls
+    secretName: bold-tls
 
   multipleHost:
     hostArray:
@@ -208,6 +328,86 @@ loadBalancer:
           - cd2.abc.com
         secretName: tls-secret
 ```
+
+## Auto Scaling
+
+By default autoscaling is enabled in Bold BI, to disable autoscaling please set `autoscaling.enabled=false`.
+
+```console
+autoscaling:
+  enabled: true
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+  behavior:
+    stabilizationWindowSeconds: 60
+    podsValue: 1
+    podsPeriodSeconds: 60
+    percentValue: 10
+    percentPeriodSeconds: 60
+```
+
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.enabled
+      </td>
+      <td>
+       By default the autoscaling will be enabled. turn this to <i>false</i> to disable the autoscaling functionality.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.targetCPUUtilizationPercentage
+      </td>
+      <td>
+       The CPU utilization is the average CPU usage of a all pods in a deployment across the last minute divided by the requested CPU of this deployment.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.targetMemoryUtilizationPercentage
+      </td>
+      <td>
+       With this metric the HPA controller will keep the average utilization of the pods in the scaling target at the value mentioned (80%). Utilization is the ratio between the current usage of resource to the requested resources of the pod.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.behavior.stabilizationWindowSeconds
+      </td>
+      <td>
+       The stabilization window is used by the autoscaling algorithm to consider the computed desired state from the past to prevent scaling. By default the value is 60 to provide a custom downscale stabilization window of 1 minute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.behavior.podsValue<br/>
+       autoscaling.behavior.podsPeriodSeconds
+      </td>
+      <td>
+       This policy (Pods) allows 1 replicas to be scaled down in one minute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling.behavior.percentValue<br/>
+       autoscaling.behavior.percentPeriodSeconds
+      </td>
+      <td>
+       This policy (Percent) allows at most 10% of the current replicas to be scaled down in one minute.
+      </td>
+    </tr>
+</table>
+<br/>
 
 ## Bing Map Widget
 
@@ -218,3 +418,5 @@ bingMapWidget:
   enabled: <true / false>
   apiKey: <widget_bing_map_api_key>
 ```
+
+> **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`

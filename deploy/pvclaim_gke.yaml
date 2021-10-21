@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
- name: boldbi-fileserver
- namespace: boldbi
+ name: bold-fileserver
+ namespace: bold-services
 spec:
  capacity:
    storage: 3Gi
@@ -15,13 +15,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
- name: boldbi-fileserver-claim
- namespace: boldbi
+ name: bold-fileserver-claim
+ namespace: bold-services
 spec:
  accessModes:
  - ReadWriteMany
  storageClassName: ""
- volumeName: boldbi-fileserver
+ volumeName: bold-fileserver
  resources:
    requests:
      storage: 3Gi

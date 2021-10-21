@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-web-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/bold-identity:4.2.68
+        image: gcr.io/boldbi-294612/bold-identity:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -28,7 +28,7 @@ spec:
         - name: APP_BASE_URL
           value: <application_base_url>
         - name: INSTALL_OPTIONAL_LIBS
-          value: <comma_separated_library_names>
+          value: "<comma_separated_library_names>"
         readinessProbe:
           httpGet:
             path: /health-check
@@ -43,7 +43,7 @@ spec:
       volumes:
       - name: id-web-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -53,7 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-api-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -74,7 +74,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/bold-identity-api:4.2.68
+        image: gcr.io/boldbi-294612/bold-identity-api:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -98,7 +98,7 @@ spec:
       volumes:
       - name: id-api-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -108,7 +108,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-ums-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -129,7 +129,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/bold-ums:4.2.68
+        image: gcr.io/boldbi-294612/bold-ums:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -153,7 +153,7 @@ spec:
       volumes:
       - name: id-ums-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -163,7 +163,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-web-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -184,7 +184,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:4.2.68
+        image: gcr.io/boldbi-294612/boldbi-server:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -208,7 +208,7 @@ spec:
       volumes:
       - name: bi-web-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -218,7 +218,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-api-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -239,7 +239,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:4.2.68
+        image: gcr.io/boldbi-294612/boldbi-server-api:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -263,7 +263,7 @@ spec:
       volumes:
       - name: bi-api-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -273,7 +273,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-jobs-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -294,7 +294,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:4.2.68
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:<image_tag>
         ports:
         - containerPort: 80
         resources:
@@ -318,7 +318,7 @@ spec:
       volumes:
       - name: bi-jobs-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:
@@ -328,7 +328,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bi-dataservice-deployment
-  namespace: bold-services
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -349,7 +349,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:4.2.68
+        image: gcr.io/boldbi-294612/boldbi-designer:<image_tag>
         ports:
         - containerPort: 80
         env:
@@ -383,7 +383,7 @@ spec:
       volumes:
       - name: bi-dataservice-volume
         persistentVolumeClaim:
-          claimName: bold-fileserver-claim
+          claimName: boldbi-fileserver-claim
           readOnly: false
       - name: log4net-config-volume
         configMap:

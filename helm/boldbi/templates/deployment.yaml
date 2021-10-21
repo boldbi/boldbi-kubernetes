@@ -41,11 +41,11 @@ spec:
       containers:
       - name: {{ $service.app }}-container
         {{- if eq $service.app "id-web" }}
-        image: "{{ $.Values.image.repo }}/boldbi-identity:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-identity:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-api" }}
-        image: "{{ $.Values.image.repo }}/boldbi-identity-api:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-identity-api:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-ums" }}
-        image: "{{ $.Values.image.repo }}/boldbi-ums:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.repo }}/bold-ums:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "bi-web" }}
         image: "{{ $.Values.image.repo }}/boldbi-server:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "bi-api" }}
@@ -73,9 +73,15 @@ spec:
         {{- end }}
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
-          value: "{{ $.Values.bingMapWidget.enabled }}"
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_bing_map_enable_secret
         - name: widget_bing_map_api_key
-          value: "{{ $.Values.bingMapWidget.apiKey }}"
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_bing_map_api_key_secret
         {{- end }}
         readinessProbe:
           httpGet:

@@ -3,7 +3,7 @@ Thank you for installing {{ .Chart.Name }}.
 
 1. Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster.
 
-2. Use the following command to get the pods’ status.
+2. Use the following command to get the pods status.
 {{ include "boldbi.notes-pods" . | nindent 3 }}
 
 3. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.

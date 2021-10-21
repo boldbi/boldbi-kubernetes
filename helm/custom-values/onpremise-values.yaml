@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 namespace: bold-services
 appBaseUrl: ''
-optionalLibs: ''
-clusterProvider: ''
+optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+clusterProvider: 'onpremise'
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -12,26 +12,15 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
-  eks:
-    efsFileSystemId: ''
-  aks:
-    fileShareName: ''
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
   onpremise:
     hostPath: ''
     
-image:
-  repo: gcr.io/boldbi-294612
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: 4.2.68
-  pullPolicy: IfNotPresent
-imagePullSecrets: []
+# image:
+#   repo: gcr.io/boldbi-294612
+#   # Overrides the image tag whose default is the chart appVersion.
+#   tag: 4.2.68
+#   pullPolicy: IfNotPresent
+# imagePullSecrets: []
 
 loadBalancer:
   type: nginx
@@ -91,10 +80,6 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    
-service:
-  type: ClusterIP
-  port: 80
   
 autoscaling:
   enabled: true

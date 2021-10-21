@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: log4net-config
-  namespace: bold-services
+  namespace: <namespace>
 data:
   Log4Net.config: |
     <?xml version="1.0" encoding="utf-8" ?>

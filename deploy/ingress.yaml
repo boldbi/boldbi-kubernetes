@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: boldbi-ingress
-  namespace: boldbi
+  name: bold-ingress
+  namespace: bold-services
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -17,16 +17,16 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
-    nginx.ingress.kubernetes.io/session-cookie-name: "boldbi.k8s.pod.id"
+    nginx.ingress.kubernetes.io/session-cookie-name: "bold.k8s.pod.id"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "600"
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/server-snippet: |      
       client_max_body_size 200m;
-      set $boldbi_namespace "boldbi";
+      set $bold_namespace "bold-services";
       
       location ~* "^/bi/api(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/biapi6005/bi/api(/|${literal_dollar})(.*)";
@@ -53,7 +53,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-bi-api-service-6005";
+        set $proxy_upstream_name "${bold_namespace}-bi-api-service-6005";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -92,8 +92,8 @@ metadata:
       }
       
       location ~* "^/bi/jobs(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/bijobs6006/bi/jobs(/|${literal_dollar})(.*)";
@@ -120,7 +120,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-bi-jobs-service-6006";
+        set $proxy_upstream_name "${bold_namespace}-bi-jobs-service-6006";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -159,8 +159,8 @@ metadata:
       }
       
       location ~* "^/bi/designer(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/bidataservice6007(/|${literal_dollar})(.*)";
@@ -187,7 +187,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-bi-dataservice-service-6007";
+        set $proxy_upstream_name "${bold_namespace}-bi-dataservice-service-6007";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -226,8 +226,8 @@ metadata:
       }
       
       location ~* "^/bi(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/biweb6004/bi(/|${literal_dollar})(.*)";
@@ -254,7 +254,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-bi-web-service-6004";
+        set $proxy_upstream_name "${bold_namespace}-bi-web-service-6004";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -293,8 +293,8 @@ metadata:
       }
       
       location ~* "^/api(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/idapi6001/api(/|${literal_dollar})(.*)";
@@ -321,7 +321,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-id-api-service-6001";
+        set $proxy_upstream_name "${bold_namespace}-id-api-service-6001";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -360,8 +360,8 @@ metadata:
       }
       
       location ~* "^/ums(/|$)(.*)" {
-        set $namespace      $boldbi_namespace;
-        set $ingress_name   "boldbi-ingress";
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
         set $location_path  "/idums6002/ums(/|${literal_dollar})(.*)";
@@ -388,7 +388,7 @@ metadata:
         }
         port_in_redirect off;
         set $balancer_ewma_score -1;
-        set $proxy_upstream_name "${boldbi_namespace}-id-ums-service-6002";
+        set $proxy_upstream_name "${bold_namespace}-id-ums-service-6002";
         set $proxy_host          $proxy_upstream_name;
         set $pass_access_scheme  $scheme;
         set $pass_server_port    $server_port;
@@ -429,7 +429,7 @@ spec:
   # tls:
   # - hosts:
     # - example.com
-    # secretName: boldbi-tls
+    # secretName: bold-tls
   rules:
   - #host: example.com
     http:

@@ -4,9 +4,12 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
     
 ## Deployment prerequisites
 
-* [Create a cluster](docs/pre-requisites.md#create-a-cluster)
+* [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
 * [File Storage](docs/pre-requisites.md#file-storage)
+* [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
+
+**Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) to use it while crafting values.yaml when installing Bold BI with helm chart.
 
 ## Get Repo Info
 
@@ -23,103 +26,135 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   0.1.2           4.1.45          Embed powerful analytics inside your apps and t...
+boldbi/boldbi   4.2.68           4.2.68          Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 
 ## Install Chart
 
-### Install Bold BI in GKE cluster
+For Helm chart, you'll need to craft a `values.yaml`.
+
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/eks-values.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/aks-values.yaml).
+* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/onpremise-values.yaml).
+
+<br/>
+
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       namespace
+      </td>
+      <td>
+       The namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.<br/>
+       The default namespace is <i>bold-services</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       appBaseUrl *
+      </td>
+      <td>
+       Domain or <a href='docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='docs/configuration.md#ssl-termination'>SSL Termination</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       optionalLibs
+      </td>
+      <td>
+       These are the client libraries used in Bold BI by default.<br/>
+       '<i>phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql</i>'<br/>
+       Please refer to <a href='docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using.<br/>
+       The recommended values are '<i>gke,eks,aks and onpremise</i>'
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume *
+      </td>
+      <td>
+       Please refer to <a href='docs/configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       loadBalancer
+      </td>
+      <td>
+       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       autoscaling
+      </td>
+      <td>
+       By default autoscaling is enabled in Bold BI. Please refer to <a href='docs/configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       bingMapWidget
+      </td>
+      <td>
+       Please refer to <a href='docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
+      </td>
+    </tr>
+</table>
+<br/>
+
+**Note:** Items marked with `*` are mandatory fields in values.yaml
+
+Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=gke,appBaseUrl=<app_base_url>,persistentVolume.gke.fileShareName=<file_share_name>,persistentVolume.gke.fileShareIp=<file_share_ip_address> [flags]
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.gke.fileShareName: The `File share name` of your filestore instance.
-* persistentVolume.gke.fileShareIp: The `IP address` of your filestore instance.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI in EKS cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=eks,appBaseUrl=<app_base_url>,persistentVolume.eks.efsFileSystemId=<efs_file_system_id> [flags]
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.eks.efsFileSystemId: The `File system ID` of your EFS file system.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI in AKS cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=aks,appBaseUrl=<app_base_url>,persistentVolume.aks.fileShareName=<file_share_name>,persistentVolume.aks.azureStorageAccountName=<base64_azurestorageaccountname>,persistentVolume.aks.azureStorageAccountKey=<base64_azurestorageaccountkey> [flags]
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.aks.fileShareName: The `File share name` of your File share instance.
-* persistentVolume.aks.azureStorageAccountName: The `base64 encoded storage account name` of the File share instance in your storage account.
-* persistentVolume.aks.azureStorageAccountKey: The `base64 encoded storage account key` of the File share instance in your storage account.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI in On-Premise cluster
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set clusterProvider=onpremise,appBaseUrl=<app_base_url>,persistentVolume.onpremise.hostPath=/run/desktop/mnt/host/<local_directory> [flags]
-```
-
-> **INFO:**  
-* clusterProvider: The type of kubernetes cluster provider you are using.
-* appBaseUrl: Domain or IP address of the machine with http protocol.
-* persistentVolume.onpremise.hostPath: The shared folder path in your host machine.
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-### Install Bold BI with Istio Ingress Gateway
-
-To install Bold BI with Istio, run the helm install command with the following flag. Please refere [here](docs/configuration.md#istio-ingress-gateway) for more details.
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi --set loadBalancer.type=istio [flags]
-```
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
-## Advanced Installation
-
-Just like any typical Helm chart, you'll need to craft a `values.yaml` file that would define/override any of the values exposed into the default [values.yaml](boldbi/values.yaml)
-
-```console
-helm install [RELEASE_NAME] boldbi/boldbi -f my-values.yaml
-```
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
 
 Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
-## Upgrade Chart
+## Upgrade
+
+Helm upgrade support will be there after 4.2.68.
+
+### Apply changes in Bold BI release
+
+Run the following command to apply changes in your Bold BI release.
 
 ```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi [flags]
+helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
 
-_See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
+Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
 
 ## Uninstall Chart
 
 ```console
 helm uninstall [RELEASE_NAME]
 ```
+Ex:  `helm uninstall boldbi`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
