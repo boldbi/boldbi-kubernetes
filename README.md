@@ -10,9 +10,13 @@
 [![Documentation](https://img.shields.io/badge/docs-help.boldbi.com-blue.svg)](https://help.boldbi.com/embedded-bi)
 [![File Issues](https://img.shields.io/badge/file_issues-boldbi_support-blue.svg)](https://support.boldbi.com)
 
-# About
+# What is Bold BI
 
-With [Bold BI](https://www.boldbi.com/) embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
+Bold BI is a powerful business intelligence dashboard software that helps you to get meaningful insights from your business data and make better decisions.
+
+It is an end-to-end solution for creating, managing, and sharing interactive business dashboards that includes a powerful dashboard designer for composing easily.
+
+With deep embedding, you can interact more with your data and get insights right from your application.
 
 # Bold BI on Kubernetes
 
