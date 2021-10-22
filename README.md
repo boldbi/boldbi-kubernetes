@@ -1,8 +1,9 @@
-<img
+<a href="https://www.boldbi.com">
+  <img
   src="https://www.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg"
   alt="boldbi"
-  width="400"
-/>
+  width="400"/>
+</a>
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/boldbi/boldbi-kubernetes?sort=semver)](https://github.com/boldbi/boldbi-kubernetes/releases/latest)
 [![Documentation](https://img.shields.io/badge/docs-help.boldbi.com-FF3C10.svg)](https://help.boldbi.com/embedded-bi)
