@@ -9,7 +9,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 * [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
 
-**Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) to use it while crafting values.yaml when installing Bold BI with helm chart.
+> **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) to use it while crafting values.yaml when installing Bold BI with helm chart.
 
 ## Get Repo Info
 
@@ -122,7 +122,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
 </table>
 <br/>
 
-**Note:** Items marked with `*` are mandatory fields in values.yaml
+> **Note:** Items marked with `*` are mandatory fields in values.yaml
 
 Run the following command to delpoy Bold BI in your cluster.
 
