@@ -1,0 +1,25 @@
+{
+  "InternalAppUrl": {
+    "Idp": "https://<BaseURL>",
+    "Bi": "https://<BaseURL>/bi",
+    "BiDesigner": "https://<BaseURL>/bi/designer",
+    "Reports": "https://<BaseURL>/reporting",
+    "ReportsService": "https://<BaseURL>/reporting/reportservice"
+  },
+  "BoldProducts": [
+    {
+      "Name": "BoldBI",
+      "SetupName": "BoldBIEnterpriseEdition",
+      "Version": "4.2.68",
+      "IDPVersion": "3.1.13",
+      "IsCommonLogin": true
+    },
+    {
+      "Name": "BoldReports",
+      "SetupName": "BoldReports_EnterpriseReporting",
+      "Version": "3.1.42",
+      "IDPVersion": "3.1.13",
+      "IsCommonLogin": true
+    }
+  ]
+}
