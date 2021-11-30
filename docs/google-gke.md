@@ -99,7 +99,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-22. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+22. By default all the client libraries will be installed in the Bold BI in Kubernetes and also you can still overwrite them mentioning the required libraries as comma seperated in the Environment variable noted from the above link.
 
 ![deployment.yaml](images/deployment_yaml.png) 
 

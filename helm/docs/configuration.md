@@ -2,7 +2,7 @@
 
 ## Client Libraries
 
-The following are the client libraries used in Bold BI.
+The following are the client libraries used in Bold BI by default.
 
 ```console
 optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
