@@ -71,9 +71,9 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-14. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+14. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-![deployment.yaml](images/deployment_yaml.png) 
+<img src="images/deployment_yaml.png" alt="Image" width="700" height="500" style="display: block; margin: 0 auto" />
 
 15. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 
