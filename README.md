@@ -24,3 +24,15 @@ There are two ways to deploy Bold BI on Kubernetes cluster. Please follow the be
 
 * [Deploy Bold BI using Helm](helm/README.md)
 * [Deploy Bold BI using kubectl](docs/index.md)
+
+# License
+
+https://www.boldbi.com/terms-of-use/embedded<br />
+
+The images are provided for convenience, and contain other software which may be under other licenses (Linux system, Bash, etc. from the base distribution, along with any direct or indirect dependencies of the Bold BI platform).
+
+These pre-built images are provided for convenience and include all optional/additional libraries by default. Such libraries maybe subject to different licenses than the Bold BI product.
+
+If you would like to install Bold BI from scratch and precisely control which optional libraries are installed, please download the stand-alone product from boldbi.com. Contact the Bold BI team if there are any questions (https://www.boldbi.com/support).
+
+It is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
