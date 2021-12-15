@@ -14,13 +14,13 @@
 
 Bold BI is a powerful business intelligence dashboard software that helps you to get meaningful insights from your business data and make better decisions.
 
-It is an end-to-end solution for creating, managing, and sharing interactive business dashboards that includes a powerful dashboard designer for composing easily.
+It is an end-to-end solution for creating, managing, and sharing interactive business dashboards that include a powerful dashboard designer for composing easily.
 
-With deep embedding, you can interact more with your data and get insights right from your application.
+With deep embedding, you can interact more with your data and get insights directly from your application.
 
 # Bold BI on Kubernetes
 
-There are two ways to deploy Bold BI on Kubernetes cluster. Please follow the below documents for Bold BI deployment.
+There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
 * [Deploy Bold BI using Helm](helm/README.md)
 * [Deploy Bold BI using kubectl](docs/index.md)
@@ -29,10 +29,10 @@ There are two ways to deploy Bold BI on Kubernetes cluster. Please follow the be
 
 https://www.boldbi.com/terms-of-use/embedded<br />
 
-The images are provided for convenience, and contain other software which may be under other licenses (Linux system, Bash, etc. from the base distribution, along with any direct or indirect dependencies of the Bold BI platform).
+The images are provided for your convenience and may contain other software that is licensed differently (Linux system, Bash, etc. from the base distribution, along with any direct or indirect dependencies of the Bold BI platform).
 
-These pre-built images are provided for convenience and include all optional/additional libraries by default. Such libraries maybe subject to different licenses than the Bold BI product.
+These pre-built images are provided for convenience and include all optional and additional libraries by default. These libraries may be subject to different licenses than the Bold BI product.
 
-If you would like to install Bold BI from scratch and precisely control which optional libraries are installed, please download the stand-alone product from boldbi.com. Contact the Bold BI team if there are any questions (https://www.boldbi.com/support).
+If you want to install Bold BI from scratch and precisely control which optional libraries are installed, please download the stand-alone product from boldbi.com. If you have any questions, please contact the Bold BI team (https://www.boldbi.com/support).
 
 It is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
