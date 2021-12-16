@@ -10,4 +10,4 @@
 
 # Upgrade Bold BI
 
-If you are upgrading Bold BI to 4.2.68, please follow the steps in this [link](upgrade.md).
+If you are upgrading Bold BI to latest version, please follow the steps in this [link](upgrade.md).

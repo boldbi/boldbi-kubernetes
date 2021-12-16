@@ -4,14 +4,14 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 1. Download the following files for Bold BI deployment in Amazon EKS:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/namespace.yaml)
-    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/secrets.yaml)
-    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/log4net_config.yaml)
-    * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/pvclaim_eks.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/deploy/ingress.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/secrets.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/log4net_config.yaml)
+    * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/pvclaim_eks.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/ingress.yaml)
 
 2. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
 
@@ -100,9 +100,9 @@ Repeat the above command till you get the value in ADDRESS tab.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-23. Note the optional client libraries from the above link as comma separated names and replace it in `<comma_separated_library_names>` place. Save the file after the required values has been replaced.
+23. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-![deployment.yaml](images/deployment_yaml.png) 
+<img src="images/deployment_yaml.png" alt="Image" width="700" height="500" style="display: block; margin: 0 auto" />
 
 24. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 

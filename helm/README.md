@@ -26,7 +26,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   4.2.68           4.2.68          Embed powerful analytics inside your apps and t...
+boldbi/boldbi   4.2.69           4.2.69          Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -35,10 +35,10 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/eks-values.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/aks-values.yaml).
-* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.68/helm/custom-values/onpremise-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/helm/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/helm/custom-values/eks-values.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/helm/custom-values/aks-values.yaml).
+* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/helm/custom-values/onpremise-values.yaml).
 
 <br/>
 
@@ -137,11 +137,13 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ## Upgrade
 
-Helm upgrade support will be there after 4.2.68.
+Run the following command to get the latest version of Bold BI helm chart.
 
-### Apply changes in Bold BI release
+```console
+helm repo update
+```
 
-Run the following command to apply changes in your Bold BI release.
+Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
 ```console
 helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
