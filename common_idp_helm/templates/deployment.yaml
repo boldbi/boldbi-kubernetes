@@ -1,0 +1,164 @@
+{{- range $service := .Values.instanceConfig}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    helm.sh/chart: {{ $.Chart.Name }}_{{ $.Chart.Version }}
+    app.kubernetes.io/name: {{ $service.app }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    {{- if $.Chart.AppVersion }}
+    app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}
+    {{- end }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+  name: {{ $service.app }}-deployment
+  {{- if eq $.Release.Namespace "default" }}
+  namespace: {{ $.Values.namespace }}
+  {{- else }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ $service.app }}
+      app.kubernetes.io/instance: {{ $.Release.Name }}
+  replicas: {{ $service.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ $service.app }}
+        app.kubernetes.io/instance: {{ $.Release.Name }}
+    spec:
+      {{- if ne $service.app "id-web" }}
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /boldbi/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /boldbi/app_data
+          name: {{ $service.app }}-volume
+      {{- end }}
+      containers:
+      - name: {{ $service.app }}-container
+        {{- if eq $service.app "id-web" }}
+        image: "{{ $.Values.image.idRepo }}/bold-identity:{{ $.Values.image.idTag }}"
+        {{- else if eq $service.app "id-api" }}
+        image: "{{ $.Values.image.idRepo }}/bold-identity-api:{{ $.Values.image.idTag }}"
+        {{- else if eq $service.app "id-ums" }}
+        image: "{{ $.Values.image.idRepo }}/bold-ums:{{ $.Values.image.idTag }}"
+        {{- else if eq $service.app "bi-web" }}
+        image: "{{ $.Values.image.biRepo }}/boldbi-server:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "bi-api" }}
+        image: "{{ $.Values.image.biRepo }}/boldbi-server-api:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "bi-jobs" }}
+        image: "{{ $.Values.image.biRepo }}/boldbi-server-jobs:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "bi-dataservice" }}
+        image: "{{ $.Values.image.biRepo }}/boldbi-designer:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "reports-web" }}
+        image: "{{ $.Values.image.reportsRepo }}/boldreports-server:{{ $.Values.image.reportsTag }}"
+        {{- else if eq $service.app "reports-api" }}
+        image: "{{ $.Values.image.reportsRepo }}/boldreports-server-api:{{ $.Values.image.reportsTag }}"
+        {{- else if eq $service.app "reports-jobs" }}
+        image: "{{ $.Values.image.reportsRepo }}/boldreports-server-jobs:{{ $.Values.image.reportsTag }}"
+        {{- else if eq $service.app "reports-reportservice" }}
+        image: "{{ $.Values.image.reportsRepo }}/boldreports-designer:{{ $.Values.image.reportsTag }}"
+        {{- end }}
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: {{ $service.cpuResourceRequests }}
+            memory: {{ $service.memoryResourceRequests }}
+        {{- if ne $service.product "boldreports" }}
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        {{- if eq $service.app "id-web" }}
+        - name: APP_BASE_URL
+          value: {{ $.Values.appBaseUrl }}
+        {{- if $.Values.optionalLibs }}
+        - name: INSTALL_OPTIONAL_LIBS
+          value: {{ $.Values.optionalLibs }}
+        {{- end }}
+        {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
+        - name: widget_bing_map_enable
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_bing_map_enable_secret
+        - name: widget_bing_map_api_key
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_bing_map_api_key_secret
+        {{- end }}
+        {{- else if and (eq $service.app "reports-reportservice") $.Values.reportsngMapWidget.enabled }}
+        env:
+        - name: widget_reportsng_map_enable
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_reportsng_map_enable_secret
+        - name: widget_reportsng_map_api_key
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: widget_reportsng_map_api_key_secret
+        {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          {{- if eq $service.app "id-web" }}
+          initialDelaySeconds: 30
+          {{- else }}
+          initialDelaySeconds: 20
+          {{- end }}
+          periodSeconds: 10
+        volumeMounts:
+        {{- if eq $service.product "boldid" }}
+        - mountPath: /boldbi/app_data
+          name: {{ $service.app }}-volume
+        {{- if eq $service.app "id-web" }}
+        - mountPath: /boldbi/idp/web/logs
+        {{- else if eq $service.app "id-api" }}
+        - mountPath: /boldbi/idp/api/logs
+        {{- else if eq $service.app "id-ums" }}
+        - mountPath: /boldbi/idp/ums/logs
+        {{- end }}
+        {{- else if eq $service.product "boldbi" }}
+        - mountPath: /boldbi/app_data
+          name: {{ $service.app }}-volume
+        {{- if eq $service.app "bi-web" }}
+        - mountPath: /boldbi/bi/web/logs
+        {{- else if eq $service.app "bi-api" }}
+        - mountPath: /boldbi/bi/api/logs
+        {{- else if eq $service.app "bi-jobs" }}
+        - mountPath: /boldbi/bi/jobs/logs
+        {{- else if eq $service.app "bi-dataservice" }}
+        - mountPath: /boldbi/bi/dataservice/logs
+        {{- end }}
+        {{- else if eq $service.product "boldreports" }}
+        - mountPath: /application/app_data
+          name: {{ $service.app }}-volume
+        {{- if eq $service.app "reports-web" }}
+        - mountPath: /application/reporting/web/logs
+        {{- else if eq $service.app "reports-api" }}
+        - mountPath: /application/reporting/api/logs
+        {{- else if eq $service.app "reports-jobs" }}
+        - mountPath: /application/reporting/jobs/logs
+        {{- else if eq $service.app "reports-reportservice" }}
+        - mountPath: /application/reporting/reportservice/logs
+        {{- end }}
+        {{- end }}
+          name: log4net-config-volume
+      volumes:
+      - name: {{ $service.app }}-volume
+        persistentVolumeClaim:
+          claimName: {{ $.Values.persistentVolume.name }}-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
+---
+{{- end }}
