@@ -1,5 +1,5 @@
 apiVersion: v2
-name: bold-services
+name: bold-common
 type: application
 appVersion: 4.2.69
 version: 4.2.69
