@@ -37,6 +37,11 @@ image:
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
+versions:
+  idp: ""
+  bi: ""
+  reports: ""
+
 loadBalancer:
   type: nginx
   affinityCookieExpiration: 600

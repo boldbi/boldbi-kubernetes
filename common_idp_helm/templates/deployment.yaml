@@ -79,6 +79,14 @@ spec:
         {{- if $.Values.optionalLibs }}
         - name: INSTALL_OPTIONAL_LIBS
           value: {{ $.Values.optionalLibs }}
+        - name: ID_Version
+          value: {{ $.Values.versions.idp }}
+        - name: BI_Version
+          value: {{ $.Values.versions.bi }}
+        - name: Reports_Version
+          value: {{ $.Values.versions.reports }}
+        - name: Is_Common_IDP
+          value: "true"
         {{- end }}
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
