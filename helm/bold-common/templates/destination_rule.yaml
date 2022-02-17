@@ -45,7 +45,7 @@ spec:
           {{- else if eq $service.app "reports-reportservice" }}
           name: boldbi.k8s.reports.reportservice.pod.id
           {{- end }}          
-          ttl: {{ $.Values.loadBalancer.affinityCookieExpiration }}s
+          ttl: {{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s
 ---
 {{- end }}
 {{- end }}

@@ -36,8 +36,8 @@ spec:
           name: bold.k8s.bi.jobs.pod.id
           {{- else if eq $service.app "bi-dataservice" }}
           name: bold.k8s.bi.dataservice.pod.id
-          {{- end }}          
-          ttl: {{ $.Values.loadBalancer.affinityCookieExpiration }}s
+          {{- end }}
+          ttl: {{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s
 ---
 {{- end }}
 {{- end }}

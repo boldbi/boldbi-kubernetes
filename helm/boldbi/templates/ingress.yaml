@@ -22,10 +22,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    {{- if .Values.loadBalancer.affinityCookie.enable }}
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
     nginx.ingress.kubernetes.io/session-cookie-name: "bold.k8s.pod.id"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "{{ $.Values.loadBalancer.affinityCookieExpiration }}"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "{{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}"
+    {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/server-snippet: |
       client_max_body_size 200m;
