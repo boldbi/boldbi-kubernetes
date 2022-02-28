@@ -27,11 +27,20 @@ persistentVolume:
     hostPath: ''
     
 image:
-  repo: gcr.io/boldbi-294612
+  idRepo: gcr.io/boldbi-294612
+  biRepo: gcr.io/boldbi-294612
+  reportsRepo: gcr.io/boldreports-dev
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 4.2.69
+  idTag: 4.1.60_25012022_yokogawa
+  biTag: 4.1.60_25012022_yokogawa
+  reportsTag: 3.3.4_yokogawa
   pullPolicy: IfNotPresent
 imagePullSecrets: []
+
+versions:
+  idp: ""
+  bi: ""
+  reports: ""
 
 loadBalancer:
   type: nginx
@@ -52,42 +61,77 @@ loadBalancer:
 
 instanceConfig:
   - app: id-web
+    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-api
+    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-ums
+    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-web
+    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-api
+    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-jobs
+    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-dataservice
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-web
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-api
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-jobs
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-reportservice
+    product: boldreports
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
@@ -110,5 +154,9 @@ autoscaling:
     percentPeriodSeconds: 60
     
 bingMapWidget:
+  enabled: false
+  apiKey: ''
+
+reportsngMapWidget:
   enabled: false
   apiKey: ''

@@ -1,4 +1,3 @@
-{{- if contains "4.2" $.Values.image.tag }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -61,4 +60,3 @@ data:
         </appender>  
       </log4net>
     </configuration>
-{{- end }}

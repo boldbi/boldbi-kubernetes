@@ -36,7 +36,15 @@ spec:
           name: bold.k8s.bi.jobs.pod.id
           {{- else if eq $service.app "bi-dataservice" }}
           name: bold.k8s.bi.dataservice.pod.id
-          {{- end }}
+          {{- else if eq $service.app "reports-web" }}
+          name: boldbi.k8s.reports.web.pod.id
+          {{- else if eq $service.app "reports-api" }}
+          name: boldbi.k8s.reports.api.pod.id
+          {{- else if eq $service.app "reports-jobs" }}
+          name: boldbi.k8s.reports.jobs.pod.id
+          {{- else if eq $service.app "reports-reportservice" }}
+          name: boldbi.k8s.reports.reportservice.pod.id
+          {{- end }}          
           ttl: {{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s
 ---
 {{- end }}

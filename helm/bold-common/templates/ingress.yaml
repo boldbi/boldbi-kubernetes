@@ -570,4 +570,64 @@ spec:
               serviceName: bi-dataservice-service
               servicePort: 6007
               {{- end }}
+
+          - path: /reportsweb6550(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: reports-web-service
+                port:
+                  number: 6550
+              {{- else }}
+              serviceName: reports-web-service
+              servicePort: 6550
+              {{- end }}
+                  
+          - path: /reportsapi6551(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: reports-api-service
+                port:
+                  number: 6551
+              {{- else }}
+              serviceName: reports-api-service
+              servicePort: 6551
+              {{- end }}
+                  
+          - path: /reportsjobs6552(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: reports-jobs-service
+                port:
+                  number: 6552
+              {{- else }}
+              serviceName: reports-jobs-service
+              servicePort: 6552
+              {{- end }}
+                  
+          - path: /reportsdesigner6553(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: reports-reportservice-service
+                port:
+                  number: 6553
+              {{- else }}
+              serviceName: reports-reportservice-service
+              servicePort: 6553
+              {{- end }}
 {{- end }}
