@@ -1,11 +1,12 @@
 {{- if eq .Values.loadBalancer.type "istio" }}
+{{- if not .Values.istioConfig.gatewayName }}
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   name: bold-gateway
-{{ include "boldbi.namespace" . | indent 2 }}
+# {{ include "boldbi.namespace" . | indent 2 }}
 spec:
   selector:
     istio: ingressgateway # use Istio default gateway implementation
@@ -50,14 +51,19 @@ spec:
   {{- end }}
 ---
 {{- end }}
+{{- end }}
 {{- if eq .Values.loadBalancer.type "istio" }}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
+  {{- if .Values.istioConfig.virtualServiceName }}
+  name: {{ .Values.istioConfig.virtualServiceName }}
+  {{- else }}
   name: bold-virtual-service
-{{ include "boldbi.namespace" . | indent 2 }}
+  {{- end }}
+# {{ include "boldbi.namespace" . | indent 2 }}
 spec:
   {{- if .Values.loadBalancer.multipleHost }}
   hosts:
@@ -69,7 +75,7 @@ spec:
   - {{ (split "/" .Values.appBaseUrl)._2 }}
   {{- end }}
   gateways:
-  - bold-gateway
+  - {{ .Values.istioConfig.gatewayName }}
   http:
   - match:
     - uri:

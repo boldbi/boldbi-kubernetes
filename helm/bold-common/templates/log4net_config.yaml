@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   name: log4net-config
-{{ include "boldbi.namespace" . | indent 2 }}
+# {{ include "boldbi.namespace" . | indent 2 }}
 data:
   Log4Net.config: |
     <?xml version="1.0" encoding="utf-8" ?>
