@@ -9,11 +9,11 @@ metadata:
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
   {{- end }}
-  {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace }}
-  {{- else }}
-  namespace: {{ .Release.Namespace }}
-  {{- end }}
+  # {{- if eq .Release.Namespace "default" }}
+  # namespace: {{ .Values.namespace }}
+  # {{- else }}
+  # namespace: {{ .Release.Namespace }}
+  # {{- end }}
 {{- if eq .Values.clusterProvider "eks" }}
 provisioner: efs.csi.aws.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -25,22 +25,28 @@ volumeBindingMode: WaitForFirstConsumer
 ---
 {{- end }}
 {{- if eq .Values.clusterProvider "aks" }}
+{{- if and (.Values.persistentVolume.aks.azureStorageAccountName) (.Values.persistentVolume.aks.azureStorageAccountKey) }}
 apiVersion: v1
 kind: Secret
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  name: bold-azure-secret
-  {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace }}
+  {{- if .Values.persistentVolume.aks.secretName }}
+  name: {{ .Values.persistentVolume.aks.secretName }}
   {{- else }}
-  namespace: {{ .Release.Namespace }}
+  name: bold-azure-secret
   {{- end }}
+  # {{- if eq .Release.Namespace "default" }}
+  # namespace: {{ .Values.namespace }}
+  # {{- else }}
+  # namespace: {{ .Release.Namespace }}
+  # {{- end }}
 type: Opaque
 data:
   azurestorageaccountname: {{ .Values.persistentVolume.aks.azureStorageAccountName }}
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
+{{- end }}
 {{- end }}
 apiVersion: v1
 kind: PersistentVolume
@@ -48,11 +54,11 @@ metadata:
  labels:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}
- {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace }}
- {{- else }}
- namespace: {{ .Release.Namespace }}
- {{- end }}
+#  {{- if eq .Release.Namespace "default" }}
+#  namespace: {{ .Values.namespace }}
+#  {{- else }}
+#  namespace: {{ .Release.Namespace }}
+#  {{- end }}
 spec:
  capacity:
    storage: {{ .Values.persistentVolume.capacity }}
@@ -73,7 +79,11 @@ spec:
  {{- else if eq .Values.clusterProvider "aks" }}
  storageClassName: azurefile
  azureFile:
+   {{- if .Values.persistentVolume.aks.secretName }}
+   secretName: {{ .Values.persistentVolume.aks.secretName }}
+   {{- else }}
    secretName: bold-azure-secret
+   {{- end }}
    shareName: {{ .Values.persistentVolume.aks.fileShareName }}
    readOnly: false
  {{- else if eq .Values.clusterProvider "gke" }}
@@ -88,11 +98,11 @@ metadata:
  labels:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}-claim
- {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace }}
- {{- else }}
- namespace: {{ .Release.Namespace }}
- {{- end }}
+#  {{- if eq .Release.Namespace "default" }}
+#  namespace: {{ .Values.namespace }}
+#  {{- else }}
+#  namespace: {{ .Release.Namespace }}
+#  {{- end }}
 spec:
  accessModes:
  - ReadWriteMany

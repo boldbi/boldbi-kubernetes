@@ -12,11 +12,11 @@ metadata:
     {{- end }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
   name: {{ $service.app }}-hpa
-  {{- if eq $.Release.Namespace "default" }}
-  namespace: {{ $.Values.namespace }}
-  {{- else }}
-  namespace: {{ $.Release.Namespace }}
-  {{- end }}
+  # {{- if eq $.Release.Namespace "default" }}
+  # namespace: {{ $.Values.namespace }}
+  # {{- else }}
+  # namespace: {{ $.Release.Namespace }}
+  # {{- end }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
