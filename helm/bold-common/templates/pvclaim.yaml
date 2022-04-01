@@ -9,11 +9,11 @@ metadata:
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
   {{- end }}
-  # {{- if eq .Release.Namespace "default" }}
-  # namespace: {{ .Values.namespace }}
-  # {{- else }}
-  # namespace: {{ .Release.Namespace }}
-  # {{- end }}
+  {{- if eq .Release.Namespace "default" }}
+  namespace: {{ .Values.namespace.name }}
+  {{- else }}
+  namespace: {{ .Release.Namespace }}
+  {{- end }}
 {{- if eq .Values.clusterProvider "eks" }}
 provisioner: efs.csi.aws.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -36,11 +36,11 @@ metadata:
   {{- else }}
   name: bold-azure-secret
   {{- end }}
-  # {{- if eq .Release.Namespace "default" }}
-  # namespace: {{ .Values.namespace }}
-  # {{- else }}
-  # namespace: {{ .Release.Namespace }}
-  # {{- end }}
+  {{- if eq .Release.Namespace "default" }}
+  namespace: {{ .Values.namespace.name }}
+  {{- else }}
+  namespace: {{ .Release.Namespace }}
+  {{- end }}
 type: Opaque
 data:
   azurestorageaccountname: {{ .Values.persistentVolume.aks.azureStorageAccountName }}
@@ -54,11 +54,11 @@ metadata:
  labels:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}
-#  {{- if eq .Release.Namespace "default" }}
-#  namespace: {{ .Values.namespace }}
-#  {{- else }}
-#  namespace: {{ .Release.Namespace }}
-#  {{- end }}
+ {{- if eq .Release.Namespace "default" }}
+ namespace: {{ .Values.namespace.name }}
+ {{- else }}
+ namespace: {{ .Release.Namespace }}
+ {{- end }}
 spec:
  capacity:
    storage: {{ .Values.persistentVolume.capacity }}
@@ -98,11 +98,11 @@ metadata:
  labels:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}-claim
-#  {{- if eq .Release.Namespace "default" }}
-#  namespace: {{ .Values.namespace }}
-#  {{- else }}
-#  namespace: {{ .Release.Namespace }}
-#  {{- end }}
+ {{- if eq .Release.Namespace "default" }}
+ namespace: {{ .Values.namespace.name }}
+ {{- else }}
+ namespace: {{ .Release.Namespace }}
+ {{- end }}
 spec:
  accessModes:
  - ReadWriteMany

@@ -18,8 +18,13 @@ Thank you for installing {{ .Chart.Name }}.
 6. Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
 
 https://help.boldbi.com/embedded-bi/application-startup
+
+Thank you for Installing {{ .Release.Name }}.
+
+Chart Version: {{ .Chart.Version }}
+App Version: {{ $.Chart.AppVersion | quote }}
 {{- else }}
-Thank you for upgrading {{ .Chart.Name }}.
+Thank you for upgrading {{ .Release.Name }}.
 
 Chart Version: {{ .Chart.Version }}
 App Version: {{ $.Chart.AppVersion | quote }}

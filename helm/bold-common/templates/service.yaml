@@ -11,11 +11,11 @@ metadata:
     {{- end }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
   name: {{ $service.app }}-service
-  # {{- if eq $.Release.Namespace "default" }}
-  # namespace: {{ $.Values.namespace }}
-  # {{- else }}
-  # namespace: {{ $.Release.Namespace }}
-  # {{- end }}
+  {{- if eq $.Release.Namespace "default" }}
+  namespace: {{ $.Values.namespace.name }}
+  {{- else }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
 spec:
   type: {{ $.Values.service.type }}
   ports:
