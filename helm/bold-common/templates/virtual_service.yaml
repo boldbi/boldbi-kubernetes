@@ -21,7 +21,11 @@ spec:
   - {{ (split "/" .Values.appBaseUrl)._2 }}
   {{- end }}
   gateways:
+  {{- if .Values.istioConfig.gatewayName }}
   - {{ .Values.istioConfig.gatewayName }}
+  {{- else }}
+  - bold-gateway
+  {{- end }}
   http:
   - match:
     - uri:
