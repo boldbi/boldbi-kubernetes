@@ -111,26 +111,33 @@ rootUserDetails:
 databaseServerDetails:
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
   dbType: ""
+
   # Name of the Database Server
   dbHost: ""
+
   # The system will use the following default port numbers based on the database server type.
   # PostgrSQL – 5234 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
+
   # Username for the database server
   # Please refer to this documentation for information on the user's permissions.
   # https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/
   dbUser: ""
+
   # The database user's password
   dbPassword: ""
+
   # If the database name is not specified, the system will create a new database called bold services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
+
   # For PostgreSQL DB Servers, this is an optional parameter.
   # The system will use the database name postgresql by default.
   # If your database server uses a different default database, please provide it here.
   maintenanceDB: ""
+  
   # If your database server requires additional connection string parameters, include them here
   # Connection string parameters can be found in the official document.
   # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
