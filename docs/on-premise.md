@@ -6,6 +6,8 @@ For fresh installation, continue with the following steps to deploy Bold BI appl
 
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/namespace.yaml)
     * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/secrets.yaml)
+    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/db-server-secret.yaml)
+    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/root-user-details.yaml)
     * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/log4net_config.yaml)
     * [pvclaim_onpremise.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/pvclaim_onpremise.yaml)
     * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/deployment.yaml)
@@ -43,6 +45,10 @@ kubectl apply -f namespace.yaml
 
 ```sh
 kubectl apply -f secrets.yaml
+
+kubectl apply -f db-server-secret.yaml
+
+kubectl apply -f root-user-details.yaml
 ```
 
 8. Run the following command to create the configmap.

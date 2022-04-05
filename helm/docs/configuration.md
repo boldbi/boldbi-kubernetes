@@ -5,7 +5,7 @@
 The following are the client libraries used in Bold BI by default.
 
 ```console
-optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
 ```
 
 Read the optional client library license agreement from the following link.
@@ -270,7 +270,9 @@ You can change the affinityCookieExpiration time. The default value is 600s.
 
 ```console
 loadBalancer:
-  affinityCookieExpiration: 600
+  affinityCookie:
+    enable: true
+    affinityCookieExpiration: 600
 ```
 
 ### SSL Termination
