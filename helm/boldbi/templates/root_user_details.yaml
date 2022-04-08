@@ -4,16 +4,8 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   name: bold-user-secret
-  {{- if eq $.Release.Namespace "default" }}
-  namespace: {{ $.Values.namespace }}
-  {{- else }}
-  namespace: {{ $.Release.Namespace }}
-  {{- end }}
+{{ include "boldbi.namespace" . | indent 2 }}
 type: Opaque
 stringData:
-  {{- if $.Values.rootUserDetails.email }}
-  BOLD_SERVICES_USER_EMAIL: "{{ $.Values.rootUserDetails.email }}"
-  {{- end }}
-  {{- if $.Values.rootUserDetails.password }}
-  BOLD_SERVICES_USER_PASSWORD: "{{ $.Values.rootUserDetails.password }}"
-  {{- end }}
+  BOLD_SERVICES_USER_EMAIL: "{{ .Values.rootUserDetails.email }}"
+  BOLD_SERVICES_USER_PASSWORD: "{{ .Values.rootUserDetails.password }}"
