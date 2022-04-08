@@ -100,6 +100,12 @@ Return if ingress supports pathType.
 {{- define "ingress.supportsPathType" -}}
   {{- or (eq (include "ingress.isStable" .) "true") (and (eq (include "ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "boldbi.kubeVersion" .))) -}}
 {{- end -}}
+{{/*
+Return if hpa supports behavior.
+*/}}
+{{- define "hpa.behavior" -}}
+  {{- semverCompare ">= 1.18.x" (include "boldbi.kubeVersion" .) -}}
+{{- end -}}
 
 {{/*
 Define the boldbi.namespace template if set with forceNamespace or .Release.Namespace is set

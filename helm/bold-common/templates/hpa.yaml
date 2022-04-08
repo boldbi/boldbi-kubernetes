@@ -1,4 +1,5 @@
 {{- if .Values.autoscaling.enabled }}
+{{- $hpaBehaviorSupport := eq (include "hpa.behavior" .) "true" -}}
 {{- range $service := .Values.instanceConfig}}
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
@@ -41,6 +42,7 @@ spec:
         type: Utilization
         averageUtilization: {{ $.Values.autoscaling.targetMemoryUtilizationPercentage }}
   {{- end }}
+  {{- if $hpaBehaviorSupport }}
   {{- if ne $.Values.clusterProvider "gke" }}
   behavior:
     scaleDown:
@@ -52,6 +54,7 @@ spec:
       - type: Percent
         value: {{ $.Values.autoscaling.behavior.percentValue }}
         periodSeconds: {{ $.Values.autoscaling.behavior.percentPeriodSeconds }}
+  {{- end }}
   {{- end }}
 ---
 {{- end }}
