@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:  
+  name: bold-user-secret
+  namespace: bold-services
+type: Opaque
+stringData:
+  # It should be a valid email.
+  BOLD_SERVICES_USER_EMAIL: ""
+
+  # It should meet our password requirements.
+  BOLD_SERVICES_USER_PASSWORD: ""

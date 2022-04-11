@@ -1,4 +1,4 @@
-{{- if contains "4.2" $.Values.image.tag }}
+{{- if not ( contains "4.1" $.Values.image.tag ) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
