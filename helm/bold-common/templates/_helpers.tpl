@@ -100,13 +100,19 @@ Return if ingress supports pathType.
 {{- define "ingress.supportsPathType" -}}
   {{- or (eq (include "ingress.isStable" .) "true") (and (eq (include "ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "boldbi.kubeVersion" .))) -}}
 {{- end -}}
+{{/*
+Return if hpa supports behavior.
+*/}}
+{{- define "hpa.behavior" -}}
+  {{- semverCompare ">= 1.18.x" (include "boldbi.kubeVersion" .) -}}
+{{- end -}}
 
 {{/*
 Define the boldbi.namespace template if set with forceNamespace or .Release.Namespace is set
 */}}
 {{- define "boldbi.namespace" -}}
 {{- if eq .Release.Namespace "default" -}}
-{{ printf "namespace: %s" .Values.namespace }}
+{{ printf "namespace: %s" .Values.namespace.name }}
 {{- else -}}
 {{ printf "namespace: %s" .Release.Namespace }}
 {{- end -}}
@@ -117,7 +123,7 @@ Define the boldbi.notes template if set with forceNamespace or .Release.Namespac
 */}}
 {{- define "boldbi.notes-pods" -}}
 {{- if eq .Release.Namespace "default" -}}
-{{ printf "$ kubectl get pods -n %s" .Values.namespace }}
+{{ printf "$ kubectl get pods -n %s" .Values.namespace.name }}
 {{- else -}}
 {{ printf "$ kubectl get pods -n %s" .Release.Namespace }}
 {{- end -}}
@@ -125,7 +131,7 @@ Define the boldbi.notes template if set with forceNamespace or .Release.Namespac
 
 {{- define "boldbi.notes-hpa" -}}
 {{- if eq .Release.Namespace "default" -}}
-{{ printf "$ kubectl get hpa -n %s" .Values.namespace }}
+{{ printf "$ kubectl get hpa -n %s" .Values.namespace.name }}
 {{- else -}}
 {{ printf "$ kubectl get hpa -n %s" .Release.Namespace }}
 {{- end -}}

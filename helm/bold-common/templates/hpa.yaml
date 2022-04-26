@@ -1,4 +1,5 @@
 {{- if .Values.autoscaling.enabled }}
+{{- $hpaBehaviorSupport := eq (include "hpa.behavior" .) "true" -}}
 {{- range $service := .Values.instanceConfig}}
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
@@ -12,11 +13,11 @@ metadata:
     {{- end }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
   name: {{ $service.app }}-hpa
-  # {{- if eq $.Release.Namespace "default" }}
-  # namespace: {{ $.Values.namespace }}
-  # {{- else }}
-  # namespace: {{ $.Release.Namespace }}
-  # {{- end }}
+  {{- if eq $.Release.Namespace "default" }}
+  namespace: {{ $.Values.namespace.name }}
+  {{- else }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -41,7 +42,8 @@ spec:
         type: Utilization
         averageUtilization: {{ $.Values.autoscaling.targetMemoryUtilizationPercentage }}
   {{- end }}
-  {{- if ne $.Values.clusterProvider "aks" }}
+  {{- if $hpaBehaviorSupport }}
+  {{- if ne $.Values.clusterProvider "gke" }}
   behavior:
     scaleDown:
       stabilizationWindowSeconds: {{ $.Values.autoscaling.behavior.stabilizationWindowSeconds }}
@@ -52,6 +54,7 @@ spec:
       - type: Percent
         value: {{ $.Values.autoscaling.behavior.percentValue }}
         periodSeconds: {{ $.Values.autoscaling.behavior.percentPeriodSeconds }}
+  {{- end }}
   {{- end }}
 ---
 {{- end }}
