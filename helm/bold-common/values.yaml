@@ -1,10 +1,15 @@
 # Default values for boldbi.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# namespace: bold-services
+
 appBaseUrl: ''
 optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
 clusterProvider: ''
+
+namespace:
+  name: bold-services
+  annotations: {}
+  labels: {}
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -31,20 +36,20 @@ persistentVolume:
     hostPath: ''
     
 image:
-  idRepo: gcr.io/boldbi-294612
-  biRepo: gcr.io/boldbi-294612
-  reportsRepo: gcr.io/boldreports-dev
+  idRepo: boldbi-294612
+  biRepo: boldbi-294612
+  reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 4.1.60_25012022_yokogawa
-  biTag: 4.1.60_25012022_yokogawa
-  reportsTag: 3.3.4_yokogawa
+  idTag: 5.1.55
+  biTag: 5.1.55
+  reportsTag: 3.3.23
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
-  idp: ""
-  bi: ""
-  reports: ""
+  idp: 3.1.18
+  bi: 5.1.55
+  reports: 3.3.23
 
 loadBalancer:
   type: nginx
@@ -64,8 +69,10 @@ loadBalancer:
         # secretName: bold-tls
 
 istioConfig:
-  # Specify the existing Gateway name. The default name is 'bold-gateway'
+  # To use the existing Gateway specify the existing Gateway name.
+  # If not specified a new Gateway will applied. The default name is 'bold-gateway'
   gatewayName: ''
+
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
 
