@@ -144,6 +144,8 @@ spec:
               name: bold-user-secret
         - secretRef:
               name: bold-db-secret
+        - secretRef:
+              name: versions_config
         readinessProbe:
           httpGet:
             path: /health-check

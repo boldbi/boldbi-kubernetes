@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: versions_config
+  namespace: bold-services
+data:
+  BOLD_SERVICES_ID_WEB_VERSION: "bold-identity:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_ID_API_VERSION:  "bold-identity-api:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_UMS_WEB_VERSION: "bold-ums:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_BI_WEB_VERSION: "boldbi-server:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_BI_API_VERSION: "boldbi-server-api:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_BI_DESIGNER_VERSION: "boldbi-designer:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_BI_JOBS_VERSION:"boldbi-server-jobs:4.1.63_25042022_Yokogawa"
+  BOLD_SERVICES_REPORTING_WEB_VERSION: "gcr.io/boldreports-dev/boldreports-server:3.1.42_07042022_yokogawa"
+  BOLD_SERVICES_REPORTING_API_VERSION: "boldreports-server-api:3.1.42_07042022_yokogawa"
+  BOLD_SERVICES_REPORTING_SERVICE_VERSION: "boldreports-designer:3.1.42_07042022_yokogawa"
+  BOLD_SERVICES_REPORTING_JOBS_VERSION: "boldreports-server-jobs:3.1.42_07042022_yokogawa"  
+  
