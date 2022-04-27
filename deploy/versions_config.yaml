@@ -14,6 +14,5 @@ data:
   BOLD_SERVICES_REPORTING_WEB_VERSION: "gcr.io/boldreports-dev/boldreports-server:3.1.42_07042022_yokogawa"
   BOLD_SERVICES_REPORTING_API_VERSION: "boldreports-server-api:3.1.42_07042022_yokogawa"
   BOLD_SERVICES_REPORTING_SERVICE_VERSION: "boldreports-designer:3.1.42_07042022_yokogawa"
-  BOLD_SERVICES_REPORTING_JOBS_VERSION: "boldreports-server-jobs:3.1.42_07042022_yokogawa"  
-  
+  BOLD_SERVICES_REPORTING_JOBS_VERSION: "boldreports-server-jobs:3.1.42_07042022_yokogawa"
   
