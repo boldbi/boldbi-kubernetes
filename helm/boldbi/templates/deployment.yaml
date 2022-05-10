@@ -19,6 +19,7 @@ metadata:
 spec:
   selector:
     matchLabels:
+      app: {{ $service.app }}
       app.kubernetes.io/name: {{ $service.app }}
       app.kubernetes.io/instance: {{ $.Release.Name }}
   replicas: {{ $service.replicaCount }}
