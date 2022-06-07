@@ -1,6 +1,6 @@
-# Deploy Bold BI using Helm
+# Deploy Bold BI and Bold Reports using Helm
 
-This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. Please follow the below documentation for Bold BI deployment in a specific cloud and on-premise environments.
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud and on-premise environments.
     
 ## Deployment prerequisites
 
@@ -35,10 +35,10 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/bold-common/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/bold-common/custom-values/eks-values.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/bold-common/custom-values/aks-values.yaml).
-* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/bold-common/custom-values/onpremise-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/eks-valuse.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/aks-values.yaml).
+* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/onpremise-values.yaml).
 
 <br/>
 
@@ -89,7 +89,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     <tr>
       <td>
-       persistentVolume *
+       persistentVolume*
       </td>
       <td>
        Please refer to <a href='docs/configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
