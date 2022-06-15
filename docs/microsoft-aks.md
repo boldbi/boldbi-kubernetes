@@ -28,7 +28,7 @@
 7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
 8. Navigate to the folder where the deployment files were downloaded from **Step 1**.
