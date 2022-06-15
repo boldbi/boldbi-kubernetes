@@ -428,10 +428,10 @@ metadata:
 spec:
   #tls:
   #- hosts:
-    #- boldbi-devops-devtesting.boldbi.com
+    #- example.com
     #secretName: bold-tls
   rules:
-  - #host: boldbi-devops-devtesting.boldbi.com
+  - #host: example.com
     http:
       paths:
       - path: /
