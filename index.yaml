@@ -12,7 +12,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.70.tgz
+    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.69.tgz
     version: 4.2.69
   - apiVersion: v2
     appVersion: 4.2.70
@@ -25,7 +25,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.69.tgz
+    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.70.tgz
     version: 4.2.70
   boldbi:
   - apiVersion: v2
