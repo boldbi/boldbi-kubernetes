@@ -5,7 +5,6 @@
 * [Google Kubernetes Engine (GKE)](google-gke.md)
 * [Amazon Elastic Kubernetes Service (EKS)](amazon-eks.md)
 * [Azure Kubernetes Service (AKS)](microsoft-aks.md)
-* [On-premise](on-premise.md)
 
 
 # Upgrade Bold BI
