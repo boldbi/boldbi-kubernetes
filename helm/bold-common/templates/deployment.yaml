@@ -94,6 +94,10 @@ spec:
         - name: Is_Common_IDP
           value: "true"
         {{- end }}
+        {{- else if eq $service.app "id-ums" }}
+        envFrom:
+        - configMapRef:
+              name: version-config
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:
