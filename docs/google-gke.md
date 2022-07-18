@@ -7,7 +7,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/namespace.yaml)
     * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/secrets.yaml)
     * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/db-server-secret.yaml)
-	* [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/license-key-secret.yaml)
+    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/license-key-secret.yaml)
     * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/root-user-details.yaml)
     * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/log4net_config.yaml)
     * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/pvclaim_gke.yaml)
