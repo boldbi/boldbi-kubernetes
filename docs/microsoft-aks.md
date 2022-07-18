@@ -5,6 +5,7 @@
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/namespace.yaml)
     * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/secrets.yaml)
     * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/db-server-secret.yaml)
+    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/license-key-secret.yaml)
     * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/root-user-details.yaml)
     * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/log4net_config.yaml)
     * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/pvclaim_aks.yaml)
@@ -43,6 +44,8 @@ kubectl apply -f namespace.yaml
 
 ```sh
 kubectl apply -f secrets.yaml
+
+kubectl apply -f license-key-secret.yaml
 
 kubectl apply -f db-server-secret.yaml
 
