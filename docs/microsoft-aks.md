@@ -2,16 +2,17 @@
 
 1. Download the following files for Bold BI deployment in AKS:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/namespace.yaml)
-    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/secrets.yaml)
-    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/db-server-secret.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/secrets.yaml)
+    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/db-server-secret.yaml)
+	* [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/license-key-secret.yaml)
     * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/deploy/root-user-details.yaml)
-    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/log4net_config.yaml)
-    * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/pvclaim_aks.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v4.2.69/deploy/ingress.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/log4net_config.yaml)
+    * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/pvclaim_aks.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
 
@@ -43,6 +44,8 @@ kubectl apply -f namespace.yaml
 
 ```sh
 kubectl apply -f secrets.yaml
+
+kubectl apply -f license-key-secret.yaml
 
 kubectl apply -f db-server-secret.yaml
 
