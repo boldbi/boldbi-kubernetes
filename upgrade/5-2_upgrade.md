@@ -23,7 +23,7 @@ curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5
 Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version="5.1.55" --namespace="default"
+./upgrade.sh --version="5.2.48" --namespace="default"
 ```
 
 <table>
