@@ -145,8 +145,7 @@ spec:
         - secretRef:
               name: bold-db-secret
         - secretRef:
-              name: bold-license-key
-              
+              name: bold-license-key    
         readinessProbe:
           httpGet:
             path: /health-check
