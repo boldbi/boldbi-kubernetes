@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/bold-identity:5.1.55
+        image: gcr.io/boldbi-294612/bold-identity:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -74,7 +74,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/bold-identity-api:5.1.55
+        image: gcr.io/boldbi-294612/bold-identity-api:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -129,7 +129,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/bold-ums:5.1.55
+        image: gcr.io/boldbi-294612/bold-ums:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -191,7 +191,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:5.1.55
+        image: gcr.io/boldbi-294612/boldbi-server:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -246,7 +246,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:5.1.55
+        image: gcr.io/boldbi-294612/boldbi-server-api:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -301,7 +301,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:5.1.55
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:5.2.48
         ports:
         - containerPort: 80
         resources:
@@ -356,7 +356,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:5.1.55
+        image: gcr.io/boldbi-294612/boldbi-designer:5.2.48
         ports:
         - containerPort: 80
         env:
