@@ -17,7 +17,7 @@ Bold BI updates the database schema of your current version to the latest versio
 You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/upgrade/4-2_upgrade.sh) or use the below command.
 
 ```sh
-curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/upgrade/5-2_upgrade.sh
+curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/upgrade/5-2_upgrade.sh
 ```
 
 Run the following command to execute the shell script to upgrade Bold BI.
