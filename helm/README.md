@@ -121,6 +121,14 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     <tr>
       <td>
+       BOLD_SERVICES_UNLOCK_KEY
+      </td>
+      <td>
+       License key of Bold BI
+      </td>
+    </tr>
+    <tr>
+      <td>
        BOLD_SERVICES_DB_TYPE *
       </td>
       <td>
