@@ -15,7 +15,7 @@ entries:
     - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.69.tgz
     version: 4.2.69
   - apiVersion: v2
-    appVersion: 4.2.70
+    appVersion: 5.1.55
     created: "2022-04-11T13:06:57.5032264+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
@@ -25,8 +25,21 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.70.tgz
-    version: 4.2.70
+    - https://boldbi.github.io/boldbi-kubernetes/bold-common-5.1.55.tgz
+    version: 5.1.55
+  - apiVersion: v2
+    appVersion: 5.2.48
+    created: "2022-04-11T13:06:57.5032264+05:30"
+    description: Embed powerful analytics inside your apps and turn your customers
+      into success stories with built-in intelligence features.
+    digest: 35484164986676650f974bd6ff7ceaa191ba057d76c1ec790d4dc02876096d78
+    home: https://www.boldbi.com/
+    icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
+    name: bold-common
+    type: application
+    urls:
+    - https://boldbi.github.io/boldbi-kubernetes/bold-common-5.2.48.tgz
+    version: 5.2.48
   boldbi:
   - apiVersion: v2
     appVersion: 5.2.48
