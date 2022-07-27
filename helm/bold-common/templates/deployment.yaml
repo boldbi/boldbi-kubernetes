@@ -96,6 +96,12 @@ spec:
         {{- end }}
         {{- else if eq $service.app "id-ums" }}
         envFrom:
+        - secretRef:
+              name: bold-user-secret
+        - secretRef:
+              name: bold-db-secret
+        - secretRef:
+              name: bold-license-key
         - configMapRef:
               name: version-config
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
