@@ -22,19 +22,9 @@ With deep embedding, you can interact more with your data and get insights direc
 
 ## Prerequisites
 
-### Hardware requirements
-The following hardware requirement are necessary to run the Bold BI solution.
+The following requirement are necessary to run the Bold BI solution.
 
 * Kubernetes cluster
-  |Cluster provider|Instense type|
-  |----------------|-------------|
-  |Microsoft Azure |Standard_DS2_v2|
-  |Google Cloud Platform|e2-standard-2|
-  |Amazon Web Services|t3.large|
-
-### Software requirements
-The following software requirements are necessary to run the Bold BI Embedded edition:
-
 * Microsoft SQL Server 2012+ | PostgreSQL
 * Load balancer: [Nginx](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) or [Istio](https://istio.io/latest/docs/setup/getting-started/)
 * Web Browser: Microsoft Edge, Mozilla Firefox, and Chrome.
