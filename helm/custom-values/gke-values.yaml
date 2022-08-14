@@ -19,7 +19,7 @@ persistentVolume:
 # image:
 #   repo: gcr.io/boldbi-294612
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 4.2.69
+#   tag: 5.2.48
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 
@@ -145,3 +145,7 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+  
+licenseKeyDetails:
+  #  The Bold BI licnece key which you have purchesed.
+  licenseKey: ""

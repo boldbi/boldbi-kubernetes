@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: bold-ingress
@@ -426,45 +426,60 @@ metadata:
         proxy_redirect                          off;
       }
 spec:
-  # tls:
-  # - hosts:
-    # - example.com
-    # secretName: bold-tls
+  #tls:
+  #- hosts:
+    #- example.com
+    #secretName: bold-tls
   rules:
   - #host: example.com
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: id-web-service
-          servicePort: 6000
-          
+          service:
+            name: id-web-service
+            port:
+              number: 6000       
       - path: /idapi6001(/|$)(.*)
+        pathType: Prefix
         backend:
-          serviceName: id-api-service
-          servicePort: 6001
-          
+          service:
+            name: id-api-service
+            port:
+              number: 6001
       - path: /idums6002(/|$)(.*)
+        pathType: Prefix     
         backend:
-          serviceName: id-ums-service
-          servicePort: 6002
-          
+          service:
+            name: id-ums-service
+            port:
+              number: 6002      
       - path: /biweb6004(/|$)(.*)
+        pathType: Prefix      
         backend:
-          serviceName: bi-web-service
-          servicePort: 6004
-          
+          service:
+            name: bi-web-service
+            port:
+              number: 6004     
       - path: /biapi6005(/|$)(.*)
+        pathType: Prefix     
         backend:
-          serviceName: bi-api-service
-          servicePort: 6005
-          
+          service:
+            name: bi-api-service
+            port:
+              number: 6005         
       - path: /bijobs6006(/|$)(.*)
+        pathType: Prefix      
         backend:
-          serviceName: bi-jobs-service
-          servicePort: 6006
-          
+          service:
+            name: bi-jobs-service
+            port:
+              number: 6006      
       - path: /bidataservice6007(/|$)(.*)
+        pathType: Prefix      
         backend:
-          serviceName: bi-dataservice-service
-          servicePort: 6007
+          service:
+            name: bi-dataservice-service
+            port:
+              number: 6007

@@ -26,7 +26,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   5.1.55           5.1.55          Embed powerful analytics inside your apps and t...
+boldbi/boldbi   5.2.48           5.2.48          Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -35,10 +35,9 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/custom-values/eks-values.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/custom-values/aks-values.yaml).
-* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.1.55/helm/custom-values/onpremise-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/helm/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/helm/custom-values/eks-values.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.2.48/helm/custom-values/aks-values.yaml).
 
 <br/>
 
@@ -117,6 +116,14 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        Please refer to <a href='docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       BOLD_SERVICES_UNLOCK_KEY
+      </td>
+      <td>
+       License key of Bold BI
       </td>
     </tr>
     <tr>
