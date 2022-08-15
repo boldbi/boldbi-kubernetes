@@ -1,6 +1,6 @@
 # Deploy Bold BI and Bold Reports using Helm
 
-This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on either cloud or on-premise infrastructure. Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud and on-premise environments.
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on cloud infrastructure. Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud environments.
     
 ## Deployment prerequisites
 
@@ -38,7 +38,6 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/gke-values.yaml).
 * For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/eks-valuse.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/aks-values.yaml).
-* For `OnPremise` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/onpremise-values.yaml).
 
 <br/>
 
