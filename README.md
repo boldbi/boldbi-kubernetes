@@ -22,8 +22,10 @@ With deep embedding, you can interact more with your data and get insights direc
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
-* [Deploy Bold BI using Helm](helm/README.md)
 * [Deploy Bold BI using kubectl](docs/index.md)
+* Helm Deployment</br>
+    1. [Deploy Bold BI using Helm](helm/README.md)
+    2. [Common deployment using Helm](helm/bold-common/README.md)
 
 # License
 
