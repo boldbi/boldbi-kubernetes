@@ -25,6 +25,7 @@ With deep embedding, you can interact more with your data and get insights direc
 The following requirement are necessary to run the Bold BI solution.
 
 * Kubernetes cluster
+* File storage
 * Microsoft SQL Server 2012+ | PostgreSQL
 * Load balancer: [Nginx](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) or [Istio](https://istio.io/latest/docs/setup/getting-started/)
 * Web Browser: Microsoft Edge, Mozilla Firefox, and Chrome.
