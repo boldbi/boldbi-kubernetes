@@ -22,7 +22,7 @@ With deep embedding, you can interact more with your data and get insights direc
 
 ## Prerequisites
 
-The following requirement are necessary to run the Bold BI solution.
+The following requirements are necessary to run the Bold BI solution.
 
 * Kubernetes cluster
 * File storage
