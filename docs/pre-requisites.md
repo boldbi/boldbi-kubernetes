@@ -1,4 +1,4 @@
-# Deployment Pre-requisites
+# Deployment Prerequisites
 
 ## File Storage
 
