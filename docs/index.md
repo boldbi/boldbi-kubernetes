@@ -1,4 +1,4 @@
-# Deployment prerequisites
+# Deployment Prerequisites
 
 * [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) to deploy Bold BI using kubectl.
 * [File Storage](pre-requisites.md#file-storage)
