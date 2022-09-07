@@ -1,6 +1,6 @@
 # Deploy Bold BI and Bold Reports using Helm
 
-This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster on cloud infrastructure. Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud environments.
+This chart installs both [Bold BI](https://www.boldbi.com/) and [Bold Reports](https://www.boldreports.com/) on Kubernetes. You can create Kubernetes cluster on cloud infrastructure. Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud environments.
     
 ## Deployment prerequisites
 
