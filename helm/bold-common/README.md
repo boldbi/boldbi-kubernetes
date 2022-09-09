@@ -16,7 +16,7 @@ This chart installs both [Bold BI](https://www.boldbi.com/) and [Bold Reports](h
 1. Add the Bold BI helm repository
 
 ```console
-helm repo add bold-common https://boldbi.github.io/boldbi-kubernetes
+helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
 helm repo update
 ```
 
@@ -35,9 +35,9 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/eks-valuse.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-20075-common-helm-deployment/helm/bold-common/custom-values/aks-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/eks-valuse.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/aks-values.yaml).
 
 <br/>
 
@@ -163,6 +163,6 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 ## Application Startup
 
-Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+Configure the Bold BI application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
 https://help.boldbi.com/embedded-bi/application-startup
