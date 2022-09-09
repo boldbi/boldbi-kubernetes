@@ -1,0 +1,162 @@
+# Default values for boldbi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appBaseUrl: ''
+optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+clusterProvider: 'eks'
+
+namespace:
+  name: bold-services
+  annotations: {}
+  labels: {}
+
+persistentVolume:
+  # persistent volumes were global resources. 
+  # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI persistent volumes.
+  name: bold-fileserver
+  capacity: 3Gi
+  eks:
+    efsFileSystemId: ''
+
+image:
+  idRepo: gcr.io/boldbi-294612
+  biRepo: gcr.io/boldbi-294612
+  reportsRepo: gcr.io/boldreports-dev
+  # Overrides the image tag whose default is the chart appVersion.
+  idTag: 5.2.48
+  biTag: 5.2.48
+  reportsTag: 3.3.23
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+
+versions:
+  idp: "3.1.18"
+  bi: "5.2.48"
+  reports: "3.3.23"
+
+loadBalancer:
+  type: nginx
+  affinityCookie:
+    enable: true
+    affinityCookieExpiration: 600
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  singleHost: 
+    secretName: bold-tls
+  # multipleHost:
+    # hostArray:
+      # - hosts: 
+          # - kubernetes.docker.internal
+          # - example.com
+        # secretName: bold-tls
+
+istioConfig:
+  # To use the existing Gateway specify the existing Gateway name.
+  # If not specified a new Gateway will applied. The default name is 'bold-gateway'
+  gatewayName: ''
+
+  # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
+  virtualServiceName: ''
+
+instanceConfig:
+  - app: id-web
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: id-api
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: id-ums
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-web
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-api
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-jobs
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-dataservice
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-web
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-api
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-jobs
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-reportservice
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    
+service:
+  type: ClusterIP
+  port: 80
+  
+autoscaling:
+  enabled: true
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+  behavior:
+    stabilizationWindowSeconds: 60
+    podsValue: 1
+    podsPeriodSeconds: 60
+    percentValue: 10
+    percentPeriodSeconds: 60
+    
+bingMapWidget:
+  # Specify the existing bingMap Secret Name. The default is 'bold-secret'
+  bingMapSecretName: ''
+  enabled: false
+  apiKey: ''
