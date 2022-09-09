@@ -441,7 +441,7 @@ Step 1: List the pods using `kubectl get pods` command and Exec any one pod by u
 ```console
 kubectl exec -it {Podname} -- bash
 ```
-![Exec-Pod](helm/docs/images/exec-pod.png)
+![Exec-Pod](../docs/images/exec-pod.png)
 
 Step 2: Install package `nano` to edit the files and move to the configuration file location by running the following commands. 
 
