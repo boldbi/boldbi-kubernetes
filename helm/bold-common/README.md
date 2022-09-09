@@ -64,7 +64,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        appBaseUrl *
       </td>
       <td>
-       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/docs/configuration.md#ssl-termination'>SSL Termination</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/docs/bold-common-configuration.md#ssl-termination'>SSL Termination</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
       </td>
     </tr>
     <tr>
@@ -74,7 +74,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       <td>
        These are the client libraries used in Bold BI by default.<br/>
        '<i>mongodb,mysql,influxdb,snowflake,oracle,npgsql</i>'<br/>
-       Please refer to <a href='/helm/docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
+       Please refer to <a href='/helm/docs/bold-common-configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -91,7 +91,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        persistentVolume*
       </td>
       <td>
-       Please refer to <a href='/helm/docs/configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
+       Please refer to <a href='/helm/docs/bold-common-configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
       </td>
     </tr>
     <tr>
@@ -99,7 +99,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/docs/bold-common-configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
       </td>
     </tr>
     <tr>
@@ -107,7 +107,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI. Please refer to <a href='/helm/docs/configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
+       By default autoscaling is enabled in Bold BI. Please refer to <a href='/helm/docs/bold-common-configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
       </td>
     </tr>
     <tr>
@@ -115,7 +115,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        Bold BI and Reports as sub application
       </td>
       <td>
-       Please refer to <a href='/helm/docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
+       Please refer to <a href='/helm/docs/bold-common-configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
       </td>
     </tr>
     </tr>
@@ -124,7 +124,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        bingMapWidget
       </td>
       <td>
-       Please refer to <a href='/helm/docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
+       Please refer to <a href='/helm/docs/bold-common-configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
       </td>
     </tr>
 </table>
@@ -139,7 +139,7 @@ helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
 ```
 Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
 
-Refer [here](/helm/docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+Refer [here](/helm/docs/bold-common-configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
