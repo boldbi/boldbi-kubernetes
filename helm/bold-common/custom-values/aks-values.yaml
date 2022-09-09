@@ -35,14 +35,14 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 5.2.48
   biTag: 5.2.48
-  reportsTag: 3.3.23
+  reportsTag: 4.2.52_07092022_limnlabs
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: "3.1.18"
   bi: "5.2.48"
-  reports: "3.3.23"
+  reports: "4.2.52"
 
 loadBalancer:
   type: nginx

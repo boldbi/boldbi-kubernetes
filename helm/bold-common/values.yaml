@@ -42,7 +42,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 5.2.48
   biTag: 5.2.48
-  reportsTag: 4.2.52
+  reportsTag: 4.2.52_07092022_limnlabs
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
@@ -75,6 +75,11 @@ istioConfig:
 
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
+  
+subApplication:
+  enabled: false
+  # Specify the subpath. The default subpath value is 'boldservices'
+  subPath: ''
 
 instanceConfig:
   - app: id-web
