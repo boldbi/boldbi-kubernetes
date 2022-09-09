@@ -145,7 +145,7 @@ helm repo update
 Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
 ```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+helm upgrade [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
 ```
 
 Ex:  `helm upgrade boldbi boldbi/bold-common -f my-values.yaml`
