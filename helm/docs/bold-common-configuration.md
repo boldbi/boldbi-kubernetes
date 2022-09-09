@@ -456,14 +456,14 @@ Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` fil
 ```console
 nano product.json
 ```
-![Json-Before_Editing](helm/docs/images/json-before-editing.png)
-![Json-After_Editing](helm/docs/images/json-after-editing.png)
+![Json-Before_Editing](../docs/images/json-before-editing.png)
+![Json-After_Editing](../docs/images/json-after-editing.png)
 
 ```console
 nano config.xml
 ```
-![xml-Before_Editing](helm/docs/images/xml-before-editing.png)
-![xml-After_Editing](helm/docs/images/xml-after-editing.png)
+![xml-Before_Editing](../docs/images/xml-before-editing.png)
+![xml-After_Editing](../docs/images/xml-after-editing.png)
 
 > **Note:** To save the changes press `ctrl + X`, `shift + Y` and  `Enter`.
 
