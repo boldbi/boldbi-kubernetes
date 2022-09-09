@@ -441,7 +441,7 @@ Step 1: List the pods using `kubectl get pods` command and Exec any one pod by u
 ```console
 kubectl exec -it {Podname} -- bash
 ```
-![Exec-Pod](helm/docs/images/exec-pod.png)
+![Exec-Pod](../docs/images/exec-pod.png)
 
 Step 2: Install package `nano` to edit the files and move to the configuration file location by running the following commands. 
 
@@ -451,7 +451,7 @@ apt-get install nano
 cd /application/app_data/configuration
 ```
 
-Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below
+Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below.
 
 ```console
 nano product.json
