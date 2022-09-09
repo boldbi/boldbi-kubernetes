@@ -451,7 +451,7 @@ apt-get install nano
 cd /application/app_data/configuration
 ```
 
-Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below
+Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below.
 
 ```console
 nano product.json
