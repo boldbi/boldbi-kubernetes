@@ -465,7 +465,7 @@ nano config.xml
 ```
 ![xml-Before_Editing](../docs/images/xml-before-editing.png)
 
-![xml-After_Editing](../docs/images/xml-after-editing.png)
+![xml-After_Editing](../docs/images/.png)
 
 > **Note:** To save the changes press `ctrl + X`, `shift + Y` and  `Enter`.
 
