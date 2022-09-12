@@ -112,7 +112,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     <tr>
       <td>
-       Bold BI and Reports as sub application
+       subApplication
       </td>
       <td>
        Please refer to <a href='/helm/docs/bold-common-configuration.md#bold-bi-and-reports-as-sub-application'>this</a> section to configure Bold BI and reports as  sub application.
