@@ -13,7 +13,7 @@ This chart installs both [Bold BI](https://www.boldbi.com/) and [Bold Reports](h
 
 ## Get Repo Info
 
-1. Add the Bold BI helm repository
+1. Add the Bold Common helm repository
 
 ```console
 helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
