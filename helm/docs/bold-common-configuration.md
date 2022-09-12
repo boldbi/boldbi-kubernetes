@@ -434,7 +434,7 @@ subApplication:
 ```
 > **Note:** The sub application feature only available for when using `Nginx` ingress controller.
 
-Please follow the below steps to access the application.
+After installing successfully please follow the below steps to access the application.
 
 Step 1: List the pods using `kubectl get pods` command and Exec any one pod by using the below command as shown below.
 
