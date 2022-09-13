@@ -112,15 +112,6 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     <tr>
       <td>
-       Bold BI and Reports as sub application
-      </td>
-      <td>
-       Please refer to <a href='/helm/docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
-      </td>
-    </tr>
-    </tr>
-    <tr>
-      <td>
        bingMapWidget
       </td>
       <td>
