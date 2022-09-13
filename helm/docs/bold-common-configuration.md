@@ -469,7 +469,7 @@ nano config.xml
 
 > **Note:** To save the changes press `ctrl + X`,  `Y` and  `Enter`.
 
-Step 4: Restart the application after save the changes by running the below command now you can access the application with subpath using any browser.
+Step 4: Restart the application after save the changes by running the below command. Now you can access the application with subpath using any browser.
 
 ```console
 kubectl rollout restart deploy
