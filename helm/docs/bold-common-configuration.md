@@ -434,7 +434,7 @@ subApplication:
 ```
 > **Note:** The sub application feature only available for when using `Nginx` ingress controller.
 
-Please follow the below steps to access the application.
+After installing successfully please follow the below steps to access the application.
 
 Step 1: List the pods using `kubectl get pods` command and Exec any one pod by using the below command as shown below.
 
@@ -451,7 +451,7 @@ apt-get install nano
 cd /application/app_data/configuration
 ```
 
-Step 3: Add `appBaseUrl` with subpath in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below.
+Step 3: Edit `appBaseUrl` with subpath which you entered in values.yaml file in the `product.json` and `config.xml` file which present in the location `/application/app_data/configuration` using the below command as shown below.
 
 ```console
 nano product.json
@@ -467,7 +467,7 @@ nano config.xml
 
 ![xml-After_Editing](../docs/images/xml-after-editing.png)
 
-> **Note:** To save the changes press `ctrl + X`, `shift + Y` and  `Enter`.
+> **Note:** To save the changes press `ctrl + X`,  `Y` and  `Enter`.
 
 Step 4: Restart the application after save the changes by running the below command now you can access the application with subpath using any browser.
 
