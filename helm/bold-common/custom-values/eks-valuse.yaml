@@ -60,6 +60,11 @@ istioConfig:
 
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
+ 
+subApplication:
+  enabled: false
+  # Specify the subpath. The default subpath value is 'boldservices'
+  subPath: ''
 
 instanceConfig:
   - app: id-web

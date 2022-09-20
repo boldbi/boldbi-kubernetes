@@ -20,6 +20,18 @@ With deep embedding, you can interact more with your data and get insights direc
 
 # Bold BI on Kubernetes
 
+## Prerequisites
+
+The following requirements are necessary to run the Bold BI solution.
+
+* Kubernetes cluster
+* File storage
+* Microsoft SQL Server 2012+ | PostgreSQL
+* Load balancer: [Nginx](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) or [Istio](https://istio.io/latest/docs/setup/getting-started/)
+* Web Browser: Microsoft Edge, Mozilla Firefox, and Chrome.
+
+### Deployment Methods
+
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
 * [Deploy Bold BI using kubectl](docs/index.md)
