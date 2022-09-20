@@ -92,15 +92,6 @@ Ex:  `D://app/shared` -> `/run/desktop/mnt/host/d/app/shared`
 
 2. Follow the instructions to [Create an On-Premise cluster](https://kubernetes.io/docs/setup/).
 
-## Image Tag
-
-In common helm deployment we need to give a image tag for Bold BI, Bold Reports and ID. It's default set a latest version tags. You can change a version of Tag based on requirments and overides the image tag whose default is the chart appVersion.<br>
-  <b>idTag: 5.2.48<br>
-  biTag: 5.2.48<br>
-  reportsTag: 3.3.23</b>
-
-
-
 ## Load Balancing
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
