@@ -5,7 +5,7 @@
 The following are the client libraries used in Bold BI by default.
 
 ```console
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql,google,clickhouse'
 ```
 
 Read the optional client library license agreement from the following link.
@@ -301,7 +301,7 @@ loadBalancer:
     affinityCookieExpiration: 600
 ```
 
-### SSL Termination
+### SSL Configuration
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 

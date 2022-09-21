@@ -38,7 +38,6 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/gke-values.yaml).
 * For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/eks-valuse.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/aks-values.yaml).
-
 <br/>
 
 <table>
@@ -64,7 +63,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        appBaseUrl *
       </td>
       <td>
-       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/bold-common/docs/configuration.md#ssl-termination'>SSL Termination</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/bold-common/docs/configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
       </td>
     </tr>
     <tr>
@@ -146,7 +145,7 @@ helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
 ```
 Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
 
-Refer [here](/helm/bold-common/docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+Refer [here](/helm/bold-common/docs/configuration.md) for advanced configuration including SSL configuration, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 

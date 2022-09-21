@@ -206,7 +206,6 @@ For Helm chart, you'll need to craft a `values.yaml`.
        It should meet our password requirements.
       </td>
     </tr>
-    
 </table>
 <br/>
 
