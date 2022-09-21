@@ -188,7 +188,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
     kubectl exec -it <designer pod name> -n <namespace name> -- bash
     ~~~
 
-3. Go to the following Path app_data/configuration/product.json and add below lines.
+3. Go to the following Path /application/app_data/configuration/product.json and add below lines.
     ```console
     {
     "Name": "BoldReports",
@@ -203,5 +203,5 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
      ![Product Json](docs/images/reports.png)
 
-5. Refer the below document to activate either by using your login credientials or by offline unlock key for Bold Reports.
+5. Refer the below document to activate License either by using your login credientials or by offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
