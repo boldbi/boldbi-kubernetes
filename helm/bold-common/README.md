@@ -208,4 +208,4 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 ## Documentation Reference Link:
 
  * <b>Bold BI</b> - Refer [this](https://help.boldbi.com/) help documentation link for Bold BI related query.<br>
- * Bold Reports - Refer [this](https://help.boldreports.com/) help documentation link for Bold Reports related query.
+ * <b>Bold Reports</b> - Refer [this](https://help.boldreports.com/) help documentation link for Bold Reports related query.
