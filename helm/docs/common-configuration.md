@@ -242,11 +242,11 @@ We need to give a image tag for Bold BI, Bold Reports and ID. By default set a l
 image:
   idRepo: gcr.io/boldbi-294612
   biRepo: gcr.io/boldbi-294612
-  reportsRepo: gcr.io/boldreports-dev
+  reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 5.2.48
   biTag: 5.2.48
-  reportsTag: 3.3.23
+  reportsTag: 4.2.52
 ````
 Repository details are available in image section to refer the image tags. No need to change the repository details for idRepo, biRepo and reportsRepo.
 
