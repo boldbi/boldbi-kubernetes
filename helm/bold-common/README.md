@@ -35,9 +35,9 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/eks-valuse.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/bold-common/custom-values/aks-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/common-gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/common-eks-valuse.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/common-aks-values.yaml).
 <br/>
 
 <table>
@@ -63,7 +63,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        appBaseUrl *
       </td>
       <td>
-       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/bold-common/docs/configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+       Domain or <a href='/helm/docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='/helm/docs/common-configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
       </td>
     </tr>
     <tr>
@@ -73,7 +73,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       <td>
        These are the client libraries used in Bold BI by default.<br/>
        '<i>mongodb,mysql,influxdb,snowflake,oracle,npgsql</i>'<br/>
-       Please refer to <a href='/helm/bold-common/docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
+       Please refer to <a href='/helm/docs/common-configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -90,7 +90,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        persistentVolume*
       </td>
       <td>
-       Please refer to <a href='/helm/bold-common/docs/configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
+       Please refer to <a href='/helm/docs/common-configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
       </td>
     </tr>
         <tr>
@@ -98,7 +98,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        image *
       </td>
       <td>     
-       By default latest image tag is used in Helm chart. Please refer to <a href='/helm/bold-common/docs/configuration.md#image'>this</a> section for configure a image tag for Bold BI, Bold Reports and ID. 
+       By default latest image tag is used in Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#image'>this</a> section for configure a image tag for Bold BI, Bold Reports and ID. 
       </td>
     </tr>
     <tr>
@@ -106,7 +106,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        versions *
       </td>
       <td>
-       By default latest version is used in Helm chart. Please refer to <a href='/helm/bold-common/docs/configuration.md#version'>this</a> section for configure a version for Bold BI, Bold Reports and IDP version 
+       By default latest version is used in Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#version'>this</a> section for configure a version for Bold BI, Bold Reports and IDP version 
       </td>
     </tr>
     <tr>
@@ -114,7 +114,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/bold-common/docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/docs/common-configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
       </td>
     </tr>
     <tr>
@@ -122,7 +122,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI. Please refer to <a href='/helm/bold-common/docs/configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
+       By default autoscaling is enabled in Bold BI. Please refer to <a href='/helm/docs/common-configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
       </td>
     </tr>
     <tr>
@@ -130,7 +130,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        bingMapWidget
       </td>
       <td>
-       Please refer to <a href='/helm/bold-common/docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
+       Please refer to <a href='/helm/docs/common-configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
       </td>
     </tr>
 </table>
@@ -145,7 +145,7 @@ helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
 ```
 Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
 
-Refer [here](/helm/bold-common/docs/configuration.md) for advanced configuration including SSL configuration, optional client libraries, etc.
+Refer [here](/helm/docs/common-configuration.md) for advanced configuration including SSL configuration, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
@@ -200,7 +200,12 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
    >**Note:** The IDP version of Bold BI or Bold Reports should be same.
 
 4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
-     ![Product Json](docs/images/reports.png)
+     ![Product Json](/helm/docs/images/reports.png)
 
 5. Refer the below document to activate License either by using your login credientials or by offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
+
+## Documentation Reference Link:
+
+ * <b>Bold BI</b> - Refer [this](https://help.boldbi.com/) help documentation link for Bold BI related query.<br>
+ * Bold Reports - Refer [this](https://help.boldreports.com/) help documentation link for Bold Reports related query.

@@ -4,7 +4,7 @@
 
 appBaseUrl: ''
 optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
-clusterProvider: 'eks'
+clusterProvider: 'gke'
 
 namespace:
   name: bold-services
@@ -17,9 +17,10 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  eks:
-    efsFileSystemId: ''
-
+  gke:
+    fileShareName: ''
+    fileShareIp: ''
+  
 image:
   idRepo: gcr.io/boldbi-294612
   biRepo: gcr.io/boldbi-294612
@@ -32,9 +33,9 @@ image:
 imagePullSecrets: []
 
 versions:
-  idp: "3.1.18"
+  idp: "3.1.21"
   bi: "5.2.48"
-  reports: "3.3.23"
+  reports: "4.2.52"
 
 loadBalancer:
   type: nginx
@@ -60,7 +61,7 @@ istioConfig:
 
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
- 
+  
 subApplication:
   enabled: false
   # Specify the subpath. The default subpath value is 'boldservices'
