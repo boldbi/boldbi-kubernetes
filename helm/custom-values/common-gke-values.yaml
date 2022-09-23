@@ -24,7 +24,7 @@ persistentVolume:
 image:
   idRepo: gcr.io/boldbi-294612
   biRepo: gcr.io/boldbi-294612
-  reportsRepo: gcr.io/boldreports-dev
+  reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 5.2.48
   biTag: 5.2.48
