@@ -192,8 +192,8 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
     {
     "Name": "BoldReports",
     "SetupName": "BoldReports_EnterpriseReporting",
-    "Version": "3.3.23",
-    "IDPVersion": "3.1.18",
+    "Version": "4.2.52",
+    "IDPVersion": "3.1.21",
     "IsCommonLogin": true
     }
     ```
