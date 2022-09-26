@@ -188,7 +188,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
    ```
    ![Configuration-editor](/helm/docs/images/config-edit.png)
 
-3. In product.json add the lines below for Bold Reports:
+3. In product.json file, append the lines below for Bold Reports:
     ```console
     {
     "Name": "BoldReports",
