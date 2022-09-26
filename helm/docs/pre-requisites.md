@@ -73,12 +73,6 @@ For encoding the values to base64 please run the following command in powershell
 2. Connect with your Microsoft AKS cluster.
    https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal#connect-to-the-cluster
 
-### On-Premise Cluster
-
-1. Create a Kubernetes onpremise cluster to deploy Bold BI.
-
-2. Follow the instructions to [Create an On-Premise cluster](https://kubernetes.io/docs/setup/).
-
 ## Load Balancing
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
