@@ -182,12 +182,13 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
     
    https://help.boldbi.com/embedded-bi/application-startup
 
-2. And then bash the designer pod using below command. 
-    ~~~sh
-    kubectl exec -it <designer pod name> -n <namespace name> -- bash
-    ~~~
+2. Navigate to administration configuration file.
+   ```sh
+   <DNS>/ums/administration/config-editor
+   ```
+   ![Configuration-editor](/helm/docs/images/config-edit.png)
 
-3. Go to the following Path /application/app_data/configuration/product.json and add below lines.
+3. In product.json add below lines for Bold Reports.
     ```console
     {
     "Name": "BoldReports",
