@@ -206,7 +206,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 5. Refer the below document to activate License either by using your login credientials or by offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
 
-## Documentation Reference Link:
+## Documentation Links:
 
- * <b>Bold BI</b> - Refer [this](https://help.boldbi.com/) help documentation link for Bold BI related query.<br>
- * <b>Bold Reports</b> - Refer [this](https://help.boldreports.com/) help documentation link for Bold Reports related query.
+ * [Bold BI](https://help.boldbi.com/) <br>
+ * [Bold Reports](https://help.boldreports.com/) 
