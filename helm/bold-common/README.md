@@ -98,7 +98,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        image *
       </td>
       <td>     
-       By default latest image tag is used in Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#image'>this</a> section for configure a image tag for Bold BI, Bold Reports and ID. 
+       By default latest image tag is used in the Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#image'>this</a> section for configure a image tag for Bold BI, Bold Reports and ID. 
       </td>
     </tr>
     <tr>
@@ -106,7 +106,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        versions *
       </td>
       <td>
-       By default latest version is used in Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#version'>this</a> section for configure a version for Bold BI, Bold Reports and IDP version 
+       By default latest version is used in the Helm chart. Please refer to <a href='/helm/docs/common-configuration.md#version'>this</a> section for configure a version for Bold BI, Bold Reports and IDP version 
       </td>
     </tr>
     <tr>
@@ -114,7 +114,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/docs/common-configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+       Currently, we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='/helm/docs/common-configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
       </td>
     </tr>
     <tr>
@@ -178,7 +178,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 ## Application Startup
 
-1. Configure the Bold BI application startup to use the application. Please refer the following link for more details on configuring the application startup.
+1. Configure the Bold BI application startup to use the application. Please refer to the following link for more details on configuring the application startup.
     
    https://help.boldbi.com/embedded-bi/application-startup
 
@@ -188,7 +188,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
    ```
    ![Configuration-editor](/helm/docs/images/config-edit.png)
 
-3. In product.json add below lines for Bold Reports.
+3. In product.json add the lines below for Bold Reports:
     ```console
     {
     "Name": "BoldReports",
@@ -203,7 +203,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
      ![Product Json](/helm/docs/images/reports.png)
 
-5. Refer the below document to activate License either by using your login credientials or by offline unlock key for Bold Reports.
+5. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
 
 ## Documentation Links:

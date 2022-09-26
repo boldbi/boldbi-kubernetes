@@ -2,25 +2,25 @@
 
 ## Client Libraries
 
-The following are the client libraries used in Bold BI by default.
+The following are the client libraries used in Bold BI by default:
 
 ```console
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql,google,clickhouse'
 ```
 
-Read the optional client library license agreement from the following link.
+Read the optional client library license agreement from the following link:
 
 [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-If you wish to inlcude only specific client libraries note the optional client libraries from the above link as comma separated names in your values.yaml file.
+If you wish to include only specific client libraries note the optional client libraries from the above link as comma-separated names in your values.yaml file.
 
 ## Persistent Volume
 
 ### Name
 
-Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
+Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with the current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
 
-By default the persistent volume name used in Bold BI is `bold-fileserver`. 
+By default, the persistent volume name used in Bold BI is `bold-fileserver`. 
 
 ```console
 persistentVolume:
@@ -35,7 +35,7 @@ persistentVolume:
 
 Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
 
-By default the persistent volume capacity used in Bold BI is `3Gi`. 
+By default, the persistent volume capacity used in Bold BI is `3Gi`. 
 
 ```console
 persistentVolume:
@@ -237,7 +237,7 @@ persistentVolume:
 
 ## Image
 
-We need to give a image tag for Bold BI, Bold Reports and ID. By default set a latest version of a image tags. You can change a tag based on requirments and the tag overides the image tag whose default in the chart appVersion.<br>
+We need to give an image tag for Bold BI, Bold Reports, and ID. By default set the latest version of image tags. You can change a tag based on requirements and the tag overrides the image tag whose default is in the chart appVersion.<br>
 ```console
 image:
   idRepo: gcr.io/boldbi-294612
@@ -248,11 +248,11 @@ image:
   biTag: 5.2.48
   reportsTag: 4.2.52
 ````
-Repository details are available in image section to refer the image tags. No need to change the repository details for idRepo, biRepo and reportsRepo.
+Repository details are available in the image section to refer to the image tags. No need to change the repository details for idRepo, biRepo, and reportsRepo.
 
 ## Version
 
-By default latest version of Bold BI, Bold Reports and IDP in the version section. You can change a version based on requirements.
+By default, the latest version of Bold BI, Bold Reports, and IDP is in the version section. You can change a version based on requirements.
 ```console
 versions:
   idp: "3.1.21"
@@ -265,7 +265,7 @@ versions:
 
 ### Ingress-Nginx
 
-By default Nginx is used as reverse proxy for Bold BI. To configure load balancing in Bold BI take a look at the below snipet. 
+By default, Nginx is used as a reverse proxy for Bold BI. To configure load balancing in Bold BI take a look at the below snippet. 
 
 ```console
 loadBalancer:
@@ -283,7 +283,7 @@ loadBalancer:
 
 ### Istio Ingress Gateway
 
-If you need to configure Bold BI with Istio then you can change the value as `istio` in your configuration like below.
+If you need to configure Bold BI with Istio then you can change the value as `istio` in your configuration like below:
 
 ```console
 loadBalancer:
@@ -303,11 +303,11 @@ loadBalancer:
 
 ### SSL Configuration
 
-If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
+If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with the `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
 > **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
 
-Run the following command to create a TLS secret with your SSL certificate.
+Run the following command to create a TLS secret with your SSL certificate:
 
 ```console
 # Ingress
@@ -319,9 +319,9 @@ kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <cert
 
 ### Map multiple domains
 
-You can map mutiple domains in both Ingress Nginx and Istio like below. While mapping multiple domains you have to include the `appBaseUrl` in any of the matching host array.
+You can map multiple domains in both Ingress Nginx and Istio like below. While mapping multiple domains you have to include the `appBaseUrl` in any of the matching host array.
 
-FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
+FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside the `multipleHost` section.
 
 `Ingress Nginx`
 
@@ -359,7 +359,7 @@ loadBalancer:
 
 ## Auto Scaling
 
-By default autoscaling is enabled in Bold BI, to disable autoscaling please set `autoscaling.enabled=false`.
+By default, autoscaling is enabled in Bold BI, to disable autoscaling please set `autoscaling.enabled=false`.
 
 ```console
 autoscaling:
@@ -389,7 +389,7 @@ autoscaling:
        autoscaling.enabled
       </td>
       <td>
-       By default the autoscaling will be enabled. turn this to <i>false</i> to disable the autoscaling functionality.
+       By default, autoscaling will be enabled. turn this to <i>false</i> to disable the autoscaling functionality.
       </td>
     </tr>
     <tr>
@@ -397,7 +397,7 @@ autoscaling:
        autoscaling.targetCPUUtilizationPercentage
       </td>
       <td>
-       The CPU utilization is the average CPU usage of a all pods in a deployment across the last minute divided by the requested CPU of this deployment.
+       The CPU utilization is the average CPU usage of all pods in a deployment across the last minute divided by the requested CPU of this deployment.
       </td>
     </tr>
     <tr>
@@ -405,7 +405,7 @@ autoscaling:
        autoscaling.targetMemoryUtilizationPercentage
       </td>
       <td>
-       With this metric the HPA controller will keep the average utilization of the pods in the scaling target at the value mentioned (80%). Utilization is the ratio between the current usage of resource to the requested resources of the pod.
+       With this metric, the HPA controller will keep the average utilization of the pods in the scaling target at the value mentioned (80%). Utilization is the ratio between the current usage of resources to the requested resources of the pod.
       </td>
     </tr>
     <tr>
@@ -413,7 +413,7 @@ autoscaling:
        autoscaling.behavior.stabilizationWindowSeconds
       </td>
       <td>
-       The stabilization window is used by the autoscaling algorithm to consider the computed desired state from the past to prevent scaling. By default the value is 60 to provide a custom downscale stabilization window of 1 minute.
+       The stabilization window is used by the autoscaling algorithm to consider the computed desired state from the past to prevent scaling. By default, the value is 60 to provide a custom downscale stabilization window of 1 minute.
       </td>
     </tr>
     <tr>
@@ -422,7 +422,7 @@ autoscaling:
        autoscaling.behavior.podsPeriodSeconds
       </td>
       <td>
-       This policy (Pods) allows 1 replicas to be scaled down in one minute.
+       This policy (Pods) allows 1 replica to be scaled down in one minute.
       </td>
     </tr>
     <tr>
