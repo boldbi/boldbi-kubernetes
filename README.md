@@ -1,6 +1,6 @@
 <a href="https://www.boldbi.com">
   <img
-  src="https://www.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg"
+  src="https://cdn.boldbi.com/DevOps/boldbi-logo.svg"
   alt="boldbi"
   width="400"/>
 </a>
