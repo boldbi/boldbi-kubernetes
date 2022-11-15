@@ -115,7 +115,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
