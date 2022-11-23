@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-web-hpa
@@ -24,7 +24,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-api-hpa
@@ -50,7 +50,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-ums-hpa
@@ -76,7 +76,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-web-hpa
@@ -102,7 +102,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-api-hpa
@@ -128,7 +128,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-jobs-hpa
@@ -154,7 +154,7 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-dataservice-hpa
