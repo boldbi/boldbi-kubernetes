@@ -1,8 +1,8 @@
 apiVersion: v2
-name: boldbi
-type: application
 appVersion: 5.3.53
-version: 5.3.53
 description: Embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
 home: https://www.boldbi.com/
 icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
+name: boldbi
+type: application
+version: 5.3.53
