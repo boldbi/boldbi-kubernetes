@@ -107,7 +107,7 @@ spec:
           httpGet:
             path: /health-check
             port: 80
-          {{- if eq $service.app "id-web" }}
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
           initialDelaySeconds: 30
           {{- else }}
           initialDelaySeconds: 20
