@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-web-hpa
@@ -34,7 +34,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-api-hpa
@@ -70,7 +70,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: id-ums-hpa
@@ -106,7 +106,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-web-hpa
@@ -142,7 +142,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-api-hpa
@@ -178,7 +178,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-jobs-hpa
@@ -214,7 +214,7 @@ spec:
         value: 10
         periodSeconds: 60
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: bi-dataservice-hpa

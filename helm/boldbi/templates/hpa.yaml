@@ -1,6 +1,6 @@
 {{- if .Values.autoscaling.enabled }}
 {{- range $service := .Values.instanceConfig}}
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
