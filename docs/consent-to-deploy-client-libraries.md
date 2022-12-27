@@ -59,4 +59,4 @@ If you want to use all client libraries in the Bold BI application, then pass th
 
 `mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse`
 
-![Client Libraries](images/client-library.png) 
+![Client Libraries](images/deployment_yaml.png) 
