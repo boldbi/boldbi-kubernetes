@@ -66,7 +66,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.2.48.tgz
+    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.3.53.tgz
     version: 5.3.53
   - apiVersion: v2
     appVersion: 5.2.48
