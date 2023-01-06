@@ -85,6 +85,8 @@ spec:
               name: bold-db-secret
         - secretRef:
               name: bold-license-key
+        - configMapRef:
+              name: branding-config
         {{- else if eq $service.app "bi-dataservice" }}
         {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
