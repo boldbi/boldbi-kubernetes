@@ -64,7 +64,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        appBaseUrl *
       </td>
       <td>
-       Domain or <a href='docs/pre-requisites.md#get-ingress-ip'>Ingress IP address</a> with http/https protocol. Follow the <a href='docs/configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
+       Domain with http/https protocol. Follow the <a href='docs/configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol after deploying Bold BI in your cluster.
       </td>
     </tr>
     <tr>
