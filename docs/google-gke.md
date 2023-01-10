@@ -4,17 +4,17 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 1. Download the following files for Bold BI deployment in GKE:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/namespace.yaml)
-    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/secrets.yaml)
-    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/db-server-secret.yaml)
-    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/license-key-secret.yaml)
-    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/root-user-details.yaml)
-    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/log4net_config.yaml)
-    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/pvclaim_gke.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/deployment.yaml)
-    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/hpa_gke.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.53/deploy/ingress.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/secrets.yaml)
+    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/db-server-secret.yaml)
+    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/license-key-secret.yaml)
+    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/root-user-details.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/log4net_config.yaml)
+    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/pvclaim_gke.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/deployment.yaml)
+    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/hpa_gke.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
@@ -110,7 +110,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
 22. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-<img src="images/deployment_yaml.png" alt="Image" width="700" height="500" style="display: block; margin: 0 auto" />
+<img src="images/deployment_yaml.png" alt="Image" style="display: block; margin: 0 auto" />
 
 23. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 

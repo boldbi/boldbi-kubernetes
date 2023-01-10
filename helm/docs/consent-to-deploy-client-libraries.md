@@ -52,7 +52,9 @@ Find the names of client libraries, which needs to be passed as a comma separate
 | Npgsql 4.0.0              | npgsql        |
 | MySQLConnector 0.45.1     | mysql         |
 | InfluxData.Net            | influxdb      |
+| Google.Cloud.BigQuery.V2  | google        |
+| ClickHouse.Client         | clickhouse    |
 
 If you want to use all client libraries in the Bold BI application, then pass the following string as value for `INSTALL_OPTIONAL_LIBS` environment variable. You need to add the names only for the libraries, which you are consenting to use with Bold BI application.
 
-`mongodb,mysql,influxdb,snowflake,oracle,npgsql`
+`mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse`
