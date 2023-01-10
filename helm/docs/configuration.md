@@ -5,7 +5,7 @@
 The following are the client libraries used in Bold BI by default.
 
 ```console
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
 ```
 
 Read the optional client library license agreement from the following link.

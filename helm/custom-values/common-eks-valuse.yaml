@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 appBaseUrl: ''
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
 clusterProvider: 'eks'
 
 namespace:

@@ -111,7 +111,7 @@ Repeat the above command till you get the value in ADDRESS tab.
 
 23. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-<img src="images/deployment_yaml.png" alt="Image" width="700" height="500" style="display: block; margin: 0 auto" />
+<img src="images/deployment_yaml.png" alt="Image" style="display: block; margin: 0 auto" />
 
 24. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 
