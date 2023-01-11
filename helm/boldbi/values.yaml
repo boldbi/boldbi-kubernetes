@@ -159,6 +159,23 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+ 
+brandingDetails:
+
+  main_logo:  ""
+  
+  login_logo:  ""
+  
+  email_logo:  ""
+  
+  favicon:  ""
+  
+  footer_logo:  ""
+  
+  site_name: ""
+  
+  site_identifier: ""
+  
   
   licenseKeyDetails:
   #  The Bold BI licnece key which you have purchesed.
