@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: branding-config
+  namespace: bold-services
+data:
+  BOLD_SERVICES_BRANDING_MAIN_LOGO: ""
+  
+  BOLD_SERVICES_BRANDING_LOGIN_LOGO: ""
+  
+  BOLD_SERVICES_BRANDING_EMAIL_LOGO: ""
+  
+  BOLD_SERVICES_BRANDING_FAVICON: ""
+  
+  BOLD_SERVICES_BRANDING_FOOTER_LOGO: ""
+  
+  BOLD_SERVICES_SITE_NAME: ""
+  
+  BOLD_SERVICES_SITE_IDENTIFIER: ""
