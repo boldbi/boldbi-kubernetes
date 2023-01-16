@@ -3,17 +3,31 @@ kind: ConfigMap
 metadata:
   name: branding-config
   namespace: bold-services
+# All the branding images variables are accepted as URL.
+# Image type: png, svg, jpg, jpeg
+# Ex: https://example.com/loginlogo.jpg
 data:
+  # This is header logo for the application and the preferred image size is 40 x 40 pixels.
   BOLD_SERVICES_BRANDING_MAIN_LOGO: ""
   
+  # This is login logo for the application and the preferred image size is 200 x 40 pixels.
   BOLD_SERVICES_BRANDING_LOGIN_LOGO: ""
   
+  # This is email logo, and the preferred image size is 200 x 40 pixels.
   BOLD_SERVICES_BRANDING_EMAIL_LOGO: ""
   
+  # This is favicon and the preferred image size is 40 x 40 pixels. 
   BOLD_SERVICES_BRANDING_FAVICON: ""
   
+  # This is powered by logo and the preferred size is 100 x 25 pixels.
   BOLD_SERVICES_BRANDING_FOOTER_LOGO: ""
   
+  # This is organization name.
   BOLD_SERVICES_SITE_NAME: ""
   
+  # This is site identifier, and it will be the part of the application URL.
   BOLD_SERVICES_SITE_IDENTIFIER: ""
+
+  # Note: If you want to use the custom branding, provide the value for all branding variables 
+  # If all variable values are given, application will use the branding images,
+  # otherwise it will take the default logos.

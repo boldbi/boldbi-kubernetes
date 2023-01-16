@@ -10,6 +10,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
     * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/license-key-secret.yaml)
     * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/root-user-details.yaml)
     * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/log4net_config.yaml)
+    * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/branding_config.yaml)
     * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/pvclaim_eks.yaml)
     * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/deployment.yaml)
     * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v5.3.83/deploy/hpa.yaml)
@@ -67,6 +68,8 @@ kubectl apply -f root-user-details.yaml
 
 ```sh
 kubectl apply -f log4net_config.yaml
+
+kubectl apply -f branding_config.yaml
 ```
 
 13. If you have a DNS to map with the application, you can continue with the following steps, else skip to **Step 16**. 
