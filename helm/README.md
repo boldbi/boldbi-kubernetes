@@ -121,6 +121,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </table>
 <br/>
 ## Environment variables for configuring Application Startup in backend
+
 The below Environment variables are optional. If not provided a manual Application Startup configuration is needed.
 <table>
     <tr>
