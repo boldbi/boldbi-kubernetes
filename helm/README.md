@@ -120,6 +120,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     </table>
 <br/>
+
 ## Environment variables for configuring Application Startup in backend
 
 The below Environment variables are optional. If not provided a manual Application Startup configuration is needed.
@@ -206,6 +207,7 @@ The below Environment variables are optional. If not provided a manual Applicati
     </tr>
 </table>
 <br/>
+
 ## Environment variables for configuring Branding in backend
 
 The below Environment variables are optional. If not provided Bold BI will take the default configured values.
