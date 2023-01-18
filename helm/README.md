@@ -118,6 +118,14 @@ For Helm chart, you'll need to craft a `values.yaml`.
        Please refer to <a href='docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
       </td>
     </tr>
+    <tr>
+      <td>
+       customLocalePath
+      </td>
+      <td>
+       Enter the custom locale file path.
+      </td>
+    </tr>
     </table>
 <br/>
 
