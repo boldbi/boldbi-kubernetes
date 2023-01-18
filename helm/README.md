@@ -73,7 +73,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        These are the client libraries used in Bold BI by default.<br/>
-       '<i>mongodb,mysql,influxdb,snowflake,oracle,npgsql</i>'<br/>
+       '<i>mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse</i>'<br/>
        Please refer to <a href='docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
       </td>
     </tr>
