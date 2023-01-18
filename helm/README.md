@@ -123,7 +123,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        customLocalePath
       </td>
       <td>
-       Enter the custom locale file path.
+       The custom locale file path to Localization.
       </td>
     </tr>
     </table>
