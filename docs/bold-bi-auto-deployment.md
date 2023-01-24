@@ -133,6 +133,43 @@
             </tr>
         </table>
         <br/>
+        
+        
+    * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for               `widget_bing_map_api_key`.
+       
+       ![enable-bingmap](images/enable-bingmap.png)
+
+6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 17**. 
+
+7. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
+
+8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 17**.
+
+9.  Run the following command to create a TLS secret with your SSL certificate.
+
+```sh
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
+```
+
+10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+
+![ingress DNS](images/ingress_yaml.png)
+
+11. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
+
+```sh
+kubectl apply -f ingress.yaml
+```
+
+12. Now, run the following command to get the ingress IP address.
+
+```sh
+kubectl get ingress -n bold-services
+```
+Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
+![Ingress Address](images/ingress_address.png) 
+
+13. Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
 
 
 
