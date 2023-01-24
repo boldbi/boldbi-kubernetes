@@ -29,7 +29,7 @@
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
-    * Enter the Bold BI licence key, username, and database server details in the secrets-and-configmap.yaml file.
+    * Enter the Bold BI licence key, username, and database server details.
         
         ![licence-and-user-details](images/licence-and-user-details.png)
 
@@ -51,8 +51,7 @@
         
         
         
-    *  If you want to use custom values for branding enter the branding image and site identifier variable details in the secrets-and-configmap.yaml otherwise Bold BI 
-       will take the default values.
+    *  If you want to use custom values for branding enter the branding image and site identifier variable details.otherwise Bold BI will take the default values.
         
        ![branding-details](images/branding-details.png)
   
