@@ -12,7 +12,7 @@
 
 ### Steps for Bold BI auto deployment.
 
-1. Download unzip the file for Bold BI deployment from [here]().
+1. Download and unzip the file for Bold BI deployment from [here]().
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
