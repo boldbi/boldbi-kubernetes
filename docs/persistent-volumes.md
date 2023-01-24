@@ -38,10 +38,10 @@
 
 2. Note the **File share name** and **IP address** after creating filestore instance.
 
-  ![File Share details](images/gke_file_share_details.png)
+   ![File Share details](images/gke_file_share_details.png)
 
 3. Open **pvclaim_gke.yaml** file, downloaded in **Step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
-  ![PV Claim](images/gke_pvclaim.png)
+   ![PV Claim](images/gke_pvclaim.png)
 
 
