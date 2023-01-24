@@ -143,7 +143,7 @@
 
 7. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 17**.
+8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
 
 9.  Run the following command to create a TLS secret with your SSL certificate.
 
