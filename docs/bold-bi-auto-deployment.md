@@ -139,7 +139,7 @@
        
        ![enable-bingmap](images/enable-bingmap.png)
 
-6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 17**. 
+6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
 
 7. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
