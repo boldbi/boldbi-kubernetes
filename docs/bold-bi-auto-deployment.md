@@ -12,20 +12,21 @@
 
 ### Steps for Bold BI auto deployment.
 
-1. Download the files for Bold BI deployment from [here]().
+1. Download unzip the file for Bold BI deployment from [here]().
 
-2. Configure the pvclaim.yaml file based on your cluster provider.
+2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+
+3. Configure the pvclaim.yaml file based on your cluster provider.
  
     * [Amazon Elastic Kubernetes Service (EKS)](persistent-volumes.md#azure-kubernetes-service)
     * [Azure Kubernetes Service (AKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
     * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
 
-3. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
+4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
     ```sh
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
-    ```
-4. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+    ``` 
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
