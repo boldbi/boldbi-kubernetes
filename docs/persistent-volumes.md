@@ -28,7 +28,7 @@
 
 3. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
 
-  ![PV Claim](images/eks_pvclaim.png)
+   ![PV Claim](images/eks_pvclaim.png)
 
 ## Google Kubernetes Engine
 
