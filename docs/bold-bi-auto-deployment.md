@@ -1,6 +1,6 @@
 # Bold BI auto deployment using kubectl on Kubernetes Service
 
-[Bold BI](https://www.boldbi.com/) can be deployed manually on Kubernetes cluster. You can create Kubernetes cluster on cloud cluster providers(GKE,AKS and EKS). After completing cluster creation, connect to it and you can download the configuration files [here](../deploy/). This directory includes configuration YAML files, which contains all the configuration settings needed to deploy Bold BI on Kubernetes cluster.
+[Bold BI](https://www.boldbi.com/) can be deployed manually on Kubernetes cluster. You can create Kubernetes cluster on cloud cluster providers(GKE,AKS and EKS). After completing cluster creation, connect to it and you can download the configuration files [here](../deploy/auto-deployment.zip). This directory includes configuration YAML files, which contains all the configuration settings needed to deploy Bold BI on Kubernetes cluster.
 
 ### Deployment prerequisites
 
@@ -12,7 +12,7 @@
 
 ### Steps for Bold BI auto deployment.
 
-1. Download the file for Bold BI deployment from [here]() and unzip the file then navigate to the unziped folder.
+1. Download the file for Bold BI deployment from [here](../deploy/auto-deployment.zip) and unzip the file then navigate to the unziped folder.
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
@@ -32,7 +32,7 @@
 
     * Enter the Bold BI licence key, username, and database server details.
         
-        ![licence-and-user-details](images/licence-and-user-details.png)
+        ![Licence-and-User-Details](images/licence-and-user-details.png)
 
         ## Environment variables details for configuring `Application Startup` in backend
 
@@ -54,7 +54,7 @@
         
     *  If you want to use custom values for branding enter the branding image and site identifier variable details.otherwise Bold BI will take the default values.
         
-       ![branding-details](images/branding-details.png)
+       ![Branding-Details](images/branding-details.png)
   
         ## Environment variables for configuring `Branding` in backend
 
@@ -138,7 +138,7 @@
         
     * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for               `widget_bing_map_api_key`.
        
-       ![enable-bingmap](images/enable-bingmap.png)
+       ![Enable-Bingmap](images/enable-bingmap.png)
 
 6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
 
@@ -176,6 +176,8 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 14. Open the **deploy.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    
+    ![App_Base_Url](images/app_base_url.png) 
     
 15. Read the optional client library license agreement from the following link.
 
