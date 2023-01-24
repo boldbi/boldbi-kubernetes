@@ -202,4 +202,4 @@ kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 18** to access the application in the browser.
+27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 12** to access the application in the browser.
