@@ -7,19 +7,19 @@ metadata:
 # Image type: png, svg, jpg, jpeg
 # Ex: https://example.com/loginlogo.jpg
 data:
-  # This is header logo for the application and the preferred image size is 40 x 40 pixels.
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
   BOLD_SERVICES_BRANDING_MAIN_LOGO: ""
   
-  # This is login logo for the application and the preferred image size is 200 x 40 pixels.
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
   BOLD_SERVICES_BRANDING_LOGIN_LOGO: ""
   
-  # This is email logo, and the preferred image size is 200 x 40 pixels.
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
   BOLD_SERVICES_BRANDING_EMAIL_LOGO: ""
   
-  # This is favicon and the preferred image size is 40 x 40 pixels. 
+  # This is a favicon, and the preferred image size is 40 x 40 pixels.
   BOLD_SERVICES_BRANDING_FAVICON: ""
   
-  # This is powered by logo and the preferred size is 100 x 25 pixels.
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
   BOLD_SERVICES_BRANDING_FOOTER_LOGO: ""
   
   # This is organization name.

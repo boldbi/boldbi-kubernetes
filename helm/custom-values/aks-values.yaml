@@ -150,19 +150,19 @@ databaseServerDetails:
   dbAdditionalParameters: ""
 
 brandingDetails:
-  # This is header logo for the application and the preferred image size is 40 x 40 pixels.
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
   mainLogo:  ""
   
-  # This is login logo for the application and the preferred image size is 200 x 40 pixels.
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
   loginLogo:  ""
   
-  # This is email logo, and the preferred image size is 200 x 40 pixels.
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
   emailLogo:  ""
   
-   # This is favicon and the preferred image size is 40 x 40 pixels. 
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  # This is powered by logo and the preferred size is 100 x 25 pixels.
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
   footerLogo:  ""
   
   # This is organization name.
