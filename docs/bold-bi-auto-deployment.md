@@ -1,6 +1,6 @@
 # Bold BI auto deployment using kubectl on Kubernetes Service
 
-[Bold BI](https://www.boldbi.com/) can be deployed manually on Kubernetes cluster. You can create Kubernetes cluster on cloud cluster providers(GKE,AKS and EKS). After completing cluster creation, connect to it and you can download the configuration files [here](../deploy/). This directory includes configuration YAML files, which contains all the configuration settings needed to deploy Bold BI on Kubernetes cluster.
+[Bold BI](https://www.boldbi.com/) can be deployed manually on Kubernetes cluster. You can create Kubernetes cluster on cloud cluster providers(GKE,AKS and EKS). After completing cluster creation, connect to it and you can download the configuration files [here](../deploy/auto-deployment.zip). This directory includes configuration YAML files, which contains all the configuration settings needed to deploy Bold BI on Kubernetes cluster.
 
 ### Deployment prerequisites
 
@@ -12,7 +12,7 @@
 
 ### Steps for Bold BI auto deployment.
 
-1. Download the file for Bold BI deployment from [here](deploy/auto-deployment.zip) and unzip the file then navigate to the unziped folder.
+1. Download the file for Bold BI deployment from [here](../deploy/auto-deployment.zip) and unzip the file then navigate to the unziped folder.
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
