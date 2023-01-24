@@ -154,7 +154,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
-![ingress DNS](images/ingress_yaml.png)
+       ![ingress DNS](images/ingress_yaml.png)
 
 11. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
 
