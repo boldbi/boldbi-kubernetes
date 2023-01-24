@@ -185,7 +185,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
     
 16. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-<img src="images/deployment_yaml.png" alt="Image" style="display: block; margin: 0 auto" />
+    ![Optinal_Lib](images/optional_lib.png) 
 
 17. Now, run the following commands one by one:
 
@@ -202,4 +202,4 @@ kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 18** to access the application in the browser.
+27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 12** to access the application in the browser.
