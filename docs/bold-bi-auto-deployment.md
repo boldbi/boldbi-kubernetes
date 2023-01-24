@@ -16,6 +16,12 @@
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
+3. Run the following command to create the namespace for deploying Bold BI.
+
+    ```sh
+    kubectl apply -f namespace.yaml
+    ```
+
 3. Configure the pvclaim.yaml file based on your cluster provider.
  
     * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
