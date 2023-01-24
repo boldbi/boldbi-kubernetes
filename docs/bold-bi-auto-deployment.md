@@ -185,7 +185,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
     
 16. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
 
-<img src="images/deployment_yaml.png" alt="Image" style="display: block; margin: 0 auto" />
+    ![Optinal_Lib](images/optinal_lib.png) 
 
 17. Now, run the following commands one by one:
 
