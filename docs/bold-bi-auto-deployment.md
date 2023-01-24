@@ -65,83 +65,84 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
         
        ![branding-details](images/branding-details.png)
   
-  Environment variables for configuring `Branding` in backend
-  The following environment variables are optional. If they are not provided, Bold BI will use the default configured values.
+        ## Environment variables for configuring `Branding` in backend
 
-  <table>
-     <tr>
-        <td>
-         <b>Name</b>
-        </td>
-        <td>
-         <b>Description</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_BRANDING_MAIN_LOGO
-        </td>
-        <td>   
-         This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_BRANDING_LOGIN_LOGO
-        </td>
-        <td>     
-         This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_BRANDING_EMAIL_LOGO
-        </td>
-        <td>     
-         This is an email logo, and the preferred image size is 200 x 40 pixels.
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_BRANDING_FAVICON
-        </td>
-        <td>     
-         This is a favicon, and the preferred image size is 40 x 40 pixels. 
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_BRANDING_FOOTER_LOGO
-        </td>
-        <td>     
-         This is powered by the logo, and the preferred size is 100 x 25 pixels.
-         <br />
-         <br />
-         <b>Note:</b><br/>• All branding variables are accepted as URL.<br/>• <b>Ex:</b> https://example.com/loginlogo.jpg.<br/>• <b>Image type:</b> png, svg, jpg,   jpeg.<br/>• If you want to use custom branding, provide the value for all branding variables. If all variable values are given, the application will use the branding images, otherwise, it will take the default logos. 
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_SITE_NAME
-        </td>
-        <td>
-        This is organization name.     
-        <br />
-         If the value is not given, the site will be deployed using the default name.
-        </td>
-      </tr>
-      <tr>
-        <td>
-         BOLD_SERVICES_SITE_IDENTIFIER
-        </td>
-        <td>     
-         This is site identifier, and it will be the part of the application URL.
-        <br />
-        If the value is not given, the site will be deployed using the default value.
-        </td>
-      </tr>
-  </table>
-  <br/>
+        The following environment variables are optional. If they are not provided, Bold BI will use the default configured values.
+
+        <table>
+           <tr>
+              <td>
+               <b>Name</b>
+              </td>
+              <td>
+               <b>Description</b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_BRANDING_MAIN_LOGO
+              </td>
+              <td>   
+               This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_BRANDING_LOGIN_LOGO
+              </td>
+              <td>     
+               This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_BRANDING_EMAIL_LOGO
+              </td>
+              <td>     
+               This is an email logo, and the preferred image size is 200 x 40 pixels.
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_BRANDING_FAVICON
+              </td>
+              <td>     
+               This is a favicon, and the preferred image size is 40 x 40 pixels. 
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_BRANDING_FOOTER_LOGO
+              </td>
+              <td>     
+               This is powered by the logo, and the preferred size is 100 x 25 pixels.
+               <br />
+               <br />
+               <b>Note:</b><br/>• All branding variables are accepted as URL.<br/>• <b>Ex:</b> https://example.com/loginlogo.jpg.<br/>• <b>Image type:</b> png, svg, jpg,   jpeg.<br/>• If you want to use custom branding, provide the value for all branding variables. If all variable values are given, the application will use the branding images, otherwise, it will take the default logos. 
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_SITE_NAME
+              </td>
+              <td>
+              This is organization name.     
+              <br />
+               If the value is not given, the site will be deployed using the default name.
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_SITE_IDENTIFIER
+              </td>
+              <td>     
+               This is site identifier, and it will be the part of the application URL.
+              <br />
+              If the value is not given, the site will be deployed using the default value.
+              </td>
+            </tr>
+        </table>
+        <br/>
 
 
 
