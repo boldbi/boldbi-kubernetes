@@ -16,6 +16,12 @@
 3. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
 
     ![PV Claim](images/aks_pvclaim.png)
+    
+ 4. Now, run the following command to apply pvclaim.yaml.
+
+```sh
+kubectl apply -f pvclaim_aks.yaml
+```
   
 ## Amazon Elastic Kubernetes Service
 
@@ -29,6 +35,12 @@
 3. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
 
    ![PV Claim](images/eks_pvclaim.png)
+
+4. Now, run the following command to apply pvclaim.yaml.
+
+```sh
+kubectl apply -f pvclaim_eks.yaml
+```
 
 ## Google Kubernetes Engine
 
@@ -44,4 +56,9 @@
 
    ![PV Claim](images/gke_pvclaim.png)
 
+4. Now, run the following command to apply pvclaim.yaml.
+
+```sh
+kubectl apply -f pvclaim_gke.yaml
+```
 
