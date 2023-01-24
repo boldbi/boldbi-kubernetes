@@ -39,6 +39,7 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
     * Enter the Bold BI licence key, username, and database server details in the secrets-and-configmap.yaml file.
+        
         ![licence-and-user-details](images/licence-and-user-details.png)
 
         ## Environment variables for configuring `Application Startup` in backend
