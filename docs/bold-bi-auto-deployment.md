@@ -16,7 +16,7 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
 * [File Storage](pre-requisites.md#file-storage)
 * [Create and connect a cluster](pre-requisites.md#create-a-cluster)
-* Load Balancing- [Nginx](pre-requisites.md#load-balancing)
+* Load Balancing- [Nginx](pre-requisites.md#ingress-nginx)
 
 1. Download the files for Bold BI deployment from [here]().
 
