@@ -166,10 +166,32 @@ kubectl apply -f ingress.yaml
 ```sh
 kubectl get ingress -n bold-services
 ```
+
 Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
 ![Ingress Address](images/ingress_address.png) 
 
 13. Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
+
+14. Open the **deploy.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
+
+    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    
+15. Read the optional client library license agreement from the following link.
+
+    [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
+    
+16. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma seperated like below in the environment variable noted from the above link.
+
+<img src="images/deployment_yaml.png" alt="Image" style="display: block; margin: 0 auto" />
+
+17. Now, run the following commands one by one:
+
+```sh
+kubectl apply -f secrets-and-configmap.yaml
+
+kubectl apply -f deploy.yaml
+```
+
 
 
 
