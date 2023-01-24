@@ -7,9 +7,9 @@
 2. Encode the storage account name and storage key in base64 format.
   For encoding the values to base64 please run the following command in powershell
 
-  ```console
-  [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("<plain-text>"))
-  ```
+    ```console
+    [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("<plain-text>"))
+    ```
 
    ![File Share details](images/aks-file-storage.png)
 
