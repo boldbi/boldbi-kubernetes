@@ -16,8 +16,18 @@
 3. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
 
   ![PV Claim](images/aks_pvclaim.png)
+  
+## Amazon Elastic Kubernetes Service
 
+1. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
+    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
+2. Note the **File system ID** after creating EFS file system.
+![AWS EFS](images/aws-efs.png)
+
+3. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
+
+![PV Claim](images/eks_pvclaim.png)
 
 ## Google Kubernetes Engine
 
