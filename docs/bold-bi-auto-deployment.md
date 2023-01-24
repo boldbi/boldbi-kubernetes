@@ -10,7 +10,7 @@
 * Load Balancing- [Nginx](pre-requisites.md#ingress-nginx)
 
 
-### Steps for Bold BI auto deployment on 
+### Steps for Bold BI auto deployment.
 
 1. Download the files for Bold BI deployment from [here]().
 
