@@ -210,3 +210,4 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
 27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 12** to access the application in the browser.
 
+    ![Browser_veiw](images/Browser_veiw.png) 
