@@ -18,8 +18,8 @@
 
 3. Configure the pvclaim.yaml file based on your cluster provider.
  
-    * [Amazon Elastic Kubernetes Service (EKS)](persistent-volumes.md#azure-kubernetes-service)
-    * [Azure Kubernetes Service (AKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
+    * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
+    * [Amazon Elastic Kubernetes Service(EKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
     * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
 
 4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
