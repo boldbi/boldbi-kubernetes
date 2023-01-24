@@ -25,7 +25,7 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 
 2. Configure the pvclaim.yaml file based on your cluster provider.
 
-    * For AKS:
+* For Azure 
 
 
 
