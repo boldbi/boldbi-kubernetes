@@ -21,7 +21,7 @@
 
 1. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
   
-  https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
+   https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
 2. Note the **File system ID** after creating EFS file system.
   ![AWS EFS](images/aws-efs.png)
