@@ -96,7 +96,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        GKE Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -104,7 +104,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        EKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/aws/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -112,7 +112,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        AKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -120,7 +120,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        OnPremise
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
 </table>
