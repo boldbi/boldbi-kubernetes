@@ -42,7 +42,7 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
         
         ![licence-and-user-details](images/licence-and-user-details.png)
 
-        ## Environment variables for configuring `Application Startup` in backend
+        ## Environment variables details for configuring `Application Startup` in backend
 
         | Name                          |Required| Description   | 
         | -------------                 |----------| ------------- |
@@ -58,7 +58,12 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
         |`BOLD_SERVICES_USER_EMAIL`|Yes|It should be a valid email.|
         |`BOLD_SERVICES_USER_PASSWORD`|Yes|It should meet our password requirements.|
         
-       
+        
+        
+    *  If you want to use custom values for branding enter the branding image and site identifier variable details in the secrets-and-configmap.yaml otherwise Bold BI 
+       will take the default values.
+        
+       ![branding-details](images/branding-details.png)
 
 
 
