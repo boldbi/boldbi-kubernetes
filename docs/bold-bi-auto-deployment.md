@@ -4,7 +4,7 @@
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
-* [Deploy Bold BI using kubectl]()
+* [Deploy Bold BI using kubectl](#deployment-prerequisites)
 * [Deploy Bold BI using Helm]()
 
 ## Deploy Bold BI using kubectl
