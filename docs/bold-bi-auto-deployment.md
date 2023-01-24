@@ -25,7 +25,11 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 
 2. Configure the pvclaim.yaml file based on your cluster provider.
 
-* For Azure 
+    
+    * [Amazon Elastic Kubernetes Service (EKS)](persistent-volumes.md#azure-kubernetes-service)
+    * [Azure Kubernetes Service (AKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
+    * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
+
 
 
 
