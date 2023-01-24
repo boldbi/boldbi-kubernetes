@@ -44,8 +44,6 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 
         ## Environment variables for configuring `Application Startup` in backend
 
-        The below Environment variables are optional. If not provided a manual Application Startup configuration is needed.
-
         | Name                          |Required| Description   | 
         | -------------                 |----------| ------------- |
         |`BOLD_SERVICES_UNLOCK_KEY`|Yes|License key of Bold BI|
