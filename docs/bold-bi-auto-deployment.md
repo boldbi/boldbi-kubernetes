@@ -59,7 +59,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
-7. Enter the variable information needed to complete the auto deployment in <b>deploy.yaml</b> as shown below.
+7. Enter the variable information needed for complete the auto deployment in <b>deploy.yaml</b> as shown below.
 
     * Enter the Bold BI licence key, user, and database server details.
         
