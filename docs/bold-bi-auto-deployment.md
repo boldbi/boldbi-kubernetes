@@ -40,7 +40,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
     * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
 
 4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
-        <br/>
+
             <table>
                 <tr>
                   <td>
@@ -75,7 +75,6 @@ The following requirements are necessary to deploy the Bold BI solution using ku
                   </td>
                 </tr>
             </table>
-        <br/>
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
