@@ -28,10 +28,10 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 
 The following links explain Bold BI Kubernetes deployment in a specific cloud environments.
 
-       * [Azure Kubernetes Service(AKS)](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml)
-       * [Amazon Elastic Kubernetes Service(EKS)](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_eks.yaml)
-       * [Google Kubernetes Engine (GKE)](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_gke.yaml)
-
+       * [Azure Kubernetes Service(AKS)](bold-bi-auto-deployment.md#Bold BI on Microsoft Azure Kubernetes Service)
+       * [Amazon Elastic Kubernetes Service(EKS)]
+       * [Google Kubernetes Engine (GKE)]
+       
 ### Bold BI on Microsoft Azure Kubernetes Service
 
 1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml) to deloy Bold BI on AKS.
