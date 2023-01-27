@@ -40,8 +40,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
     * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
 
 4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
-
-    <br/>
+<br/>
          <table>
              <tr>
                <td>
@@ -56,7 +55,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
                 GKE Cluster
                </td>
                <td>
-                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
                </td>
              </tr>
              <tr>
@@ -64,7 +63,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
                 EKS Cluster
                </td>
                <td>
-                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/aws/deploy.yaml
                </td>
              </tr>
              <tr>
@@ -72,11 +71,11 @@ The following requirements are necessary to deploy the Bold BI solution using ku
                 AKS Cluster
                </td>
                <td>
-                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
                </td>
              </tr>
          </table>
-         <br/>
+<br/>
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
