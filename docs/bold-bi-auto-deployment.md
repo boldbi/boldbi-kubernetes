@@ -314,7 +314,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
-    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
     ![App_Base_Url](images/deploy/aks/app_base_url.png) 
     
@@ -628,7 +628,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
-    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
     ![App_Base_Url](images/deploy/eks/app_base_url.png) 
     
@@ -943,7 +943,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
-    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<external>`
     
     ![App_Base_Url](images/deploy/gke/app_base_url.png) 
     
