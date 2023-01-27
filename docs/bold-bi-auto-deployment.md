@@ -23,7 +23,6 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 * [Create and connect a cluster](pre-requisites.md#create-a-cluster)
 * Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/)
 
-
 ## Steps for Bold BI auto deployment using kubectl.
 
 The following links explain Bold BI Kubernetes deployment in a specific cloud environments.
@@ -31,7 +30,8 @@ The following links explain Bold BI Kubernetes deployment in a specific cloud en
     * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
     * [Amazon Elastic Kubernetes Service(EKS)](persistent-volumes.md#amazon-elastic-kubernetes-service)
     * [Google Kubernetes Engine (GKE)](persistent-volumes.md#google-kubernetes-engine)
-       
+
+
 ### Bold BI on Microsoft Azure Kubernetes Service
 
 1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml) to deloy Bold BI on AKS.
