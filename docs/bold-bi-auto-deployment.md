@@ -42,41 +42,41 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
     <br/>
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       GKE Cluster
-      </td>
-      <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
-      </td>
-    </tr>
-    <tr>
-      <td>
-       EKS Cluster
-      </td>
-      <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
-      </td>
-    </tr>
-    <tr>
-      <td>
-       AKS Cluster
-      </td>
-      <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
-      </td>
-    </tr>
-</table>
-<br/>
+         <table>
+             <tr>
+               <td>
+                <b>Name</b>
+               </td>
+               <td>
+                <b>Description</b>
+               </td>
+             </tr>
+             <tr>
+               <td>
+                GKE Cluster
+               </td>
+               <td>
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+               </td>
+             </tr>
+             <tr>
+               <td>
+                EKS Cluster
+               </td>
+               <td>
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+               </td>
+             </tr>
+             <tr>
+               <td>
+                AKS Cluster
+               </td>
+               <td>
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+               </td>
+             </tr>
+         </table>
+         <br/>
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
