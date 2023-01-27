@@ -212,7 +212,7 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
     ![Browser_veiw](images/Browser_veiw.png) 
     
-20. If you are faced any Deployment Error! Proceed to the application startup page and Please refer the following link for more details on configuring the application startup manually.
+20. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
 
