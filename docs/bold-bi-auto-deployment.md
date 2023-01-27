@@ -26,7 +26,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 
 ## Steps for Bold BI auto deployment using kubectl.
 
-1. The following links explain Bold BI Kubernetes deployment in a specific cloud environments.
+The following links explain Bold BI Kubernetes deployment in a specific cloud environments.
 
     * [Azure Kubernetes Service(AKS)](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml)
     * [Amazon Elastic Kubernetes Service(EKS)](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_eks.yaml)
@@ -154,7 +154,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
             BOLD_SERVICES_DB_ADDITIONAL_PARAMETERS: ""
           ---
         </details>
-         <br></br>
+
     *  If you want to use custom values for branding enter the branding image and site identifier variable details.otherwise Bold BI will take the default values.
         
        ![Branding-Details](images/deploy/aks/branding-details.png)
