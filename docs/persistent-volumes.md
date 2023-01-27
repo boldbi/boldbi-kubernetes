@@ -13,9 +13,9 @@
 
    ![File Share details](images/aks-file-storage.png)
 
-3. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
+3. Open **deploy_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
 
-    ![PV Claim](images/aks_pvclaim.png)
+    ![PV Claim](images/auto_aks_pvclaim.png)
     
  4. Now, run the following command to apply pvclaim.yaml.
 
@@ -32,9 +32,9 @@ kubectl apply -f pvclaim_aks.yaml
 2. Note the **File system ID** after creating EFS file system.
   ![AWS EFS](images/aws-efs.png)
 
-3. Open **pvclaim_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
+3. Open **deploy_eks.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
 
-   ![PV Claim](images/eks_pvclaim.png)
+   ![PV Claim](images/auto_eks_pvclaim.png)
 
 4. Now, run the following command to apply pvclaim.yaml.
 
@@ -52,9 +52,9 @@ kubectl apply -f pvclaim_eks.yaml
 
    ![File Share details](images/gke_file_share_details.png)
 
-3. Open **pvclaim_gke.yaml** file, downloaded in **Step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+3. Open **deploy_gke.yaml** file, downloaded in **Step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
 
-   ![PV Claim](images/gke_pvclaim.png)
+   ![PV Claim](images/auto_gke_pvclaim.png)
 
 4. Now, run the following command to apply pvclaim.yaml.
 
