@@ -167,13 +167,6 @@ The following requirements are necessary to deploy the Bold BI solution using ku
         </table>
         <br/>
         
-        <details>
-           <summary>
-             <span style="color:green">Click to expand</span>
-           </summary>
-           <span style="color:blue"> details</span>
-         </details>
-        
         
     * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for               `widget_bing_map_api_key`.
        
