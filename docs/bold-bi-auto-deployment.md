@@ -281,13 +281,15 @@ The following requirements are necessary to deploy the Bold BI solution using ku
            
     * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for               `widget_bing_map_api_key`.
        
-       ![Enable-Bingmap](images/deploy/aks/enable-bingmap.png)
+       ![Enable-Bingmap](images/deploy/aks/bingmap_enable.png)
 
 6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
 
 7. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1442**.
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
+      ![DNS](images/deploy/aks/ingress_http_yaml.png)
+
+8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 12**.
 
 9.  Run the following command to create a TLS secret with your SSL certificate.
 
@@ -306,7 +308,7 @@ kubectl get svc -n ingress-nginx
 ```
 
 Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image.
-![Ingress Address](images/deploy/ingress_address.png) 
+![Ingress Address](images/deploy/aks/ingress_address.png) 
 
 13. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
 
@@ -322,20 +324,20 @@ Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown
     
 16. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
 
-    ![Optinal_Lib](images/optional_lib.png) 
+    ![Optinal_Lib](images/deploy/aks/optional_lib.png) 
 
 17. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
-   ```sh
-   kubectl apply -f deploy.yaml
-   ```
+    ```sh
+    kubectl apply -f deploy.yaml
+    ```
 
 18. Use the following command to get the pods status.
 
-   ```sh
-   kubectl get pods -n bold-services
-   ```
-![Pod status](images/pod_status.png) 
+     ```sh
+    kubectl get pods -n bold-services
+     ```
+    ![Pod status](images/pod_status.png) 
 
 19. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from **Step 12** to access the application in the browser.
 
