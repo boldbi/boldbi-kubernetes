@@ -104,7 +104,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
           type: Opaque
           stringData:
             # It should be a valid email.
-            **BOLD_SERVICES_USER_EMAIL: "admin@boldbi.com"**
+            BOLD_SERVICES_USER_EMAIL: "admin@boldbi.com"
 
             # It should meet our password requirements.
             BOLD_SERVICES_USER_PASSWORD: "Admin@123"
