@@ -289,7 +289,7 @@ The following links explain Bold BI Kubernetes deployment in a specific cloud en
 
       ![DNS](images/deploy/aks/ingress_http_yaml.png)
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 12**.
+8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
 
 9.  Run the following command to create a TLS secret with your SSL certificate.
 
@@ -301,45 +301,44 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
        ![ingress DNS](images/deploy/aks/ingress_yaml.png)
 
-12. Now, run the following command to get the ingress IP address.
+11. Now, run the following command to get the ingress IP address.
 
-```sh
-kubectl get svc -n ingress-nginx
-```
+      ```sh
+      kubectl get svc -n ingress-nginx
+      ```
+      Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
+      ![Ingress Address](images/deploy/aks/ingress_address.png) 
 
-Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image.
-![Ingress Address](images/deploy/aks/ingress_address.png) 
+12. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
 
-13. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
-
-14. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<ingress_ip_address>`
     
     ![App_Base_Url](images/deploy/aks/app_base_url.png) 
     
-15. Read the optional client library license agreement from the following link.
+14. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-16. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
+15. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
 
     ![Optinal_Lib](images/deploy/aks/optional_lib.png) 
 
-17. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+16. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
     kubectl apply -f deploy.yaml
     ```
 
-18. Use the following command to get the pods status.
+17. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](images/deploy/pod_status.png) 
 
-19. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
+18. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
     
      ```sh
     kubectl get ingress -n bold-services
@@ -348,7 +347,7 @@ Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown
 
     ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
-20. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
+19. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
     
