@@ -337,11 +337,16 @@ Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown
      ```sh
     kubectl get pods -n bold-services
      ```
-    ![Pod status](images/pod_status.png) 
+    ![Pod status](images/deploy/pod_status.png) 
 
-19. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from **Step 12** to access the application in the browser.
+19. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
+    
+     ```sh
+    kubectl get ingress -n bold-services
+    ```
+    ![Ingress Address](images/deploy/aks/ingress.png)
 
-    ![Browser_veiw](images/Browser_veiw.png) 
+    ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
 20. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
     
