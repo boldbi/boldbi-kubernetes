@@ -76,9 +76,9 @@ The following requirements are necessary to deploy the Bold BI solution using ku
                 </tr>
             </table>
             </br>
-5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
+5. Enter the variable information needed to complete the auto deployment in <b>deploy.yaml</b> as shown below.
 
-    * Enter the Bold BI licence key, username, and database server details.
+    * Enter the Bold BI licence key, user, and database server details.
         
         ![Licence-and-User-Details](images/licence-and-user-details.png)
 
