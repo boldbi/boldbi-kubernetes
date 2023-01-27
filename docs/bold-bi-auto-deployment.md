@@ -1,6 +1,6 @@
 # Bold BI auto deployment using kubectl on Kubernetes Service
 
-This section helps you to deploy Bold BI](https://www.boldbi.com/) in Kubernetes without manually activating licensing and configuring startup from the browser. This also helps us to customize the branding using environment variables.
+This section helps you to deploy [Bold BI](https://www.boldbi.com/) in Kubernetes without manually activating licensing and configuring startup from the browser. This also helps us to customize the branding using environment variables.
 
 ## Deployment Methods
 
