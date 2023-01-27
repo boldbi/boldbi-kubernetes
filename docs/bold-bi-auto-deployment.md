@@ -27,9 +27,9 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 
 1. Download the file for Bold BI deployment based on your cluster provider.
 
-    * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
-    * [Amazon Elastic Kubernetes Service(EKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
-    * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
+    * [Azure Kubernetes Service(AKS)](../deploy/auto-deployment/deploy_aks.yaml)
+    * [Amazon Elastic Kubernetes Service(EKS)](../deploy/auto-deployment/deploy_eks.yaml)
+    * [Google Kubernetes Engine (GKE)](../deploy/auto-deployment/deploy_gke.yaml)
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
