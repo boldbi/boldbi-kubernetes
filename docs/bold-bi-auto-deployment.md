@@ -84,7 +84,7 @@ The following requirements are necessary to deploy the Bold BI solution using ku
 
         <details>
           <summary>
-            Example for above environment variables:{color=red} 
+            Example for above environment variables: 
           </summary>
 
           apiVersion: v1
