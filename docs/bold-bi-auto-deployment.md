@@ -11,30 +11,29 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
    
 
 ## Deploy Bold BI using kubectl
-
-
+The below steps helps you do deploy Bold BI using kubectl in a kubernetes cluster.
 
 ### Deployment prerequisites
+
+The following requirements are necessary to deploy the Bold BI solution using kubectl. 
 
 * [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) to deploy Bold BI using kubectl.
 * [File Storage](pre-requisites.md#file-storage)
 * [Create and connect a cluster](pre-requisites.md#create-a-cluster)
-* Load Balancing- [Nginx](pre-requisites.md#ingress-nginx)
+* Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/)
 
 
 ### Steps for Bold BI auto deployment using kubectl.
 
-1. Download the file for Bold BI deployment from [here](../deploy/auto-deployment.zip) and unzip the file then navigate to the unziped folder.
+1. Download the file for Bold BI deployment based on your cluster provider.
+
+    * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
+    * [Amazon Elastic Kubernetes Service(EKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
+    * [Google Kubernetes Engine (GKE)](persistent-volumes.mdpersistent-volumes.md#google-kubernetes-engine)
 
 2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
 
-3. Run the following command to create the namespace for deploying Bold BI.
-
-    ```sh
-    kubectl apply -f namespace.yaml
-    ```
-
-3. Configure the pvclaim.yaml file based on your cluster provider.
+3. Refer to the below link to configure the persistent volume based on your cluster provider.
  
     * [Azure Kubernetes Service(AKS)](persistent-volumes.md#azure-kubernetes-service)
     * [Amazon Elastic Kubernetes Service(EKS)](persistent-volumes.mdpersistent-volumes.md#amazon-elastic-kubernetes-service)
@@ -42,9 +41,42 @@ There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to 
 
 4. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
-    ```sh
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
-    ``` 
+    <br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       GKE Cluster
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+      </td>
+    </tr>
+    <tr>
+      <td>
+       EKS Cluster
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+      </td>
+    </tr>
+    <tr>
+      <td>
+       AKS Cluster
+      </td>
+      <td>
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
+      </td>
+    </tr>
+</table>
+<br/>
 
 5. Enter the variable information needed to complete the auto deployment in <b>secrets-and-configmap.yaml</b> as shown below.
 
