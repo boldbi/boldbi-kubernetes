@@ -353,8 +353,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     https://help.boldbi.com/embedded-bi/application-startup
     
     
-
-
+### Bold BI on Amazon Elastic Kubernetes Service
 
 1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml) to deloy Bold BI on AKS.
 
