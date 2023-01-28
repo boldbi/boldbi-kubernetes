@@ -422,3 +422,13 @@ bingMapWidget:
 ```
 
 > **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`
+
+## Custom Locale Path
+
+Localization is adapting a website into different linguistic and cultural contexts - involving much more than the simple text translation.By default, the Bold BI application is available in English(en-US) localization.
+If you have generated locale.js file. mention the path of the file for <locale.js_file_path> .
+
+```console
+localization:
+  customLocalePath: '<locale.js_file_path>'
+```
