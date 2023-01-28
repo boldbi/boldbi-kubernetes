@@ -73,7 +73,6 @@ The below table helps you to change the needed values for Bold BI deployment. so
        Domain with http/https protocol.
        <br/>
        Ex: `http://example.com`, `https://example.com`
-       
        Follow the <a href='configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol.
       </td>
     </tr>
