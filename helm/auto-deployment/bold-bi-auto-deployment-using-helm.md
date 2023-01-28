@@ -99,7 +99,7 @@ The below table helps you to change the needed values for Bold BI deployment. so
     </tr>
     <tr>
       <td>
-       persistentVolume *
+       persistentVolume*
       </td>
       <td>
        This is a file storage information to store the shared folders for application usage.
