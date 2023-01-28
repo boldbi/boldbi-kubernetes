@@ -5,9 +5,9 @@ This helm chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You c
 ## Deployment prerequisites
 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
-* [File Storage](docs/pre-requisites.md#file-storage)
-* [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
-* [Load Balancing](docs/pre-requisites.md#load-balancing)
+* [File Storage](../docs/pre-requisites.md#file-storage)
+* [Create and connect a cluster](../docs/pre-requisites.md#create-a-cluster)
+* [Load Balancing](../docs/pre-requisites.md#load-balancing)
 
 **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to crafting values.yaml when installing Bold BI with helm chart.
 
