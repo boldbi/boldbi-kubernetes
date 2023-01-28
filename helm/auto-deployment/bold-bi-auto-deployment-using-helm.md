@@ -136,7 +136,7 @@ The below table helps you to change the needed values for Bold BI deployment. so
       </td>
       <td>
        Custom locale file path for Localization.
-       Please refer to <a href='configuration.md#custom-locale-path'>this</a> section to configure Bing Map Widget in Bold BI.
+       Please refer to <a href='configuration.md#custom-locale-path'>this</a> section to configure Custom Locale Path in Bold BI.
       </td>
     </tr>
     </table>
