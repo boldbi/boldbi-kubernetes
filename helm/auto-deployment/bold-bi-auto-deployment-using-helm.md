@@ -245,7 +245,7 @@ The following environment variables helps us to customize the branding.
     </tr>
     <tr>
       <td>
-       mainLogo
+       mainLogo *
       </td>
       <td>   
        This is header logo for the applicationand the preferred image size is 40 x 40 pixels.
@@ -253,7 +253,7 @@ The following environment variables helps us to customize the branding.
     </tr>
     <tr>
       <td>
-       loginLogo
+       loginLogo *
       </td>
       <td>     
        This is login logo for the application and the preferred image size is 200 x 40 pixels.
@@ -261,7 +261,7 @@ The following environment variables helps us to customize the branding.
     </tr>
     <tr>
       <td>
-       emailLogo
+       emailLogo *
       </td>
       <td>     
        This is email logo, and the preferred image size is 200 x 40 pixels.
@@ -269,7 +269,7 @@ The following environment variables helps us to customize the branding.
     </tr>
     <tr>
       <td>
-       favicon
+       favicon *
       </td>
       <td>     
        This is favicon and the preferred image size is 40 x 40 pixels. 
@@ -277,7 +277,7 @@ The following environment variables helps us to customize the branding.
     </tr>
     <tr>
       <td>
-       footerLogo
+       footerLogo *
       </td>
       <td>     
        This is powered by logo and the preferred size is 100 x 25 pixels.
