@@ -41,7 +41,7 @@ kubectl create ns bold-services
 
 ## Install Chart
 
-For Helm chart, you'll need to craft a `values.yaml`file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/values.yaml) and make needed changes based on your cluster provider. 
+For Helm chart, you'll need to craft a `values.yaml`file. So download the values.yaml file from [here](../custom-values/values.yaml) and make needed changes based on your cluster provider. 
 
 The below table helps you to craft he values.yaml file with required values for Bold BI deployment. so please read the describtion carfully and enter the values in values. yaml file.
 
