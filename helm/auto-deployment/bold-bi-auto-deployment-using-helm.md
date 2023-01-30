@@ -437,11 +437,3 @@ Ex:  `helm uninstall boldbi`
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
 _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
-
-## Application Startup
-
-Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
-    
-https://help.boldbi.com/embedded-bi/application-startup
-
-
