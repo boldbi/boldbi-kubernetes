@@ -110,14 +110,21 @@ autoscaling:
     percentValue: 10
     percentPeriodSeconds: 60
 
+## Bold BI Bing Map Secrets
+bingMapWidget:
+  enabled: false
+  apiKey: ''
+ 
 ## Custom Localization
 localization:
   customLocalePath: ''
 
-## Bold BI Secrets
-bingMapWidget:
-  enabled: false
-  apiKey: ''
+## Secrets for Bold BI Auto Deployment.
+# This section helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
+
+licenseKeyDetails:
+  #  The Bold BI licnece key which you have purchesed.
+  licenseKey: ""
 
 rootUserDetails:
   email: ""
@@ -160,24 +167,28 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+  
+# Environmental Variables For Application Branding.
+# This environment variables helps us to customize the branding.
  
 brandingDetails:
-
-  main_logo:  ""
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
   
-  login_logo:  ""
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
   
-  email_logo:  ""
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
   
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  footer_logo:  ""
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
   
-  site_name: ""
+  # This is organization name.
+  siteName: ""
   
-  site_identifier: ""
-  
-  
-  licenseKeyDetails:
-  #  The Bold BI licnece key which you have purchesed.
-  licenseKey: ""
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
