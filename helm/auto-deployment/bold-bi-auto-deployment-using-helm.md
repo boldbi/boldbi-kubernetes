@@ -142,6 +142,8 @@ The below table helps you to craft he values.yaml file with required values for 
     </table>
 <br/>
 
+> **Note:** Items marked with `*` are mandatory fields in values.yaml
+
 ## Environment variables for configuring Branding in backend
 
 This following environment variables helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
@@ -230,6 +232,64 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
 </table>
 <br/>
 
+> **Note:** Items marked with `*` are mandatory fields in values.yaml
+
+<details>
+          <summary>
+            <span style="color:blue"> Example for above environment variables:</span>  
+          </summary>
+
+            ## Secrets for Bold BI Auto Deployment.
+            # This section helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.  
+  
+            licenseKeyDetails:
+              #  The Bold BI licnece key which you have purchesed.
+              licenseKey: "@332e332e30fgfTa4NmxTdRataMFgre/GC5AyCj+BHVoCO4ax6M61s=eyJFbWFpbCI6"
+
+            rootUserDetails:
+              email: "admin@boldbi.com"
+              password: "Admin@123"
+
+            databaseServerDetails:
+              # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+              dbType: "postgresql"
+
+              # Name of the Database Server
+              dbHost: "boldbi-docker.postgres.database.azure.com"
+
+              # The system will use the following default port numbers based on the database server type.
+              # PostgrSQL – 5432 and MySQL -3306
+              # Please specify the port number for your database server if it is configured on a different port.
+              # For MS SQL Server, this parameter is not necessary.
+              dbPort: "5432"
+
+              # Username for the database server
+              # Please refer to this documentation for information on the user's permissions.
+              # https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/
+              dbUser: "boldbi@boldbi"
+
+              # The database user's password
+              dbPassword: "F8o:z$jasoKkel"
+
+              # If the database name is not specified, the system will create a new database called bold services.
+              # If you specify a database name, it should already exist on the server.
+              dbName: ""
+
+              # For PostgreSQL DB Servers, this is an optional parameter.
+              # The system will use the database name postgresql by default.
+              # If your database server uses a different default database, please provide it here.
+              maintenanceDB: "postgres"
+
+              # If your database server requires additional connection string parameters, include them here
+              # Connection string parameters can be found in the official document.
+              # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
+              # PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html
+              # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+              # Note: A semicolon(;) should be used to separate multiple parameters.
+              dbAdditionalParameters: ""
+    
+        </details>
+
 ## Environment variables for configuring Branding in backend
 
 The following environment variables helps us to customize the branding.
@@ -309,8 +369,40 @@ The following environment variables helps us to customize the branding.
 </table>
 <br/>
 
-
 > **Note:** Items marked with `*` are mandatory fields in values.yaml
+
+<details>
+          <summary>
+            <span style="color:blue"> Example for above environment variables:</span>  
+          </summary>
+
+            # Environment Variables For Application Branding.
+            # This environment variables helps us to customize the branding.  
+
+            brandingDetails:
+
+              # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+              main_logo:  https://i.postimg.cc/6pJTRr8W/autumn-fall-nature-scene-autumnal-park-beautiful-77869343-1.jpg
+
+              # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+              login_logo:  https://i.postimg.cc/6pJTRr8W/autumn-fall-nature-scene-autumnal-park-beautiful-77869343-1.jpg
+
+              # This is an email logo, and the preferred image size is 200 x 40 pixels.
+              email_logo:  https://i.postimg.cc/6pJTRr8W/autumn-fall-nature-scene-autumnal-park-beautiful-77869343-1.jpg
+
+              # This is a favicon, and the preferred image size is 40 x 40 pixels.
+              favicon:  https://i.postimg.cc/6pJTRr8W/autumn-fall-nature-scene-autumnal-park-beautiful-77869343-1.jpg
+
+              # This is powered by the logo, and the preferred size is 100 x 25 pixels.  
+              footer_logo:  https://i.postimg.cc/6pJTRr8W/autumn-fall-nature-scene-autumnal-park-beautiful-77869343-1.jpg
+
+              # This is organization name. 
+              site_name: Autodeployment
+
+              # This is site identifier, and it will be the part of the application URL.
+              site_identifier: Branding
+    
+        </details>
 
 Run the following command to delpoy Bold BI in your cluster.
 
