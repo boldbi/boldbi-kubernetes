@@ -401,8 +401,7 @@ The following environment variables helps us to customize the branding.
 
               # This is site identifier, and it will be the part of the application URL.
               site_identifier: Branding
-    
-        </details>
+</details>
 
 Run the following command to delpoy Bold BI in your cluster.
 
