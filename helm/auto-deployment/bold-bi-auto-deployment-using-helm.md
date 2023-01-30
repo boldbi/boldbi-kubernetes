@@ -1,6 +1,5 @@
-# Deploy Bold BI Auto Deployment using Helm
-
-This helm chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE,AKS and EKS). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
+# Bold BI Auto Deployment using Helm
+This section helps you to deploy [Bold BI](https://www.boldbi.com/) using helm chart without manually activating license and configuring the startup from browser. You can pass the license, startup and branding related customization as environment variable in values.yaml file.
 
 ## Deployment prerequisites
 
