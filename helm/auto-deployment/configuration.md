@@ -14,6 +14,16 @@ Read the optional client library license agreement from the following link.
 
 If you wish to inlcude only specific client libraries note the optional client libraries from the above link as comma separated names in your values.yaml file.
 
+## Cluster Provider
+
+Bold BI supports Azure Kubernetes Service (AKS), Elastic Kubernetes Service (EKS) and Google Kubernetes Engine (GKE) you can enter the value based on your cluster provider.
+
+```console
+# your cluster provider name.The supported values are aks,gke,eks.
+clusterProvider: ''
+```
+
+
 ## Persistent Volume
 
 ### Name
