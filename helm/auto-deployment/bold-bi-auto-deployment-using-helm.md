@@ -253,7 +253,7 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
             databaseServerDetails:
               # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
               dbType: "postgresql"
-
+               <font color="red">This is some text!</font>
               # Name of the Database Server
               dbHost: "boldbi-docker.postgres.database.azure.com"
 
