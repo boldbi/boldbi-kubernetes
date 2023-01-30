@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cluster-issuer
+  #namesapce: istio-system
+spec:
+  acme:
+    email: <Your_valid_email_address> # Do not use example.com domain email. Cert-Manager will not issue Certificate even if other configurations are correct
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      # Secret resource that will be used to store the account's private key.
+      name: cluster-issuer
+    solvers:
+    - http01:
+        ingress:
+          class: istio
