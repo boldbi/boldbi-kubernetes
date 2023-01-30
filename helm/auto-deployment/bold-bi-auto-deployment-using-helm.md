@@ -410,8 +410,6 @@ helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
 Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
 
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
-
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
 ## Upgrade
