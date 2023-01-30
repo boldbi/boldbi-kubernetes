@@ -4,6 +4,7 @@
 namespace: bold-services
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+# your cluster provider name.The supported values are aks,gke and eks.
 clusterProvider: ''
 
 persistentVolume:
