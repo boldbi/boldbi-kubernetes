@@ -168,7 +168,7 @@ databaseServerDetails:
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
   
-# Environmental Variables For Application Branding.
+# Environment Variables For Application Branding.
 # This environment variables helps us to customize the branding.
  
 brandingDetails:
