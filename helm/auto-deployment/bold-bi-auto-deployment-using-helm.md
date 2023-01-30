@@ -232,6 +232,8 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
 
 ## Environment variables for configuring Branding in backend
 
+The following environment variables helps us to customize the branding.
+
 <table>
    <tr>
       <td>
