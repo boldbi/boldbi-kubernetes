@@ -19,7 +19,7 @@ If you wish to inlcude only specific client libraries note the optional client l
 Bold BI supports Azure Kubernetes Service (AKS), Elastic Kubernetes Service (EKS) and Google Kubernetes Engine (GKE) you can enter the value based on your cluster provider.
 
 ```console
-# your cluster provider name.The supported values are aks,gke,eks.
+# your cluster provider name.The supported values are aks,gke and eks.
 clusterProvider: ''
 ```
 
