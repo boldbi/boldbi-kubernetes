@@ -287,8 +287,8 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
               # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
               # Note: A semicolon(;) should be used to separate multiple parameters.
               dbAdditionalParameters: ""
-    
-        </details>
+
+</details>
 
 ## Environment variables for configuring Branding in backend
 
