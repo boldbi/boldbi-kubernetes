@@ -163,7 +163,7 @@ The following environment variables are optional. If not provided, a manual Appl
        password *
       </td>
       <td>
-       It should meet our password requirements. <br /> <br />**Note:** <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
+       It should meet our password requirements. <br /> <br />Note: <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
       </td>
     </tr>
     <tr>
