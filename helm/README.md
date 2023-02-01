@@ -160,7 +160,7 @@ The following environment variables are optional. If not provided, a manual Appl
     </tr>
     <tr>
       <td>
-       password
+       password *
       </td>
       <td>
        It should meet our password requirements.
