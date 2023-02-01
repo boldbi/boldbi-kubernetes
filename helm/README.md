@@ -152,6 +152,22 @@ The following environment variables are optional. If not provided, a manual Appl
     </tr>
     <tr>
       <td>
+       email *
+      </td>
+      <td>
+       It should be a valid email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       password
+      </td>
+      <td>
+       It should meet our password requirements.
+      </td>
+    </tr>
+    <tr>
+      <td>
        dbType *
       </td>
       <td>
