@@ -38,7 +38,7 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 			
 2. Download the <b>nginx-issuer.yaml</b> file from [here](../../ssl-configuration/nginx-issuer.yaml) and replace the <Your_valid_email_address> with valid email id.
 
-	![Nginx-Issuer](images/nginx-issuer.png)
+	![Nginx-Issuer](../images/faq/nginx-issuer.png)
 
 3. Apply the nginx-issuer.yaml file and ensure whether the issuer is applied successfully by running the following command.
 
