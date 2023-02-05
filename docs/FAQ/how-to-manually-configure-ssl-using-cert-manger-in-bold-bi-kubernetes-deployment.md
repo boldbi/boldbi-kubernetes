@@ -11,21 +11,21 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 
 1. To deploy the Cert-manager in your cluster create a namespace and deploy it using helm or kubectl.
 
-	Command for create namespace
+	Command for create namespace:
 	
 	```console
 	kubectl create ns cert-manager
 	
 	```
 	
-	Command for deploy Cert-manager using helm
+	Command for deploy Cert-manager using helm:
 	
 	```console
 	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
 	
 	```
 	
-	Command for deploy Cert-manager using kubectl
+	Command for deploy Cert-manager using kubectl:
 	
 	```console
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
@@ -66,18 +66,18 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 
 1. To deploy the Cert-manager in your cluster create a namespace and deploy it using helm or kubectl.
 
-	Command for create namespace
+	Command for create namespace:
 	
 	```console
 	kubectl  create ns cert-manager
 	```
-	Command for deploy Cert-manager using helm
+	Command for deploy Cert-manager using helm:
 	
 	```console
 	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
 	```
 	
-	Command for deploy Cert-manager using kubectl
+	Command for deploy Cert-manager using kubectl:
 	
 	```console
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
@@ -113,7 +113,3 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 
 5. After save the above changes you can access the Bold BI site using secure https protocol.If you can't please browse the URL in another private window and check it once again.
 
-
-
-	
-	
