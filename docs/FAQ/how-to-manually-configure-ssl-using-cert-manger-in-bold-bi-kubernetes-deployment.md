@@ -48,7 +48,7 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	Kubectl get issuer -n bold-services
 	```
 	
-	![Ensure-Issuer](images/ensure-issuer.png)
+	![Ensure-Issuer](../images/faq/ensure-issuer.png)
 
 4. By using the following command edit the ingress and include the annotation `cert-manager.io/issuer: "letsencrypt-prod"` as shown below and save the changes.
 
@@ -56,7 +56,7 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	kubectl edit ingress -n bold-services
 	```
 
-	![Nginx-Annotation](images/nginx-annotation.png)
+	![Nginx-Annotation](../images/faq/nginx-annotation.png)
 
 5. After save the above changes you can access the Bold BI site using secure https protocol.If you can't please browse the URL in another private window and check it once again.
 
