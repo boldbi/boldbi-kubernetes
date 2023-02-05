@@ -82,7 +82,7 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	
 2. Download the <b>istio-cert-issuer.yaml</b> file from [here](../../ssl-configuration/istio-cert-issuer.yaml) and replace the <Your_valid_email_address> with valid email id and <domain_name> with your domain name which you have used for boldbi deployment.
 
-	![Istio-Cert-Issuer](images/istio-cert-issuer.png)
+	![Istio-Cert-Issuer](../images/faq/istio-cert-issuer.png)
 
 3. Apply the istio-cert-issuer.yaml file and ensure whether the issuer is applied successfully by running the following command.
 
