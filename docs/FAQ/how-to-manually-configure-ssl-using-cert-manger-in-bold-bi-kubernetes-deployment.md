@@ -2,9 +2,9 @@
 
 This section describe how to manually configure ssl using cert manager on kubernetes. Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer the below links for configure ssl based on your load balancer.
 
-* [Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Nginx](#)
+* [Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Nginx](#configure-ssl-using-cert-mnager-in-bold-bi-kubernetes-deployment-with-Nginx)
 
-* [Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Isito]()
+* [Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Isito](#Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with istio)
 
 ## Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Nginx
 
