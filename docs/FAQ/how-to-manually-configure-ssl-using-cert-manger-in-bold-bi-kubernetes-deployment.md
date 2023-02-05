@@ -11,13 +11,6 @@ This section describe how to manually configure ssl using cert manager on kubern
 Follow the below steps to configure ssl when using Nginx load balancer in Bold BI kubernetes deployment.
 
 1. To deploy the Cert-manager in your cluster create a namespace and deploy it using helm or kubectl.
-
-	Command for create namespace:
-	
-	```console
-	kubectl create ns cert-manager
-	
-	```
 	
 	Command for deploy Cert-manager using helm:
 	
@@ -26,6 +19,11 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	
 	```
 	
+	Command for create namespace:
+	
+	```console
+	kubectl create ns cert-manager
+
 	Command for deploy Cert-manager using kubectl:
 	
 	```console
@@ -67,15 +65,16 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 
 1. To deploy the Cert-manager in your cluster create a namespace and deploy it using helm or kubectl.
 
-	Command for create namespace:
-	
-	```console
-	kubectl  create ns cert-manager
-	```
 	Command for deploy Cert-manager using helm:
 	
 	```console
 	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
+	```
+	
+	Command for create namespace:
+	
+	```console
+	kubectl  create ns cert-manager
 	```
 	
 	Command for deploy Cert-manager using kubectl:
