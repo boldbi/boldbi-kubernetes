@@ -103,6 +103,7 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	```console
 	Kubectl edit gateway -n bold-services
 	```
+	![Gateway-Changes](../images/faq/gateway-changes.png)
 
 5. After save the above changes you can access the Bold BI site using secure https protocol.If you can't please browse the URL in another private window and check it once again.
 
