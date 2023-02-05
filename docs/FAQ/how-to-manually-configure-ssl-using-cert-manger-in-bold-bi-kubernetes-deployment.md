@@ -18,15 +18,12 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
 	
 	```
-	
-	Command for create namespace:
-	
-	```console
-	kubectl create ns cert-manager
 
 	Command for deploy Cert-manager using kubectl:
 	
 	```console
+	kubectl create ns cert-manager
+	
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
 	
 	kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
@@ -71,15 +68,11 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
 	```
 	
-	Command for create namespace:
-	
-	```console
-	kubectl  create ns cert-manager
-	```
-	
 	Command for deploy Cert-manager using kubectl:
 	
 	```console
+	kubectl create ns cert-manager
+	
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
 	
 	kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
