@@ -36,7 +36,7 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	
 	**Note:** After successfully deployed the Cert-manager Make sure the Cert-manager pods are running state by running the below command `kubectl get pods -n cert-manager`
 			
-2. Download the <b>nginx-issuer.yaml</b> file from [here](../ssl-configuration/nginx-issuer.yaml) and replace the <Your_valid_email_address> with valid email id.
+2. Download the <b>nginx-issuer.yaml</b> file from [here](../../ssl-configuration/nginx-issuer.yaml) and replace the <Your_valid_email_address> with valid email id.
 
 	![Nginx-Issuer](images/nginx-issuer.png)
 
@@ -88,7 +88,7 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 		
 	**Note:** After successfully deployed the Cert-manager Make sure the Cert-manager pods are running state by running the below command `kubectl get pods -n cert-manager`
 	
-2. Download the <b>istio-cert-issuer.yaml</b> file from [here]() and replace the <Your_valid_email_address> with valid email id and <domain_name> with your domain name which you have used for boldbi deployment.
+2. Download the <b>istio-cert-issuer.yaml</b> file from [here](../../ssl-configuration/istio-cert-issuer.yaml) and replace the <Your_valid_email_address> with valid email id and <domain_name> with your domain name which you have used for boldbi deployment.
 
 	![Istio-Cert-Issuer](images/istio-cert-issuer.png)
 
