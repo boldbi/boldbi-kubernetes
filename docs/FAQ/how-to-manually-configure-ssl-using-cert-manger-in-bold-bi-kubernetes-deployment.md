@@ -15,6 +15,14 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	
 	```console
 	kubectl create ns cert-manager
+	
+	```
+	
+	Command for deploy Cert-manager using helm
+	
+	```console
+	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
+	
 	```
 	
 	Command for deploy Cert-manager using kubectl
@@ -23,12 +31,6 @@ Follow the below steps to configure ssl when using Nginx load balancer in Bold B
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
 	
 	kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
-	```
-	
-	Command for deploy Cert-manager using helm
-	
-	```console
-	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
 	```
 	
 	**Note:** After successfully deployed the Cert-manager Make sure the Cert-manager pods are running state by running the below command `kubectl get pods -n cert-manager`
@@ -69,19 +71,20 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	```console
 	kubectl  create ns cert-manager
 	```
+	Command for deploy Cert-manager using helm
+	
+	```console
+	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
+	```
 	
 	Command for deploy Cert-manager using kubectl
+	
 	```console
 	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.2/cert-manager.crds.yaml
 	
 	kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
 	```
-	
-	Command for deploy Cert-manager using helm
-	```console
-	helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.10.0 --set installCRDs=true --set global.leaderElection.namespace=cert-manager
-	```
-	
+		
 	**Note:** After successfully deployed the Cert-manager Make sure the Cert-manager pods are running state by running the below command `kubectl get pods -n cert-manager`
 	
 2. Download the <b>istio-cert-issuer.yaml</b> file from [here]() and replace the <Your_valid_email_address> with valid email id and <domain_name> with your domain name which you have used for boldbi deployment.
