@@ -94,9 +94,9 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	Kubectl get certificate -n istio-system
 	```
 	
-	![Ensure-Clusterissuer](images/ensure-Clusterissuer.png)
+	![Ensure-Clusterissuer](../images/faq/ensure-Clusterissuer.png)
 	
-	![Ensure-Certificate](images/ensure-Certificate.png)
+	![Ensure-Certificate](../images/faq/ensure-Certificate.png)
 
 4. Edit the Bold BI gateway file with the created secret name by running the following command.
 
