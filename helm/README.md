@@ -55,7 +55,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        namespace
       </td>
       <td>
-       The namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.<br/>
+       The namespace in which the Bold BI resources will be deployed in the kubernetes cluster.<br/>
        The default namespace is <i>bold-services</i>
       </td>
     </tr>
