@@ -36,13 +36,13 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
 
 1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml) to deploy Bold BI on AKS.
 
-2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
-3. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
+3. Create a File share instance in your storage account and note the File share name to store the shared folders for application use.
 
 4. Encode the storage account name and storage key in base64 format.
   
-   For encoding the values to base64 please run the following command in powershell
+   Run the following command in PowerShell to encode the values to base64.
 
     ```console
     [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("<plain-text>"))
@@ -50,7 +50,7 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
 
    ![File Share details](images/deploy/aks/aks-file-storage.png)
 
-5. Open **deploy_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** which are noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
+5. Open deploy_aks.yaml file downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name**, in the file with `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>`, respectively. You can also change the storage size in the YAML file.
 
     ![PV Claim](images/deploy/aks/pv_claim.png)
 
@@ -60,13 +60,13 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
    ```
 
-7. Enter the variable information needed for complete the auto deployment in <b>deploy_aks.yaml</b> file as shown below.
+7. Enter the variable information needed to complete the auto-deployment in `deploy_aks.yaml` file, as shown in the following image.
 
-    * Enter the Bold BI licence key, user and database server details.
+    * Enter the Bold BI license key, user, and database server details.
         
         ![Licence-and-User-Details](images/deploy/aks/licence-and-user-details.png)
 
-        ## Environment variables details for configuring `Application Startup` in backend
+        ## Environment variables details for configuring `Application Startup` in the backend.
 
         | Name                          |Required| Description   | 
         | -------------                 |----------| ------------- |
@@ -155,7 +155,7 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
           ---
         </details>
 
-    *  If you want to use custom values for branding enter the branding image and site identifier variable details.otherwise Bold BI will take the default values.
+    *  If you want to use custom values for branding, enter the branding image and site identifier variable details. Otherwise Bold BI will take the default values.
         
        ![Branding-Details](images/deploy/aks/branding-details.png)
   
@@ -279,29 +279,29 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
         </details>
 
            
-    * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key`.
+    * If you need to use the **Bing Map** widget feature, enter the value for `widget_bing_map_enable` environment variable as `true` and the API key value for `widget_bing_map_api_key`.
        
        ![Enable-Bingmap](images/deploy/aks/bingmap_enable.png)
 
-6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
+8. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-7. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1442**.
+9. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1442**.
 
       ![DNS](images/deploy/aks/ingress_http_yaml.png)
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
+10. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
 
-9.  Run the following command to create a TLS secret with your SSL certificate.
+11.  Run the following command to create a TLS secret with your SSL certificate.
 
 ```sh
 kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 ```
 
-10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+12. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
        ![ingress DNS](images/deploy/aks/ingress_yaml.png)
 
-11. Now, run the following command to get the ingress IP address.
+13. Now, run the following command to get the External IP address.
 
       ```sh
       kubectl get svc -n ingress-nginx
@@ -309,36 +309,36 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
       Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
       ![Ingress Address](images/deploy/aks/ingress_address.png) 
 
-12. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
+14. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the **deploy_aks.yaml** file. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
-13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
     ![App_Base_Url](images/deploy/aks/app_base_url.png) 
     
-14. Read the optional client library license agreement from the following link.
+16. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-15. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
+17. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
     ![Optinal_Lib](images/deploy/aks/optional_lib.png) 
 
-16. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+18. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
     kubectl apply -f deploy.yaml
     ```
 
-17. Use the following command to get the pods status.
+19. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](images/deploy/pod_status.png) 
 
-18. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
+20. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
     
      ```sh
     kubectl get ingress -n bold-services
@@ -347,7 +347,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
     ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
-19. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
+21. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
     
@@ -356,7 +356,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_eks.yaml) to deloy Bold BI on AKS.
 
-2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
 3. Deploy the EFS CSI Driver to your cluster and create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
   
@@ -371,16 +371,17 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
    ![PV Claim](images/deploy/eks/pvclaim.png)
 
 6. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
+
     ```sh  
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/aws/deploy.yaml
     ```
-7. Enter the variable information needed for complete the auto deployment in <b>deploy_aks.yaml</b> file as shown below.
+7. EEnter the variable information needed to complete the auto-deployment in **deploy_eks.yaml** file, as shown in the following image.
 
-    * Enter the Bold BI licence key, user and database server details.
+    * Enter the Bold BI license key, user, and database server details.
         
         ![Licence-and-User-Details](images/deploy/eks/licence-and-user-details.png)
 
-        ## Environment variables details for configuring `Application Startup` in backend
+        ## Environment variables details for configuring `Application Startup` in the backend.
 
         | Name                          |Required| Description   | 
         | -------------                 |----------| ------------- |
@@ -593,29 +594,29 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
         </details>
 
            
-    * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for  `widget_bing_map_api_key`.
+    * If you need to use the **Bing Map** widget feature, enter the value for `widget_bing_map_enable` environment variable as `true` and the API key value for `widget_bing_map_api_key`.
        
        ![Enable-Bingmap](images/deploy/eks/bingmap_enable.png)
 
-6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
+8. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-7. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1421**.
+9. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1421**.
 
       ![DNS](images/deploy/eks/ingress_http_yaml.png)
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
+10. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
 
-9.  Run the following command to create a TLS secret with your SSL certificate.
+11.  Run the following command to create a TLS secret with your SSL certificate.
 
 ```sh
 kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 ```
 
-10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+12. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
        ![ingress DNS](images/deploy/eks/ingress_yaml.png)
 
-11. Now, run the following command to get the ingress IP address.
+13. Now, run the following command to get the External IP address.
 
       ```sh
       kubectl get svc -n ingress-nginx
@@ -623,36 +624,36 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
       Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
       ![Ingress Address](images/deploy/eks/ingress_address.png) 
 
-12. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
+14. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the **deploy_aks.yaml file**. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
-13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
     ![App_Base_Url](images/deploy/eks/app_base_url.png) 
     
-14. Read the optional client library license agreement from the following link.
+16. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-15. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
+17. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
     ![Optinal_Lib](images/deploy/eks/optional_lib.png) 
 
-16. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+18. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
     kubectl apply -f deploy.yaml
     ```
 
-17. Use the following command to get the pods status.
+19. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](images/deploy/pod_status.png) 
 
-18. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
+20. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
     
      ```sh
     kubectl get ingress -n bold-services
@@ -661,7 +662,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
     ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
-19. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
+21. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
     
@@ -670,7 +671,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     
 1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_gke.yaml) to deloy Bold BI on AKS.
 
-2. Navigate to the folder where the deployment files were downloaded from **Step 1**.
+2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
 3. Create a Google filestore instance to store the shared folders for application usage.
 
@@ -689,13 +690,13 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     ```sh
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
     ```
-7. Enter the variable information needed for complete the auto deployment in <b>deploy_aks.yaml</b> file as shown below.
+7. Enter the variable information needed to complete the auto-deployment in **deploy_gke.yaml** file, as shown in the following image.
 
-    * Enter the Bold BI licence key, user and database server details.
+    * Enter the Bold BI license key, user, and database server details.
         
         ![Licence-and-User-Details](images/deploy/gke/licence-and-user-details.png)
 
-        ## Environment variables details for configuring `Application Startup` in backend
+        ## Environment variables details for configuring `Application Startup` in the backend.
 
         | Name                          |Required| Description   | 
         | -------------                 |----------| ------------- |
@@ -908,29 +909,29 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
         </details>
 
            
-    * If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for  `widget_bing_map_api_key`.
+    * If you need to use the **Bing Map** widget feature, enter the value for `widget_bing_map_enable` environment variable as `true` and the API key value for `widget_bing_map_api_key`.
        
        ![Enable-Bingmap](images/deploy/gke/bingmap_enable.png)
 
-6. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 11**. 
+8. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-7. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1412**.
+9. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1412**.
 
       ![DNS](images/deploy/gke/ingress_http_yaml.png)
 
-8. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 11**.
+10. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
 
-9.  Run the following command to create a TLS secret with your SSL certificate.
+11.  Run the following command to create a TLS secret with your SSL certificate.
 
 ```sh
 kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 ```
 
-10. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+12. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
        ![ingress DNS](images/deploy/gke/ingress_yaml.png)
 
-11. Now, run the following command to get the ingress IP address.
+13. Now, run the following command to get the External IP address.
 
       ```sh
       kubectl get svc -n ingress-nginx
@@ -938,36 +939,36 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
       Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
       ![Ingress Address](images/deploy/gke/ingress_address.png) 
 
-12. Note the EXTERNAL-IP address and map it with your DNS, if you have added the DNS in **deploy_aks.yaml** file. If you do not have the DNS and want to use the application, then you can use the EXTERNAL-IP address.
+14. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the **deploy_aks.yaml file**. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
-13. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<external>`
     
     ![App_Base_Url](images/deploy/gke/app_base_url.png) 
     
-14. Read the optional client library license agreement from the following link.
+16. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-15. By default all the client libraries will be installed for Bold BI in Kubernetes. Still you can still overwrite them by mentioning the required libraries as comma separated like below in the environment variable noted from the above link.
+17. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
     ![Optinal_Lib](images/deploy/gke/optional_lib.png) 
 
-16. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+18. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
     kubectl apply -f deploy.yaml
     ```
 
-17. Use the following command to get the pods status.
+19. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](images/deploy/pod_status.png) 
 
-18. Wait till you see the applications in running state. Then use your DNS or EXTERNAL-IP address you got from below command to access the application in the browser.
+20. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
     
      ```sh
     kubectl get ingress -n bold-services
@@ -976,7 +977,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
     ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
-19. If you facing any Deployment Error,Click Proceed to the application startup page link and Please refer the following link for more details on configuring the application startup manually.
+21. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
 
