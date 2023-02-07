@@ -12,14 +12,14 @@ Read the optional client library license agreement from the following link.
 
 [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
 
-If you wish to inlcude only specific client libraries note the optional client libraries from the above link as comma separated names in your values.yaml file.
+If you want to include only specific client libraries, note the optional client libraries from the above link as comma-separated names in your values.yaml file.
 
 ## Cluster Provider
 
-Bold BI supports Azure Kubernetes Service (AKS), Elastic Kubernetes Service (EKS) and Google Kubernetes Engine (GKE) you can enter the value based on your cluster provider.
+Bold BI supports Azure Kubernetes Service (AKS), Elastic Kubernetes Service (EKS), and Google Kubernetes Engine (GKE). You can enter the value based on your cluster provider.
 
 ```console
-# your cluster provider name.The supported values are aks,gke and eks.
+# your cluster provider name. The supported values are aks, gke, and eks.
 clusterProvider: ''
 ```
 
@@ -28,9 +28,9 @@ clusterProvider: ''
 
 ### Name
 
-Persistent volumes were global resources. So if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation. Change this name to avoid conflicts with previous Bold BI persistent volumes.
+Persistent volumes were global resources. So if you have already installed Bold BI in your cluster, then the previous persistent volume name will conflict with the current installation. To avoid conflicts with previous Bold BI persistent volumes, change this name.
 
-By default the persistent volume name used in Bold BI is `bold-fileserver`. 
+By default, the persistent volume name used in Bold BI is `bold-fileserver`.
 
 ```console
 persistentVolume:
@@ -45,7 +45,7 @@ persistentVolume:
 
 Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
 
-By default the persistent volume capacity used in Bold BI is `3Gi`. 
+By default, the persistent volume capacity used in Bold BI is `3Gi`.
 
 ```console
 persistentVolume:
@@ -249,7 +249,7 @@ persistentVolume:
 
 ### Ingress-Nginx
 
-By default Nginx is used as reverse proxy for Bold BI. To configure load balancing in Bold BI take a look at the below snipet. 
+By default, Nginx is used as a reverse proxy for Bold BI. To configure load balancing in Bold BI, take a look at the following code sample.
 
 ```console
 loadBalancer:
@@ -267,14 +267,14 @@ loadBalancer:
 
 ### Istio Ingress Gateway
 
-If you need to configure Bold BI with Istio then you can change the value as `istio` in your configuration like below.
+If you need to configure Bold BI with Istio, then you can change the value as `istio` in your configuration as follows.
 
 ```console
 loadBalancer:
   type: istio
 ```
 
-### sticky session
+### Sticky Session
 
 You can change the affinityCookieExpiration time. The default value is 600s.
 
@@ -287,9 +287,9 @@ loadBalancer:
 
 ### SSL Configuration
 
-If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
+If you have an SSL certificate for your DNS and need to configure the site with it, simply pass your DNS with the `https` protocol to `appBaseUrl`; this will enable SSL in both Ingress and Istio.
 
-> **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
+> **NOTE:**  Create the TLS secret with the name `bold-tls` or modify the secret name in the values.yaml file.
 
 Run the following command to create a TLS secret with your SSL certificate.
 
@@ -303,9 +303,9 @@ kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <cert
 
 ### Map multiple domains
 
-You can map mutiple domains in both Ingress Nginx and Istio like below. While mapping multiple domains you have to include the `appBaseUrl` in any of the matching host array.
+You can map multiple domains in both Ingress Nginx and Istio, as shown below. When mapping multiple domains, you must include the `appBaseUrl` in one of the host arrays.
 
-FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
+For multiple domain scenarios, the `singleHost` secret will not be considered. You must mention your secret within the `multipleHost` section.
 
 `Ingress Nginx`
 
@@ -343,7 +343,7 @@ loadBalancer:
 
 ## Auto Scaling
 
-By default autoscaling is enabled in Bold BI, to disable autoscaling please set `autoscaling.enabled=false`.
+By default, autoscaling is enabled in Bold BI, to disable autoscaling, please set `autoscaling.Enabled=false`.
 
 ```console
 autoscaling:
@@ -423,7 +423,7 @@ autoscaling:
 
 ## Bing Map Widget
 
-If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `<widget_bing_map_api_key>`. By default this feature will be set to false.
+If you need to use the **Bing Map** widget feature, enable this to `true` and provide an API key value for `<widget_bing_map_api_key>`. By default, this feature will be set to false.
 
 ```console
 bingMapWidget:
@@ -431,12 +431,13 @@ bingMapWidget:
   apiKey: <widget_bing_map_api_key>
 ```
 
-> **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`
+> **Note:** The Bing Map keys will be maintained in secret name called `bold-secret`.
 
 ## Custom Locale Path
 
-Localization is adapting a website into different linguistic and cultural contexts - involving much more than the simple text translation.By default, the Bold BI application is available in English(en-US) localization.
-If you have generated locale.js file. mention the path of the file for <locale.js_file_path> .
+Localization is adapting a website to different linguistic and cultural contexts - involving much more than simple text translation. By default, the Bold BI application is available in English(en-US) localization.
+
+If you have generated a **locale.js** file, specify its path in `<locale.js_file_path>`.
 
 ```console
 localization:
