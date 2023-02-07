@@ -1,5 +1,5 @@
 # Bold BI Auto Deployment using Helm
-This section helps you to deploy [Bold BI](https://www.boldbi.com/) using helm chart without manually activating license and configuring the startup from browser. You can pass the license, startup and branding related customization as environment variable in values.yaml file.
+This section helps you to deploy [Bold BI](https://www.boldbi.com/) using the helm chart without manually activating the license and configuring the startup from the browser. You can pass the license, startup, and branding-related customization as environment variables in the values.yaml file.
 
 ## Deployment prerequisites
 
@@ -8,18 +8,18 @@ This section helps you to deploy [Bold BI](https://www.boldbi.com/) using helm c
 * [Create and connect a cluster](../docs/pre-requisites.md#create-a-cluster)
 * [Load Balancing](../docs/pre-requisites.md#load-balancing)
 
-**Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to crafting values.yaml when installing Bold BI with helm chart.
+**Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to craft values.yaml when installing Bold BI with helm chart.
 
 ## Get Repo Info
 
-1. Add the Bold BI helm repository
+1. Add the Bold BI helm repository.
 
 ```console
 helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
 helm repo update
 ```
 
-2. View charts in repo
+2. View charts in repo.
 
 ```console
 helm search repo boldbi
@@ -32,7 +32,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 ## Create Namespace
 
-Run the following command to create the namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.The default namespace is <i>bold-services</i>
+Run the following command to create the namespace where the Bold BI resources will be deployed in the Kubernetes cluster. The default namespace is <i>bold-services</i>.
 
 ```console
 kubectl create ns bold-services
@@ -40,9 +40,9 @@ kubectl create ns bold-services
 
 ## Install Chart
 
-For Helm chart, you'll need to craft a `values.yaml`file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/helm/custom-values/values.yaml) and make needed changes based on your cluster provider. 
+For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/helm/custom-values/values.yaml) and make needed changes based on your cluster provider.
 
-The below table helps you to craft he values.yaml file with required values for Bold BI deployment. so please read the describtion carfully and enter the values in values. yaml file.
+The following table allows you to craft the values.yaml file with required values for Bold BI deployment. so please read the description carefully and enter the values in values.yaml file.
 
 <br/>
 
@@ -141,9 +141,9 @@ The below table helps you to craft he values.yaml file with required values for 
     </table>
 <br/>
 
-> **Note:** Items marked with `*` are mandatory fields in values.yaml
+> **Note:** Items marked with `*` are mandatory fields in values.yaml.
 
-## Environment variables for configuring Branding in backend
+## Environment variables details for configuring `Application Startup` in the backend.
 
 This following environment variables helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
 
@@ -289,9 +289,9 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
 
 </details>
 
-## Environment variables for configuring Branding in backend
+## Environment variables details for configuring `branding` in backend
 
-The following environment variables helps us to customize the branding.
+The following environment variables allow you to customize the branding.
 
 <table>
    <tr>
@@ -413,13 +413,13 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ## Upgrade
 
-Run the following command to get the latest version of Bold BI helm chart.
+Run the following command to get the latest version of the Bold BI helm chart.
 
 ```console
 helm repo update
 ```
 
-Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
+Run the following command to apply changes in your Bold BI release or upgrade Bold BI to the latest version.
 
 ```console
 helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
