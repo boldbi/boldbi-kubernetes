@@ -34,9 +34,9 @@ The following requirements are necessary to run the Bold BI solution.
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
-* [Deploy Bold BI using kubectl](docs/index.md)
+* [Deploy Bold BI using Kubectl](docs/index.md)
 * [Deploy Bold BI using Helm](helm/README.md)
-* [Common deployment using Helm](helm/bold-common/README.md)
+* [Common Deployment(BI and Reports) using Helm](helm/bold-common/README.md)
 
 # License
 
