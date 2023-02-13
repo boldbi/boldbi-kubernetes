@@ -2,15 +2,15 @@
 
 This section allows you to deploy [Bold BI](https://www.boldbi.com/) in Kubernetes without manual activation of licensing and configuring startup from the browser. This also allows us to customize the branding using environment variables.
 
-## Deployment Methods
+# Deployment Methods
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
 * [Deploy Bold BI using kubectl](bold-bi-auto-deployment.md#deploy-bold-bi-using-kubectl)
-* [Deploy Bold BI using Helm](../helm/auto-deployment/bold-bi-auto-deployment-using-helm.md#bold-bi-auto-deployment-using-helm)
+* [Deploy Bold BI using Helm](bold-bi-auto-deployment.md#bold-bi-auto-deployment-using-helm)
    
 
-## Deploy Bold BI using kubectl
+# Deploy Bold BI using kubectl
 
 The following steps help you to deploy Bold BI using kubectl in a Kubernetes cluster. You can create a Kubernetes cluster on cloud cluster providers (GKE, AKS, and EKS). After completing cluster creation, connect to it, and you can download the configuration files [here](../deploy/auto-deployment.zip). This directory includes configuration YAML files, which contain all the configuration settings needed to deploy Bold BI on the Kubernetes cluster.
 
