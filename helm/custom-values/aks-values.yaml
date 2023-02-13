@@ -150,20 +150,26 @@ databaseServerDetails:
   dbAdditionalParameters: ""
 
 brandingDetails:
-
-  main_logo:  ""
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
   
-  login_logo:  ""
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
   
-  email_logo:  ""
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
   
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  footer_logo:  ""
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
   
-  site_name: ""
+  # This is organization name.
+  siteName: ""
   
-  site_identifier: ""
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
   
 licenseKeyDetails:
   #  The Bold BI licnece key which you have purchesed.
