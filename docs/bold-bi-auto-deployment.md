@@ -34,7 +34,7 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
 
 ### Bold BI on Microsoft Azure Kubernetes Service
 
-1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_aks.yaml) to deploy Bold BI on AKS.
+1. Download the deployment file from [here](../deploy/auto-deployment/deploy_aks.yaml) to deploy Bold BI on AKS.
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
