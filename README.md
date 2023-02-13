@@ -50,3 +50,7 @@ These pre-built images are provided for convenience and include all optional and
 If you want to install Bold BI from scratch and precisely control which optional libraries are installed, please download the stand-alone product from boldbi.com. If you have any questions, please contact the Bold BI team (https://www.boldbi.com/support).
 
 It is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
+## FAQ
+
+[How to auto deploy Bold BI in Kubernetes cluster](https://github.com/boldbi/boldbi-kubernetes/blob/UMP-22952-Autodeployment-documentation/docs/bold-bi-auto-deployment.md)
