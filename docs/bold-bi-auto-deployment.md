@@ -1,4 +1,4 @@
-# Bold BI auto-deployment on Kubernetes Service
+# Bold BI Auto Deployment on Kubernetes Service
 
 This section allows you to deploy [Bold BI](https://www.boldbi.com/) in Kubernetes without manual activation of licensing and configuring startup from the browser. This also allows us to customize the branding using environment variables.
 
@@ -38,7 +38,7 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
-3. Create a File share instance in your storage account and note the File share name to store the shared folders for application use.
+3. Create a `File share` instance in your storage account and note the `File share` name to store the shared folders for application use.
 
 4. Encode the storage account name and storage key in base64 format.
   
@@ -982,7 +982,8 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     https://help.boldbi.com/embedded-bi/application-startup
 
 # Bold BI Auto Deployment using Helm
-This section helps you to deploy [Bold BI](https://www.boldbi.com/) using the helm chart without manually activating the license and configuring the startup from the browser. You can pass the license, startup, and branding-related customization as environment variables in the values.yaml file.
+
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE,AKS and EKS). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
 
 ## Deployment prerequisites
 
