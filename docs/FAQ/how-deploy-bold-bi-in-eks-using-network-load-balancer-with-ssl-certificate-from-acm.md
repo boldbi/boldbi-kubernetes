@@ -23,7 +23,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.4"
 	```
 	
-	**Note:** Make sure the following network configurations to avoid problem in mount volume.
+> Note: Make sure the following network configurations to avoid problem in mount volume.
 	1. EFS file system in the same region as your EKS cluster.
 	2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).
 	3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.
