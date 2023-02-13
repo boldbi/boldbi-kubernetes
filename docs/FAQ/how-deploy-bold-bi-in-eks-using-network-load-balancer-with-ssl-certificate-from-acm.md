@@ -1,4 +1,4 @@
-# How to deploy Bold BI in EKS using Nginx Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM).
+# How to deploy Bold BI in EKS Using Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM).
 
 The below section explains how to deploy Bold BI in EKS using Nginx Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM).
 
@@ -19,6 +19,10 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
+	```console
+	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.4"
+	```
+	
 **Note:** Make sure the following network configurations to avoid problem in mount volume.
 1. EFS file system in the same region as your EKS cluster.
 2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).
