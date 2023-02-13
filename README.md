@@ -53,4 +53,4 @@ It is the image user's responsibility to ensure that any use of this image compl
 
 ## FAQ
 
-[How to auto deploy Bold BI in Kubernetes cluster?](https://github.com/boldbi/boldbi-kubernetes/blob/UMP-22952-Autodeployment-documentation/docs/bold-bi-auto-deployment.md)
+[How to auto deploy Bold BI in Kubernetes cluster?](https://github.com/boldbi/boldbi-kubernetes/blob/main/docs/bold-bi-auto-deployment.md)
