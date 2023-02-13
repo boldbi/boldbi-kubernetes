@@ -1,0 +1,194 @@
+# Default values for boldbi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+namespace: bold-services
+appBaseUrl: ''
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+# your cluster provider name.The supported values are aks,gke and eks.
+clusterProvider: ''
+
+persistentVolume:
+  # persistent volumes were global resources. 
+  # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI persistent volumes.
+  name: bold-fileserver
+  capacity: 3Gi
+  gke:
+    fileShareName: ''
+    fileShareIp: ''
+  eks:
+    efsFileSystemId: ''
+  aks:
+    fileShareName: ''
+    # base64 string
+    azureStorageAccountName: ''
+    # base64 string
+    azureStorageAccountKey: ''
+  onpremise:
+    hostPath: ''
+    
+image:
+  repo: gcr.io/boldbi-294612
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 5.3.83
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+
+loadBalancer:
+  type: nginx
+  affinityCookie:
+    enable: true
+    affinityCookieExpiration: 600
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  singleHost: 
+    secretName: bold-tls
+  # multipleHost:
+    # hostArray:
+      # - hosts: 
+          # - kubernetes.docker.internal
+          # - example.com
+        # secretName: bold-tls
+
+instanceConfig:
+  - app: id-web
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: id-api
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: id-ums
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-web
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-api
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-jobs
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bi-dataservice
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    
+service:
+  type: ClusterIP
+  port: 80
+  
+autoscaling:
+  enabled: true
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+  behavior:
+    stabilizationWindowSeconds: 60
+    podsValue: 1
+    podsPeriodSeconds: 60
+    percentValue: 10
+    percentPeriodSeconds: 60
+
+## Bold BI Bing Map Secrets
+bingMapWidget:
+  enabled: false
+  apiKey: ''
+ 
+## Custom Localization
+localization:
+  customLocalePath: ''
+
+## Secrets for Bold BI Auto Deployment.
+# This section helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
+
+licenseKeyDetails:
+  #  The Bold BI licnece key which you have purchesed.
+  licenseKey: ""
+
+rootUserDetails:
+  email: ""
+  password: ""
+
+databaseServerDetails:
+  # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+  dbType: ""
+
+  # Name of the Database Server
+  dbHost: ""
+
+  # The system will use the following default port numbers based on the database server type.
+  # PostgrSQL – 5234 and MySQL -3306
+  # Please specify the port number for your database server if it is configured on a different port.
+  # For MS SQL Server, this parameter is not necessary.
+  dbPort: ""
+
+  # Username for the database server
+  # Please refer to this documentation for information on the user's permissions.
+  # https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/
+  dbUser: ""
+
+  # The database user's password
+  dbPassword: ""
+
+  # If the database name is not specified, the system will create a new database called bold services.
+  # If you specify a database name, it should already exist on the server.
+  dbName: ""
+
+  # For PostgreSQL DB Servers, this is an optional parameter.
+  # The system will use the database name postgresql by default.
+  # If your database server uses a different default database, please provide it here.
+  maintenanceDB: ""
+  
+  # If your database server requires additional connection string parameters, include them here
+  # Connection string parameters can be found in the official document.
+  # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
+  # PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html
+  # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+  # Note: A semicolon(;) should be used to separate multiple parameters.
+  dbAdditionalParameters: ""
+  
+# Environment Variables For Application Branding.
+# This environment variables helps us to customize the branding.
+ 
+brandingDetails:
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
+  
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
+  
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
+  
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
+  favicon:  ""
+  
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
+  
+  # This is organization name.
+  siteName: ""
+  
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
