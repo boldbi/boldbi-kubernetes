@@ -23,8 +23,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.4"
 	```
 	
-	> <b>Note:</b> <br/>
-	Make sure the following network configurations to avoid volume mounting issues.<br/><br/>
+	> <b>Note:</b> Make sure the following network configurations to avoid volume mounting issues.<br/><br/>
 		1. EFS file system in the same region as your EKS cluster.<br/>
 		2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).<br/>
 		3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
@@ -70,8 +69,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
   
    ![IP CHECK](images/ex-ip-checking.png)
    
-	> **Note:** <br/>
-	If you cannot access the URL in browser please ensure the below configuration.<br/><br/>
+	> **Note:** If you cannot access the URL in browser please ensure the below configuration.<br/><br/>
 		1. Ensure that the firewall or security group associated with the NLB allows incoming traffic on port 80 (HTTP) or 443 (HTTPS).<br/>
 		2. Make sure that the route to the NLB is correctly configured in your network infrastructure.<br/>
 		3. If the NLB is associated with a target group, ensure that the health check for the target group is healthy. The NLB will only forward traffic to healthy targets.<br/>
