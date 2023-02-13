@@ -23,11 +23,11 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.4"
 	```
 	
-> *Note:* Make sure the following network configurations to avoid problem in mount volume.<br/><br/>
-	1. EFS file system in the same region as your EKS cluster.<br/>
-	2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).<br/>
-	3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
-	4. Ensure the EFS CSI Driver installation in cluster.<br/>
+	> <b>Note:</b> Make sure the following network configurations to avoid problem in mount volume.<br/><br/>
+		1. EFS file system in the same region as your EKS cluster.<br/>
+		2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).<br/>
+		3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
+		4. Ensure the EFS CSI Driver installation in cluster.<br/>
 
 ## Deploy Network Load Balancer with SSL termination:
 
@@ -69,13 +69,13 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
   
    ![IP CHECK](images/ex-ip-checking.png)
    
-> *Note:* If you cannot access the URL in browser please ensure the below configuration.<br/><br/>
-	1. Ensure that the firewall or security group associated with the NLB allows incoming traffic on port 80 (HTTP) or 443 (HTTPS).<br/>
-	2. Make sure that the route to the NLB is correctly configured in your network infrastructure.<br/>
-	3. If the NLB is associated with a target group, ensure that the health check for the target group is healthy. The NLB will only forward traffic to healthy targets.<br/>
-	4. Ensure that the DNS for the NLB is correctly resolving to the correct IP address.<br/>
-	5. Ensure that the Kubernetes service associated with the NLB is correctly configured with the correct selector labels and target port.<br/>
-	6. Ensure that there are healthy pods running and associated with the Kubernetes service.<br/>
+	> **Note:** If you cannot access the URL in browser please ensure the below configuration.<br/><br/>
+		1. Ensure that the firewall or security group associated with the NLB allows incoming traffic on port 80 (HTTP) or 443 (HTTPS).<br/>
+		2. Make sure that the route to the NLB is correctly configured in your network infrastructure.<br/>
+		3. If the NLB is associated with a target group, ensure that the health check for the target group is healthy. The NLB will only forward traffic to healthy targets.<br/>
+		4. Ensure that the DNS for the NLB is correctly resolving to the correct IP address.<br/>
+		5. Ensure that the Kubernetes service associated with the NLB is correctly configured with the correct selector labels and target port.<br/>
+		6. Ensure that there are healthy pods running and associated with the Kubernetes service.<br/>
 
 ## Get Repo Info
 
