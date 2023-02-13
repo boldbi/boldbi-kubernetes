@@ -354,7 +354,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     
 ### Bold BI on Amazon Elastic Kubernetes Service
 
-1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_eks.yaml) to deloy Bold BI on AKS.
+1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/auto-deployment/deploy_eks.yaml) to deloy Bold BI on AKS.
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
@@ -669,7 +669,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 ### Bold BI on Google Kubernetes Engine   
     
-1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/deploy/auto-deployment/deploy_gke.yaml) to deloy Bold BI on AKS.
+1. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/auto-deployment/deploy_gke.yaml) to deloy Bold BI on AKS.
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
@@ -1024,7 +1024,7 @@ kubectl create ns bold-services
 
 ## Install Chart
 
-For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/helm/custom-values/values.yaml) and make needed changes based on your cluster provider.
+For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/values.yaml) and make needed changes based on your cluster provider.
 
 The following table allows you to craft the values.yaml file with required values for Bold BI deployment. so please read the description carefully and enter the values in values.yaml file.
 
