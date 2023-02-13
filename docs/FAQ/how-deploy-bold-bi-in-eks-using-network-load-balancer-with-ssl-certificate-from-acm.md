@@ -24,7 +24,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 	```
 	
 	> <b>Note:</b> <br/>
-	Make sure the following network configurations to avoid volume mounting issues<br/><br/>
+	Make sure the following network configurations to avoid volume mounting issues.<br/><br/>
 		1. EFS file system in the same region as your EKS cluster.<br/>
 		2. Your EKS cluster and EFS file system must be in the same Virtual Private Cloud (VPC).<br/>
 		3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
