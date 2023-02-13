@@ -4,7 +4,7 @@ This section describe how to manually configure ssl using cert manager on kubern
 
 * [Configure SSL in Bold BI Kubernetes Deployment with Nginx Using Cert Manager](#configure-ssl-in-bold-bi-kubernetes-deployment-with-nginx-using-cert-manager)
 
-* [Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment with Isito](#configure-ssl-in-bold-bi-kubernetes-deployment-with-istio-using-cert-manager)
+* [Configure SSL in Bold BI Kubernetes Deployment with Istio Using Cert Manager](#configure-ssl-in-bold-bi-kubernetes-deployment-with-istio-using-cert-manager)
 
 ## Configure SSL in Bold BI Kubernetes Deployment with Nginx Using Cert Manager
 
