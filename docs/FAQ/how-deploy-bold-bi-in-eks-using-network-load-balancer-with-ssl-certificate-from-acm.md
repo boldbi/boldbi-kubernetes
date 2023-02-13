@@ -216,9 +216,9 @@ The following table allows you to craft the values.yaml file with required value
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [Namespace]  --version 5.3.82
 ```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services  --version 5.3.82`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
