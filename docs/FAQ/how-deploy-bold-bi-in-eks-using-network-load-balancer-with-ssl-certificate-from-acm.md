@@ -1,6 +1,6 @@
 # How to deploy Bold BI in EKS Using Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM).
 
-The below section explains how to deploy Bold BI in EKS using Nginx Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM).
+The below section explains how to deploy Bold BI in EKS using Nginx Network Load Balancer (NLB) with an SSL certificate from AWS Certificate Manager (ACM).
 
 ## Create a EKS Cluster and filestorage:
 
@@ -8,7 +8,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 
    https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
 
-2. Create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the below link.
+2. Create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the link below.
 
    ![AWS EFS](../images/aws-efs.png)
 
@@ -31,9 +31,9 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 
 ## Deploy Network Load Balancer with SSL termination:
 
-1. Download the [deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml) template
+1. Download the [deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml) template.
 
-2. Edit the `deploy.yaml` file and change the VPC CIDR in use for the Kubernetes cluster.
+2. Edit the deploy.yaml file and change the VPC CIDR for the Kubernetes cluster.
 
 	```console
 	proxy-real-ip-cidr: XXX.XXX.XXX/XX
@@ -57,7 +57,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
    kubectl apply -f deploy.yaml
    ```
    
-5. Get the external IP and and map it with a DNS to craft values.yaml when installing Bold BI with helm chart.
+5. Get the external IP and map it with a DNS to craft values.yaml when installing Bold BI with helm chart.
    
    ```console
    kubectl get svc -n ingress-nginx
@@ -107,9 +107,9 @@ kubectl create ns bold-services
 
 ## Install Chart
 
-For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/UMP-22952-Autodeployment-documentation/helm/custom-values/eks-values.yaml) and make needed changes based on your cluster provider.
+For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml) make the required changes.
 
-The following table allows you to craft the values.yaml file with required values for Bold BI deployment. so please read the description carefully and enter the values in values.yaml file.
+The following table allows you to craft the values.yaml file with required values for Bold BI deployment. So, please read the description carefully and enter the values in values.yaml file.
 
 <br/>
 
@@ -183,7 +183,7 @@ The following table allows you to craft the values.yaml file with required value
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
+       By default, autoscaling is enabled in Bold BI. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
       </td>
     </tr>
     <tr>
