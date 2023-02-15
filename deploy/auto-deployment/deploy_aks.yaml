@@ -382,7 +382,8 @@ spec:
         - secretRef:
               name: bold-license-key
         - configMapRef:
-              name: branding-config              
+              name: branding-config
+              optional: true
         readinessProbe:
           httpGet:
             path: /health-check
