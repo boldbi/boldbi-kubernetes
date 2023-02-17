@@ -145,7 +145,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 11. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-12. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml) Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **1421**.
+12. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml) Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **18**.
 
       ![DNS](../images/faq/ingress_alb_host.png)
 
@@ -160,16 +160,16 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
         
 	* Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
-	![ingress DNS](../images/deploy/eks/tls_ingress_alb.png)
+	![ingress DNS](../images/faq/tls_ingress_alb.png)
 	
     **B. SSL configuration using ACM ARN:**
        * Create an ACM Certificate for your domain and verify ownership. Note down the Amazon Resource Name (ARN) of the Certificate you just created. You can find the ARN in the ACM Management Console, as shown below.
        
-       ![ACM ARN](../images/deploy/eks/AWS_ACM_ARN.png)
+       ![ACM ARN](../images/faq/AWS_ACM_ARN.png)
        
        * Now, uncommand the below lines and replace your Arn with `Amazon Resource Name (ARN) of the Certificate` in ingress annotation and save the file.
 
-	![ACM ARN](../images/deploy/eks/ingress_ARN.png)	
+	![ACM ARN](../images/faq/ingress_ARN.png)	
 
 14. Apply the `ingress_alb.yaml` by running the below command.
 
@@ -182,36 +182,36 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 	kubectl get ingress -n bold-services
 	```
 	Repeat the above command till you get the value in ADDRESS tab.
-	![Ingress Address](images/ingress_alb_address.png) 
+	![Ingress Address](../images/faq/ingress_alb_address.png) 
 	
-16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file.
+16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file with http or https protocal.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
     ![App_Base_Url](../images/faq/alb_app_base_url.png) 
     
-16. Read the optional client library license agreement from the following link.
+17. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-17. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
+18. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
-    ![Optinal_Lib](../images/deploy/eks/optional_lib.png) 
+    ![Optinal_Lib](../images/faq/alb_optional_lib.png) 
 
-18. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+19. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
-    kubectl apply -f deploy.yaml
+    kubectl apply -f deploy_eks_alb.yaml
     ```
 
-19. Use the following command to get the pods status.
+20. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](../images/deploy/pod_status.png) 
 
-20. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
+21. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**
     
      ```sh
     kubectl get ingress -n bold-services
