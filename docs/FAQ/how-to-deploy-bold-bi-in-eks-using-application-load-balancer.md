@@ -1,4 +1,4 @@
-#How to deploy Bold BI in Elastic Kubernetes Services (EKS) using Application Load Balancer (ALB)
+# How to deploy Bold BI in Elastic Kubernetes Services (EKS) using Application Load Balancer (ALB)
 
 The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS cluster using an [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html).
 
@@ -31,19 +31,19 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
    https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
 
-5. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/auto-deployment/deploy_eks_alb.yaml) to deloy Bold BI on AKS.
+6. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/auto-deployment/deploy_eks_alb.yaml) to deloy Bold BI on AKS.
 
-6. Navigate to the folder where the deployment files were downloaded in above step. 
+7. Navigate to the folder where the deployment files were downloaded in above step. 
 
-4. Note the **EFS File system ID** created in **step 2**.
+8. Note the **EFS File system ID** created in **step 2**.
 
     ![AWS EFS](../images/deploy/eks/aws-efs.png)
 
-5. Open **deploy_eks_alb.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
+9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
 
    ![PV Claim](../images/deploy/eks/pvclaim.png)
 
-7. Enter the variable information needed to complete the auto-deployment in **deploy_eks_alb.yaml** file, as shown in the following image.
+10. Enter the variable information needed to complete the auto-deployment in **deploy_eks_alb.yaml** file, as shown in the following image.
 
     * Enter the Bold BI license key, user, and database server details.
 	    The following environment variables are optional. If not provided, a manual Application Startup configuration is needed.
@@ -143,13 +143,13 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
        
        ![Enable-Bingmap](../images/deploy/eks/bingmap_enable.png)
 
-8. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
+11. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-9. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks.yaml file in line **1421**.
+12. Uncomment the host value and replace your DNS hostname with `example.com` in deploy_aks_alb.yaml file in line **1421**.
 
       ![DNS](../images/deploy/eks/ingress_http_yaml.png)
 
-10. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
+13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
 
 11.  Run the following command to create a TLS secret with your SSL certificate.
 
@@ -160,16 +160,6 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 12. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
        ![ingress DNS](../images/deploy/eks/ingress_yaml.png)
-
-13. Now, run the following command to get the External IP address.
-
-      ```sh
-      kubectl get svc -n ingress-nginx
-      ```
-      Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
-      ![Ingress Address](../images/deploy/eks/ingress_address.png) 
-
-14. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the **deploy_aks.yaml file**. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
 15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
 
