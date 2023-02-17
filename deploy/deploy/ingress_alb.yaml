@@ -14,7 +14,7 @@ spec:
     #- example.com
     #secretName: bold-tls
   rules:
-  - host: #example.com
+  - #host: example.com
     http:
       paths:
       - path: /
