@@ -211,10 +211,10 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
      ```
     ![Pod status](../images/deploy/pod_status.png) 
 
-21. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**
+21. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**.
 
     ![Browser_veiw](../images/deploy/Browser_veiw.png) 
     
-21. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
+22. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
