@@ -212,11 +212,6 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
     ![Pod status](../images/deploy/pod_status.png) 
 
 21. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**
-    
-     ```sh
-    kubectl get ingress -n bold-services
-    ```
-    ![Ingress Address](../images/deploy/eks/ingress.png)
 
     ![Browser_veiw](../images/deploy/Browser_veiw.png) 
     
