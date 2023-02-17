@@ -31,7 +31,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
    https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
 
-6. Download the deployment file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/deploy_eks_alb.yaml) to deloy Bold BI on AKS.
+6. Download the **deploy_eks_alb.yaml** file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/deploy_eks_alb.yaml) to deloy Bold BI on AKS.
 
 7. Navigate to the folder where the deployment files were downloaded in above step. 
 
