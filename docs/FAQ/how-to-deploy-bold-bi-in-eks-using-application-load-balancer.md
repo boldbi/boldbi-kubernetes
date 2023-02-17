@@ -149,23 +149,27 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
       ![DNS](../images/faq/ingress_alb_host.png)
 
-13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 13**.
+13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps of section A or B, otherwise, skip to **Step 13**.
 
-    1. SSL configuration using TLS secret:
+    A. SSL configuration using TLS secret:
 	* Run the following command to create a TLS secret with your own SSL certificate.
 
 	```sh
 	kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 	```
-        * Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+        
+	* Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
 	![ingress DNS](../images/deploy/eks/tls_ingress_alb.png)
 	
-    2. SSL configuration using ACM ARN:
+    B. SSL configuration using ACM ARN:
        * Create an ACM Certificate for your domain and verify ownership. Note down the Amazon Resource Name (ARN) of the Certificate you just created. You can find the ARN in the ACM Management Console, as shown below.
+       
        ![ACM ARN](../images/deploy/eks/AWS_ACM_ARN.png)
        
        * Now, uncommand the below lines and replace your Arn with `Amazon Resource Name (ARN) of the Certificate` in ingress annotation and save the file.
+
+	![ACM ARN](../images/deploy/eks/ingress_ARN.png)	
 
 14. Apply the `ingress_alb.yaml` by running the below command.
 
