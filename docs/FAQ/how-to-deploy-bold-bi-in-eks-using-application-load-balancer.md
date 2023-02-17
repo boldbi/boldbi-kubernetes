@@ -151,7 +151,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps of section A or B, otherwise, skip to **Step 13**.
 
-    A. SSL configuration using TLS secret:
+    **A. SSL configuration using TLS secret:**
 	* Run the following command to create a TLS secret with your own SSL certificate.
 
 	```sh
@@ -162,7 +162,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 	![ingress DNS](../images/deploy/eks/tls_ingress_alb.png)
 	
-    B. SSL configuration using ACM ARN:
+    **B. SSL configuration using ACM ARN:**
        * Create an ACM Certificate for your domain and verify ownership. Note down the Amazon Resource Name (ARN) of the Certificate you just created. You can find the ARN in the ACM Management Console, as shown below.
        
        ![ACM ARN](../images/deploy/eks/AWS_ACM_ARN.png)
@@ -184,11 +184,11 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 	Repeat the above command till you get the value in ADDRESS tab.
 	![Ingress Address](images/ingress_alb_address.png) 
 	
-15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
-    ![App_Base_Url](../images/deploy/eks/app_base_url.png) 
+    ![App_Base_Url](../images/faq/alb_app_base_url.png) 
     
 16. Read the optional client library license agreement from the following link.
 
