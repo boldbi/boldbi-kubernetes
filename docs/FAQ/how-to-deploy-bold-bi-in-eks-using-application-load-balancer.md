@@ -186,7 +186,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 	
 16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file with http or https protocal.
 
-    Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
+    Ex:  `http://example.com`, `https://example.com`, `http://<ingress_address>`
     
     ![App_Base_Url](../images/faq/alb_app_base_url.png) 
     
