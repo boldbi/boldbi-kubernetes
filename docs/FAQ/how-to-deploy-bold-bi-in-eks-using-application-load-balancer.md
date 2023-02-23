@@ -6,7 +6,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
    https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html 
 
-2. Create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following the link below.
+2. Create an Amazon Elastic File System (EFS) volume to store the shared folders for application usage by following this [link](https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html).
 
    ![AWS EFS](../images/aws-efs.png)
 
@@ -27,7 +27,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 		3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
 		4. Ensure the EFS CSI Driver installation in cluster.<br/>
 		
-5. To install AWS load balancer controller please refer to the below documentation.
+5. To install the AWS load balancer controller, please refer to the following documentation.
 
    https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
 
@@ -39,7 +39,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
     ![AWS EFS](../images/deploy/eks/aws-efs.png)
 
-9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step to the `<efs_file_system_id>` place in the file. You can also change the storage size in the YAML file. 
+9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step with the `<efs_file_system_id>` place in the file. Also, change the storage size in the YAML file.
 
    ![PV Claim](../images/deploy/eks/pvclaim.png)
 
@@ -171,7 +171,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 	![ACM ARN](../images/faq/ingress_ARN.png)	
 
-14. Apply the `ingress_alb.yaml` by running the below command.
+14. Apply the `ingress_alb.yaml` by running the following command.
 
 	```sh
 	kubectl apply -f ingress_alb.yaml
@@ -181,7 +181,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 	```sh
 	kubectl get ingress -n bold-services
 	```
-	Repeat the above command till you get the value in ADDRESS tab.
+	Repeat the above command till you get the value in the ADDRESS tab.
 	![Ingress Address](../images/faq/ingress_alb_address.png) 
 	
 16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file with http or https protocal.
@@ -194,7 +194,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-18. By default, all client libraries for Bold BI will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
+18. By default, all client libraries for Bold BI will be installed in Kubernetes. However, overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
     ![Optinal_Lib](../images/faq/alb_optional_lib.png) 
 
@@ -215,6 +215,6 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
     ![Browser_veiw](../images/deploy/Browser_veiw.png) 
     
-22. If you encounter a Deployment Error, Click Proceed to the application startup page link, and Please refer to the following link for more details on configuring the application startup manually.
+22. If you encounter a Deployment Error, click Proceed to the application start-up page link. Please refer to the following link for more details on configuring the application start-up manually.
     
     https://help.boldbi.com/embedded-bi/application-startup
