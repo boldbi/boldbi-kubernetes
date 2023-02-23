@@ -70,7 +70,7 @@ metadata:
   namespace: bold-services
 type: Opaque
 stringData:
-  # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+  # Type of a database server can be used for configuring the Bold BI, for example, mssql, mysql, and postgresql.
   BOLD_SERVICES_DB_TYPE: ""
 
   # Name of the Database Server
@@ -99,7 +99,7 @@ stringData:
   # If your database server uses a different default database, please provide it here.
   BOLD_SERVICES_POSTGRESQL_MAINTENANCE_DB: ""
 
-  # If your database server requires additional connection string parameters, include them here
+  # If your database server requires additional connection string parameters, include them here.
   # Connection string parameters can be found in the official document.
   # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
   # PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html
