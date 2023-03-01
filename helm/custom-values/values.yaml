@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,clickhouse,google'
 # your cluster provider name.The supported values are aks,gke and eks.
 clusterProvider: ''
 
