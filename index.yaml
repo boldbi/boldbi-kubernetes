@@ -55,7 +55,7 @@ entries:
     version: 5.2.49
     
   boldbi:
-    - apiVersion: v2
+  - apiVersion: v2
     appVersion: 6.1.8
     created: "2022-04-11T13:06:57.6150424+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
