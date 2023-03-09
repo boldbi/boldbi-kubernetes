@@ -56,7 +56,7 @@ entries:
     
   boldbi:
     - apiVersion: v2
-    appVersion: 6.1.83
+    appVersion: 6.1.8
     created: "2022-04-11T13:06:57.6150424+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
@@ -66,8 +66,8 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.1.83.tgz
-    version: 6.1.83
+    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.1.8.tgz
+    version: 6.1.8
   - apiVersion: v2
     appVersion: 5.3.83
     created: "2022-04-11T13:06:57.6150424+05:30"
