@@ -34,10 +34,10 @@ The following requirements are necessary to run the Bold BI solution.
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
-* [Deploy Bold BI using kubectl](docs/index.md)
-* Helm Deployment</br>
+* [Deploy Bold BI using Kubectl](docs/index.md)
+* Deploy using Helm
     1. [Deploy Bold BI using Helm](helm/README.md)
-    2. [Common deployment using Helm](helm/bold-common/README.md)
+    2. [Common Deployment(BI and Reports) using Helm](helm/bold-common/README.md)
 
 # License
 
@@ -50,3 +50,8 @@ These pre-built images are provided for convenience and include all optional and
 If you want to install Bold BI from scratch and precisely control which optional libraries are installed, please download the stand-alone product from boldbi.com. If you have any questions, please contact the Bold BI team (https://www.boldbi.com/support).
 
 It is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
+## FAQ
+
+[How to auto deploy Bold BI in Kubernetes cluster?](https://github.com/boldbi/boldbi-kubernetes/blob/main/docs/bold-bi-auto-deployment.md)
+[How to manually configure SSL using cert manager in Bold BI Kubernetes deployment?](https://github.com/boldbi/boldbi-kubernetes/blob/main//docs/FAQ/how-to-manually-configure-ssl-using-cert-manger-in-bold-bi-kubernetes-deployment.md)
