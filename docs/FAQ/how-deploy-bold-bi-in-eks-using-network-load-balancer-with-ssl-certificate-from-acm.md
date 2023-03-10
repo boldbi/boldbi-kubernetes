@@ -29,7 +29,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 		3. The security group for your EFS file system, which will allow incoming traffic from your EKS cluster's nodes.<br/>
 		4. Ensure the EFS CSI Driver installation in cluster.<br/>
 
-## Deploy Network Load Balancer with SSL termination:
+## Deploy Network Load Balancer with SSL Termination:
 
 1. Download the [deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml) template.
 
