@@ -15,12 +15,12 @@ persistentVolume:
   eks:
     efsFileSystemId: ''
     
-# image:
-#   repo: gcr.io/boldbi-294612
-#   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 5.3.83
-#   pullPolicy: IfNotPresent
-# imagePullSecrets: []
+image:
+  repo: gcr.io/boldbi-294612
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 6.1.8
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
 
 loadBalancer:
   type: nginx

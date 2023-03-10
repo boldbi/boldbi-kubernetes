@@ -11,6 +11,14 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 
 > **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to crafting values.yaml when installing Bold BI with helm chart.
 
+## Create Namespace
+
+Run the following command to create the namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.The default namespace is <b>bold-services</b>.
+
+```console
+kubectl create ns bold-services
+```
+
 ## Get Repo Info
 
 1. Add the Bold BI helm repository
@@ -148,6 +156,22 @@ The following environment variables are optional. If not provided, a manual Appl
       </td>
       <td>
        License key of Bold BI
+      </td>
+    </tr>
+    <tr>
+      <td>
+       email *
+      </td>
+      <td>
+       It should be a valid email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       password *
+      </td>
+      <td>
+       It should meet our password requirements. <br /> <br />Note: <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
       </td>
     </tr>
     <tr>

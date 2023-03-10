@@ -1,6 +1,8 @@
-# Bold BI on Microsoft Azure Kubernetes Service
+# Bold BI on Google Kubernetes Engine
 
-1. Download the following files for Bold BI deployment in AKS:
+For fresh installation, continue with the following steps to deploy Bold BI On-Premise in Google Kubernetes Engine (GKE).
+
+1. Download the following files for Bold BI deployment in GKE:
 
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/namespace.yaml)
     * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/secrets.yaml)
@@ -9,23 +11,31 @@
     * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/root-user-details.yaml)
     * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/log4net_config.yaml)
     * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/branding_config.yaml)
-    * [pvclaim_aks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/pvclaim_aks.yaml)
+    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/pvclaim_gke.yaml)
     * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/hpa.yaml)
+    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/hpa_gke.yaml)
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/deploy/ingress.yaml)
 
-2. Create a Kubernetes cluster in Microsoft Azure Kubernetes Service (AKS) to deploy Bold BI.
+2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
-3. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
+   https://console.cloud.google.com/kubernetes 
 
-4. Encode the storage account name and storage key in base64 format.
+3. Create a Google filestore instance to store the shared folders for application usage.
 
-5. Open **pvclaim_aks.yaml** file, downloaded in **Step 1**. Replace the **base64 encoded storage account name**, **base64 encoded storage account key**, and **File share name** noted in above steps to `<base64_azurestorageaccountname>`, `<base64_azurestorageaccountkey>`, and `<file_share_name>` places in the file respectively. You can also change the storage size in the YAML file.
+   https://console.cloud.google.com/filestore 
 
-![PV Claim](images/aks_pvclaim.png)
+4. Note the **File share name** and **IP address** after creating filestore instance.
 
-6. Connect with your Microsoft AKS cluster.
+![File Share details](images/gke_file_share_details.png)
+
+5. Open **pvclaim_gke.yaml** file, downloaded in **Step 1**. Replace the **File share name** and **IP address** noted in above step to the `<file_share_name>` and `<file_share_ip_address>` places in the file. You can also change the storage size in the YAML file. Save the file once you replaced the file share name and file share IP address.
+
+![PV Claim](images/gke_pvclaim.png)
+
+6. Connect with your GKE cluster.
+
+   https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
 7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
@@ -61,11 +71,11 @@ kubectl apply -f log4net_config.yaml
 kubectl apply -f branding_config.yaml
 ```
 
-12. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 17**. 
+12. If you have a DNS to map with the application, then you can continue with the following steps, else skip to **Step 15**. 
 
 13. Open the **ingress.yaml** file. Uncomment the host value and replace your DNS hostname with `example.com` and save the file.
 
-14. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 17**.
+14. If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, follow the below step or you can skip to **Step 15**.
 
 15. Run the following command to create a TLS secret with your SSL certificate.
 
@@ -83,7 +93,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 kubectl apply -f ingress.yaml
 ```
 
-18. Now, run the following command to get the ingress IP address.
+18.	Now, run the following command to get the ingress IP address,
 
 ```sh
 kubectl get ingress -n bold-services
@@ -91,7 +101,7 @@ kubectl get ingress -n bold-services
 Repeat the above command till you get the IP address in ADDRESS tab as shown in the following image.
 ![Ingress Address](images/ingress_address.png) 
 
-19. Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
+19.	Note the ingress IP address and map it with your DNS, if you have added the DNS in **ingress.yaml** file. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
 
 20. Open the **deployment.yaml** file from the downloaded files in **Step 1**. Replace your DNS or ingress IP address in `<application_base_url>` place.
     
@@ -107,11 +117,10 @@ Repeat the above command till you get the IP address in ADDRESS tab as shown in 
 
 23. If you need to use **Bing Map** widget feature, enter value for `widget_bing_map_enable` environment variable as `true` and API key value for `widget_bing_map_api_key` in the **secrets.yaml** file downloaded in step 1.
 
-
-24. Now, run the following commands one by one:
+24.	Now, run the following commands one by one:
 
 ```sh
-kubectl apply -f pvclaim_aks.yaml
+kubectl apply -f pvclaim_gke.yaml
 ```
 
 ```sh
@@ -119,23 +128,23 @@ kubectl apply -f deployment.yaml
 ```
 
 ```sh
-kubectl apply -f hpa.yaml
+kubectl apply -f hpa_gke.yaml
 ```
 
 ```sh
 kubectl apply -f service.yaml
 ```
 
-25. Wait for some time till the Bold BI On-Premise application deployed to your Microsoft AKS cluster.
+25.	Wait for some time till the Bold BI On-Premise application deployed to your Google Kubernetes cluster.
 
-26. Use the following command to get the pods status.
+26.	Use the following command to get the pods status.
 
 ```sh
 kubectl get pods -n bold-services
 ```
 ![Pod status](images/pod_status.png) 
 
-27. Wait till you see the applications in running state. Then use your DNS or ingress IP address you got from **Step 18** to access the application in the browser.
+27. Wait till you see the applications in running state. Then, use your DNS or ingress IP address you got from **Step 18** to access the application in the browser.
 
 28.	Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
     
