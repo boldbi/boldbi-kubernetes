@@ -1,6 +1,6 @@
 # How to Manually Configure SSL Using Cert Manager in Bold BI Kubernetes Deployment
 
-This section describe how to manually configure ssl using cert manager on kubernetes. Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer the below links for configure ssl based on your load balancer.
+This section describe how to manually configure ssl using cert manager on Kubernetes. Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer the below links for configure ssl based on your load balancer.
 
 * [Configure SSL in Bold BI Kubernetes Deployment with Nginx Using Cert Manager](#configure-ssl-in-bold-bi-kubernetes-deployment-with-nginx-using-cert-manager)
 
@@ -31,7 +31,7 @@ Follow these steps to configure SSL when using the Nginx load balancer in Bold B
 	
 	**Note:** After successfully deploying the Cert Manager, verify that the Cert Manager pods are in a running state by using the following command: `kubectl get pods -n cert-manager`.
 			
-2. Download the <b>nginx-issuer.yaml</b> file from [here](../../ssl-configuration/nginx-issuer.yaml) and replace the <Your_valid_email_address> with valid email id.
+2. Download the <b>nginx-issuer.yaml</b> file from [here](../../ssl-configuration/nginx-issuer.yaml) and replace the `<your_valid_email_address>` with valid email id.
 
 	![Nginx-Issuer](../images/faq/nginx-issuer.png)
 
@@ -58,7 +58,7 @@ Follow these steps to configure SSL when using the Nginx load balancer in Bold B
 
 ## Configure SSL in Bold BI Kubernetes Deployment with Istio Using Cert Manager
 
-Follow the below steps to configure ssl when using Istio load balancer in Bold BI kubernetes deployment.
+Follow the below steps to configure ssl when using Istio load balancer in Bold BI Kubernetes deployment.
 
 1. To deploy the Cert Manager in your cluster, create a namespace and install it using helm or kubectl.
 	
@@ -81,7 +81,7 @@ Follow the below steps to configure ssl when using Istio load balancer in Bold B
 	
 	**Note:** After successfully deploying the Cert Manager, verify that the Cert Manager pods are in a running state by using the following command: `kubectl get pods -n cert-manager`.
 	
-2. Download the <b>istio-cert-issuer.yaml</b> file from [here](../../ssl-configuration/istio-cert-issuer.yaml) and replace the <Your_valid_email_address> with valid email id and <domain_name> with your domain name which you have used for Bold BI deployment.
+2. Download the <b>istio-cert-issuer.yaml</b> file from [here](../../ssl-configuration/istio-cert-issuer.yaml) and replace the `<your_valid_email_address>` with valid email id and <domain_name> with your domain name which you have used for Bold BI deployment.
 
 	![Istio-Cert-Issuer](../images/faq/istio-cert-issuer.png)
 
