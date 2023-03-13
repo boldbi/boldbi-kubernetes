@@ -35,11 +35,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 7. Navigate to the folder where the deployment files were downloaded in above step. 
 
-8. Note the **EFS File system ID** created in **step 2**.
-
-    ![AWS EFS](../images/deploy/eks/aws-efs.png)
-
-9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 1**. Replace the **File system ID** noted in above step with the `<efs_file_system_id>` place in the file. Also, change the storage size in the YAML file.
+9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 6**. Replace the **File system ID** which created in **step 2** with the `<efs_file_system_id>` place in the file.
 
    ![PV Claim](../images/deploy/eks/pvclaim.png)
 
@@ -215,6 +211,8 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
     ![Browser_veiw](../images/deploy/Browser_veiw.png) 
     
-22. If you encounter a Deployment Error, click Proceed to the application start-up page link. Please refer to the following link for more details on configuring the application start-up manually.
+22. If you are facing any issues as shown below, please cross-check whether the auto-deployment variable is correct. If any of the variables are wrong, you need to correct them and redeploy the application. Alternatively, you can click `proceed to the application startup page` and refer to the following link for more details on manually configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
+
+![deployement_error](../images/deploy/deployement_error.png)
