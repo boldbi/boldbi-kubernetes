@@ -215,4 +215,4 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
     
     https://help.boldbi.com/embedded-bi/application-startup
 
-![deployement_error](../images/deploy/deploy_error.png)
+    ![deployement_error](../images/deploy/deploy_error.png)
