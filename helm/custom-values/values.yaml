@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,clickhouse,google'
 # your cluster provider name.The supported values are aks,gke and eks.
 clusterProvider: ''
 
@@ -24,13 +24,11 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
-  onpremise:
-    hostPath: ''
     
 image:
   repo: gcr.io/boldbi-294612
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 5.3.83
+  tag: 6.1.8
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
@@ -138,7 +136,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
