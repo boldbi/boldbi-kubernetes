@@ -35,11 +35,11 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 7. Navigate to the folder where the deployment files were downloaded in above step. 
 
-9. Open **deploy_eks_alb.yaml** file, downloaded in **Step 6**. Replace the **File system ID** which created in **step 2** with the `<efs_file_system_id>` place in the file.
+8. Open the **deploy_eks_alb.yaml** file that was downloaded in Step 6. Replace the file system ID that was created in Step 2 with the `<efs_file_system_id>` placeholder in the file.
 
    ![PV Claim](../images/deploy/eks/pvclaim.png)
 
-10. Enter the necessary variable information in the **deploy_eks_alb.yaml** file to complete the auto-deployment, as detailed below.
+9. Enter the necessary variable information in the **deploy_eks_alb.yaml** file to complete the auto-deployment, as detailed below.
 
     * Enter the Bold BI license key, user, and database server details.
 	The following environment variables are optional. If not provided, a manual Application start-up configuration is needed.
@@ -139,15 +139,15 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
        
        ![Enable-Bingmap](../images/deploy/eks/bingmap_enable.png)
 
-11. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
+10. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-12. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml).Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **18**.
+11. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml).Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **18**.
 
       ![DNS](../images/faq/ingress_alb_host.png)
 
 	**Note:** Here you need to mention the host without the HTTP or HTTPS protocol.
 	
-13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps of section A or B, otherwise, skip to **Step 13**.
+12. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps of section A or B, otherwise, skip to **Step 13**.
 
     **A. SSL configuration using TLS secret:**
 	* Run the following command to create a TLS secret with your own SSL certificate.
@@ -169,12 +169,12 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
 		 ![ACM ARN](../images/faq/ingress_ARN.png)	
 
-14. Apply the `ingress_alb.yaml` by running the following command.
+13. Apply the `ingress_alb.yaml` by running the following command.
 
 	```sh
 	kubectl apply -f ingress_alb.yaml
 	```
-15. Now, run the following command to get the ingress address.
+14. Now, run the following command to get the ingress address.
 
 	```sh
 	kubectl get ingress -n bold-services
@@ -182,38 +182,38 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 	Repeat the above command till you get the value in the ADDRESS tab.
 	![Ingress Address](../images/faq/ingress_alb_address.png) 
 	
-16. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file with http or https protocal.
+15. Replace your DNS or Ingress address in `<application_base_url>` place of the **deploy_eks_alb.yaml** file with http or https protocal.
 
     Ex:  `http://example.com`, `https://example.com`, `http://<ingress_address>`
     
     ![App_Base_Url](../images/faq/alb_app_base_url.png) 
     
-17. Read the optional client library license agreement from the following link.
+16. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-18. By default, all client libraries for Bold BI will be installed in Kubernetes. However, overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
+17. By default, all client libraries for Bold BI will be installed in Kubernetes. However, overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
     ![Optinal_Lib](../images/faq/alb_optional_lib.png) 
 
-19. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
+18. Now, run the following commands to deploy Bold BI in your kubernetes cluster.
 
     ```sh
     kubectl apply -f deploy_eks_alb.yaml
     ```
 
-20. Use the following command to get the pods status.
+19. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](../images/deploy/pod_status.png) 
 
-21. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**.
+20. Wait till you see the applications in running state. Then, use your DNS or Ingress address you got from **Step 15**.
 
     ![Browser_veiw](../images/deploy/Browser_veiw.png) 
     
-22. If you are facing any issues as shown below, please cross-check whether the auto-deployment variable is correct. If any of the variables are wrong, you need to correct them and redeploy the application. Alternatively, you can click `proceed to the application startup page` and refer to the following link for more details on manually configuring the application startup.
+21. If you are facing any issues as shown below, please cross-check whether the auto-deployment variable is correct. If any of the variables are wrong, you need to correct them and redeploy the application. Alternatively, you can click `proceed to the application startup page` and refer to the following link for more details on manually configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
 
