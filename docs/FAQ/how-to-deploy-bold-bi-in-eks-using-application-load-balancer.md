@@ -145,6 +145,8 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
       ![DNS](../images/faq/ingress_alb_host.png)
 
+	**Note:** Here you need to mention the host without the HTTP or HTTPS protocol.
+	
 13. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps of section A or B, otherwise, skip to **Step 13**.
 
     **A. SSL configuration using TLS secret:**
