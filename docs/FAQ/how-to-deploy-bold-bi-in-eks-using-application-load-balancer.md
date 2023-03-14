@@ -165,7 +165,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
        
        * Now, uncommand the below lines and replace your Arn with `Amazon Resource Name (ARN) of the Certificate` in ingress annotation and save the file.
 
-	![ACM ARN](../images/faq/ingress_ARN.png)	
+		 ![ACM ARN](../images/faq/ingress_ARN.png)	
 
 14. Apply the `ingress_alb.yaml` by running the following command.
 
