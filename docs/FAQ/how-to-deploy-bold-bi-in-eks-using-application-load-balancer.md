@@ -39,10 +39,10 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 
    ![PV Claim](../images/deploy/eks/pvclaim.png)
 
-10. Enter the variable information needed to complete the auto-deployment in **deploy_eks_alb.yaml** file, as shown in the following image.
+10. Enter the necessary variable information in the **deploy_eks_alb.yaml** file to complete the auto-deployment, as detailed below.
 
     * Enter the Bold BI license key, user, and database server details.
-	    The following environment variables are optional. If not provided, a manual Application Startup configuration is needed.
+	The following environment variables are optional. If not provided, a manual Application start-up configuration is needed.
         
         ![Licence-and-User-Details](../images/deploy/eks/licence-and-user-details.png)
 
@@ -96,7 +96,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
             namespace: bold-services
           type: Opaque
           stringData:
-            # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+            # Type of a database server can be used for configuring the Bold BI. For example, mssql, mysql, and postgresql.
             BOLD_SERVICES_DB_TYPE: "postgresql"
 
             # Name of the Database Server
@@ -125,7 +125,7 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
             # If your database server uses a different default database, please provide it here.
             BOLD_SERVICES_POSTGRESQL_MAINTENANCE_DB: "postgres"
 
-            # If your database server requires additional connection string parameters, include them here
+            # If your database server requires additional connection string parameters, include them here.
             # Connection string parameters can be found in the official document.
             # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
             # PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html
@@ -135,13 +135,13 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
           ---
         </details>
            
-    * If you need to use the **Bing Map** widget feature, enter the value for `widget_bing_map_enable` environment variable as `true` and the API key value for `widget_bing_map_api_key`.
+    * If you need to use the **Bing Map** widget feature, enter the value for the `widget_bing_map_enable` environment variable as `true` and the API key value for the `widget_bing_map_api_key`.
        
        ![Enable-Bingmap](../images/deploy/eks/bingmap_enable.png)
 
 11. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 13**. 
 
-12. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml) Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **18**.
+12. Download the `ingress_alb.yaml` file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ingress_alb.yaml).Uncomment the host value and replace your DNS hostname with `example.com` in ingress_alb.yaml file in line **18**.
 
       ![DNS](../images/faq/ingress_alb_host.png)
 
@@ -161,11 +161,11 @@ The section explains how to deploy [Bold BI](https://www.boldbi.com/) in an EKS 
 		![ingress DNS](../images/faq/tls_ingress_alb.png)
 	
     **B. SSL configuration using ACM ARN:**
-       * Create an ACM Certificate for your domain and verify ownership. Note down the Amazon Resource Name (ARN) of the Certificate you just created. You can find the ARN in the ACM Management Console, as shown below.
+       * Create an ACM Certificate for your domain and verify ownership. Note down the `Amazon Resource Name (ARN) of the Certificate` you just created. Find the ARN in the ACM Management Console as follows.
        
        		![ACM ARN](../images/faq/AWS_ACM_ARN.png)
        
-       * Now, uncommand the below lines and replace your Arn with `Amazon Resource Name (ARN) of the Certificate` in ingress annotation and save the file.
+       * Now, uncommand the following lines and replace your Arn with `Amazon Resource Name (ARN) of the Certificate` in the ingress annotation and save the file.
 
 		 ![ACM ARN](../images/faq/ingress_ARN.png)	
 
