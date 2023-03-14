@@ -375,7 +375,7 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
     ```sh  
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/aws/deploy.yaml
     ```
-7. EEnter the variable information needed to complete the auto-deployment in **deploy_eks.yaml** file, as shown in the following image.
+7. Enter the variable information needed to complete the auto-deployment in the **deploy_eks.yaml** file as shown in the following image.
 
     * Enter the Bold BI license key, user, and database server details.
         
