@@ -17,13 +17,13 @@ Bold BI updates the database schema of your current version to the latest versio
 You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/upgrade/6-1_upgrade.sh) or use the below command.
 
 ```sh
-curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/upgrade/6-1_upgrade.sh
+curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.2.7/upgrade/6-2_upgrade.sh
 ```
 
 Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version="6.1.8" --namespace="bold-services"
+./upgrade.sh --version="6.2.8" --namespace="bold-services"
 ```
 
 <table>
