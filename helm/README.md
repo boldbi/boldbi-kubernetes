@@ -195,7 +195,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbPort
       </td>
       <td>
-       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5234<br />MySQL -3306<br /><br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
+       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5432<br />MySQL -3306<br /><br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
       </td>
     </tr>
     <tr>
@@ -219,7 +219,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbName
       </td>
       <td>
-       If the database name is not specified, the system will create a new database called bold services.<br /><br />If you specify a database name, it should already exist on the server.
+       If the database name is not specified, the system will create a new database called bold-services.<br /><br />If you specify a database name, it should already exist on the server.
       </td>
     </tr>
     <tr>
