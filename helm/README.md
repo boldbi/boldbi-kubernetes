@@ -13,7 +13,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 
 ## Create Namespace
 
-Run the following command to create the namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.The default namespace is <b>bold-services</b>.
+Run the following command to create the namespace in which the Bold BI resources will be deployed in the kubernetes cluster.The default namespace is <b>bold-services</b>.
 
 ```console
 kubectl create ns bold-services
