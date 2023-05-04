@@ -1,0 +1,252 @@
+# Default values for boldbi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# namespace: bold-services
+
+appBaseUrl: ''
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,clickhouse,google'
+clusterProvider: 'aks'
+
+namespace:
+  name: bold-services
+  annotations:
+    "helm.sh/resource-policy": keep
+  labels:
+    istio-injection: enabled
+    opa-istio-injection: enabled
+
+persistentVolume:
+  # persistent volumes were global resources. 
+  # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI persistent volumes.
+  name: bold-fileserver
+  capacity: 3Gi
+  aks:
+    # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
+    secretName: ''
+    # Mention the Azure file share name.
+    fileShareName: ''
+    # You can ignore the following values if you are using an azure existing secret.
+    # base64 string
+    azureStorageAccountName: ''
+    # base64 string
+    azureStorageAccountKey: ''
+    
+image:
+  idRepo: gcr.io/boldbi-294612
+  biRepo: gcr.io/boldbi-294612
+  reportsRepo: gcr.io/boldreports-dev
+  # Overrides the image tag whose default is the chart appVersion.
+  idTag: 5.3.174_05042023_045527_KC12616
+  biTag: 5.3.174_05042023_045527_KC12616
+  reportsTag: 3.1.42_04052023_yokogawa
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+
+autoDeployment:
+  imageRepo: gcr.io/boldbi-294612
+  imageTag: v1.0
+  pullPolicy: IfNotPresent
+  
+
+versions:
+  idp: "3.1.30"
+  bi: "5.3.174"
+  reports: "3.1.42"
+
+## Secrets for Bold BI Auto Deployment.
+# This section helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
+
+#  The Bold BI and Reports licnece key which you have purchesed.
+licenseKeyDetails:
+  biLicenseKey: ""
+  reportsLicenseKey: ""
+  
+# The Bold BI root user details.
+rootUserDetails:
+  email: ""
+  password: ""
+  
+# Bold BI and Reports site details.
+siteDetails:
+  biSiteName: ""
+  biSiteIdentifier: ""
+  reportsSiteName: ""
+  reportsSiteIdentifier: ""
+  
+# The database server details.
+databaseServerDetails:
+  # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+  dbType: ""
+
+  # Name of the Database Server
+  dbHost: ""
+
+  # The system will use the following default port numbers based on the database server type.
+  # PostgrSQL – 5432 and MySQL -3306
+  # Please specify the port number for your database server if it is configured on a different port.
+  # For MS SQL Server, this parameter is not necessary.
+  dbPort: ""
+
+  # Username for the database server
+  # Please refer to this documentation for information on the user's permissions.
+  # https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/
+  dbUser: ""
+
+  # The database user's password
+  dbPassword: ""
+
+  # If the database name is not specified, the system will create a new database called bold services.
+  # If you specify a database name, it should already exist on the server.
+  dbName: ""
+
+  # For PostgreSQL DB Servers, this is an optional parameter.
+  # The system will use the database name postgresql by default.
+  # If your database server uses a different default database, please provide it here.
+  maintenanceDB: ""
+  
+  # If your database server requires additional connection string parameters, include them here
+  # Connection string parameters can be found in the official document.
+  # My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html
+  # PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html
+  # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+  # Note: A semicolon(;) should be used to separate multiple parameters.
+  dbAdditionalParameters: ""
+
+loadBalancer:
+  type: istio
+  affinityCookie:
+    enable: true
+    affinityCookieExpiration: 600
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+  singleHost: 
+    secretName: bold-tls
+  # multipleHost:
+    # hostArray:
+      # - hosts: 
+          # - kubernetes.docker.internal
+          # - example.com
+        # secretName: bold-tls
+
+istioConfig:
+  # Specify the existing Gateway name. The default name is 'bold-gateway'
+  gatewayName: ''
+  # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
+  virtualServiceName: ''
+
+instanceConfig:
+  - app: id-web
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: id-api
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: id-ums
+    product: boldid
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: bi-web
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: bi-api
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: bi-jobs
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: bi-dataservice
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
+  - app: reports-web
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-api
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-jobs
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-reportservice
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+     
+    
+service:
+  type: ClusterIP
+  port: 80
+  
+autoscaling:
+  enabled: true
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+  behavior:
+    stabilizationWindowSeconds: 60
+    podsValue: 1
+    podsPeriodSeconds: 60
+    percentValue: 10
+    percentPeriodSeconds: 60
+    
+bingMapWidget:
+  # Specify the existing bingMap Secret Name. The default is 'bold-secret'
+  bingMapSecretName: ''
+  enabled: false
+  apiKey: ''
