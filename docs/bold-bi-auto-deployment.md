@@ -1148,6 +1148,22 @@ This following environment variables helps you to deploy Bold BI in Kubernetes w
        License key of Bold BI
       </td>
     </tr>
+   <tr>
+      <td>
+       email *
+      </td>
+      <td>
+       It should be a valid email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       password *
+      </td>
+      <td>
+       It should meet our password requirements. <br /> <br />Note: <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
+      </td>
+    </tr>
     <tr>
       <td>
        dbType *
