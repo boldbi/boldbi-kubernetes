@@ -1,0 +1,51 @@
+{{- if eq .Values.loadBalancer.type "istio" }}
+{{- range $service := .Values.instanceConfig}}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    helm.sh/chart: {{ $.Chart.Name }}_{{ $.Chart.Version }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    {{- if $.Chart.AppVersion }}
+    app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}
+    {{- end }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+  name: {{ $service.app }}-rule
+  {{- if eq $.Release.Namespace "default" }}
+  namespace: {{ $.Values.namespace.name }}
+  {{- else }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+spec:
+  host: {{ $service.app }}-service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          {{- if eq $service.app "id-web" }}
+          name: bold.k8s.id.web.pod.id
+          {{- else if eq $service.app "id-api" }}
+          name: bold.k8s.id.api.pod.id
+          {{- else if eq $service.app "id-ums" }}
+          name: bold.k8s.id.ums.pod.id
+          {{- else if eq $service.app "bi-web" }}
+          name: bold.k8s.bi.web.pod.id
+          {{- else if eq $service.app "bi-api" }}
+          name: bold.k8s.bi.api.pod.id
+          {{- else if eq $service.app "bi-jobs" }}
+          name: bold.k8s.bi.jobs.pod.id
+          {{- else if eq $service.app "bi-dataservice" }}
+          name: bold.k8s.bi.dataservice.pod.id
+          {{- else if eq $service.app "reports-web" }}
+          name: boldbi.k8s.reports.web.pod.id
+          {{- else if eq $service.app "reports-api" }}
+          name: boldbi.k8s.reports.api.pod.id
+          {{- else if eq $service.app "reports-jobs" }}
+          name: boldbi.k8s.reports.jobs.pod.id
+          {{- else if eq $service.app "reports-reportservice" }}
+          name: boldbi.k8s.reports.reportservice.pod.id
+          {{- end }}          
+          ttl: {{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s
+---
+{{- end }}
+{{- end }}

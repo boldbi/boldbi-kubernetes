@@ -1,0 +1,25 @@
+{{- if .Release.IsInstall }}
+Thank you for installing {{ .Chart.Name }}.
+
+1. Wait for some time till the Bold BI On-Premise application deployed to your On-Premise Kubernetes cluster.
+
+2. Use the following command to get the pods status.
+{{ include "boldbi.notes-pods" . | nindent 3 }}
+
+3. After deployment, wait for some time to Horizontal Pod Autoscaler (HPA) gets the metrics from the pods. Use the following command to get HPA status.
+{{ include "boldbi.notes-hpa" . | nindent 3 }}
+
+4. If you get <unknown>/80% instead of actual CPU and memory usage of pods, then you do not have any metrics server running inside your cluster. Use the following command to deploy metrics server in your cluster to enable the autoscaling feature by HPA.
+
+   $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
+
+5. Use your DNS hostname to access the application in the browser --> {{ .Values.appBaseUrl }}
+
+6. Configure the Bold BI On-Premise application startup to use the application. Please refer the following link for more details on configuring the application startup.
+
+https://help.boldbi.com/embedded-bi/application-startup
+{{- else }}
+Thank you for upgrading {{ .Chart.Name }}.
+
+Chart Version: {{ .Chart.Version }}
+{{- end }}
