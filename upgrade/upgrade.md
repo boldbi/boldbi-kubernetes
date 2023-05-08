@@ -1,6 +1,6 @@
 # Upgrading Bold BI to latest version
 
-This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/6-3).
+This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/6-4).
 
 
 ## Backup the existing data
@@ -14,16 +14,16 @@ Before upgrading the Bold BI to latest version, make sure to take the backup of 
 ## Proceeding with upgrade
 Bold BI updates the database schema of your current version to the latest version. The upgrade process will retain all the resources and settings from the previous deployment.
 
-You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.3.3/upgrade/upgrade.sh) or use the below command.
+You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.4.6/upgrade/upgrade.sh) or use the below command.
 
 ```sh
-curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.3.3/upgrade/upgrade.sh
+curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.4.6/upgrade/upgrade.sh
 ```
 
 Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version="6.3.3" --namespace="bold-services"
+./upgrade.sh --version="6.4.6" --namespace="bold-services"
 ```
 
 <table>
