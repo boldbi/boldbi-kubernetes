@@ -68,6 +68,8 @@ spec:
         image: "{{ $.Values.image.reportsRepo }}/boldreports-server-jobs:{{ $.Values.image.reportsTag }}"
         {{- else if eq $service.app "reports-reportservice" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-designer:{{ $.Values.image.reportsTag }}"
+        {{- else if eq $service.app "reports-viewer" }}
+        image: "{{ $.Values.image.reportsRepo }}/boldreports-viewer:{{ $.Values.image.reportsTag }}"
         {{- end }}
         ports:
         - containerPort: 80
@@ -181,6 +183,8 @@ spec:
         - mountPath: /application/reporting/api/logs
         {{- else if eq $service.app "reports-jobs" }}
         - mountPath: /application/reporting/jobs/logs
+        {{- else if eq $service.app "reports-viewer" }}
+        - mountPath: /application/reporting/viewer/logs
         {{- else if eq $service.app "reports-reportservice" }}
         - mountPath: /application/reporting/reportservice/logs
         {{- end }}
