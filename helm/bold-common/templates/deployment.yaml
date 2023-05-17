@@ -68,8 +68,6 @@ spec:
         image: "{{ $.Values.image.reportsRepo }}/boldreports-server-jobs:{{ $.Values.image.reportsTag }}"
         {{- else if eq $service.app "reports-reportservice" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-designer:{{ $.Values.image.reportsTag }}"
-        {{- else if eq $service.app "reports-viewer" }}
-        image: "{{ $.Values.image.reportsRepo }}/boldreports-viewer:{{ $.Values.image.reportsTag }}"
         {{- end }}
         ports:
         - containerPort: 80
@@ -96,14 +94,6 @@ spec:
         - name: Is_Common_IDP
           value: "true"
         {{- end }}
-        {{- else if eq $service.app "id-ums" }}
-        envFrom:
-        - secretRef:
-              name: bold-user-secret
-        - secretRef:
-              name: bold-db-secret
-        - secretRef:
-              name: bold-license-key
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:
@@ -129,8 +119,9 @@ spec:
           httpGet:
             path: /health-check
             port: 80
-          {{- if eq $service.app "id-web" }}
-          initialDelaySeconds: 30
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
           {{- else }}
           initialDelaySeconds: 20
           {{- end }}
@@ -183,8 +174,6 @@ spec:
         - mountPath: /application/reporting/api/logs
         {{- else if eq $service.app "reports-jobs" }}
         - mountPath: /application/reporting/jobs/logs
-        {{- else if eq $service.app "reports-viewer" }}
-        - mountPath: /application/reporting/viewer/logs
         {{- else if eq $service.app "reports-reportservice" }}
         - mountPath: /application/reporting/reportservice/logs
         {{- end }}
