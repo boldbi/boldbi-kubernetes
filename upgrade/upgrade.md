@@ -1,6 +1,6 @@
 # Upgrading Bold BI to latest version
 
-This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/6-4).
+This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/6-5).
 
 
 ## Backup the existing data
