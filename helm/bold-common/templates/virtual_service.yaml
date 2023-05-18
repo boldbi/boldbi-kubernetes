@@ -57,6 +57,14 @@ spec:
         port:
           number: 6552
         host: reports-jobs-service
+  - match:
+    - uri:
+        prefix: /reporting/viewer
+    route:
+    - destination:
+        port:
+          number: 6554
+        host: reports-viewer-service
     retries:
       attempts: 3
       retryOn: gateway-error,connect-failure,refused-stream

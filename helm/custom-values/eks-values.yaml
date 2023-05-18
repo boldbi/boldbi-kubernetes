@@ -18,7 +18,7 @@ persistentVolume:
 image:
   repo: gcr.io/boldbi-294612
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6.4.6
+  tag: 6.5.8
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
