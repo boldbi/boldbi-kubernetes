@@ -71,6 +71,16 @@ spec:
  storageClassName: bold-storageclass
  hostPath:
    path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
+ {{- else if eq .Values.clusterProvider "ack" }}
+ csi:
+   driver: nasplugin.csi.alibabacloud.com
+   volumeHandle: bold-fileserver
+   volumeAttributes:
+     server: "{{ .Values.persistentVolume.ack.serverName }}"
+     path: "{{ .Values.persistentVolume.ack.filePath }}"
+ mountOptions:
+ - nolock,tcp,noresvport
+ - vers=3
  {{- else if eq .Values.clusterProvider "eks" }}
  storageClassName: efs-sc
  csi:

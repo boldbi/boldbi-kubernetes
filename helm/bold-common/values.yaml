@@ -32,6 +32,9 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
+  ack:
+    serverName: ''
+    filePath: ''
   onpremise:
     hostPath: ''
     
@@ -141,6 +144,13 @@ instanceConfig:
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: reports-jobs
+    product: boldreports
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: reports-viewer
     product: boldreports
     replicaCount: 1
     minReplicas: 1
