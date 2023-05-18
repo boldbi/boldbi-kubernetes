@@ -4,7 +4,7 @@
 
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
-clusterProvider: 'gke'
+clusterProvider: 'ack'
 
 namespace:
   name: bold-services
@@ -15,12 +15,12 @@ persistentVolume:
   # persistent volumes were global resources. 
   # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
-  name: bold-fileserver
+  name: bold-isti-fileserver
   capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
-  
+  ack:
+    serverName: ''
+    filePath: '/bold-services'
+    
 image:
   idRepo: gcr.io/boldbi-294612
   biRepo: gcr.io/boldbi-294612
@@ -53,6 +53,11 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+        
+subApplication:
+  enabled: false
+  # Specify the subpath. The default subpath value is 'boldservices'
+  subPath: ''
 
 istioConfig:
   # To use the existing Gateway specify the existing Gateway name.
@@ -61,11 +66,6 @@ istioConfig:
 
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
-  
-subApplication:
-  enabled: false
-  # Specify the subpath. The default subpath value is 'boldservices'
-  subPath: ''
 
 instanceConfig:
   - app: id-web
