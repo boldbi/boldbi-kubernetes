@@ -22,5 +22,4 @@ https://help.boldbi.com/embedded-bi/application-startup
 Thank you for upgrading {{ .Chart.Name }}.
 
 Chart Version: {{ .Chart.Version }}
-App Version: {{ $.Chart.AppVersion | quote }}
 {{- end }}

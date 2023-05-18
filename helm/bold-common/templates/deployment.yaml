@@ -96,14 +96,6 @@ spec:
         - name: Is_Common_IDP
           value: "true"
         {{- end }}
-        {{- else if eq $service.app "id-ums" }}
-        envFrom:
-        - secretRef:
-              name: bold-user-secret
-        - secretRef:
-              name: bold-db-secret
-        - secretRef:
-              name: bold-license-key
         {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:
@@ -129,8 +121,9 @@ spec:
           httpGet:
             path: /health-check
             port: 80
-          {{- if eq $service.app "id-web" }}
-          initialDelaySeconds: 30
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
           {{- else }}
           initialDelaySeconds: 20
           {{- end }}
