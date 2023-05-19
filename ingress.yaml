@@ -710,22 +710,22 @@ spec:
   {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
   ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
   {{- end }}
-  # {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  # tls:   
-    # {{- if .Values.loadBalancer.multipleHost }}
-    # {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
-    # - hosts:
-      # {{- range $dns := $host.hosts }}
-        # - {{ $dns }}
-      # {{- end }}
-      # secretName: {{ $host.secretName }}
-    # {{- end }}
-    # {{- else }}
-    # - hosts:
-        # - {{ (split "/" .Values.appBaseUrl)._2 }}
-      # secretName: {{ .Values.loadBalancer.singleHost.secretName }}
-    # {{- end }}
-  # {{- end }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  tls:   
+    {{- if .Values.loadBalancer.multipleHost }}
+    {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
+    - hosts:
+      {{- range $dns := $host.hosts }}
+        - {{ $dns }}
+      {{- end }}
+      secretName: {{ $host.secretName }}
+    {{- end }}
+    {{- else }}
+    - hosts:
+        - {{ (split "/" .Values.appBaseUrl)._2 }}
+      secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
+  {{- end }}
   rules:
     {{- if .Values.loadBalancer.multipleHost }}
     - http:
