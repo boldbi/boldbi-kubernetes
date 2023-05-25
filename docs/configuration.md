@@ -235,7 +235,16 @@ persistentVolume:
        persistentVolume.ack.serverName
       </td>
       <td>
-       The <i>File system ID</i> of your EFS file system.
+       The <i><host_name_of_mount_target></i> for your NAS file system.
+      </td>
+    </tr>
+      <tr>
+      <td>
+       persistentVolume.ack.filePath
+      </td>
+      <td>
+       File path of the app_data files.
+       default location: bold-services
       </td>
     </tr>
 </table>
