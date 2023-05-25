@@ -184,7 +184,7 @@ The following table allows you to craft the values.yaml file with required value
        <br/>
        Ex: `http://example.com`, `https://example.com`
        <br/>
-       Follow the <a href='configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol.
+       Follow the <a href='../configuration.md#ssl-configuration'>SSL Configuration</a> to configure SSL certificate for https protocol.
       </td>
     </tr>
     <tr>
@@ -194,7 +194,7 @@ The following table allows you to craft the values.yaml file with required value
       <td>
        These are the client libraries used in Bold BI and Bold Reports by default.<br/>
        '<i>mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse</i>'<br/>
-       Please refer to <a href='docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
+       Please refer to <a href='../configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -204,7 +204,7 @@ The following table allows you to craft the values.yaml file with required value
       <td>
        The type of kubernetes cluster provider you are using.<br/>
        The supported values are '<i>gke,eks,ack and aks,</i>'
-       Please refer to <a href='configuration.md#cluster-provider'>Cluster Provider</a> section to know more.
+       Please refer to <a href='../configuration.md#cluster-provider'>Cluster Provider</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -213,7 +213,7 @@ The following table allows you to craft the values.yaml file with required value
       </td>
       <td>
        This is a file storage information to store the shared folders for application usage.
-       Please refer to <a href='configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI and Bold Reports.
+       Please refer to <a href='../configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI and Bold Reports.
       </td>
     </tr>
     <tr>
