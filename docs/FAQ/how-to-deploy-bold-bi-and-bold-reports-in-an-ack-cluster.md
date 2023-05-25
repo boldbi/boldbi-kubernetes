@@ -27,7 +27,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
 ## Steps for Bold BI and Bold Reports auto deployment using kubectl.
 
-1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/common_ack_deploy.yaml) to deploy Bold BI and Bold Reports on AKS.
+1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/239310-Bold-BI-Alibaba-Cloud-Kubernetes-(ACK)-Doc/deploy/deploy/common_ack_deploy.yaml) to deploy Bold BI and Bold Reports on AKS.
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
