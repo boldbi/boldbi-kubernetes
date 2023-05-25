@@ -202,7 +202,48 @@ persistentVolume:
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
-4. On-Premise
+4.ACK
+
+```console
+clusterProvider: ack
+    
+persistentVolume:
+  ack:
+    serverName: ''
+    filePath: '/bold-services'
+```
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>ack</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.ack.serverName
+      </td>
+      <td>
+       The <i>File system ID</i> of your EFS file system.
+      </td>
+    </tr>
+</table>
+<br/>
+
+
+
+5. On-Premise
   
 ```console
 clusterProvider: onpremise
