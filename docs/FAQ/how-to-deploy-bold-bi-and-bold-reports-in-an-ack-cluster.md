@@ -5,7 +5,7 @@ This section provides instructions on how to deploy Bold BI and Bold Reports in 
 
 There are two ways to deploy Bold BI and Bold Reports on the Kubernetes cluster. Please refer to the following documents for Bold BI and Bold Reports deployment:
 
-* [Deploy Bold BI and Bold Reports using Kubectl](#deploy-bold-bi-using-kubectl)
+* [Deploy Bold BI and Bold Reports using Kubectl](#deploy-bold-bi-and-bold-reports-using-kubectl)
 * [Deploy Bold BI and Bold Reports using Helm](#bold-bi-auto-deployment-using-helm)
 
 Please click on the respective links to access the detailed documentation for each deployment method.
