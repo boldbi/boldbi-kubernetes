@@ -103,7 +103,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
     kubectl get ingress -n bold-services
      ``` 
 
-19. For more details on configuring the application startup, please refer to the [this]()
+19. For more details on configuring the application startup, please refer to the [this](#application-startup)
 
 
 # Bold BI and Bold Reports Auto Deployment using Helm
