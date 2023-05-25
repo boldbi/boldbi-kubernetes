@@ -259,7 +259,7 @@ Run the following command to delpoy Bold BI and Bold Reports in your cluster.
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
