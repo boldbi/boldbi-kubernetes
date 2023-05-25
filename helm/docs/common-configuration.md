@@ -259,9 +259,9 @@ Repository details are available in the image section to refer to the image tags
 By default, the latest version of Bold BI, Bold Reports, and IDP is in the version section. You can change a version based on requirements.
 ```console
 versions:
-  idp: "3.1.21"
-  bi: "5.3.53"
-  reports: "4.2.52"
+  idp: "4.2.1"
+  bi: "6.5.8"
+  reports: "5.1.20"
 ````
 > **NOTE:**  We need give a latest version of `idp` when you have latest version of Bold BI or Bold Reports version
 
