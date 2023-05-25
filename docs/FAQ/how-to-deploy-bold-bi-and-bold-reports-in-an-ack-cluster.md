@@ -78,32 +78,31 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
     ![Optinal_Lib](images/ack_optional_lib.png) 
 
-15. Now, run the following commands to deploy Bold BI and Bold Reports in your kubernetes cluster.
+15. Deploy Bold BI and Bold Reports in your Kubernetes cluster by running the following command:
 
     ```sh
     kubectl apply -f common_ack_deploy.yaml
     ```
 
-16. 9.  Run the following command to create a TLS secret with your SSL certificate.
+16. Create a TLS secret with your SSL certificate using the following command:
 
     ```sh
     kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
     ```
 
-17. Use the following command to get the pods status.
+17. Check the status of the pods by running the following command:
 
      ```sh
     kubectl get pods -n bold-services
      ```
     ![Pod status](images/ack_pod_status.png) 
 
-18. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
-    
-     ```sh
+18. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the below command to access the application in the browser.
+
+    ```sh
     kubectl get ingress -n bold-services
-    ```
-    ![Browser_veiw](images/deploy/Browser_veiw.png) 
-    
+     ``` 
+
 19. Please refer to the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
