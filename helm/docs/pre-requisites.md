@@ -53,7 +53,7 @@ For encoding the values to base64 please run the following command in powershell
 * [Google Kubernetes Engine (GKE)](#gke-cluster)
 * [Amazon Elastic Kubernetes Service (EKS)](#eks-cluster)
 * [Azure Kubernetes Service (AKS)](#aks-cluster)
-* [Alibaba Cloud Kubernetes] (ACK)(#ack-cluster)
+* [Alibaba Cloud Kubernetes (ACK)](#ack-cluster)
 
 ### GKE Cluster
 
