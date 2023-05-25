@@ -239,39 +239,6 @@ persistentVolume:
 </table>
 <br/>
 
-<br/>
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       clusterProvider
-      </td>
-      <td>
-       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>onpremise</i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       persistentVolume.onpremise.hostPath
-      </td>
-      <td>
-       The shared folder path in your host machine.<br/><br/>
-       Ex: Create a folder in your machine to store the shared folders for application usage.
-       <i>D://app/shared</i><br/><br/>
-       The corresponding value for the above shared folder will be,
-       <i>/run/desktop/mnt/host/d/app/shared</i>
-      </td>
-    </tr>
-</table>
-<br/>
-
 ## Image
 
 We need to give an image tag for Bold BI, Bold Reports, and ID. By default set the latest version of image tags. You can change a tag based on requirements and the tag overrides the image tag whose default is in the chart appVersion.<br>
