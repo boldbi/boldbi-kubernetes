@@ -289,7 +289,7 @@ This removes all the Kubernetes components associated with the chart and deletes
 _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
 
 
-## Application Startup
+# Application Startup
 
 1. Configure the Bold BI application startup to use the application. Please refer to the following link for more details on configuring the application startup.
     
