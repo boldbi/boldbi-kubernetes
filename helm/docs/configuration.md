@@ -192,7 +192,54 @@ persistentVolume:
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
-4. On-Premise
+4. ACK
+
+```console
+clusterProvider: ack
+    
+persistentVolume:
+  ack:
+    serverName: ''
+    filePath: '/bold-services'
+```
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>ack</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.ack.serverName
+      </td>
+      <td>
+       The <i><host_name_of_mount_target></i> for your NAS file system.
+      </td>
+    </tr>
+      <tr>
+      <td>
+       persistentVolume.ack.filePath
+      </td>
+      <td>
+       This field represents the file path of the app_data files. The default location is mentioned as "bold-services.
+      </td>
+    </tr>
+</table>
+<br/>
+
+5. On-Premise
   
 ```console
 clusterProvider: onpremise
