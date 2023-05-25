@@ -243,8 +243,7 @@ persistentVolume:
        persistentVolume.ack.filePath
       </td>
       <td>
-       File path of the app_data files.
-       default location: bold-services
+       This field represents the file path of the app_data files. The default location is mentioned as "bold-services.
       </td>
     </tr>
 </table>
