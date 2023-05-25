@@ -202,7 +202,7 @@ persistentVolume:
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
-4.ACK
+4. ACK
 
 ```console
 clusterProvider: ack
