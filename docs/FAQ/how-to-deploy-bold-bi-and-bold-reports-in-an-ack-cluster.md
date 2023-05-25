@@ -110,14 +110,14 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
 # Bold BI and Bold Reports Auto Deployment using Helm
 
-This chart installs [Bold BI and Bold Reports](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE,AKS and EKS). Please follow the below documentation for Bold BI and Bold Reports deployment in a specific cloud environments.
+The following steps will guide you through the process of deploying Bold BI and Bold Reports using helm in an Alibaba Cloud Kubernetes (ACK) cluster.
 
 ## Deployment prerequisites
 
-* [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI and Bold Reports using Helm.
-* [File Storage](../docs/pre-requisites.md#file-storage)
-* [Create and connect a cluster](../docs/pre-requisites.md#create-a-cluster)
-* [Load Balancing](../docs/pre-requisites.md#load-balancing)
+* [Install Helm](https://helm.sh/docs/intro/install/): Make sure you have helm installed on your local machine to facilitate the deployment process.
+* [NAS File System](pre-requisites.md#file-storage): Set up a NAS file system to store the required data for Bold BI and Bold Reports.
+* [Create and connect a ACK cluster](pre-requisites.md#create-a-cluster): Create and connect an ACK cluster in Alibaba Cloud that will host the Bold BI and Bold Reports deployment.
+* Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/) : By default, an Alibaba Cloud Kubernetes (ACK) cluster has Nginx already installed in the kube-system namespace, so there is no need to manually install it. The Nginx Ingress Controller is available and can be utilized to enable load balancing for your Bold BI and Bold Reports deployment.
 
 **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to craft values.yaml when installing Bold BI and Bold Reports with helm chart.
 
