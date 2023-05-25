@@ -103,7 +103,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
     kubectl get ingress -n bold-services
      ``` 
 
-19. Please refer to the following link for more details on configuring the application startup.
+19. For more details on configuring the application startup, please refer to the following link:
     
     https://help.boldbi.com/embedded-bi/application-startup
 
