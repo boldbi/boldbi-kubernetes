@@ -103,9 +103,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
     kubectl get ingress -n bold-services
      ``` 
 
-19. For more details on configuring the application startup, please refer to the following link:
-    
-    https://help.boldbi.com/embedded-bi/application-startup
+19. For more details on configuring the application startup, please refer to the [this]()
 
 
 # Bold BI and Bold Reports Auto Deployment using Helm
@@ -289,3 +287,34 @@ Ex:  `helm uninstall boldbi`
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
 _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
+
+
+## Application Startup
+
+1. Configure the Bold BI application startup to use the application. Please refer to the following link for more details on configuring the application startup.
+    
+   https://help.boldbi.com/embedded-bi/application-startup
+
+2. Navigate to administration configuration file.
+   ```sh
+   <DNS>/ums/administration/config-editor
+   ```
+   ![Configuration-editor](/helm/docs/images/config-edit.png)
+
+3. In product.json file, append the lines below for Bold Reports:
+    ```console
+    {
+    "Name": "BoldReports",
+    "SetupName": "BoldReports_EnterpriseReporting",
+    "Version": "4.2.52",
+    "IDPVersion": "3.1.21",
+    "IsCommonLogin": true
+    }
+    ```
+   >**Note:** The IDP version of Bold BI or Bold Reports should be same.
+
+4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
+     ![Product Json](/helm/docs/images/reports.png)
+
+5. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
+    https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
