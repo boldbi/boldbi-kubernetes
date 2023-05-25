@@ -43,69 +43,68 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
 6. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 10**. 
 
-7. Uncomment the host value and replace your DNS hostname with `example.com` in **common_ack_deploy.yaml** file in line **2335**.
+7. In common_ack_deploy.yaml file and locate line 2335. Uncomment the host value and replace example.com with your DNS hostname.
 
       ![DNS](images/ack_ingress_http_yaml.png)
+  
+8. If you have an SSL certificate for your DNS and need to configure the site with it, follow these steps; otherwise, skip to **Step 10**.
 
-8. If you have the SSL certificate for your DNS and need to configure the site with it, follow these steps, otherwise, skip to **Step 10**.
-
-9. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
+9. In the ingress spec of the common_ack_deploy.yaml file, uncomment the tls section. Replace example.com with your DNS hostname and save the file.
 
       ![ingress DNS](images/ack_ingress_tls_yaml.png)
 
-10. Now, run the following command to get the External IP address.
+10. Run the following command to retrieve the External IP address:
 
       ```sh
       kubectl get svc -n kube-system
       ```
-      Repeat the above command till you get the IP address in EXTERNAL-IP tab as shown in the following image. 
+      Repeat the above command until you find the IP address listed in the EXTERNAL-IP column, as shown in the following image:
+
       ![Ingress Address](images/ack_ingress_address.png)
 
-14. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the **common_ack_deploy.yaml** file. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
+11. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the common_ack_deploy.yaml file. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
-15. Replace your DNS or EXTERNAL-IP address in `<application_base_url>` place.
+12. Replace `<application_base_url>` with your DNS or EXTERNAL-IP address.
 
-    Ex:  `http://example.com`, `https://example.com`, `http://<external_ip_address>`
+    Examples: `http://example.com`, `https://example.com`, `http://<external_ip_address>`
     
-    ![App_Base_Url](images/deploy/aks/app_base_url.png) 
+    ![App_Base_Url](images/ack_app_base_url.png) 
     
-16. Read the optional client library license agreement from the following link.
+13. Read the optional client library license agreement from the following link.
 
     [Consent to deploy client libraries](../docs/consent-to-deploy-client-libraries.md)
     
-17. By default, all client libraries for Bold BI and Bold Reports will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
+14. By default, all client libraries for Bold BI and Bold Reports will be installed in Kubernetes. However, you can overwrite them by specifying the required libraries as a comma-separated list in the environment variable noted from the above link.
 
-    ![Optinal_Lib](images/deploy/aks/optional_lib.png) 
+    ![Optinal_Lib](images/ack_optional_lib.png) 
 
-18. Now, run the following commands to deploy Bold BI and Bold Reports in your kubernetes cluster.
+15. Now, run the following commands to deploy Bold BI and Bold Reports in your kubernetes cluster.
 
     ```sh
-    kubectl apply -f deploy.yaml
+    kubectl apply -f common_ack_deploy.yaml
     ```
 
-19. 9.  Run the following command to create a TLS secret with your SSL certificate.
+16. 9.  Run the following command to create a TLS secret with your SSL certificate.
 
-```sh
-kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
-```
+    ```sh
+    kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
+    ```
 
-19. Use the following command to get the pods status.
+17. Use the following command to get the pods status.
 
      ```sh
     kubectl get pods -n bold-services
      ```
-    ![Pod status](images/deploy/pod_status.png) 
+    ![Pod status](images/ack_pod_status.png) 
 
-20. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
+18. Wait till you see the applications in running state. Then, use your DNS or EXTERNAL-IP address you got from the following command to access the application in the browser.
     
      ```sh
     kubectl get ingress -n bold-services
     ```
-    ![Ingress Address](images/deploy/aks/ingress.png)
-
     ![Browser_veiw](images/deploy/Browser_veiw.png) 
     
-21. Please refer to the following link for more details on configuring the application startup.
+19. Please refer to the following link for more details on configuring the application startup.
     
     https://help.boldbi.com/embedded-bi/application-startup
 
