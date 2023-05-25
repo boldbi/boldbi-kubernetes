@@ -119,7 +119,7 @@ The following steps will guide you through the process of deploying Bold BI and 
 * [Create and connect a ACK cluster](../pre-requisites.md#ack-cluster): Create and connect an ACK cluster in Alibaba Cloud that will host the Bold BI and Bold Reports deployment.
 * Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/) : By default, an Alibaba Cloud Kubernetes (ACK) cluster has Nginx already installed in the kube-system namespace, so there is no need to manually install it. The Nginx Ingress Controller is available and can be utilized to enable load balancing for your Bold BI and Bold Reports deployment.
 
-**Note:** Note the Nignx External Ip address by running this `kubectl get svc -n kube-system` and map it with a DNS to craft values.yaml when installing Bold BI and Bold Reports with helm chart.
+**Note:** Obtain the **Nginx External IP** address by running `kubectl get svc -n kube-system` and map it with a DNS in order to craft the values.yaml file when installing Bold BI and Bold Reports using the Helm chart.
 
 ## Get Repo Info
 
@@ -136,7 +136,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   6.5.8           6.5.8         Embed powerful analytics inside your apps and t...
+boldbi/bold-common   6.5.8           6.5.8         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
