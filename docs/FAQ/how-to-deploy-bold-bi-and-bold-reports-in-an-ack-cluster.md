@@ -261,6 +261,23 @@ Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
+## Access application
+1. Check the status of the pods by running the following command:
+
+     ```sh
+    kubectl get pods -n bold-services
+     ```
+    ![Pod status](images/ack_pod_status.png) 
+
+2. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the below command to access the application in the browser.
+
+    ```sh
+    kubectl get ingress -n bold-services
+     ``` 
+
+3. For more details on configuring the application startup, please refer to the [this](#application-startup)
+
+
 ## Upgrade
 
 Run the following command to get the latest version of the Bold BI and Bold Reports helm chart.
