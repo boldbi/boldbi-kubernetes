@@ -51,7 +51,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
 9. Now, uncomment the `tls` section and replace your DNS hostname with `example.com` in ingress spec and save the file.
 
-       ![ingress DNS](images/ack_ingress_yaml.png)
+      ![ingress DNS](images/ack_ingress_tls_yaml.png)
 
 10. Now, run the following command to get the External IP address.
 
