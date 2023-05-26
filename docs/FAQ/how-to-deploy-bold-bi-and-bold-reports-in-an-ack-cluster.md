@@ -227,7 +227,7 @@ The following table allows you to craft the `values.yaml` file with required val
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI and Bold Reports. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to know more.
+       By default autoscaling is enabled in Bold BI and Bold Reports. Please refer to <a href='docs/configuration.md#auto-scaling'>this</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -235,7 +235,7 @@ The following table allows you to craft the `values.yaml` file with required val
        bingMapWidget
       </td>
       <td>
-       Please refer to <a href='configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI and Bold Reports.
+       Please refer to <a href='docs/configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI and Bold Reports.
       </td>
     </tr>
     <tr>
@@ -244,7 +244,7 @@ The following table allows you to craft the `values.yaml` file with required val
       </td>
       <td>
        Custom locale file path for Localization.
-       Please refer to <a href='configuration.md#custom-locale-path'>this</a> section to configure Custom Locale Path in Bold BI and Bold Reports.
+       Please refer to <a href='docs/configuration.md#custom-locale-path'>this</a> section to configure Custom Locale Path in Bold BI and Bold Reports.
       </td>
     </tr>
     </table>
