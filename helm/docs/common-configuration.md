@@ -44,7 +44,54 @@ persistentVolume:
 
 ### Persistent volume configuration for each cluster
 
-1. GKE
+1. ACK
+
+```console
+clusterProvider: ack
+    
+persistentVolume:
+  ack:
+    serverName: ''
+    filePath: '/bold-services'
+```
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>ack</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.ack.serverName
+      </td>
+      <td>
+       The <i><host_name_of_mount_target></i> for your NAS file system.
+      </td>
+    </tr>
+      <tr>
+      <td>
+       persistentVolume.ack.filePath
+      </td>
+      <td>
+       This field represents the file path of the app_data files. The default location is mentioned as "bold-services.
+      </td>
+    </tr>
+</table>
+<br/>
+
+2. GKE
 
 ```console
 clusterProvider: gke
@@ -92,7 +139,7 @@ persistentVolume:
 <br/>
 
 
-2. EKS
+3. EKS
 
 ```console
 clusterProvider: eks
@@ -131,7 +178,7 @@ persistentVolume:
 </table>
 <br/>
 
-3. AKS
+4. AKS
 
 ```console
 clusterProvider: aks
@@ -192,49 +239,6 @@ persistentVolume:
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
 
-4. On-Premise
-  
-```console
-clusterProvider: onpremise
-    
-persistentVolume:
-  onpremise:
-    hostPath: /run/desktop/mnt/host/<local_directory>
-```
-
-<br/>
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       clusterProvider
-      </td>
-      <td>
-       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>onpremise</i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       persistentVolume.onpremise.hostPath
-      </td>
-      <td>
-       The shared folder path in your host machine.<br/><br/>
-       Ex: Create a folder in your machine to store the shared folders for application usage.
-       <i>D://app/shared</i><br/><br/>
-       The corresponding value for the above shared folder will be,
-       <i>/run/desktop/mnt/host/d/app/shared</i>
-      </td>
-    </tr>
-</table>
-<br/>
-
 ## Image
 
 We need to give an image tag for Bold BI, Bold Reports, and ID. By default set the latest version of image tags. You can change a tag based on requirements and the tag overrides the image tag whose default is in the chart appVersion.<br>
@@ -244,9 +248,9 @@ image:
   biRepo: gcr.io/boldbi-294612
   reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 5.3.53
-  biTag: 5.3.53
-  reportsTag: 4.2.52
+  idTag: 6.5.8
+  biTag: 6.5.8
+  reportsTag: 5.1.20
 ````
 Repository details are available in the image section to refer to the image tags. No need to change the repository details for idRepo, biRepo, and reportsRepo.
 
@@ -255,9 +259,9 @@ Repository details are available in the image section to refer to the image tags
 By default, the latest version of Bold BI, Bold Reports, and IDP is in the version section. You can change a version based on requirements.
 ```console
 versions:
-  idp: "3.1.21"
-  bi: "5.3.53"
-  reports: "4.2.52"
+  idp: "4.2.1"
+  bi: "6.5.8"
+  reports: "5.1.20"
 ````
 > **NOTE:**  We need give a latest version of `idp` when you have latest version of Bold BI or Bold Reports version
 

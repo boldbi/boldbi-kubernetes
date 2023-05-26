@@ -64,3 +64,5 @@ It is the image user's responsibility to ensure that any use of this image compl
 [How to deploy Bold BI in EKS using Network Load Balancer (NLB) with SSL certificate from AWS Certificate Manager (ACM)?](https://github.com/boldbi/boldbi-kubernetes/blob/main//docs/FAQ/how-deploy-bold-bi-in-eks-using-network-load-balancer-with-ssl-certificate-from-acm.md)
 
 [How to deploy Bold BI in Elastic Kubernetes Services (EKS) using Application Load Balancer (ALB)?](https://github.com/boldbi/boldbi-kubernetes/blob/main//docs/FAQ/how-to-deploy-bold-bi-in-eks-using-application-load-balancer.md)
+
+[How to deploy Bold BI and Bold Reports in Alibaba Cloud Kubernetes (ACK) Cluster?](docs/FAQ/how-to-deploy-bold-bi-and-bold-reports-in-an-ack-cluster.md)
