@@ -44,7 +44,54 @@ persistentVolume:
 
 ### Persistent volume configuration for each cluster
 
-1. GKE
+1. ACK
+
+```console
+clusterProvider: ack
+    
+persistentVolume:
+  ack:
+    serverName: ''
+    filePath: '/bold-services'
+```
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>ack</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.ack.serverName
+      </td>
+      <td>
+       The <i><host_name_of_mount_target></i> for your NAS file system.
+      </td>
+    </tr>
+      <tr>
+      <td>
+       persistentVolume.ack.filePath
+      </td>
+      <td>
+       This field represents the file path of the app_data files. The default location is mentioned as "bold-services.
+      </td>
+    </tr>
+</table>
+<br/>
+
+2. GKE
 
 ```console
 clusterProvider: gke
@@ -92,7 +139,7 @@ persistentVolume:
 <br/>
 
 
-2. EKS
+3. EKS
 
 ```console
 clusterProvider: eks
@@ -131,7 +178,7 @@ persistentVolume:
 </table>
 <br/>
 
-3. AKS
+4. AKS
 
 ```console
 clusterProvider: aks
@@ -191,53 +238,6 @@ persistentVolume:
 <br/>
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
-
-4. ACK
-
-```console
-clusterProvider: ack
-    
-persistentVolume:
-  ack:
-    serverName: ''
-    filePath: '/bold-services'
-```
-<br/>
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       clusterProvider
-      </td>
-      <td>
-       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>ack</i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       persistentVolume.ack.serverName
-      </td>
-      <td>
-       The <i><host_name_of_mount_target></i> for your NAS file system.
-      </td>
-    </tr>
-      <tr>
-      <td>
-       persistentVolume.ack.filePath
-      </td>
-      <td>
-       This field represents the file path of the app_data files. The default location is mentioned as "bold-services.
-      </td>
-    </tr>
-</table>
-<br/>
 
 ## Image
 
