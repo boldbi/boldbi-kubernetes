@@ -12,16 +12,16 @@ Please click on the respective links to access the detailed documentation for ea
 
 # Deploy Bold BI and Bold Reports using Kubectl
 
-The following steps will guide you through the process of deploying Bold BI and Bold Reports using kubectl in an Alibaba Cloud Kubernetes (ACK) cluster.
+The following steps will guide you through the process of deploying Bold BI and Bold Reports using Kubectl in an Alibaba Cloud Kubernetes (ACK) cluster.
 
 ## Deployment prerequisites
 
-The following requirements are necessary to deploy the Bold BI and Bold Reports solution using kubectl:
+The following requirements are necessary to deploy the Bold BI and Bold Reports solution using Kubectl:
 
-* [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): Make sure you have kubectl installed on your local machine to facilitate the deployment process.
+* [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): Make sure you install kubectl on your local machine to facilitate the deployment process.
 * [NAS File System](../pre-requisites.md#ack-file-sotrage): Set up a NAS file system to store the required data for Bold BI and Bold Reports.
 * [Create and connect a ACK cluster](../pre-requisites.md#ack-cluster): Create and connect an ACK cluster in Alibaba Cloud that will host the Bold BI and Bold Reports deployment.
-* Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/) : By default, an Alibaba Cloud Kubernetes (ACK) cluster has Nginx already installed in the kube-system namespace, so there is no need to manually install it. The Nginx Ingress Controller is available and can be utilized to enable load balancing for your Bold BI and Bold Reports deployment.
+* Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/) : By default, an Alibaba Cloud Kubernetes (ACK) cluster has Nginx already installed in the kube-system namespace, so there is no need to install it manually. The Nginx Ingress Controller is available and can be utilized to enable load balancing for your Bold BI and Bold Reports deployment.
 
 Please ensure that you have fulfilled these prerequisites before proceeding with the deployment.
 
@@ -37,17 +37,17 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
    ![NAS-Mount-Target](images/Nas-mount-target.png)
 
-5. Open the **common_ack_deploy.yaml** file and replace the <host_name_of_mount_target> placeholder with the actual mount target hostname noted in the previous step.
+5. Open the **common_ack_deploy.yaml** file and replace the `<host_name_of_mount_target>` placeholder with the actual mount target hostname noted in the previous step.
 
     ![PV Claim](images/ack_pv_claim.png)
 
 6. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 10**. 
 
-7. In common_ack_deploy.yaml file and locate line 2335. Uncomment the host value and replace example.com with your DNS hostname.
+7. In the common_ack_deploy.yaml file and locate line 2335. Uncomment the host value and replace example.com with your DNS hostname.
 
       ![DNS](images/ack_ingress_http_yaml.png)
   
-8. If you have an SSL certificate for your DNS and need to configure the site with it, follow these steps; otherwise, skip to **Step 10**.
+8. If you have an SSL certificate for your DNS and need to configure the site, follow next step; otherwise, skip to **Step 10**.
 
 9. In the ingress spec of the common_ack_deploy.yaml file, uncomment the tls section. Replace example.com with your DNS hostname and save the file.
 
@@ -97,22 +97,22 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
      ```
     ![Pod status](images/ack_pod_status.png) 
 
-18. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the below command to access the application in the browser.
+18. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the following command to access the application in the browser.
 
     ```sh
     kubectl get ingress -n bold-services
      ``` 
 
-19. For more details on configuring the application startup, please refer to the [this](#application-startup)
+19. For more details on configuring the application startup, please refer to the [this](#application-startup).
 
 
 # Bold BI and Bold Reports Auto Deployment using Helm
 
-The following steps will guide you through the process of deploying Bold BI and Bold Reports using helm in an Alibaba Cloud Kubernetes (ACK) cluster.
+The following steps will guide you through the process of deploying Bold BI and Bold Reports using Helm in an Alibaba Cloud Kubernetes (ACK) cluster.
 
 ## Deployment prerequisites
 
-* [Install Helm](https://helm.sh/docs/intro/install/): Make sure you have helm installed on your local machine to facilitate the deployment process.
+* [Install Helm](https://helm.sh/docs/intro/install/): Make sure you have Helm installed on your local machine to facilitate the deployment process.
 * [NAS File System](../pre-requisites.md#ack-file-sotrage): Set up a NAS file system to store the required data for Bold BI and Bold Reports.
 * [Create and connect a ACK cluster](../pre-requisites.md#ack-cluster): Create and connect an ACK cluster in Alibaba Cloud that will host the Bold BI and Bold Reports deployment.
 * Load Balancing- [Nginx](https://kubernetes.github.io/ingress-nginx/deploy/) : By default, an Alibaba Cloud Kubernetes (ACK) cluster has Nginx already installed in the kube-system namespace, so there is no need to manually install it. The Nginx Ingress Controller is available and can be utilized to enable load balancing for your Bold BI and Bold Reports deployment.
@@ -149,9 +149,9 @@ kubectl create ns bold-services
 
 ## Install Chart
 
-For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/common-ack-values.yaml) and make needed changes based on your cluster provider.
+For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/common-ack-values.yaml) and make required changes based on your cluster provider.
 
-The following table allows you to craft the values.yaml file with required values for Bold BI and Bold Reports deployment. so please read the description carefully and enter the values in values.yaml file.
+The following table allows you to craft the `values.yaml` file with required values for Bold BI and Bold Reports deployment. So please read the description carefully and enter the values in values.yaml file.
 
 <br/>
 
@@ -169,7 +169,7 @@ The following table allows you to craft the values.yaml file with required value
        namespace
       </td>
       <td>
-       The namespace in which the Bold BI and Bold Reports resources will be dpleoyed in the kubernetes cluster.<br/>
+       The namespace in which the Bold BI and Bold Reports resources will be deployed in the Kubernetes cluster.<br/>
        The default namespace is <i>bold-services</i>
       </td>
     </tr>
@@ -227,7 +227,7 @@ The following table allows you to craft the values.yaml file with required value
        autoscaling
       </td>
       <td>
-       By default autoscaling is enabled in Bold BI and Bold Reports. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI and Bold Reports.
+       By default autoscaling is enabled in Bold BI and Bold Reports. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to know more.
       </td>
     </tr>
     <tr>
@@ -269,7 +269,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
      ```
     ![Pod status](images/ack_pod_status.png) 
 
-2. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the below command to access the application in the browser.
+2. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the following command to access the application in the browser.
 
     ```sh
     kubectl get ingress -n bold-services
@@ -330,7 +330,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
     ```
    >**Note:** The IDP version of Bold BI or Bold Reports should be same.
 
-4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
+4. Set the `IsCommonLogin` property as `true` for Bold BI and Bold Reports.
      ![Product Json](/helm/docs/images/reports.png)
 
 5. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
