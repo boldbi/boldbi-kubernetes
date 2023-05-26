@@ -53,7 +53,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
       ![ingress DNS](images/ack_ingress_tls_yaml.png)
 
-10. Run the following command to retrieve the External IP address:
+10. After connecting with your cluster, run the following command to retrieve the External IP address:
 
       ```sh
       kubectl get svc -n kube-system
