@@ -70,7 +70,7 @@ metadata:
   namespace: bold-services
 type: Opaque
 stringData:
-  # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
+  # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql, and postgresql.
   BOLD_SERVICES_DB_TYPE: ""
 
   # Name of the Database Server
