@@ -106,7 +106,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 19. For more details on configuring the application startup, please refer to the [this](#application-startup).
 
 
-# Bold BI and Bold Reports Auto Deployment using Helm
+# Deploy Bold BI and Bold Reports using Helm
 
 The following steps will guide you through the process of deploying Bold BI and Bold Reports using Helm in an Alibaba Cloud Kubernetes (ACK) cluster.
 
