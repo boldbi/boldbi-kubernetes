@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright (c) Syncfusion Inc. All rights reserved.
 #
-
+ 
 while [ $# -gt 0 ]; do
   case "$1" in
     --version=*)
