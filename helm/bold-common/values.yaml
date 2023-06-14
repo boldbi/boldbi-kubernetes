@@ -56,6 +56,7 @@ versions:
 
 loadBalancer:
   type: alb
+  groupName: ''
   affinityCookie:
     enable: false
     affinityCookieExpiration: 600  

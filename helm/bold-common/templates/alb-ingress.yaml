@@ -18,6 +18,9 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: "{{ $.Values.loadBalancer.ssl.arn }}"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     {{- end }}
+    {{- if .Values.loadBalancer.groupName }}
+    alb.ingress.kubernetes.io/group.name: "{{ $.Values.loadBalancer.groupName }}"
+    {{- end }}
 spec:
   {{- if and .Values.loadBalancer.ssl.enable (eq .Values.loadBalancer.ssl.tls "secret") }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
@@ -41,88 +44,88 @@ spec:
   - host: {{ (split "/" .Values.appBaseUrl)._2 }}
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: id-web-service
-            port:
-              number: 6000
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: id-api-service
-            port:
-              number: 6001
-      - path: /ums
-        pathType: Prefix
-        backend:
-          service:
-            name: id-ums-service
-            port:
-              number: 6002
-      - path: /bi
-        pathType: Prefix
-        backend:
-          service:
-            name: bi-web-service
-            port:
-              number: 6004
-      - path: /bi/api
-        pathType: Prefix
-        backend:
-          service:
-            name: bi-api-service
-            port:
-              number: 6005
-      - path: /bi/jobs
-        pathType: Prefix
-        backend:
-          service:
-            name: bi-jobs-service
-            port:
-              number: 6006
-      - path: /bi/designer
-        pathType: Prefix
-        backend:
-          service:
-            name: bi-dataservice-service
-            port:
-              number: 6007
-      - path: /reporting
-        pathType: Prefix
-        backend:
-          service:
-            name: reports-web-service
-            port:
-              number: 6550
-      - path: /reporting/api
-        pathType: Prefix
-        backend:
-          service:
-            name: reports-api-service
-            port:
-              number: 6551
-      - path: /reporting/jobs
-        pathType: Prefix
-        backend:
-          service:
-            name: reports-jobs-service
-            port:
-              number: 6552
-      - path: /reporting/reportservice
-        pathType: Prefix
+      - path: "/reporting/reportservice/*"
+        pathType: ImplementationSpecific
         backend:
           service:
             name: reports-reportservice-service
             port:
               number: 6553
-      - path: /reporting/viewer
-        pathType: Prefix
+      - path: "/reporting/viewer/*"
+        pathType: ImplementationSpecific
         backend:
           service:
             name: reports-viewer-service
             port:
               number: 6554
+      - path: "/reporting/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-api-service
+            port:
+              number: 6551
+      - path: "/reporting/jobs/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-jobs-service
+            port:
+              number: 6552
+      - path: "/bi/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-api-service
+            port:
+              number: 6005
+      - path: "/bi/jobs/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-jobs-service
+            port:
+              number: 6006
+      - path: "/bi/designer/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-dataservice-service
+            port:
+              number: 6007
+      - path: "/reporting/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-web-service
+            port:
+              number: 6550
+      - path: "/bi/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-web-service
+            port:
+              number: 6004
+      - path: "/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-api-service
+            port:
+              number: 6001
+      - path: "/ums/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-ums-service
+            port:
+              number: 6002
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-web-service
+            port:
+              number: 6000
 {{- end }}
