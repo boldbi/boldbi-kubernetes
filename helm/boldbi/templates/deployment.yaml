@@ -87,7 +87,15 @@ spec:
               name: bold-license-key
         - configMapRef:
               name: branding-config
+              optional: true
+        - configMapRef:
+              name: version-config
+              optional: true
         {{- else if eq $service.app "bi-dataservice" }}
+        - name: AppSettings__CustomSizePDFExport
+          value: "{{ $.Values.customSizePdfExport.enable }}"
+        - name: AppSettings__BrowserTimezone
+          value: "{{ $.Values.browserTimeZone.enable }}"
         {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:

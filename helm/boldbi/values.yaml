@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
 clusterProvider: ''
 
 persistentVolume:
@@ -23,13 +23,11 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
-  onpremise:
-    hostPath: ''
     
 image:
   repo: gcr.io/boldbi-294612
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6.6.12
+  tag: 6.7.11
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
@@ -113,6 +111,14 @@ autoscaling:
 localization:
   customLocalePath: ''
 
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
+
 ## Bold BI Secrets
 bingMapWidget:
   enabled: false
@@ -177,6 +183,6 @@ brandingDetails:
   site_identifier: ""
   
   
-  licenseKeyDetails:
+licenseKeyDetails:
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
