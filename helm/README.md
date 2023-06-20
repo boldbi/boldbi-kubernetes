@@ -34,7 +34,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   6.6.12           6.6.12         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   6.7.11           6.7.11         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -132,6 +132,22 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        Custom locale file path for Localization.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       customSizePdfExport
+      </td>
+      <td>
+       To utilize a customized page size for A4 PDF export, set this feature to true. By default, this feature is set to false.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       browserTimeZone
+      </td>
+      <td>
+       If you need to use Browser time zone feature , enable this to true. By default this feature will be set to false. 
       </td>
     </tr>
     </table>

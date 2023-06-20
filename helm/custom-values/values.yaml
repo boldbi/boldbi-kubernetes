@@ -28,7 +28,7 @@ persistentVolume:
 image:
   repo: gcr.io/boldbi-294612
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6.6.12
+  tag: 6.7.11
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
@@ -127,6 +127,14 @@ licenseKeyDetails:
 rootUserDetails:
   email: ""
   password: ""
+
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
 
 databaseServerDetails:
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
