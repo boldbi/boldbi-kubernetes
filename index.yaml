@@ -368,7 +368,7 @@ entries:
     version: 4.1.36
   kc285738:
   - apiVersion: v2
-    appVersion: 6.5.8
+    appVersion: 6.5.12
     created: "2022-04-11T13:06:57.6150424+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
@@ -378,6 +378,6 @@ entries:
     name: kc285738
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc285738-6.5.8.tgz
-    version: 6.5.8
+    - https://boldbi.github.io/boldbi-kubernetes/kc285738-6.5.12.tgz
+    version: 6.5.12
 generated: "2022-04-11T13:06:57.3735836+05:30"
