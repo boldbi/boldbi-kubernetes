@@ -43,8 +43,8 @@ image:
   biRepo: gcr.io/boldbi-294612
   reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 6.9.10
-  biTag: 6.9.10
+  idTag: 6.10.12
+  biTag: 6.10.12
   reportsTag: 5.1.20
   pullPolicy: IfNotPresent
 imagePullSecrets: []
