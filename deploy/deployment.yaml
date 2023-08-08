@@ -34,7 +34,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 30
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: id-web-volume
@@ -89,7 +89,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: id-api-volume
@@ -154,7 +154,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: id-ums-volume
@@ -209,7 +209,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-web-volume
@@ -264,7 +264,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-api-volume
@@ -319,7 +319,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-jobs-volume
@@ -390,7 +390,7 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-dataservice-volume
