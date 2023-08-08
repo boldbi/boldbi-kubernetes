@@ -122,7 +122,8 @@ spec:
           {{- else }}
           initialDelaySeconds: 20
           {{- end }}
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         {{- if contains "4.1" $.Values.image.tag }}
         - mountPath: /boldbi/app_data
