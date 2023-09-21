@@ -50,7 +50,7 @@ image:
 imagePullSecrets: []
 
 versions:
-  idp: 4.1.1
+  idp: 4.11.1
   bi: 6.2.7
   reports: 5.1.20
 
