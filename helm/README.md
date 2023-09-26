@@ -150,6 +150,16 @@ For Helm chart, you'll need to craft a `values.yaml`.
        If you need to use Browser time zone feature , enable this to true. By default this feature will be set to false. 
       </td>
     </tr>
+        <tr>
+      <td>
+       siteIdendifier
+      </td>
+      <td>
+       The variable is optional, and the default value is TRUE. 
+          By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
+          You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
+      </td>
+    </tr>
     </table>
 <br/>
 
