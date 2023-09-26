@@ -141,6 +141,8 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
+          value: true
         envFrom:
         - secretRef:
               name: bold-user-secret
