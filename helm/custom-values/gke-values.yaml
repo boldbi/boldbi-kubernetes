@@ -111,6 +111,10 @@ customSizePdfExport:
 ## BrowserTimezone
 browserTimeZone:
   enable: false
+  
+## Site Identifier
+siteIdentifier:
+  enable: true
 
 rootUserDetails:
   email: ""
