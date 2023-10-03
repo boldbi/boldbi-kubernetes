@@ -152,7 +152,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       siteIdendifier
+       useSiteIdendifier
       </td>
       <td>
        The variable is optional, and the default value is TRUE. 
