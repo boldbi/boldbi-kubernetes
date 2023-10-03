@@ -115,7 +115,7 @@ customSizePdfExport:
 browserTimeZone:
   enable: false
 
-## Site Identifier
+## Use Site Identifier
 useSiteIdentifier:
   enable: true
   
