@@ -113,7 +113,7 @@ browserTimeZone:
   enable: false
   
 ## Site Identifier
-siteIdentifier:
+useSiteIdentifier:
   enable: true
 
 rootUserDetails:
