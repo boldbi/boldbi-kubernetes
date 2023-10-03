@@ -79,7 +79,7 @@ spec:
         {{- end }}
         {{- else if eq $service.app "id-ums" }}
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
-          value: {{ $.Values.siteIdentifier.enable }}        
+          value: {{ $.Values.useSiteIdentifier.enable }}        
         envFrom:
         - secretRef:
               name: bold-user-secret
