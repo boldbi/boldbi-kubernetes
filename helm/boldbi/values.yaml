@@ -118,6 +118,10 @@ customSizePdfExport:
 ## BrowserTimezone
 browserTimeZone:
   enable: false
+  
+## Use Site Identifier
+useSiteIdentifier:
+  enable: true
 
 ## Bold BI Secrets
 bingMapWidget:
