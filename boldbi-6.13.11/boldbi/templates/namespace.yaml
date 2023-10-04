@@ -1,8 +1,0 @@
-{{- if eq .Release.Namespace "default" -}}
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    {{- include "boldbi.labels" . | nindent 4 }}
-  name: {{ .Values.namespace }}
-{{- end -}}
