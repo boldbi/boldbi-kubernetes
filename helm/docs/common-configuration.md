@@ -248,8 +248,8 @@ image:
   biRepo: gcr.io/boldbi-294612
   reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 6.13.11
-  biTag: 6.13.11
+  idTag: 6.14.12
+  biTag: 6.14.12
   reportsTag: 5.1.20
 ````
 Repository details are available in the image section to refer to the image tags. No need to change the repository details for idRepo, biRepo, and reportsRepo.
@@ -260,7 +260,7 @@ By default, the latest version of Bold BI, Bold Reports, and IDP is in the versi
 ```console
 versions:
   idp: "4.2.1"
-  bi: "6.13.11"
+  bi: "6.14.12"
   reports: "5.1.20"
 ````
 > **NOTE:**  We need give a latest version of `idp` when you have latest version of Bold BI or Bold Reports version
