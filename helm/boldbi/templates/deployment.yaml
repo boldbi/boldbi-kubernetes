@@ -33,15 +33,9 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        {{- if contains "4.1" $.Values.image.tag }}
-        args: ["if [ ! -f /boldbi/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
-        volumeMounts:
-        - mountPath: /boldbi/app_data
-        {{- else }}
         args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
         volumeMounts:
         - mountPath: /application/app_data
-        {{- end }}
           name: {{ $service.app }}-volume
       {{- end }}
       containers:
@@ -79,7 +73,7 @@ spec:
         {{- end }}
         {{- else if eq $service.app "id-ums" }}
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
-          value: {{ $.Values.useSiteIdentifier.enable }}        
+          value: "{{ $.Values.useSiteIdentifier.enable }}"
         envFrom:
         - secretRef:
               name: bold-user-secret
@@ -125,12 +119,9 @@ spec:
           initialDelaySeconds: 20
           {{- end }}
           periodSeconds: 15
+          failureThreshold: 3
           timeoutSeconds: 5
         volumeMounts:
-        {{- if contains "4.1" $.Values.image.tag }}
-        - mountPath: /boldbi/app_data
-          name: {{ $service.app }}-volume
-        {{- else }}
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
         {{- if eq $service.app "id-web" }}
@@ -149,16 +140,13 @@ spec:
         - mountPath: /application/bi/dataservice/logs/k8s
         {{- end }}
           name: log4net-config-volume
-        {{- end }}
       volumes:
       - name: {{ $service.app }}-volume
         persistentVolumeClaim:
           claimName: {{ $.Values.persistentVolume.name }}-claim
           readOnly: false
-      {{- if not ( contains "4.1" $.Values.image.tag ) }}
       - name: log4net-config-volume
         configMap:
           name: log4net-config
-      {{- end }}
 ---
 {{- end }}
