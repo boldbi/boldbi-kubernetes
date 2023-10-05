@@ -27,6 +27,7 @@
 ![AWS EFS](images/aws-efs.png)
 
 ### AKS File Storage
+#### SMB
 
 1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
 
@@ -39,6 +40,16 @@ For encoding the values to base64 please run the following command in powershell
 ```
 
 ![File Share details](images/aks-file-storage.png)
+
+#### NFS
+
+1. Create an NFS file share instance within your premium storage account. Take note of the storage account and file share name, as these will be used to store shared folders for application usage.
+
+2. Identify the hostname in the properties of the file share. Make a note of the hostname as illustrated in the image below.
+
+   ![File Share details](images/nfs-hostname.png)
+
+> **NOTE:** The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
 
 ### ACK File Sotrage
 
