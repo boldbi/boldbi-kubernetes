@@ -62,7 +62,7 @@ After mounting the NFS fileshare to the Linux virtual machine, you can also moun
 ## Reinstall Bold BI with NFS Fileshare Mounting Using Helm Chart.
 
 ### Step 1: Update the values.yaml File.
-Download the values.yaml file for [here](https://github.com/boldbi/boldbi-kubernetes-yokogawa/blob/main/helm/bold-common/values.yaml) and update the NFS fileshare details by specifying the `fileShareName` and `hostName` in the following fields:
+Download the values.yaml file for [here](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/custom-values/common-aks-values.yaml) and update the NFS fileshare details by specifying the `fileShareName` and `hostName` in the following fields:
 
 ```shell
 persistentVolume:
@@ -95,7 +95,7 @@ persistentVolume:
 
 ### Step 2: Install Bold BI with NFS Fileshare.
 
-After updating the NFS fileshare details in the values.yaml file, download the bold-common helm chart from [here](https://github.com/boldbi/boldbi-kubernetes-yokogawa/blob/main/helm/bold-common) and run the Helm install command to install Bold BI with the NFS fileshare:
+Following the update of NFS fileshare details in the values.yaml file, execute the Helm install command to install Bold BI with the NFS fileshare:
 
 ```shell
 helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
