@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -6,6 +6,8 @@ metadata:
     {{- include "boldbi.labels" . | nindent 4 }}
   {{- if eq .Values.clusterProvider "eks" }}
   name: efs-sc
+  {{- else if eq .Values.clusterProvider "aks" }}
+  name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
   {{- end }}
@@ -16,16 +18,26 @@ metadata:
   {{- end }}
 {{- if eq .Values.clusterProvider "eks" }}
 provisioner: efs.csi.aws.com
+{{- else if eq .Values.clusterProvider "aks" }}
+provisioner: file.csi.azure.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
 provisioner: kubernetes.io/no-provisioner
 {{- end }}
 {{- if eq .Values.clusterProvider "onpremise" }}
 volumeBindingMode: WaitForFirstConsumer
 {{- end }}
----
+{{- if eq .Values.clusterProvider "aks" }}
+allowVolumeExpansion: true
 {{- end }}
 {{- if eq .Values.clusterProvider "aks" }}
-{{- if and (.Values.persistentVolume.aks.azureStorageAccountName) (.Values.persistentVolume.aks.azureStorageAccountKey) }}
+parameters:
+  protocol: nfs
+mountOptions:
+  - nconnect=4
+{{- end }}
+---
+{{- end }}
+{{- if and (eq .Values.clusterProvider "aks") (.Values.persistentVolume.aks.fileShareName) (.Values.persistentVolume.aks.azureStorageAccountName) (.Values.persistentVolume.aks.azureStorageAccountKey) }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -46,7 +58,6 @@ data:
   azurestorageaccountname: {{ .Values.persistentVolume.aks.azureStorageAccountName }}
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
-{{- end }}
 {{- end }}
 apiVersion: v1
 kind: PersistentVolume
@@ -71,22 +82,17 @@ spec:
  storageClassName: bold-storageclass
  hostPath:
    path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
- {{- else if eq .Values.clusterProvider "ack" }}
- csi:
-   driver: nasplugin.csi.alibabacloud.com
-   volumeHandle: bold-fileserver
-   volumeAttributes:
-     server: "{{ .Values.persistentVolume.ack.serverName }}"
-     path: "{{ .Values.persistentVolume.ack.filePath }}"
- mountOptions:
- - nolock,tcp,noresvport
- - vers=3
  {{- else if eq .Values.clusterProvider "eks" }}
  storageClassName: efs-sc
  csi:
    driver: efs.csi.aws.com
    volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
- {{- else if eq .Values.clusterProvider "aks" }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
+ storageClassName: azurefile-csi-nfs
+ nfs:
+  path: /{{ .Values.persistentVolume.aks.nfs.fileShareName }}
+  server: {{ .Values.persistentVolume.aks.nfs.hostName }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
  storageClassName: azurefile
  azureFile:
    {{- if .Values.persistentVolume.aks.secretName }}
@@ -95,7 +101,7 @@ spec:
    secretName: bold-azure-secret
    {{- end }}
    shareName: {{ .Values.persistentVolume.aks.fileShareName }}
-   readOnly: false
+   readOnly: false 
  {{- else if eq .Values.clusterProvider "gke" }}
  nfs:
    path: /{{ .Values.persistentVolume.gke.fileShareName }}
@@ -120,7 +126,9 @@ spec:
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
  storageClassName: efs-sc
- {{- else if eq .Values.clusterProvider "aks" }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
+ storageClassName: azurefile-csi-nfs
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
  storageClassName: azurefile
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
