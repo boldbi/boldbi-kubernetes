@@ -1,13 +1,13 @@
 # How to migrate the file share from Azure SMB Fileshare to NFS Fileshare?
 
-This documentation describes how to migrate the file share from Azure SMB Fileshare to NFS Fileshare and deploy Bold BI & Reports using the NFS file share.
+This documentation describes how to migrate the file share from Azure SMB Fileshare to NFS Fileshare and deploy Bold BI using the NFS file share.
 
 
 ## Migrating the app_data from an Azure SMB fileshare to an NFS fileshare with the help of a Linux VM.
 
-### Step 1: Stop Bold BI and Reports Services.
+### Step 1: Stop Bold BI Services.
 
-To prevent any data changes during the migration, temporarily stop the Bold BI and Reports services by running the following Helm uninstall command:
+To prevent any data changes during the migration, temporarily stop the Bold BI services by running the following Helm uninstall command:
 
 ```shell
 helm uninstall releasename -n namespace
@@ -59,7 +59,7 @@ After mounting the NFS fileshare to the Linux virtual machine, you can also moun
 
 * Now, the app_data has been successfully copied from the SMB fileshare to the NFS fileshare.
 
-## Reinstall Bold BI and Reports with NFS Fileshare Mounting Using Helm Chart.
+## Reinstall Bold BI with NFS Fileshare Mounting Using Helm Chart.
 
 ### Step 1: Update the values.yaml File.
 Download the values.yaml file for [here](https://github.com/boldbi/boldbi-kubernetes-yokogawa/blob/main/helm/bold-common/values.yaml) and update the NFS fileshare details by specifying the `fileShareName` and `hostName` in the following fields:
@@ -93,18 +93,22 @@ persistentVolume:
 
 > **Note:** Ensure you update the `appBaseUrl` and other configuration details in your existing values.yaml file to match your current setup or append the provided persistent volume fields to your existing values.yaml file. Additionally, ensure that the SMB fileshare fields are left empty when configuring NFS. 
 
-### Step 2: Install Bold BI and Reports with NFS Fileshare.
+### Step 2: Install Bold BI with NFS Fileshare.
 
-After updating the NFS fileshare details in the values.yaml file, download the bold-common helm chart from [here](https://github.com/boldbi/boldbi-kubernetes-yokogawa/blob/main/helm/bold-common) and run the Helm install command to install Bold BI and Reports with the NFS fileshare:
+After updating the NFS fileshare details in the values.yaml file, download the bold-common helm chart from [here](https://github.com/boldbi/boldbi-kubernetes-yokogawa/blob/main/helm/bold-common) and run the Helm install command to install Bold BI with the NFS fileshare:
 
 ```shell
-helm install {Releasename} bold-common -f values.yaml -n {Namespace}
+helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
+
+helm repo update
+
+helm install {Releasename} boldbi/boldbi -f values.yaml -n {Namespace}
 ```
 Example:
 helm install boldbi bold-common -f values.yaml -n bold-services
 
 ### Step 3: Verify the Installation
 
-Ensure the Bold BI and Reports site is accessible in your browser after successfully installing Bold BI and Reports with the NFS fileshare.
+Ensure the Bold BI site is accessible in your browser after successfully installing Bold BI with the NFS fileshare.
 
-By following these steps, you can seamlessly migrate Bold BI and Reports app_data from an Azure SMB fileshare to an NFS fileshare using the Helm Chart.
+By following these steps, you can seamlessly migrate Bold BI app_data from an Azure SMB fileshare to an NFS fileshare using the Helm Chart.
