@@ -45,14 +45,14 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 6.13.11
   biTag: 6.13.11
-  reportsTag: 5.1.20
+  reportsTag: 5.2.26_refresh_release
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: 4.11.1
-  bi: 6.2.7
-  reports: 5.1.20
+  bi: 6.13.11
+  reports: 5.2.26
 
 loadBalancer:
   type: nginx
@@ -70,6 +70,11 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+        
+subApplication:
+  enabled: false
+  # Specify the subpath. The default subpath value is 'boldservices'
+  subPath: ''
 
 istioConfig:
   # To use the existing Gateway specify the existing Gateway name.
@@ -185,6 +190,14 @@ bingMapWidget:
   bingMapSecretName: ''
   enabled: false
   apiKey: ''
+
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
   
 rootUserDetails:
   email: ""
