@@ -33,15 +33,9 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        {{- if contains "4.1" $.Values.image.biTag }}
-        args: ["if [ ! -f /boldbi/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
-        volumeMounts:
-        - mountPath: /boldbi/app_data
-        {{- else }}
         args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
         volumeMounts:
         - mountPath: /application/app_data
-        {{- end }}
           name: {{ $service.app }}-volume
       {{- end }}
       containers:
@@ -96,7 +90,12 @@ spec:
         - name: Is_Common_IDP
           value: "true"
         {{- end }}
-        {{- else if and (eq $service.app "bi-dataservice") $.Values.bingMapWidget.enabled }}
+        {{- else if eq $service.app "bi-dataservice" }}
+        - name: AppSettings__CustomSizePDFExport
+          value: "{{ $.Values.customSizePdfExport.enable }}"
+        - name: AppSettings__BrowserTimezone
+          value: "{{ $.Values.browserTimeZone.enable }}"
+        {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:
             secretKeyRef:
@@ -117,6 +116,7 @@ spec:
               key: widget_bing_map_api_key_secret
         {{- end }}
         {{- end }}
+        {{- end }}
         readinessProbe:
           httpGet:
             path: /health-check
@@ -126,29 +126,11 @@ spec:
           timeoutSeconds: 10
           {{- else }}
           initialDelaySeconds: 20
+          timeoutSeconds: 5
           {{- end }}
           periodSeconds: 15
         volumeMounts:
         {{- if or (eq $service.product "boldid") (eq $service.product "boldbi") }}
-        {{- if contains "4.1" $.Values.image.biTag }}
-        - mountPath: /boldbi/app_data
-          name: {{ $service.app }}-volume
-        {{- if eq $service.app "id-web" }}
-        - mountPath: /boldbi/idp/web/logs
-        {{- else if eq $service.app "id-api" }}
-        - mountPath: /boldbi/idp/api/logs
-        {{- else if eq $service.app "id-ums" }}
-        - mountPath: /boldbi/idp/ums/logs
-        {{- else if eq $service.app "bi-web" }}
-        - mountPath: /boldbi/bi/web/logs
-        {{- else if eq $service.app "bi-api" }}
-        - mountPath: /boldbi/bi/api/logs
-        {{- else if eq $service.app "bi-jobs" }}
-        - mountPath: /boldbi/bi/jobs/logs
-        {{- else if eq $service.app "bi-dataservice" }}
-        - mountPath: /boldbi/bi/dataservice/logs
-        {{- end }}
-        {{- else }}
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
         {{- if eq $service.app "id-web" }}
@@ -165,7 +147,6 @@ spec:
         - mountPath: /application/bi/jobs/logs/k8s
         {{- else if eq $service.app "bi-dataservice" }}
         - mountPath: /application/bi/dataservice/logs/k8s
-        {{- end }}
         {{- end }}
         {{- else if eq $service.product "boldreports" }}
         - mountPath: /application/app_data
