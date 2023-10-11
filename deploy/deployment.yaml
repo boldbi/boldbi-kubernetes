@@ -152,7 +152,7 @@ spec:
               name: bold-license-key
         - configMapRef:
               name: branding-config
-              optional: true
+              optional: "true"
         readinessProbe:
           httpGet:
             path: /health-check
