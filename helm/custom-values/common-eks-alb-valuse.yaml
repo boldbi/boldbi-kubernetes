@@ -155,3 +155,11 @@ bingMapWidget:
   bingMapSecretName: ''
   enabled: false
   apiKey: ''
+
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
