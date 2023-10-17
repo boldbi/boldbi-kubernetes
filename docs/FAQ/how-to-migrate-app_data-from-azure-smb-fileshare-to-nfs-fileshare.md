@@ -91,7 +91,7 @@ persistentVolume:
 ```
 ![nfs values](images/nfs_values.png)
 
-> **Note:** Ensure you update the `appBaseUrl` and other configuration details in your existing values.yaml file to match your current setup or append the provided persistent volume fields to your existing values.yaml file. Additionally, ensure that the SMB fileshare fields are left empty when configuring NFS. 
+> **Note:** Ensure you update the `appBaseUrl` and other configuration details in your existing values.yaml file to match your current setup or append the provided persistent volume fields to your existing values.yaml file. Additionally, ensure that the SMB fileshare fields are left empty when configuring NFS.
 
 ### Step 2: Install Bold BI with NFS Fileshare.
 
@@ -106,6 +106,8 @@ helm install {Releasename} boldbi/boldbi -f values.yaml -n {Namespace}
 ```
 Example:
 helm install boldbi bold-common -f values.yaml -n bold-services
+
+> **Note:** To avoid issues with volume mounting, ensure that the AKS cluster and NFS file share are either in the same virtual network or connected through peered virtual networks
 
 ### Step 3: Verify the Installation
 
