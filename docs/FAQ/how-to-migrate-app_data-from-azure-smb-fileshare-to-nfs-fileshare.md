@@ -107,7 +107,7 @@ helm install {Releasename} boldbi/boldbi -f values.yaml -n {Namespace}
 Example:
 helm install boldbi bold-common -f values.yaml -n bold-services
 
-> **Note:** To avoid issues with volume mounting, ensure that the AKS cluster and NFS file share are either in the same virtual network or connected through peered virtual networks
+> **Note:** To avoid issues with volume mounting, ensure that the AKS cluster and NFS file share are either in the same virtual network or connected through peered virtual networks.
 
 ### Step 3: Verify the Installation
 
