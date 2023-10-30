@@ -206,7 +206,12 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
    ```
    ![Configuration-editor](/helm/docs/images/config-edit.png)
 
-3. In product.json file, append the lines below for Bold Reports:
+3. In product.json file, append the Internal URL for Bold reportes services as shown below :
+
+   ![product-url-editor](/helm/docs/images/product-update-url.png)
+
+
+5. In product.json file, append the lines below for Bold Reports:
     ```console
     {
     "Name": "BoldReports",
@@ -218,10 +223,10 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
     ```
    >**Note:** The IDP version of Bold BI or Bold Reports should be same.
 
-4. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
+6. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
      ![Product Json](/helm/docs/images/reports.png)
 
-5. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
+7. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
 
 ## Documentation Links:
