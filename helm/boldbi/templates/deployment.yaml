@@ -120,7 +120,7 @@ spec:
           {{- end }}
           periodSeconds: 15
           failureThreshold: 3
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
