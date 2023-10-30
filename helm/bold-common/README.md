@@ -225,8 +225,13 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 6. Set `IsCommonLogin` property to be `true` for Bold BI and Bold Reports.
      ![Product Json](/helm/docs/images/reports.png)
+   
+7. Restart the deployment using the following command to apply the changes:
 
-7. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
+   ```sh
+   kubectl rollout restart deployment -n [namespace]
+   ```
+8. Refer to the document below to activate the License either by using your login credentials or by an offline unlock key for Bold Reports.
     https://help.boldreports.com/enterprise-reporting/administrator-guide/application-startup/#activate-bold-reports-license
 
 ## Documentation Links:
