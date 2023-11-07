@@ -5,6 +5,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 ## Deployment prerequisites
 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
+* [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [File Storage](docs/pre-requisites.md#file-storage)
 * [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
