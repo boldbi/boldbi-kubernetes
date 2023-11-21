@@ -4,18 +4,18 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 1. Download the following files for Bold BI deployment in GKE:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/namespace.yaml)
-    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/secrets.yaml)
-    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/db-server-secret.yaml)
-    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/license-key-secret.yaml)
-    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/root-user-details.yaml)
-    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/log4net_config.yaml)
-    * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/branding_config.yaml)
-    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/pvclaim_gke.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/deployment.yaml)
-    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/hpa_gke.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.16.12/deploy/ingress.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/secrets.yaml)
+    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/db-server-secret.yaml)
+    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/license-key-secret.yaml)
+    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/root-user-details.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/log4net_config.yaml)
+    * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/branding_config.yaml)
+    * [pvclaim_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/pvclaim_gke.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/deployment.yaml)
+    * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/hpa_gke.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.17.13/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
