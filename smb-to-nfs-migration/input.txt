@@ -1,2 +1,4 @@
-"premiumstorageaccount=Your_Premium_Storage_Account nfsfileshare=Your_NFS_Fileshare standardstorageaccount=Your_Standard_Storage_Account smbfileshare=Your_SMB_Fileshare accesskey=Your_Access_Key_for_Standard_Storage_Account"
+premiumstorageaccount=Your_Premium_Storage_Account nfsfileshare=Your_NFS_Fileshare standardstorageaccount=Your_Standard_Storage_Account smbfileshare=Your_SMB_Fileshare accesskey=Your_Access_Key_for_Standard_Storage_Account
+
+
 # Note: Add additional details following the same pattern if you want to migrate multiple fileshares.
