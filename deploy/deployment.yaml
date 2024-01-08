@@ -441,6 +441,8 @@ spec:
       - name: bold-etl-container
         image: gcr.io/boldbi-294612/bold-etl:latest
         ports:
+        - containerPort: 80
+        env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         resources:
