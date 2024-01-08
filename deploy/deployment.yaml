@@ -413,3 +413,57 @@ spec:
       - name: log4net-config-volume
         configMap:
           name: log4net-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bold-etl-deployment
+  namespace: bold-services
+spec:
+  selector:
+    matchLabels:
+      app: bold-etl
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bold-etl
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bold-etl-volume
+      containers:
+      - name: bold-etl-container
+        image: gcr.io/boldbi-294612/bold-etl:latest
+        ports:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bold-etl-volume
+        - mountPath: /application/etl/etlservice/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bold-etl-volume
+        persistentVolumeClaim:
+          claimName: bold-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config
