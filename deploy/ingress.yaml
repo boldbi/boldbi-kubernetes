@@ -224,12 +224,12 @@ metadata:
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
-      location ~* "^/etlservice(/|$)(.*)" {
+       location ~* "^/etlservice(/|$)(.*)" {
         set $namespace      $bold_namespace;
         set $ingress_name   "bold-ingress";
         set $service_name   "";
         set $service_port   "";
-        set $location_path  "/boldetl6009(/|${literal_dollar})(.*)";
+        set $location_path  "/etlservice(/|${literal_dollar})(.*)";
         rewrite_by_lua_block {
                 lua_ingress.rewrite({
                         force_ssl_redirect = false,
@@ -286,7 +286,7 @@ metadata:
         proxy_next_upstream                     error timeout;
         proxy_next_upstream_timeout             0;
         proxy_next_upstream_tries               3;
-        rewrite "(?i)/boldetl6009(/|$)(.*)" /$2 break;
+        rewrite "(?i)/etlservice(/|$)(.*)" /$2 break;
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
@@ -492,67 +492,67 @@ metadata:
         proxy_redirect                          off;
       }
 spec:
-  #tls:
-  #- hosts:
-    #- example.com
-    #secretName: bold-tls
+  tls:
+  - hosts:
+    - bold-etl-integration-test.boldbidemo.com
+    secretName: bold-tls
   rules:
-  - #host: example.com
+  - host: bold-etl-integration-test.boldbidemo.com
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: id-web-service
             port:
               number: 6000       
       - path: /idapi6001(/|$)(.*)
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: id-api-service
             port:
               number: 6001
       - path: /idums6002(/|$)(.*)
-        pathType: ImplementationSpecific 
+        pathType: Prefix     
         backend:
           service:
             name: id-ums-service
             port:
               number: 6002      
       - path: /biweb6004(/|$)(.*)
-        pathType: ImplementationSpecific
+        pathType: Prefix      
         backend:
           service:
             name: bi-web-service
             port:
               number: 6004     
       - path: /biapi6005(/|$)(.*)
-        pathType: ImplementationSpecific
+        pathType: Prefix     
         backend:
           service:
             name: bi-api-service
             port:
               number: 6005         
       - path: /bijobs6006(/|$)(.*)
-        pathType: ImplementationSpecific
+        pathType: Prefix      
         backend:
           service:
             name: bi-jobs-service
             port:
               number: 6006      
       - path: /bidataservice6007(/|$)(.*)
-        pathType: ImplementationSpecific
+        pathType: Prefix      
         backend:
           service:
             name: bi-dataservice-service
             port:
               number: 6007
-      - path: /boldetl6009(/|$)(.*)
-        pathType: ImplementationSpecific
+      - path: /boldetl/(/|$)(.*)
+        pathType: Prefix
         backend:
           service:
-            name: bi-etl-service
+            name: bold-etl-service
             port:
               number: 6009
