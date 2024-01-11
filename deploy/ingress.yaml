@@ -492,12 +492,12 @@ metadata:
         proxy_redirect                          off;
       }
 spec:
-  tls:
-  - hosts:
-    - bold-etl-integration-test.boldbidemo.com
-    secretName: bold-tls
+  #tls:
+  #- hosts:
+    #- example.com
+    #secretName: bold-tls
   rules:
-  - host: bold-etl-integration-test.boldbidemo.com
+  - #host: example.com
     http:
       paths:
       - path: /
