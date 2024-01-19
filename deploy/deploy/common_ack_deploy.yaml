@@ -266,7 +266,7 @@ spec:
         - name: BI_Version
           value: "7.1.16"
         - name: Reports_Version
-          value: "5.3.8"
+          value: "5.4.20"
         - name: Is_Common_IDP
           value: "true"
         readinessProbe:
@@ -681,7 +681,7 @@ spec:
     spec:
       containers:
       - name: reports-web-container
-        image: gcr.io/boldreports/boldreports-server:5.3.8
+        image: gcr.io/boldreports/boldreports-server:5.4.20
         ports:
         - containerPort: 80
         env:
@@ -734,7 +734,7 @@ spec:
     spec:
       containers:
       - name: reports-api-container
-        image: gcr.io/boldreports/boldreports-server-api:5.3.8
+        image: gcr.io/boldreports/boldreports-server-api:5.4.20
         ports:
         - containerPort: 80
         env:
@@ -787,7 +787,7 @@ spec:
     spec:
       containers:
       - name: reports-jobs-container
-        image: gcr.io/boldreports/boldreports-server-jobs:5.3.8
+        image: gcr.io/boldreports/boldreports-server-jobs:5.4.20
         ports:
         - containerPort: 80
         env:
@@ -840,7 +840,7 @@ spec:
     spec:
       containers:
       - name: reports-reportservice-container
-        image: gcr.io/boldreports/boldreports-designer:5.3.8
+        image: gcr.io/boldreports/boldreports-designer:5.4.20
         ports:
         - containerPort: 80
         env:
@@ -897,7 +897,7 @@ spec:
     spec:
       containers:
       - name: reports-viewer-container
-        image: gcr.io/boldreports/boldreports-viewer:5.3.8
+        image: gcr.io/boldreports/boldreports-viewer:5.4.20
         ports:
         - containerPort: 80
         resources:
