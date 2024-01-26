@@ -128,7 +128,7 @@ spec:
   type: NodePort
   ports:
   - name: bold-etl-port
-    port: 6007
+    port: 6009
     targetPort: 80
     protocol: TCP
   selector:
