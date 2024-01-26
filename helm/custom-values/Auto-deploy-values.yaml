@@ -228,6 +228,12 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+  - app: bold-etl
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
      
     
 service:

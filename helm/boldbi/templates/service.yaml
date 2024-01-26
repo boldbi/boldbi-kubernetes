@@ -34,6 +34,8 @@ spec:
     port: 6006
     {{- else if eq $service.app "bi-dataservice" }}
     port: 6007
+    {{- else if eq $service.app "bold-etl" }}
+    port: 6009
     {{- end }}
     targetPort: {{ $.Values.service.port }}
     protocol: TCP

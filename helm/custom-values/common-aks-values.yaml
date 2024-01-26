@@ -42,15 +42,15 @@ image:
   biRepo: gcr.io/boldbi-294612
   reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 7.1.16
-  biTag: 7.1.16
+  idTag: 7.2.7
+  biTag: 7.2.7
   reportsTag: 5.4.20
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: "4.2.1"
-  bi: "7.1.16"
+  bi: "7.2.7"
   reports: "5.4.20"
 
 loadBalancer:
@@ -128,6 +128,12 @@ instanceConfig:
     memoryResourceRequests: 750Mi
   - app: bi-dataservice
     product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+  - app: bold-etl
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
