@@ -23,7 +23,7 @@ curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7
 Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version="7.2.8" --namespace="bold-services"
+./upgrade.sh --version="7.2.8" --namespace="bold-services" --app_base_url="<application_base_url>"
 ```
 
 <table>
