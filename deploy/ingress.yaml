@@ -224,7 +224,72 @@ metadata:
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
-      
+             location ~* "^/etlservice(/|$)(.*)" {
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
+        set $service_name   "";
+        set $service_port   "";
+        set $location_path  "/etlservice(/|${literal_dollar})(.*)";
+        rewrite_by_lua_block {
+                lua_ingress.rewrite({
+                        force_ssl_redirect = false,
+                        ssl_redirect = true,
+                        force_no_ssl_redirect = false,
+                        use_port_in_redirects = false,
+                })
+                balancer.rewrite()
+                plugins.run()
+        }
+        header_filter_by_lua_block {
+                lua_ingress.header()
+                plugins.run()
+        }
+        body_filter_by_lua_block {
+        }
+        log_by_lua_block {
+                balancer.log()
+                monitor.call()
+                plugins.run()
+        }
+        port_in_redirect off;
+        set $balancer_ewma_score -1;
+        set $proxy_upstream_name "${bold_namespace}-bold-etl-service-6009";
+        set $proxy_host          $proxy_upstream_name;
+        set $pass_access_scheme  $scheme;
+        set $pass_server_port    $server_port;
+        set $best_http_host      $http_host;
+        set $pass_port           $pass_server_port;
+        set $proxy_alternative_upstream_name "";
+        proxy_set_header Host                   $best_http_host;
+        proxy_set_header                        Upgrade           $http_upgrade;
+        proxy_set_header                        Connection        $connection_upgrade;
+        proxy_set_header X-Request-ID           $req_id;
+        proxy_set_header X-Real-IP              $remote_addr;
+        proxy_set_header X-Forwarded-For        $remote_addr;
+        proxy_set_header X-Forwarded-Host       $best_http_host;
+        proxy_set_header X-Forwarded-Port       $pass_port;
+        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Scheme               $pass_access_scheme;
+        proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
+        proxy_set_header Proxy                  "";
+        proxy_connect_timeout                   300s;
+        proxy_send_timeout                      300s;
+        proxy_read_timeout                      300s;
+        proxy_buffering                         off;
+        proxy_buffer_size                       4k;
+        proxy_buffers                           4 4k;
+        proxy_max_temp_file_size                1024m;
+        proxy_request_buffering                 on;
+        proxy_http_version                      1.1;
+        proxy_cookie_domain                     off;
+        proxy_cookie_path                       off;
+        proxy_next_upstream                     error timeout;
+        proxy_next_upstream_timeout             0;
+        proxy_next_upstream_tries               3;
+        rewrite "(?i)/etlservice(/|$)(.*)" /$2 break;
+        proxy_pass http://upstream_balancer;
+        proxy_redirect                          off;
+      }
       location ~* "^/bi(/|$)(.*)" {
         set $namespace      $bold_namespace;
         set $ingress_name   "bold-ingress";
@@ -483,3 +548,10 @@ spec:
             name: bi-dataservice-service
             port:
               number: 6007
+      - path: /boldetl/(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: bold-etl-service
+            port:
+              number: 6009

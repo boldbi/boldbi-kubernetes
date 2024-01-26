@@ -58,6 +58,8 @@ spec:
         image: "{{ $.Values.image.biRepo }}/boldbi-server-jobs:{{ $.Values.image.biTag }}"
         {{- else if eq $service.app "bi-dataservice" }}
         image: "{{ $.Values.image.biRepo }}/boldbi-designer:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "bold-etl" }}
+        image: "{{ $.Values.image.biRepo }}/bold-etl:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "reports-web" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-server:{{ $.Values.image.reportsTag }}"
         {{- else if eq $service.app "reports-api" }}
@@ -150,6 +152,8 @@ spec:
         - mountPath: /application/bi/jobs/logs/k8s
         {{- else if eq $service.app "bi-dataservice" }}
         - mountPath: /application/bi/dataservice/logs/k8s
+        {{- else if eq $service.app "bold-etl" }}
+        - mountPath: /application/etl/etlservice/logs/k8s
         {{- end }}
         {{- else if eq $service.product "boldreports" }}
         - mountPath: /application/app_data

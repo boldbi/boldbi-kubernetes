@@ -116,3 +116,20 @@ spec:
     protocol: TCP
   selector:
     app: bi-dataservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bold-etl-service
+  namespace: bold-services  
+  labels:
+    app: bold-etl
+spec:
+  type: NodePort
+  ports:
+  - name: bold-etl-port
+    port: 6009
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: bold-etl
