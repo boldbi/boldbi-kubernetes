@@ -145,6 +145,7 @@ instanceConfig:
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bold-etl
+    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20

@@ -139,6 +139,19 @@ spec:
       retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
+        prefix: /etlservice
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        port:
+          number: 6009
+        host: bold-etl-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
         prefix: /
     route:
     - destination:
