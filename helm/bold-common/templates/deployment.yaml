@@ -59,7 +59,7 @@ spec:
         {{- else if eq $service.app "bi-dataservice" }}
         image: "{{ $.Values.image.biRepo }}/boldbi-designer:{{ $.Values.image.biTag }}"
         {{- else if eq $service.app "bold-etl" }}
-        image: "{{ $.Values.image.biRepo }}/bold-etl:{{ $.Values.image.tag }}"
+        image: "{{ $.Values.image.biRepo }}/bold-etl:{{ $.Values.image.biTag }}"
         {{- else if eq $service.app "reports-web" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-server:{{ $.Values.image.reportsTag }}"
         {{- else if eq $service.app "reports-api" }}
