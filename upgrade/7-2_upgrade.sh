@@ -50,10 +50,36 @@ else
 		sed -i "s,<application_base_url>,$app_base_url,g" boldbi_7-2/deployment.yaml
 
 		# applying new changes to cluster
-
 		kubectl apply -f boldbi_7-2/deployment.yaml
-        kubectl apply -f boldbi_7-2/service.yaml
-        kubectl apply -f boldbi_7-2/hpa.yaml
-		kubectl apply -f boldbi_7-2/ingress.yaml
+        	kubectl apply -f boldbi_7-2/service.yaml
+        	kubectl apply -f boldbi_7-2/hpa.yaml
+	 
+		# Update ingress file with app_base url before applying.  		
+		# Function to check if a string is an IP address
+		is_ip() {
+		  [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+		}
+		
+		# Extract the protocol and domain from the URL
+		protocol=$(echo "$app_base_url" | awk -F: '{print $1}')
+		domain=$(echo "$app_base_url" | awk -F[/:] '{print $4}')
+  
+  		# Check if app_base_url is an IP address
+		if is_ip "$domain"; then
+		  kubectl apply -f boldbi_7-2/ingress.yaml
+		else
+		  # Update the Ingress file based on the protocol
+		  if [ "$protocol" == "http" ]; then
+		    sed -i -e "s|^ *- #host: example.com|  - host: $domain|" "boldbi_7-2/ingress.yaml"
+		    kubectl apply -f boldbi_7-2/ingress.yaml
+		  elif [ "$protocol" == "https" ]; then
+		    sed -i -e "s|^ *#tls|  tls|" "boldbi_7-2/ingress.yaml"
+		    sed -i -e "s|^ *#- hosts:|  - hosts:|" "boldbi_7-2/ingress.yaml"
+		    sed -i -e "s|^ *#- example.com|    - $domain|" "boldbi_7-2/ingress.yaml"
+		    sed -i -e "s|^ *#secretName: bold-tls|    secretName: bold-tls|" "boldbi_7-2/ingress.yaml"
+		    sed -i -e "s|^ *- #host: example.com|  - host: $domain|" "boldbi_7-2/ingress.yaml"
+		    kubectl apply -f boldbi_7-2/ingress.yaml
+		  fi
+		fi
 	fi
 fi
