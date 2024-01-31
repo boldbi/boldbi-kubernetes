@@ -31,7 +31,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
 
 ## Deploy Network Load Balancer with SSL Termination:
 
-1. Download the [deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml) template.
+1. Download the [deploy.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/deploy.yaml) template.
 
 2. Edit the deploy.yaml file and change the VPC CIDR for the Kubernetes cluster.
 
