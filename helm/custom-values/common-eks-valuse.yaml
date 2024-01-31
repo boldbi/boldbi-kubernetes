@@ -60,7 +60,7 @@ loadBalancer:
   groupName: 'bold-services'
 
   ssl:
-    enable: true
+    enable: false
     # You can pass the tls value as 'secret' or 'arn'. 
     # If 'arn' is chosen, mention the ARN value of the ACM certificate below.
     # If you choose 'secret', you need to create a secret with the default secret name 'bold-tls'.
