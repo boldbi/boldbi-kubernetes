@@ -17,8 +17,6 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
-    # for custom storage class name enter the name of the storageClass, the default name is 'efs-sc'.
-    storageClassName: 'efs-sc'
   aks:
     fileShareName: ''
     # base64 string
@@ -58,18 +56,6 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
-
-  # For Application Load Balancer configuration:
-  # The default group name value is 'bold-services'; you can alter this if needed.
-  groupName: 'bold-services'
-
-  ssl:
-    enable: true
-    # You can pass the tls value as 'secret' or 'arn'. 
-    # If 'arn' is chosen, mention the ARN value of the ACM certificate below.
-    # If you choose 'secret', you need to create a secret with the default secret name 'bold-tls'.
-    tls: 'arn'
-    arn: ''
 
 instanceConfig:
   - app: id-web

@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   {{- if eq .Values.clusterProvider "eks" }}
-  name: {{ .Values.persistentVolume.eks.storageClassName }}
+  name: efs-sc
   {{- else if eq .Values.clusterProvider "aks" }}
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -83,7 +83,7 @@ spec:
  hostPath:
    path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: {{ .Values.persistentVolume.eks.storageClassName }}
+ storageClassName: efs-sc
  csi:
    driver: efs.csi.aws.com
    volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
@@ -125,7 +125,7 @@ spec:
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: {{ .Values.persistentVolume.eks.storageClassName }}
+ storageClassName: efs-sc
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
