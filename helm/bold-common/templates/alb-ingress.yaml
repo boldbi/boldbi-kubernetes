@@ -1,0 +1,132 @@
+{{- if eq .Values.loadBalancer.type "alb" }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: bold-ingress
+{{ include "boldbi.namespace" . | indent 2 }}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /health-check
+    {{- if .Values.loadBalancer.affinityCookie.enable }}
+    alb.ingress.kubernetes.io/auth-session-cookie: bold.k8s.pod.id
+    alb.ingress.kubernetes.io/auth-session-timeout: "{{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}"
+    {{- end }}
+    {{- if and .Values.loadBalancer.ssl.enable (eq .Values.loadBalancer.ssl.tls "arn") }}
+    alb.ingress.kubernetes.io/certificate-arn: "{{ $.Values.loadBalancer.ssl.arn }}"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    {{- end }}
+    {{- if .Values.loadBalancer.groupName }}
+    alb.ingress.kubernetes.io/group.name: "{{ $.Values.loadBalancer.groupName }}"
+    {{- end }}
+spec:
+  {{- if and .Values.loadBalancer.ssl.enable (eq .Values.loadBalancer.ssl.tls "secret") }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  tls:   
+    {{- if .Values.loadBalancer.multipleHost }}
+    {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
+    - hosts:
+      {{- range $dns := $host.hosts }}
+        - {{ $dns }}
+      {{- end }}
+      secretName: {{ $host.secretName }}
+    {{- end }}
+    {{- else }}
+    - hosts:
+        - {{ (split "/" .Values.appBaseUrl)._2 }}
+      secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
+  {{- end }}
+  {{- end}}
+  rules:
+  - host: {{ (split "/" .Values.appBaseUrl)._2 }}
+    http:
+      paths:
+      - path: "/reporting/reportservice/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-reportservice-service
+            port:
+              number: 6553
+      - path: "/reporting/viewer/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-viewer-service
+            port:
+              number: 6554
+      - path: "/reporting/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-api-service
+            port:
+              number: 6551
+      - path: "/reporting/jobs/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-jobs-service
+            port:
+              number: 6552
+      - path: "/bi/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-api-service
+            port:
+              number: 6005
+      - path: "/bi/jobs/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-jobs-service
+            port:
+              number: 6006
+      - path: "/bi/designer/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-dataservice-service
+            port:
+              number: 6007
+      - path: "/reporting/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-web-service
+            port:
+              number: 6550
+      - path: "/bi/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bi-web-service
+            port:
+              number: 6004
+      - path: "/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-api-service
+            port:
+              number: 6001
+      - path: "/ums/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-ums-service
+            port:
+              number: 6002
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: id-web-service
+            port:
+              number: 6000
+{{- end }}
