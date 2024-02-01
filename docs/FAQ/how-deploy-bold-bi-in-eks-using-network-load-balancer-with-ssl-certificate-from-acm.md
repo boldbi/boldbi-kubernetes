@@ -20,7 +20,7 @@ The below section explains how to deploy Bold BI in EKS using Nginx Network Load
    https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html 
 
 	```console
-	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.4"
+	kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.7"
 	```
 	
 	> <b>Note:</b> Make sure the following network configurations to avoid volume mounting issues.<br/><br/>
