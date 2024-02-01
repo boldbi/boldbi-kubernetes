@@ -33,7 +33,7 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        args: ["if [ ! -f /application/app_data/configuration/config.json ]; then echo waiting for id-web; sleep 5; else echo config.json file exist; fi"]
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
