@@ -109,106 +109,16 @@ kubectl create ns bold-services
 
 For the Helm chart, you need to craft a `values.yaml` file. So download the values.yaml file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml) make the required changes.
 
-The following table allows you to craft the values.yaml file with required values for Bold BI deployment. So, please read the description carefully and enter the values in values.yaml file.
+* Update the appBaseURL, and if necessary, modify the namespace accordingly.
+	![Update_Appbaseurl](images/update_appbaseurl.png)
 
-<br/>
+* Update the filesystem ID that was previously created.
+	![Update_EFS_ID](images/update_efs_id.png)
 
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       namespace
-      </td>
-      <td>
-       The namespace in which the Bold BI resources will be dpleoyed in the kubernetes cluster.<br/>
-       The default namespace is <i>bold-services</i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       appBaseUrl *
-      </td>
-      <td>
-       Domain with https protocol.
-       <br/>
-       Ex: `https://example.com`
-      </td>
-    </tr>
-    <tr>
-      <td>
-       optionalLibs
-      </td>
-      <td>
-       These are the client libraries used in Bold BI by default.<br/>
-       '<i>mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse</i>'<br/>
-       Please refer to <a href='docs/configuration.md#client-libraries'>Optional Client Libraries</a> section to know more.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       clusterProvider
-      </td>
-      <td>
-       The type of kubernetes cluster provider you are using.<br/>
-       The supported values are '<i>gke,eks and aks</i>'
-       Please refer to <a href='configuration.md#cluster-provider'>Cluster Provider</a> section to know more.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       persistentVolume*
-      </td>
-      <td>
-       This is a file storage information to store the shared folders for application usage.
-       Please refer to <a href='configuration.md#persistent-volume'>this</a> section to know more on how to set Persistant Volumes for Bold BI.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       loadBalancer
-      </td>
-      <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       autoscaling
-      </td>
-      <td>
-       By default, autoscaling is enabled in Bold BI. Please refer to <a href='configuration.md#auto-scaling'>this</a> section to configure autoscaling in Bold BI.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       bingMapWidget
-      </td>
-      <td>
-       Please refer to <a href='configuration.md#bing-map-widget'>this</a> section to configure Bing Map Widget in Bold BI.
-      </td>
-    </tr>
-    <tr>
-      <td>
-       customLocalePath
-      </td>
-      <td>
-       Custom locale file path for Localization.
-       Please refer to <a href='configuration.md#custom-locale-path'>this</a> section to configure Custom Locale Path in Bold BI.
-      </td>
-    </tr>
-    </table>
-<br/>
-
-> **Note:** Items marked with `*` are mandatory fields in values.yaml.
-
-Run the following command to delpoy Bold BI in your cluster.
+* In the loadBalancer section, change the load balancer type to 'nlb' from 'nginx'.
+  	![Switch_nlb](images/switch_nlb.png)
+  
+* After making the above changes, run the following command to deploy Bold BI in your cluster.
 
 ```console
 helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [Namespace]
