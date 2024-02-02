@@ -45,34 +45,6 @@ spec:
   - host: {{ (split "/" .Values.appBaseUrl)._2 }}
     http:
       paths:
-      - path: "/reporting/reportservice/*"
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: reports-reportservice-service
-            port:
-              number: 6553
-      - path: "/reporting/viewer/*"
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: reports-viewer-service
-            port:
-              number: 6554
-      - path: "/reporting/api/*"
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: reports-api-service
-            port:
-              number: 6551
-      - path: "/reporting/jobs/*"
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: reports-jobs-service
-            port:
-              number: 6552
       - path: "/bi/api/*"
         pathType: ImplementationSpecific
         backend:
@@ -122,6 +94,34 @@ spec:
             name: id-ums-service
             port:
               number: 6002
+      - path: "/reporting/reportservice/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-reportservice-service
+            port:
+              number: 6553
+      - path: "/reporting/viewer/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-viewer-service
+            port:
+              number: 6554
+      - path: "/reporting/api/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-api-service
+            port:
+              number: 6551
+      - path: "/reporting/jobs/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: reports-jobs-service
+            port:
+              number: 6552
       - path: "/*"
         pathType: ImplementationSpecific
         backend:
