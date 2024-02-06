@@ -35,7 +35,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   7.2.8           7.2.8         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   7.3.8           7.3.8         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -159,6 +159,22 @@ For Helm chart, you'll need to craft a `values.yaml`.
        The variable is optional, and the default value is TRUE. 
           By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
           You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       AppSettings__EnableQueryMetricsInDebugFiles
+      </td>
+      <td>
+       If the query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+      </td>
+      <td>
+       If the query and query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
       </td>
     </tr>
     </table>
