@@ -1,6 +1,6 @@
 # Upgrading Bold BI to latest version
 
-This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/enterprise/).
+This section explains how to upgrade Bold BI to latest version in your Kubernetes cluster. You can refer to the features and enhancements from this [Release Notes](https://www.boldbi.com/release-history/7-2).
 
 
 ## Backup the existing data
@@ -14,16 +14,16 @@ Before upgrading the Bold BI to latest version, make sure to take the backup of 
 ## Proceeding with upgrade
 Bold BI updates the database schema of your current version to the latest version. The upgrade process will retain all the resources and settings from the previous deployment.
 
-You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.1.8/upgrade/6-1_upgrade.sh) or use the below command.
+You can download the upgrade script from this [link](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.3.8/upgrade/upgrade.sh) or use the below command.
 
 ```sh
-curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.3.8/upgrade/upgrade.sh
+curl -o upgrade.sh https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.3.8/upgrade/7-2_upgrade.sh
 ```
 
 Run the following command to execute the shell script to upgrade Bold BI.
 
 ```sh
-./upgrade.sh --version="7.3.8" --namespace="bold-services"
+./upgrade.sh --version="7.3.8" --namespace="bold-services" --app_base_url="<application_base_url>"
 ```
 
 <table>
@@ -44,4 +44,13 @@ Run the following command to execute the shell script to upgrade Bold BI.
        Default value: <i>default</i>
       </td>
     </tr>
+        <tr>
+      <td>
+       app_base_url*
+      </td>
+      <td>
+       Application base URL of your Bold BI Deployment. </br>
+      </td>
+    </tr>
+    <tr>
 </table>
