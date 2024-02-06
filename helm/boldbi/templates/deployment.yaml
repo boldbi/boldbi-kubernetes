@@ -94,6 +94,10 @@ spec:
           value: "{{ $.Values.customSizePdfExport.enable }}"
         - name: AppSettings__BrowserTimezone
           value: "{{ $.Values.browserTimeZone.enable }}"
+        - name: AppSettings__EnableQueryMetricsInDebugFiles
+          value: "{{ $.Values.queryMetricsInDebugFiles.enable }}"
+        - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+          value: "{{ $.Values.queryMetricsWithQueryInDebugFiles.enable }}"
         {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:

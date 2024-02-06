@@ -161,6 +161,22 @@ For Helm chart, you'll need to craft a `values.yaml`.
           You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
       </td>
     </tr>
+        <tr>
+      <td>
+       AppSettings__EnableQueryMetricsInDebugFiles
+      </td>
+      <td>
+       If the query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+      </td>
+      <td>
+       If the query and query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
+      </td>
+    </tr>
     </table>
 <br/>
 

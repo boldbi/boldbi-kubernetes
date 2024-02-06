@@ -389,6 +389,10 @@ spec:
           value: k8s
         - name: AppSettings__locale-path
           value: ""
+        - name: AppSettings__EnableQueryMetricsInDebugFiles
+          value: "false"
+        - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+          value: "false"
         resources:
           requests:
             cpu: 250m
