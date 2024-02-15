@@ -32,7 +32,7 @@ image:
 imagePullSecrets: []
 
 versions:
-  idp: "4.2.1"
+  idp: "4.19.1"
   bi: "7.3.8"
   reports: "5.4.20"
 
