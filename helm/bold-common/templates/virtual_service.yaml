@@ -147,7 +147,7 @@ spec:
       retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
-        prefix: /etlservice
+        prefix: /etlservice/
     rewrite:
       uri: /
     route:
