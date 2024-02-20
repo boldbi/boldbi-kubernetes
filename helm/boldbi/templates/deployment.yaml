@@ -38,6 +38,10 @@ spec:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
       {{- end }}
+      {{- if $.Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: {{ $.Values.imagePullSecrets }}
+      {{- end }}
       containers:
       - name: {{ $service.app }}-container
         {{- if eq $service.app "id-web" }}
