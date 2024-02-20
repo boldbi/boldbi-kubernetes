@@ -13,4 +13,4 @@ data:
   BOLD_SERVICES_BI_API_VERSION: boldbi-server-api:"{{ $.Values.image.tag }}"
   BOLD_SERVICES_BI_JOBS_VERSION: boldbi-server-jobs:"{{ $.Values.image.tag }}"
   BOLD_SERVICES_BI_DESIGNER_VERSION: boldbi-designer:"{{ $.Values.image.tag }}"
-  BOLD_SERVICES_BI_ETL_VERSION: bold-etl:{{ $.Values.image.tag }}
+  BOLD_SERVICES_BI_ETL_VERSION: bold-etl:"{{ $.Values.image.tag }}"
