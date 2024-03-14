@@ -92,6 +92,10 @@ if (( $(echo "$combined_version >= 7.2" | bc -l) )); then
 			kubectl set image deployment/bi-api-deployment bi-api-container=gcr.io/boldbi-294612/boldbi-server-api:$version --namespace=$namespace --record 
 			kubectl set image deployment/bi-jobs-deployment bi-jobs-container=gcr.io/boldbi-294612/boldbi-server-jobs:$version --namespace=$namespace --record 
 			kubectl set image deployment/bi-dataservice-deployment bi-dataservice-container=gcr.io/boldbi-294612/boldbi-designer:$version --namespace=$namespace --record				
+			
+			kubectl apply -f  https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v$version/deploy/version-config.yaml
+			
+			echo "Bold BI version upgraded to $version successfully."
 			;;
 		[Nn]* )
 		    echo "Skipping Bold ETL Service Installation."
@@ -110,7 +114,9 @@ if (( $(echo "$combined_version >= 7.2" | bc -l) )); then
 		kubectl set image deployment/bi-dataservice-deployment bi-dataservice-container=gcr.io/boldbi-294612/boldbi-designer:$version --namespace=$namespace --record
 		kubectl set image deployment/bold-etl-deployment bold-etl-container=gcr.io/boldbi-294612/bold-etl:$version --namespace=$namespace --record
 		
-		kubectl apply -f  https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v$version/deploy/version-config.yaml		
+		kubectl apply -f  https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v$version/deploy/version-config.yaml	
+
+		echo "Bold BI version upgraded to $version successfully."	
 	fi
 elif (( $(echo "$combined_version < 7.2" | bc -l) )); then
 	kubectl set image deployment/id-web-deployment id-web-container=gcr.io/boldbi-294612/bold-identity:$version --namespace=$namespace --record 
@@ -122,4 +128,6 @@ elif (( $(echo "$combined_version < 7.2" | bc -l) )); then
 	kubectl set image deployment/bi-dataservice-deployment bi-dataservice-container=gcr.io/boldbi-294612/boldbi-designer:$version --namespace=$namespace --record
 	
 	kubectl apply -f  https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v$version/deploy/version-config.yaml
+
+	echo "Bold BI version upgraded to $version successfully."
 fi
