@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: bold-ingress
-  namespace: bold-services
+  namespace: <namespace>
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -22,7 +22,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/server-snippet: |      
       client_max_body_size 200m;
-      set $bold_namespace "bold-services";
+      set $bold_namespace "<namespace>";
       
       location ~* "^/bi/api(/|$)(.*)" {
         set $namespace      $bold_namespace;
