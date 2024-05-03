@@ -244,12 +244,12 @@ persistentVolume:
 We need to give an image tag for Bold BI, Bold Reports, and ID. By default set the latest version of image tags. You can change a tag based on requirements and the tag overrides the image tag whose default is in the chart appVersion.<br>
 ```console
 image:
-  idRepo: gcr.io/boldbi-294612
-  biRepo: gcr.io/boldbi-294612
+  idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
+  biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   reportsRepo: gcr.io/boldreports
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 7.7.9
-  biTag: 7.7.9
+  idTag: 7.8.18
+  biTag: 7.8.18
   reportsTag: 5.4.20
 ````
 Repository details are available in the image section to refer to the image tags. No need to change the repository details for idRepo, biRepo, and reportsRepo.
@@ -260,7 +260,7 @@ By default, the latest version of Bold BI, Bold Reports, and IDP is in the versi
 ```console
 versions:
   idp: "4.2.1"
-  bi: "7.7.9"
+  bi: "7.8.18"
   reports: "5.4.20"
 ````
 > **NOTE:**  We need give a latest version of `idp` when you have latest version of Bold BI or Bold Reports version

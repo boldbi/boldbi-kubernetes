@@ -27,7 +27,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   7.7.9           7.7.9         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   7.8.18           7.8.18         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -375,6 +375,21 @@ Run the following command to get the latest version of Bold BI helm chart.
 
 ```console
 helm repo update
+```
+
+If you wish to use the `values.yaml` file you already have, please ensure that the image tag version is set to `7.8.18` and that other configuration details meet the updated `values.yaml` file available at the following location:
+
+[boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
+
+**Note:** Starting from v7.8.18, we migrated the Bold BI image tag from the container registry to a multi-region artifact registry. Therefore, users are requested to update the repository details in the `values.yaml` file as shown below:
+
+```yaml
+image:
+  repo: us-docker.pkg.dev/boldbi-294612/boldbi # from gcr.io/boldbi-294612
+  # Overrides the image tag, default is the chart appVersion.
+  tag: 7.8.18
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
 ```
 
 Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
