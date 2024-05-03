@@ -371,34 +371,23 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ## Upgrade
 
-Run the following command to get the latest version of Bold BI helm chart.
+- Run the following command to get the latest version of Bold BI helm chart.
 
-```console
-helm repo update
-```
+  ```console
+  helm repo update
+  ```
 
-If you wish to use the `values.yaml` file you already have, please ensure that the image tag version is set to `7.8.18` and that other configuration details meet the updated `values.yaml` file available at the following location:
+- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. You can access the latest updated YAML file from the location below:
 
-[boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
+  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
 
-**Note:** Starting from v7.8.18, we migrated the Bold BI image tag from the container registry to a multi-region artifact registry. Therefore, users are requested to update the repository details in the `values.yaml` file as shown below:
+- Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
-```yaml
-image:
-  repo: us-docker.pkg.dev/boldbi-294612/boldbi # from gcr.io/boldbi-294612
-  # Overrides the image tag, default is the chart appVersion.
-  tag: 7.8.18
-  pullPolicy: IfNotPresent
-imagePullSecrets: []
-```
+  ```console
+  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+  ```
 
-Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
-
-```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
-```
-
-Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
+  Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
 
 ## Uninstall Chart
 
