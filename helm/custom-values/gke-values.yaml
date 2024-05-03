@@ -17,9 +17,9 @@ persistentVolume:
     fileShareIp: ''
     
 # image:
-#   repo: gcr.io/boldbi-294612
+#   repo: us-docker.pkg.dev/boldbi-294612/boldbi
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 7.7.9
+#   tag: 7.8.18
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 

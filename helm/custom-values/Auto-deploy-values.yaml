@@ -33,8 +33,8 @@ persistentVolume:
     azureStorageAccountKey: ''
     
 image:
-  idRepo: gcr.io/boldbi-294612
-  biRepo: gcr.io/boldbi-294612
+  idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
+  biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   reportsRepo: gcr.io/boldreports-dev
   # Overrides the image tag whose default is the chart appVersion.
   idTag: 5.3.174_05042023_045527_KC12616
@@ -44,7 +44,7 @@ image:
 imagePullSecrets: []
 
 autoDeployment:
-  imageRepo: gcr.io/boldbi-294612
+  imageRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   imageTag: v1.0
   pullPolicy: IfNotPresent
   

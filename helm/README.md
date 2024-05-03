@@ -27,7 +27,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   7.7.9           7.7.9         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   7.8.18           7.8.18         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -371,19 +371,23 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 ## Upgrade
 
-Run the following command to get the latest version of Bold BI helm chart.
+- Run the following command to get the latest version of Bold BI helm chart.
 
-```console
-helm repo update
-```
+  ```console
+  helm repo update
+  ```
 
-Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
+- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. You can access the latest updated YAML file from the location below:
 
-```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
-```
+  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
 
-Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
+- Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
+
+  ```console
+  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+  ```
+
+  Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
 
 ## Uninstall Chart
 

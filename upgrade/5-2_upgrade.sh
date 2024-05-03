@@ -26,11 +26,11 @@ else
 		namespace="default"
 	fi
 	
-	kubectl set image deployment/id-web-deployment id-web-container=gcr.io/boldbi-294612/bold-identity:$version --namespace=$namespace --record 
-	kubectl set image deployment/id-api-deployment id-api-container=gcr.io/boldbi-294612/bold-identity-api:$version --namespace=$namespace --record 
-	kubectl set image deployment/id-ums-deployment id-ums-container=gcr.io/boldbi-294612/bold-ums:$version --namespace=$namespace --record 
-	kubectl set image deployment/bi-web-deployment bi-web-container=gcr.io/boldbi-294612/boldbi-server:$version --namespace=$namespace --record 
-	kubectl set image deployment/bi-api-deployment bi-api-container=gcr.io/boldbi-294612/boldbi-server-api:$version --namespace=$namespace --record 
-	kubectl set image deployment/bi-jobs-deployment bi-jobs-container=gcr.io/boldbi-294612/boldbi-server-jobs:$version --namespace=$namespace --record 
-	kubectl set image deployment/bi-dataservice-deployment bi-dataservice-container=gcr.io/boldbi-294612/boldbi-designer:$version --namespace=$namespace --record 
+	kubectl set image deployment/id-web-deployment id-web-container=us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:$version --namespace=$namespace --record 
+	kubectl set image deployment/id-api-deployment id-api-container=us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:$version --namespace=$namespace --record 
+	kubectl set image deployment/id-ums-deployment id-ums-container=us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:$version --namespace=$namespace --record 
+	kubectl set image deployment/bi-web-deployment bi-web-container=us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:$version --namespace=$namespace --record 
+	kubectl set image deployment/bi-api-deployment bi-api-container=us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:$version --namespace=$namespace --record 
+	kubectl set image deployment/bi-jobs-deployment bi-jobs-container=us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:$version --namespace=$namespace --record 
+	kubectl set image deployment/bi-dataservice-deployment bi-dataservice-container=us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:$version --namespace=$namespace --record 
 fi
