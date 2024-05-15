@@ -18,6 +18,7 @@ persistentVolume:
   eks:
     efsFileSystemId: ''
   oke:
+     # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: ''
   aks:
     fileShareName: ''

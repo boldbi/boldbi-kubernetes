@@ -124,7 +124,7 @@ spec:
             path: /health-check
             port: 80
           {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           {{- else }}
           initialDelaySeconds: 20
           {{- end }}

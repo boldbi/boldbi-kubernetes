@@ -1,15 +1,10 @@
 # Default values for boldbi.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
-clusterProvider: ''
-
-namespace:
-  name: bold-services
-  annotations: {}
-  labels: {}
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
+clusterProvider: 'oke'
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -17,55 +12,16 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
-  eks:
-    efsFileSystemId: ''
-  aks:
-    # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
-    secretName: ''
-    # Mention the Azure file share name.
-    fileShareName: ''
-    # You can ignore the following values if you are using an azure existing secret.
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
+  oke:
+    # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
+    volumeHandle: ''
     
-    # To configure persistent volume using NFS fileshare, provide the following values:
-    # Note: The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
-    nfs:
-      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
-
-      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
-    oke:
-       # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
-      volumeHandle: ''
-
-  ack:
-    serverName: ''
-    filePath: ''
-  onpremise:
-    hostPath: ''
-    
-image:
-  idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  reportsRepo: gcr.io/boldreports
-  # Overrides the image tag whose default is the chart appVersion.
-  idTag: 7.8.18
-  biTag: 7.8.18
-  reportsTag: 5.4.20
-  pullPolicy: IfNotPresent
-imagePullSecrets: []
-
-versions:
-  idp: 4.11.1
-  bi: 7.8.18
-  reports: 5.2.26
+# image:
+#   repo: us-docker.pkg.dev/boldbi-294612/boldbi
+#   # Overrides the image tag whose default is the chart appVersion.
+#   tag: 7.8.18
+#   pullPolicy: IfNotPresent
+# imagePullSecrets: []
 
 loadBalancer:
   type: nginx
@@ -83,117 +39,57 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
-        
-subApplication:
-  enabled: false
-  # Specify the subpath. The default subpath value is 'boldservices'
-  subPath: ''
-
-istioConfig:
-  # To use the existing Gateway specify the existing Gateway name.
-  # If not specified a new Gateway will applied. The default name is 'bold-gateway'
-  gatewayName: ''
-
-  # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
-  virtualServiceName: ''
 
 instanceConfig:
   - app: id-web
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-api
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-ums
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-web
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-api
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-jobs
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-dataservice
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bold-etl
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-  - app: reports-web
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-api
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-jobs
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-viewer
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-reportservice
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-    
-service:
-  type: ClusterIP
-  port: 80
-  
+
 autoscaling:
   enabled: true
   targetCPUUtilizationPercentage: 80
@@ -205,9 +101,12 @@ autoscaling:
     percentValue: 10
     percentPeriodSeconds: 60
     
+## Custom Localization
+localization:
+  customLocalePath: ''
+
+## Bold BI Secrets
 bingMapWidget:
-  # Specify the existing bingMap Secret Name. The default is 'bold-secret'
-  bingMapSecretName: ''
   enabled: false
   apiKey: ''
 
@@ -217,6 +116,18 @@ customSizePdfExport:
   
 ## BrowserTimezone
 browserTimeZone:
+  enable: false
+
+## Use Site Identifier
+useSiteIdentifier:
+  enable: true
+
+## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
+queryMetricsInDebugFiles:
+  enable: false
+
+## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
+queryMetricsWithQueryInDebugFiles:
   enable: false
   
 rootUserDetails:
@@ -231,7 +142,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
@@ -260,15 +171,29 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+
+brandingDetails:
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
+  
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
+  
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
+  
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
+  favicon:  ""
+  
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
+  
+  # This is organization name.
+  siteName: ""
+  
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
   
 licenseKeyDetails:
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
-
-## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
-queryMetricsInDebugFiles:
-  enable: false
-
-## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
-queryMetricsWithQueryInDebugFiles:
-  enable: false
