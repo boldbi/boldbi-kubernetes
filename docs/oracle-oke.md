@@ -19,25 +19,27 @@
    https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/index.html#DefineClusterDetails
 
 4. Create a File System volume by following the link below to store the Bold BI application data and note the File System OCID, Mount Target IP, and Export Path to store the shared folders for application usage.
+
     https://docs.oracle.com/en-us/iaas/compute-cloud-at-customer/topics/file/creating-a-file-system-mount-target-and-export.htm
-     ![image.png](https://support.boldbi.com/kb/agent/attachment/article/16049/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyODM4Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5ib2xkYmkuY29tIn0.mevd-8ri7BPfJEiOkhNbHKGVESXZ_WXLrwjgtvmTC_c)
+
+    ![PV Claim](images/oke_filesystem.png)
 
 
 6. Open **pvclaim_oke.yaml** file, downloaded in **Step 1**. Update the volumeHandle value to `<FileSystemOCID>:<MountTargetIP>:<path>`
 
-        ![image.png](https://support.boldbi.com/kb/agent/attachment/article/16049/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyODM5Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5ib2xkYmkuY29tIn0.ZbN8_M15vxdkos8C7y0u8W02J-746DXegjo8h0jk400)
+    ![PV Claim](images/oke_pvclaim.png)
 
-        where:
-        - `<FileSystemOCID>` is the OCID of the file system defined in the File Storage service.
-        - `<MountTargetIP>` is the IP address assigned to the mount target.
-        - `<path>` is the mount path to the file system relative to the mount target IP address, starting with a slash. For example: 
+    Where:
+    - `<FileSystemOCID>` is the OCID of the file system defined in the File Storage service.
+    - `<MountTargetIP>` is the IP address assigned to the mount target.
+    - `<path>` is the mount path to the file system relative to the mount target IP address, starting with a slash. For example: `ocid1.filesystem.oc1.iad.aaaa______j2xw:10.0.0.6:/FileSystem1`
 
 6. Connect with your Oracle OKE  cluster.
 
 7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/nignx-deploy.yaml
 ```
 
 8. Navigate to the folder where the deployment files were downloaded from **Step 1**.

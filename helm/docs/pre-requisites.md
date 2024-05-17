@@ -26,6 +26,16 @@
 
 ![AWS EFS](images/aws-efs.png)
 
+### Oracle File System
+
+1. Create a File System volume by following the link below to store the Bold BI application data and note the File System OCID, Mount Target IP, and Export Path to store the shared folders for application usage.
+
+    [Creating a File System Mount Target and Export](https://docs.oracle.com/en-us/iaas/compute-cloud-at-customer/topics/file/creating-a-file-system-mount-target-and-export.htm)
+
+2. Note the **File system ID** after creating EFS file system.
+
+![OKE Filesystem](images/oke_filesystem.png)
+
 ### AKS File Storage
 
 #### SMB

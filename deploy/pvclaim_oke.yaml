@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: fss.csi.oraclecloud.com
-    volumeHandle: <Filesystem_VolumeHandle>
+    volumeHandle: <FileSystemOCID>:<MountTargetIP>:<path>
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

@@ -191,7 +191,6 @@ persistentVolume:
     # base64 string
     azureStorageAccountKey: <base64_azurestorageaccountkey>
 ```
-
 <br/>
 <table>
     <tr>
@@ -238,6 +237,112 @@ persistentVolume:
 <br/>
 
 > **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+
+5. AKS WITH NFS FILESHARE
+
+```console
+clusterProvider: aks
+    
+persistentVolume:
+  aks:
+    nfs:
+      # fileshare name as 'storageaccountname/filesharename'.
+      fileShareName: '<storageaccountname/filesharename>'
+
+      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
+      hostName: '<hostname>'
+```
+
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>aks</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.aks.nfs.fileShareName
+      </td>
+      <td>
+       The <i>Storage account</i> and <i>File share name</i> of your nfs File share instance.
+       Ex: Ex:premiumstorage1234/boldbi
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.aks.nfs.hostName
+      </td>
+      <td>
+       The host name of your nfs fileshare instance.
+       Ex: premiumstore12345.file.core.windows.net
+      </td>
+    </tr>
+</table>
+<br/>
+
+> **NOTE:** The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
+
+6. OKE
+
+```console
+clusterProvider: oke
+
+persistentVolume:
+  # persistent volumes were global resources. 
+  # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI persistent volumes.
+  name: bold-fileserver
+  capacity: 5Gi
+  oke:
+    # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
+    volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
+<br/>
+```
+
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       clusterProvider
+      </td>
+      <td>
+       The type of kubernetes cluster provider you are using. In this case the clusterProvider value is <i>oke</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.oke.volumeHandle
+      </td>
+      <td>
+       The <i>Volume Handle</i> of your Oracle file system. </br> where: </br></br>
+        FileSystemOCID - is the OCID of the file system defined in the File Storage service.</br></br>
+        MountTargetIP - is the IP address assigned to the mount target.</br></br>
+        path - is the mount path to the file system relative to the mount target IP address, starting with a slash. 
+        </br>
+        For example: ocid1.filesystem.oc1.iad.aaaa______j2xw:10.0.0.6:/FileSystem1
+      </td>
+    </tr>
+</table>
+<br/>
 
 ## Image
 
