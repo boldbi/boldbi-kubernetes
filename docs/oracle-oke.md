@@ -1,6 +1,6 @@
-# Bold BI on Microsoft Azure Kubernetes Service
+# Bold BI on Microsoft Oracle Kubernetes Engine.
 
-1. Download the following files for Bold BI deployment in AKS:
+1. Download the following files for Bold BI deployment in OKE:
 
     * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.8.18/deploy/namespace.yaml)
     * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.8.18/deploy/secrets.yaml)
