@@ -16,6 +16,7 @@
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.8.18/deploy/ingress.yaml)
 
 2. Create a Kubernetes cluster in Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) to deploy Bold BI by following the blow link.
+
    https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/index.html#DefineClusterDetails
 
 4. Create a File System volume by following the link below to store the Bold BI application data and note the File System OCID, Mount Target IP, and Export Path to store the shared folders for application usage.
