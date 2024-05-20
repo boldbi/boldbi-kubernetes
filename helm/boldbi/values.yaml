@@ -35,7 +35,10 @@ persistentVolume:
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
       hostName: ''
-    
+  ack:
+    serverName: ''
+    filePath: ''
+
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
   # Overrides the image tag whose default is the chart appVersion.
