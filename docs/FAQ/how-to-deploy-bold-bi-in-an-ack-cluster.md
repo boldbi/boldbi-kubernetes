@@ -95,7 +95,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
      ```sh
     kubectl get pods -n bold-services
      ```
-    ![Pod status](images/ack_pod_status.png) 
+    ![Pod status](images/ack_bi_pod_status.png) 
 
 18. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the following command to access the application in the browser.
 
@@ -267,7 +267,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
      ```sh
     kubectl get pods -n bold-services
      ```
-    ![Pod status](images/ack_pod_status.png) 
+    ![Pod status](images/ack_bi_pod_status.png) 
 
 2. Wait until you see the applications in the running state. Then, use your DNS or EXTERNAL-IP address obtained from the following command to access the application in the browser.
 
