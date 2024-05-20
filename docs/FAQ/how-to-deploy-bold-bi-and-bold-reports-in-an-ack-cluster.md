@@ -292,7 +292,7 @@ Run the following command to apply changes in your Bold BI and Bold Reports rele
 helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
 
-Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm upgrade boldbi boldbi/bold-common -f my-values.yaml`
 
 ## Uninstall Chart
 
