@@ -5,8 +5,8 @@ This section provides instructions on how to deploy Bold BI in an Alibaba Cloud 
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
 
-* [Deploy Bold BI using Kubectl](#deploy-bold-bi-and-bold-reports-using-kubectl)
-* [Deploy Bold BI using Helm](#deploy-bold-bi-and-bold-reports-using-helm)
+* [Deploy Bold BI using Kubectl](#deploy-bold-bi-using-kubectl)
+* [Deploy Bold BI using Helm](#deploy-bold-bi-using-helm)
 
 Please click on the respective links to access the detailed documentation for each deployment method.
 
@@ -27,7 +27,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
 ## Steps for Bold BI auto deployment using kubectl.
 
-1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/common_ack_deploy.yaml) to deploy Bold BI on AKS.
+1. Download the deployment file from [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/deploy/deploy/ack_deploy.yaml) to deploy Bold BI on AKS.
 
 2. Navigate to the folder where the deployment files were downloaded in **Step 1**.
 
@@ -37,19 +37,19 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
    ![NAS-Mount-Target](images/Nas-mount-target.png)
 
-5. Open the **common_ack_deploy.yaml** file and replace the `<host_name_of_mount_target>` placeholder with the actual mount target hostname noted in the previous step.
+5. Open the **ack_deploy.yaml** file and replace the `<host_name_of_mount_target>` placeholder with the actual mount target hostname noted in the previous step.
 
     ![PV Claim](images/ack_pv_claim.png)
 
 6. If you have a DNS to map with the application, proceed to the next steps, otherwise, skip to **Step 10**. 
 
-7. In the common_ack_deploy.yaml file and locate line 2335. Uncomment the host value and replace example.com with your DNS hostname.
+7. In the ack_deploy.yaml file and locate line 2335. Uncomment the host value and replace example.com with your DNS hostname.
 
       ![DNS](images/ack_ingress_http_yaml.png)
   
 8. If you have an SSL certificate for your DNS and need to configure the site, follow next step; otherwise, skip to **Step 10**.
 
-9. In the ingress spec of the common_ack_deploy.yaml file, uncomment the tls section. Replace example.com with your DNS hostname and save the file.
+9. In the ingress spec of the ack_deploy.yaml file, uncomment the tls section. Replace example.com with your DNS hostname and save the file.
 
       ![ingress DNS](images/ack_ingress_tls_yaml.png)
 
@@ -62,7 +62,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 
       ![Ingress Address](images/ack_ingress_address.png)
 
-11. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the common_ack_deploy.yaml file. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
+11. Note the EXTERNAL-IP address and map it to your DNS if you have added it in the ack_deploy.yaml file. If you do not have a DNS, use the EXTERNAL-IP address to access the application.
 
 12. Replace `<application_base_url>` with your DNS or EXTERNAL-IP address.
 
@@ -81,7 +81,7 @@ Please ensure that you have fulfilled these prerequisites before proceeding with
 15. Deploy Bold BI in your Kubernetes cluster by running the following command:
 
     ```sh
-    kubectl apply -f common_ack_deploy.yaml
+    kubectl apply -f ack_deploy.yaml
     ```
 
 16. Create a TLS secret with your SSL certificate using the following command:
@@ -134,7 +134,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/bold-common   7.8.18           7.8.18         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   7.8.18           7.8.18         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -255,9 +255,9 @@ The following table allows you to craft the `values.yaml` file with required val
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
 ```
-Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
