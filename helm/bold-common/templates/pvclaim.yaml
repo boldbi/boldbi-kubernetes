@@ -70,6 +70,10 @@ metadata:
  {{- else }}
  namespace: {{ .Release.Namespace }}
  {{- end }}
+ {{- if eq .Values.clusterProvider "ack" }}
+ labels:
+    alicloud-pvname: bold-fileserver
+ {{- end }}
 spec:
  capacity:
    storage: {{ .Values.persistentVolume.capacity }}
@@ -111,6 +115,16 @@ spec:
  csi:
     driver: fss.csi.oraclecloud.com
     volumeHandle: {{ .Values.persistentVolume.oke.volumeHandle }}
+ {{- else if eq .Values.clusterProvider "ack" }}
+ csi:
+   driver: nasplugin.csi.alibabacloud.com
+   volumeHandle: bold-fileserver
+   volumeAttributes:
+     server: "{{ .Values.persistentVolume.ack.serverName }}"
+     path: "{{ .Values.persistentVolume.ack.filePath }}"
+ mountOptions:
+ - nolock,tcp,noresvport
+ - vers=3
  {{- end }}
 ---
 apiVersion: v1
@@ -144,3 +158,9 @@ spec:
  resources:
    requests:
      storage: {{ .Values.persistentVolume.capacity }}
+ {{- if eq .Values.clusterProvider "ack" }}
+ selector:
+   matchLabels:
+     alicloud-pvname: bold-fileserver
+ {{- end }}  
+

@@ -87,7 +87,7 @@ persistentVolume:
        persistentVolume.ack.serverName
       </td>
       <td>
-       The <i><host_name_of_mount_target></i> for your NAS file system.
+       The host name of mount target for your NAS file system.
       </td>
     </tr>
       <tr>

@@ -18,7 +18,9 @@ persistentVolume:
   name: bold-fileserver
   capacity: 3Gi
   ack:
+    # The host name of the mount target for your NAS file system.
     serverName: ''
+    # This field represents the file path of the app_data files. The default location is "/bold-services".
     filePath: '/bold-services'
     
 image:

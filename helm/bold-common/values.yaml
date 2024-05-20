@@ -46,8 +46,11 @@ persistentVolume:
       volumeHandle: ''
 
   ack:
+    # The host name of the mount target for your NAS file system.
     serverName: ''
-    filePath: ''
+    # This field represents the file path of the app_data files. The default location is "/bold-services".
+    filePath: '/bold-services'
+
   onpremise:
     hostPath: ''
     

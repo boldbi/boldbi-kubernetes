@@ -24,6 +24,11 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
+  ack:
+    # The host name of the mount target for your NAS file system.
+    serverName: ''
+    # This field represents the file path of the app_data files. The default location is "/bold-services".
+    filePath: '/bold-services'
     
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi

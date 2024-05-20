@@ -3,48 +3,27 @@
 # Declare variables to be passed into your templates.
 namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,npgsql'
-clusterProvider: ''
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
+clusterProvider: 'ack'
 
 persistentVolume:
   # persistent volumes were global resources. 
   # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
-  capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
-  eks:
-    efsFileSystemId: ''
-  oke:
-     # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
-    volumeHandle: ''
-  aks:
-    fileShareName: ''
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
-    
-    # To configure persistent volume using NFS fileshare, provide the following values:
-    # Note: The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
-    nfs:
-      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
-
-      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
+  capacity: 5Gi
   ack:
+    # The host name of the mount target for your NAS file system.
     serverName: ''
-    filePath: ''
-
-image:
-  repo: us-docker.pkg.dev/boldbi-294612/boldbi
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: 7.8.18
-  pullPolicy: IfNotPresent
-imagePullSecrets: []
+    # This field represents the file path of the app_data files. The default location is "/bold-services".
+    filePath: '/bold-services'
+    
+# image:
+#   repo: us-docker.pkg.dev/boldbi-294612/boldbi
+#   # Overrides the image tag whose default is the chart appVersion.
+#   tag: 7.8.18
+#   pullPolicy: IfNotPresent
+# imagePullSecrets: []
 
 loadBalancer:
   type: nginx
@@ -112,11 +91,7 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    
-service:
-  type: ClusterIP
-  port: 80
-  
+
 autoscaling:
   enabled: true
   targetCPUUtilizationPercentage: 80
@@ -127,10 +102,15 @@ autoscaling:
     podsPeriodSeconds: 60
     percentValue: 10
     percentPeriodSeconds: 60
-
+    
 ## Custom Localization
 localization:
   customLocalePath: ''
+
+## Bold BI Secrets
+bingMapWidget:
+  enabled: false
+  apiKey: ''
 
 ## Custom Size PDFExport
 customSizePdfExport:
@@ -139,15 +119,10 @@ customSizePdfExport:
 ## BrowserTimezone
 browserTimeZone:
   enable: false
-  
+
 ## Use Site Identifier
 useSiteIdentifier:
   enable: true
-
-## Bold BI Secrets
-bingMapWidget:
-  enabled: false
-  apiKey: ''
 
 ## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
 queryMetricsInDebugFiles:
@@ -156,8 +131,7 @@ queryMetricsInDebugFiles:
 ## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
 queryMetricsWithQueryInDebugFiles:
   enable: false
-
-
+  
 rootUserDetails:
   email: ""
   password: ""
@@ -170,7 +144,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
@@ -199,24 +173,29 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
- 
-brandingDetails:
 
-  main_logo:  ""
+brandingDetails:
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
   
-  login_logo:  ""
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
   
-  email_logo:  ""
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
   
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  footer_logo:  ""
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
   
-  site_name: ""
+  # This is organization name.
+  siteName: ""
   
-  site_identifier: ""
-  
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
   
 licenseKeyDetails:
-# The Bold BI licnece key which you have purchesed.
+  #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
