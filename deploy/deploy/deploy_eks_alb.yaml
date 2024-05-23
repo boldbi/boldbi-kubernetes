@@ -553,10 +553,18 @@ spec:
             secretKeyRef:
               name: bold-secret
               key: widget_bing_map_api_key_secret
+        - name: AppSettings__CustomSizePDFExport
+          value: "true"
+        - name: AppSettings__BrowserTimezone
+          value: "true"
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         - name: AppSettings__locale-path
           value: ""
+        - name: AppSettings__EnableQueryMetricsInDebugFiles
+          value: "false"
+        - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+          value: "false"
         resources:
           requests:
             cpu: 250m
