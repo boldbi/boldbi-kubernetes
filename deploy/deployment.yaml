@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/bold-identity:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -26,9 +26,14 @@ spec:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         - name: APP_BASE_URL
-          value: <application_base_url>
+          value: http://172.210.121.56
         - name: INSTALL_OPTIONAL_LIBS
           value: "mongodb,mysql,influxdb,snowflake,oracle,clickhouse,google"
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
@@ -75,7 +80,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/bold-identity-api:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -85,6 +90,11 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
@@ -131,7 +141,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/bold-ums:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -143,6 +153,11 @@ spec:
           value: k8s
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "true"
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         envFrom:
         - secretRef:
               name: bold-user-secret
@@ -199,7 +214,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/boldbi-server:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -209,6 +224,11 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
@@ -255,7 +275,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/boldbi-server-api:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -265,6 +285,11 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
@@ -311,7 +336,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/boldbi-server-jobs:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         resources:
@@ -321,6 +346,11 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
@@ -333,6 +363,8 @@ spec:
           name: bi-jobs-volume
         - mountPath: /application/bi/jobs/logs/k8s
           name: log4net-config-volume
+      imagePullSecrets:
+      - name: dev-art-reg-key
       volumes:
       - name: bi-jobs-volume
         persistentVolumeClaim:
@@ -367,7 +399,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/boldbi-designer:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         env:
@@ -393,6 +425,11 @@ spec:
           value: "false"
         - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
           value: "false"
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         resources:
           requests:
             cpu: 250m
@@ -443,12 +480,17 @@ spec:
           name: bold-etl-volume
       containers:
       - name: bold-etl-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-etl:7.8.18
+        image: us-central1-docker.pkg.dev/boldbi-dev-296107/boldbi/bold-etl:7.9.17_05282024_024500_dev_test
         ports:
         - containerPort: 80
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         resources:
           requests:
             cpu: 250m

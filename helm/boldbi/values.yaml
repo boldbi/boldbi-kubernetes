@@ -157,6 +157,9 @@ queryMetricsInDebugFiles:
 queryMetricsWithQueryInDebugFiles:
   enable: false
 
+applicationInsights:
+  connectionString: ""
+
 
 rootUserDetails:
   email: ""
@@ -199,6 +202,8 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+
+  dbSchema: ""
  
 brandingDetails:
 

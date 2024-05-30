@@ -5,8 +5,8 @@ metadata:
   namespace: bold-services
 type: Opaque
 data:
-  azurestorageaccountname: <base64_azurestorageaccountname>
-  azurestorageaccountkey: <base64_azurestorageaccountkey>
+  azurestorageaccountname: 
+  azurestorageaccountkey: 
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -38,7 +38,7 @@ spec:
  storageClassName: bold-azurefile
  azureFile:
    secretName: bold-azure-secret
-   shareName: <file_share_name>
+   shareName: autodeploy
    secretNamespace: bold-services
    readOnly: false
 ---

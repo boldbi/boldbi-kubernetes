@@ -70,6 +70,13 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        {{- if $.Values.applicationInsights.connectionString }}
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}

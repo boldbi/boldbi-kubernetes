@@ -615,6 +615,62 @@ spec:
         configMap:
           name: log4net-config
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bold-etl-deployment
+  namespace: bold-services
+spec:
+  selector:
+    matchLabels:
+      app: bold-etl
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bold-etl
+    spec:
+      initContainers:
+      - name: id-web-initialization
+        image: busybox:1.28
+        command: ["/bin/sh","-c"]
+        args: ["if [ ! -f /application/app_data/configuration/config.xml ]; then echo waiting for id-web; sleep 5; else echo config.xml file exist; fi"]
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bold-etl-volume
+      containers:
+      - name: bold-etl-container
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-etl:7.8.18
+        ports:
+        - containerPort: 80
+        env:
+        - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
+          value: k8s
+        resources:
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /application/app_data
+          name: bold-etl-volume
+        - mountPath: /application/etl/etlservice/logs/k8s
+          name: log4net-config-volume
+      volumes:
+      - name: bold-etl-volume
+        persistentVolumeClaim:
+          claimName: bold-fileserver-claim
+          readOnly: false
+      - name: log4net-config-volume
+        configMap:
+          name: log4net-config          
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -733,6 +789,23 @@ spec:
     protocol: TCP
   selector:
     app: bi-dataservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bold-etl-service
+  namespace: bold-services  
+  labels:
+    app: bold-etl
+spec:
+  type: NodePort
+  ports:
+  - name: bold-etl-port
+    port: 6009
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: bold-etl
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -985,6 +1058,32 @@ spec:
       - type: Percent
         value: 10
         periodSeconds: 60
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bold-etl-hpa
+  namespace: bold-services
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bold-etl-deployment
+  minReplicas: 1
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

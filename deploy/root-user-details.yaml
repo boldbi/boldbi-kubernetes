@@ -6,7 +6,7 @@ metadata:
 type: Opaque
 stringData:
   # It should be a valid email.
-  BOLD_SERVICES_USER_EMAIL: ""
+  BOLD_SERVICES_USER_EMAIL: "demo@boldbi.com"
 
   # It should meet our password requirements.
-  BOLD_SERVICES_USER_PASSWORD: ""
+  BOLD_SERVICES_USER_PASSWORD: "Admin@123"
