@@ -5,8 +5,8 @@ metadata:
   namespace: bold-services
 type: Opaque
 data:
-  azurestorageaccountname: 
-  azurestorageaccountkey: 
+  azurestorageaccountname: ""
+  azurestorageaccountkey: ""
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
