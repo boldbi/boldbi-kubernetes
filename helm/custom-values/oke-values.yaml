@@ -135,6 +135,8 @@ rootUserDetails:
   password: ""
 
 databaseServerDetails:
+  existingSecret: false
+
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
   dbType: ""
 
@@ -195,5 +197,7 @@ brandingDetails:
   siteIdentifier: ""
   
 licenseKeyDetails:
+  existingSecret: false
+  
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""

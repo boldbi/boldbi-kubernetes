@@ -132,6 +132,8 @@ localization:
 # This section helps you to deploy Bold BI in Kubernetes without manually activating licensing and configuring startup from the browser.
 
 licenseKeyDetails:
+  existingSecret: false
+
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
 
@@ -148,6 +150,8 @@ browserTimeZone:
   enable: false
 
 databaseServerDetails:
+  existingSecret: false
+  
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
   dbType: ""
 
