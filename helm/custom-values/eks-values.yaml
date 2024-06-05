@@ -121,6 +121,7 @@ useSiteIdentifier:
   enable: true
 
 rootUserDetails:
+  existingSecret: false
   email: ""
   password: ""
 

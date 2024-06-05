@@ -131,6 +131,7 @@ queryMetricsWithQueryInDebugFiles:
   enable: false
   
 rootUserDetails:
+  existingSecret: false
   email: ""
   password: ""
 

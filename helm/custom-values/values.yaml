@@ -138,6 +138,7 @@ licenseKeyDetails:
   licenseKey: ""
 
 rootUserDetails:
+  existingSecret: false
   email: ""
   password: ""
 
