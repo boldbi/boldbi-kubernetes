@@ -120,6 +120,9 @@ browserTimeZone:
 useSiteIdentifier:
   enable: true
 
+applicationInsights:
+  connectionString: ""
+
 rootUserDetails:
   email: ""
   password: ""
@@ -148,6 +151,8 @@ databaseServerDetails:
   # If the database name is not specified, the system will create a new database called bold services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
+
+  dbSchema: ""
 
   # For PostgreSQL DB Servers, this is an optional parameter.
   # The system will use the database name postgresql by default.

@@ -122,6 +122,9 @@ browserTimeZone:
 useSiteIdentifier:
   enable: true
 
+applicationInsights:
+  connectionString: ""
+  
 rootUserDetails:
   email: ""
   password: ""
@@ -163,6 +166,8 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+
+  dbSchema: ""
   
 brandingDetails:
   # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
