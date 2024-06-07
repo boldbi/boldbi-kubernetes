@@ -127,10 +127,15 @@ azureApplicationInsights:
   connectionString: ""
   
 rootUserDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
   email: ""
   password: ""
 
 databaseServerDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
+
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
   dbType: ""
 
@@ -197,6 +202,9 @@ brandingDetails:
   siteIdentifier: ""
   
 licenseKeyDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
+  
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
 
