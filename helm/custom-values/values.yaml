@@ -137,6 +137,10 @@ licenseKeyDetails:
 
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
+  
+##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
+azureApplicationInsights:
+  connectionString: ""
 
 rootUserDetails:
   # Set this to true if you have existing details in your cluster.
@@ -192,6 +196,12 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+
+  #A database schema defines the structure, organization, and constraints of data within a database, including tables, fields, relationships, and indexes.
+  #In MSSQL, the default schema is dbo.
+  #In PostgreSQL, the default schema is public.
+  #Both schemas contain tables and other database objects by default.
+  dbSchema: ""
   
 # Environment Variables For Application Branding.
 # This environment variables helps us to customize the branding.

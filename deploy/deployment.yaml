@@ -29,6 +29,11 @@ spec:
           value: <application_base_url>
         - name: INSTALL_OPTIONAL_LIBS
           value: "mongodb,mysql,influxdb,snowflake,oracle,clickhouse,google"
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: bold-secret
+              key: application_insights_connection_string_secret
         readinessProbe:
           httpGet:
             path: /health-check
