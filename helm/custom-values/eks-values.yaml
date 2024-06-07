@@ -120,6 +120,10 @@ browserTimeZone:
 useSiteIdentifier:
   enable: true
 
+##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
+azureApplicationInsights:
+  connectionString: ""
+
 rootUserDetails:
   email: ""
   password: ""
@@ -148,6 +152,12 @@ databaseServerDetails:
   # If the database name is not specified, the system will create a new database called bold services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
+
+  #A database schema defines the structure, organization, and constraints of data within a database, including tables, fields, relationships, and indexes.
+  #In MSSQL, the default schema is dbo.
+  #In PostgreSQL, the default schema is public.
+  #Both schemas contain tables and other database objects by default.
+  dbSchema: ""
 
   # For PostgreSQL DB Servers, this is an optional parameter.
   # The system will use the database name postgresql by default.

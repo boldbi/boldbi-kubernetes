@@ -170,6 +170,16 @@ For Helm chart, you'll need to craft a `values.yaml`.
        If the query and query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
       </td>
     </tr>
+    </tr>
+        <tr>
+      <td>
+       azureApplicationInsights:<br />
+       connectionString: ""
+      </td>
+      <td>
+       Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
+      </td>
+    </tr>
     </table>
 <br/>
 
@@ -272,6 +282,16 @@ The following environment variables are optional. If not provided, a manual Appl
       </td>
       <td>
        If your database server requires additional connection string parameters, include them here.<br /><br />Connection string parameters can be found in the official document.<br />My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html<br />PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html<br />MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring<br /><br /><b>Note:</b> A semicolon(;) should be used to separate multiple parameters.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       dbSchema
+      </td>
+      <td>
+       A database schema defines the structure, organization, and constraints of data within a database, including tables, fields, relationships, and indexes<br /><br />In MSSQL, the default schema is dbo.<br />
+       In PostgreSQL, the default schema is public.<br /><br />
+       Both schemas contain tables and other database objects by default.
       </td>
     </tr>
 </table>
