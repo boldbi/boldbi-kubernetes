@@ -70,7 +70,7 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
-        {{- if $.Values.applicationInsights.connectionString }}
+        {{- if $.Values.azureApplicationInsights.connectionString }}
         - name: APPLICATIONINSIGHTS_CONNECTION_STRING
           valueFrom:
             secretKeyRef:

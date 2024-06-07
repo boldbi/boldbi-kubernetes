@@ -143,7 +143,7 @@ queryMetricsWithQueryInDebugFiles:
   enable: false
 
 ##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
-applicationInsights:
+azureApplicationInsights:
   connectionString: ""
 
 rootUserDetails:
