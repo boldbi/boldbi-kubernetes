@@ -527,12 +527,136 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- if .Values.loadBalancer.multipleHost }}
-    - http:
-    {{- else }}
+  {{- if .Values.loadBalancer.multipleHost }}
+  {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
+  {{- range $dns := $host.hosts }}
+    - host: {{ $dns }}
+      http:
+        paths:
+          - path: /
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-web-service
+                port:
+                  number: 6000
+              {{- else }}
+              serviceName: id-web-service
+              servicePort: 6000
+              {{- end }}
+
+          - path: /idapi6001(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-api-service
+                port:
+                  number: 6001
+              {{- else }}
+              serviceName: id-api-service
+              servicePort: 6001
+              {{- end }}
+
+          - path: /idums6002(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: id-ums-service
+                port:
+                  number: 6002
+              {{- else }}
+              serviceName: id-ums-service
+              servicePort: 6002
+              {{- end }}
+
+          - path: /biweb6004(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-web-service
+                port:
+                  number: 6004
+              {{- else }}
+              serviceName: bi-web-service
+              servicePort: 6004
+              {{- end }}
+
+          - path: /biapi6005(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-api-service
+                port:
+                  number: 6005
+              {{- else }}
+              serviceName: bi-api-service
+              servicePort: 6005
+              {{- end }}
+
+          - path: /bijobs6006(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-jobs-service
+                port:
+                  number: 6006
+              {{- else }}
+              serviceName: bi-jobs-service
+              servicePort: 6006
+              {{- end }}
+
+          - path: /bidataservice6007(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bi-dataservice-service
+                port:
+                  number: 6007
+              {{- else }}
+              serviceName: bi-dataservice-service
+              servicePort: 6007
+              {{- end }}
+
+          - path: /boldetl(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bold-etl-service
+                port:
+                  number: 6009
+              {{- else }}
+              serviceName: bold-etl-service
+              servicePort: 6009
+              {{- end }}
+  {{- end }}
+  {{- end }}
+  {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
-    {{- end }}
         paths:
           - path: /
             {{- if $ingressSupportsPathType }}
@@ -563,7 +687,7 @@ spec:
               serviceName: id-api-service
               servicePort: 6001
               {{- end }}
-                  
+              
           - path: /idums6002(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
@@ -578,7 +702,7 @@ spec:
               serviceName: id-ums-service
               servicePort: 6002
               {{- end }}
-                  
+              
           - path: /biweb6004(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
@@ -593,7 +717,7 @@ spec:
               serviceName: bi-web-service
               servicePort: 6004
               {{- end }}
-                  
+              
           - path: /biapi6005(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
@@ -608,7 +732,7 @@ spec:
               serviceName: bi-api-service
               servicePort: 6005
               {{- end }}
-                  
+              
           - path: /bijobs6006(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
@@ -623,7 +747,7 @@ spec:
               serviceName: bi-jobs-service
               servicePort: 6006
               {{- end }}
-                  
+              
           - path: /bidataservice6007(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
@@ -653,4 +777,5 @@ spec:
               serviceName: bold-etl-service
               servicePort: 6009
               {{- end }}
+      {{- end }}
 {{- end }}
