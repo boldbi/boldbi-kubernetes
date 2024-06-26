@@ -35,6 +35,34 @@ spec:
       http:
     {{- end }}
         paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: id-web-service
+              port:
+                number: 6000 
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: id-api-service
+              port:
+                number: 6001   
+        - path: /ums
+          pathType: Prefix
+          backend:
+            service:
+              name: id-ums-service
+              port:
+                number: 6002   
+        - path: /bi
+          pathType: Prefix
+          backend:
+            service:
+              name: bi-web-service
+              port:
+                number: 6004 
         - path: /bi/api
           pathType: Prefix
           backend:
@@ -56,31 +84,38 @@ spec:
               name: bi-dataservice-service
               port:
                 number: 6007
-        - path: /bi
+        - path: /reporting
           pathType: Prefix
           backend:
             service:
-              name: bi-web-service
+              name: reports-web-service
               port:
-                number: 6004
-        - path: /api
+                number: 6550
+        - path: /reporting/api
           pathType: Prefix
           backend:
             service:
-              name: id-api-service
+              name: reports-api-service
               port:
-                number: 6001
-        - path: /ums
+                number: 6551
+        - path: /reporting/jobs
           pathType: Prefix
           backend:
             service:
-              name: id-ums-service
+              name: reports-jobs-service
               port:
-                number: 6002
-        - path: /
+                number: 6552
+        - path: /reporting/viewer
           pathType: Prefix
           backend:
             service:
-              name: id-web-service
+              name: reports-viewer-service
               port:
-                number: 6000
+                number: 6554  
+        - path: /reporting/reportservice
+          pathType: Prefix
+          backend:
+            service:
+              name: reports-reportservice-service
+              port:
+                number: 6553             
