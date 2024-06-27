@@ -1,4 +1,4 @@
-# Deployment Prerequisites
+# Deployment Pre-requisites
 
 ## File Storage
 
@@ -26,7 +26,18 @@
 
 ![AWS EFS](images/aws-efs.png)
 
+### Oracle File System
+
+1. Create a File System volume by following the link below to store the Bold BI application data. 
+
+    [Creating a File System Mount Target and Export](https://docs.oracle.com/en-us/iaas/compute-cloud-at-customer/topics/file/creating-a-file-system-mount-target-and-export.htm)
+
+2. Note the File System OCID, Mount Target IP, and Export Path.
+
+![OKE Filesystem](images/oke_filesystem.png)
+
 ### AKS File Storage
+
 #### SMB
 
 1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
@@ -124,7 +135,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        GKE Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -140,7 +151,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        AKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -148,7 +159,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        OnPremise
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
 </table>
