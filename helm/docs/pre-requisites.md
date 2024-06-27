@@ -114,7 +114,7 @@ For encoding the values to base64 please run the following command in powershell
 
 ## Load Balancing
 
-Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
+Currently we have provided support for `Nginx`, `Istio` and `Kong-API` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
 
 ### Ingress-Nginx
 
@@ -214,6 +214,63 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
 </table>
 <br/>
 
+### Kong-API Ingress
+
+If you need to configure Bold BI with Kong-API, [Install Kong-API ingress](https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/) in your cluster please refer to the corresponing reference links
+
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       GKE Cluster
+      </td>
+      <td>
+      https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/gke/
+      </td>
+    </tr>
+    <tr>
+      <td>
+       EKS Cluster
+      </td>
+      <td>
+       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/eks/
+      </td>
+    </tr>
+    <tr>
+      <td>
+       AKS Cluster
+      </td>
+      <td>
+       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/aks/
+      </td>
+    </tr>
+    <tr>
+      <td>
+       OKE Cluster
+      </td>
+      <td>
+       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/
+      </td>
+    </tr>
+    <tr>
+      <td>
+       OnPremise
+      </td>
+      <td>
+       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/
+      </td>
+    </tr>
+</table>
+<br/>
+
 ### Get Ingress IP
 
 Run the following command to get the ingress IP address.
@@ -224,6 +281,9 @@ kubectl get service/ingress-nginx-controller -n ingress-nginx
 
 # Istio
 kubectl get service/istio-ingressgateway -n istio-system
+
+# Kong-API
+kubectl get service/kong-gateway-proxy -n kong 
 ```
 
 Note the ingress `EXTERNAL-IP` address and map it with your DNS. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
