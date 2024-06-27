@@ -84,6 +84,13 @@ spec:
               name: bi-dataservice-service
               port:
                 number: 6007
+      - path: /boldetl/
+        pathType: Prefix
+        backend:
+          service:
+            name: bold-etl-service
+            port:
+              number: 6009
         - path: /reporting
           pathType: Prefix
           backend:
