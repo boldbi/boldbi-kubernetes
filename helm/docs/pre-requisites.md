@@ -1,4 +1,4 @@
-# Deployment Pre-requisites
+# Deployment Prerequisites
 
 ## File Storage
 
@@ -26,18 +26,7 @@
 
 ![AWS EFS](images/aws-efs.png)
 
-### Oracle File System
-
-1. Create a File System volume by following the link below to store the Bold BI application data. 
-
-    [Creating a File System Mount Target and Export](https://docs.oracle.com/en-us/iaas/compute-cloud-at-customer/topics/file/creating-a-file-system-mount-target-and-export.htm)
-
-2. Note the File System OCID, Mount Target IP, and Export Path.
-
-![OKE Filesystem](images/oke_filesystem.png)
-
 ### AKS File Storage
-
 #### SMB
 
 1. Create a File share instance in your storage account and note the File share name to store the shared folders for application usage.
@@ -114,7 +103,7 @@ For encoding the values to base64 please run the following command in powershell
 
 ## Load Balancing
 
-Currently we have provided support for `Nginx`, `Istio` and `Kong-API` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
+Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
 
 ### Ingress-Nginx
 
@@ -135,7 +124,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        GKE Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -151,7 +140,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        AKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -159,7 +148,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        OnPremise
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
 </table>
@@ -214,63 +203,6 @@ If you need to configure Bold BI with Istio, [Install Istio ingress gateway](htt
 </table>
 <br/>
 
-### Kong-API Ingress
-
-If you need to configure Bold BI with Kong-API, [Install Kong-API ingress](https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/) in your cluster please refer to the corresponing reference links
-
-<br/>
-<table>
-    <tr>
-      <td>
-       <b>Name</b>
-      </td>
-      <td>
-       <b>Description</b>
-      </td>
-    </tr>
-    <tr>
-      <td>
-       GKE Cluster
-      </td>
-      <td>
-      https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/gke/
-      </td>
-    </tr>
-    <tr>
-      <td>
-       EKS Cluster
-      </td>
-      <td>
-       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/eks/
-      </td>
-    </tr>
-    <tr>
-      <td>
-       AKS Cluster
-      </td>
-      <td>
-       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/cloud/aks/
-      </td>
-    </tr>
-    <tr>
-      <td>
-       OKE Cluster
-      </td>
-      <td>
-       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/
-      </td>
-    </tr>
-    <tr>
-      <td>
-       OnPremise
-      </td>
-      <td>
-       https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/
-      </td>
-    </tr>
-</table>
-<br/>
-
 ### Get Ingress IP
 
 Run the following command to get the ingress IP address.
@@ -281,9 +213,6 @@ kubectl get service/ingress-nginx-controller -n ingress-nginx
 
 # Istio
 kubectl get service/istio-ingressgateway -n istio-system
-
-# Kong-API
-kubectl get service/kong-gateway-proxy -n kong 
 ```
 
 Note the ingress `EXTERNAL-IP` address and map it with your DNS. If you do not have the DNS and want to use the application, then you can use the ingress IP address.
