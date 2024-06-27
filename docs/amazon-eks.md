@@ -16,7 +16,6 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
     * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/hpa.yaml)
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/ingress.yaml)
-    * [ingress_kong_api.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/ingress_kong_api.yaml)
 
 2. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
 
@@ -35,8 +34,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 ![PV Claim](images/eks_pvclaim.png)
 
-7. Deploy the latest Nginx ingress controller to your cluster using the following command.<br>
-`Note` : [deploy Kong-API](https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/?install=oss#main)
+7. Deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/deploy.yaml
@@ -90,12 +88,10 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 ![ingress DNS](images/ingress_yaml.png)
 
-18. Run the following command for applying the Bold BI ingress to get the address of ingress,
+18. Run the following command for applying the Bold BI ingress to get the address of Nginx ingress,
 
 ```sh
 kubectl apply -f ingress.yaml
-         or
-kubectl apply -f ingress_kong_api.yaml
 ```
 
 19.	Now, run the following command to get the ingress address.
