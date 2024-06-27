@@ -16,7 +16,6 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
     * [hpa_gke.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/hpa_gke.yaml)
     * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/service.yaml)
     * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/ingress.yaml)
-    * [ingress_kong_api.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v7.9.50/deploy/ingress_kong_api.yaml)
 
 2. Create a Kubernetes cluster in Google Cloud Platform (GCP) to deploy Bold BI.
 
@@ -38,8 +37,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
    https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
-7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.<br>
-`Note` : [deploy Kong-API](https://docs.konghq.com/kubernetes-ingress-controller/latest/install/helm/?install=oss#main)
+7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
@@ -89,12 +87,10 @@ kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <cer
 
 ![ingress DNS](images/ingress_yaml.png)
 
-17. Run the following command for applying the Bold BI ingress to get the IP address of ingress.
+17. Run the following command for applying the Bold BI ingress to get the IP address of Nginx ingress.
 
 ```sh
 kubectl apply -f ingress.yaml
-         or
-kubectl apply -f ingress_kong_api.yaml
 ```
 
 18.	Now, run the following command to get the ingress IP address,
