@@ -412,7 +412,7 @@ You can map mutiple domains in both Ingress Nginx and Istio like below. While ma
 
 FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
 
-`Ingress Nginx`
+`Ingress Nginx and KongAPI`
 
 ```console
 loadBalancer:
