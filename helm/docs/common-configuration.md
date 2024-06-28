@@ -401,7 +401,7 @@ loadBalancer:
 
 ### Kong-API Ingress
 
-If you need to configure Bold BI with Istio then you can change the value as `kong` in your configuration like below:
+If you need to configure Bold BI with Kong Api Gateway then you can change the value as `kong` in your configuration like below:
 
 ```console
 loadBalancer:
@@ -428,7 +428,7 @@ If you have the SSL certificate for your DNS and need to configure the site with
 Run the following command to create a TLS secret with your SSL certificate:
 
 ```console
-# Nginx Ingress and Kong-API Ingress
+# Nginx Ingress and Kong-API-Gateway Ingress
 kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
 
 # Istio
@@ -441,7 +441,7 @@ You can map multiple domains in both Ingress Nginx and Istio like below. While m
 
 FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside the `multipleHost` section.
 
-`Ingress Nginx and Kong-API`
+`Ingress Nginx`
 
 ```console
 loadBalancer:
