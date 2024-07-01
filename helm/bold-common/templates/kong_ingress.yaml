@@ -10,28 +10,14 @@ metadata:
     kubernetes.io/ingress.class: kong
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  tls:   
-    {{- if .Values.loadBalancer.multipleHost }}
-    {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
-    - hosts:
-      {{- range $dns := $host.hosts }}
-        - {{ $dns }}
-      {{- end }}
-      secretName: {{ $host.secretName }}
-    {{- end }}
-    {{- else }}
+  tls:
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
-    {{- end }}
   {{- end }}
   rules:
-    {{- if .Values.loadBalancer.multipleHost }}
-    - http:
-    {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
-    {{- end }}
         paths:
         - path: /
           pathType: Prefix
