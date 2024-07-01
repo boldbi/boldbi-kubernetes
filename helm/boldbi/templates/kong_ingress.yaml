@@ -9,8 +9,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
-  ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
-  {{- end }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:   
     {{- if .Values.loadBalancer.multipleHost }}
@@ -91,3 +89,4 @@ spec:
             name: bold-etl-service
             port:
               number: 6009
+{{- end }}

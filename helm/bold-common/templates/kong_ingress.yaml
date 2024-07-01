@@ -126,3 +126,4 @@ spec:
               name: reports-reportservice-service
               port:
                 number: 6553             
+{{- end }}
