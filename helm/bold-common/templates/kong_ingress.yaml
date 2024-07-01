@@ -9,7 +9,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
-  ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:   
     {{- if .Values.loadBalancer.multipleHost }}
