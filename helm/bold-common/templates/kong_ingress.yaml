@@ -10,7 +10,6 @@ metadata:
     kubernetes.io/ingress.class: kong
 spec:
   ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
-  {{- end }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:   
     {{- if .Values.loadBalancer.multipleHost }}
@@ -84,13 +83,13 @@ spec:
               name: bi-dataservice-service
               port:
                 number: 6007
-      - path: /boldetl/
-        pathType: Prefix
-        backend:
-          service:
-            name: bold-etl-service
-            port:
-              number: 6009
+        - path: /boldetl/
+          pathType: Prefix
+          backend:
+            service:
+              name: bold-etl-service
+              port:
+                number: 6009
         - path: /reporting
           pathType: Prefix
           backend:
