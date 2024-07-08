@@ -78,7 +78,7 @@ kind: Ingress
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  name: bold-ingress
+  name: bold-ingress-etl
   {{- include "boldbi.namespace" . | nindent 2 }}
   annotations:
     kubernetes.io/ingress.class: kong
