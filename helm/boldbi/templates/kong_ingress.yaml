@@ -72,8 +72,34 @@ spec:
               name: id-web-service
               port:
                 number: 6000
-        - path: /boldetl/
-          pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: bold-ingress
+  {{- include "boldbi.namespace" . | nindent 2 }}
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/strip-path: "true"
+spec:
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  tls:   
+    - hosts:
+        - {{ (split "/" .Values.appBaseUrl)._2 }}
+      secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+  {{- end }}
+  rules:
+    {{- if .Values.loadBalancer.multipleHost }}
+    - http:
+    {{- else }}
+    - host: {{ (split "/" .Values.appBaseUrl)._2 }}
+      http:
+    {{- end }}
+        paths:
+        - path: /etlservice/
+          pathType: ImplementationSpecific
           backend:
             service:
               name: bold-etl-service
