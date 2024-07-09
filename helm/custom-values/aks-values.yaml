@@ -227,3 +227,28 @@ licenseKeyDetails:
   
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
+  
+tolerations:
+  tolerationEnable: true
+  key: app
+  operator: Equal
+  value: boldbi
+  effect: NoExecute
+
+nodeAffinity:
+  nodeAffinityEnable: true
+  key: app
+  operator: In
+  value: boldbi
+
+podAffinity:
+  podAffinityEnable: true
+  key: app
+  operator: In
+  value: boldbi
+
+podAntiAffinity:
+  podAntiAffinityEnable: true
+  key: app
+  operator: In
+  value: boldbi
