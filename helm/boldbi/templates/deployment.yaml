@@ -167,5 +167,47 @@ spec:
       - name: log4net-config-volume
         configMap:
           name: log4net-config
+      {{- if $.Values.tolerations.tolerationEnable }}
+      tolerations:
+      - key: "{{ $.Values.tolerations.key }}"
+        operator: "{{ $.Values.tolerations.operator }}"
+        value: "{{ $.Values.tolerations.value }}"
+        effect: "{{ $.Values.tolerations.effect }}"
+      {{- end }}
+      {{- if or $.Values.nodeAffinity.nodeAffinityEnable $.Values.podAffinity.podAffinityEnable }}
+      affinity:
+        {{- if $.Values.nodeAffinity.nodeAffinityEnable }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "{{ $.Values.nodeAffinity.key }}"
+                operator: "{{ $.Values.nodeAffinity.operator }}"
+                values:
+                - "{{ $.Values.nodeAffinity.value }}"
+        {{- end }} 
+        {{- if $.Values.podAffinity.podAffinityEnable }}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "{{ $.Values.nodeAffinity.key }}"
+                operator: "{{ $.Values.nodeAffinity.operator }}"
+                values:
+                - "{{ $.Values.nodeAffinity.value }}"
+            topologyKey: "kubernetes.io/hostname"
+        {{- end }}
+        {{- if $.Values.podAntiAffinity.podAntiAffinityEnable }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "{{ $.Values.podAntiAffinity.key }}"
+                operator: "{{ $.Values.podAntiAffinity.operator }}"
+                values:
+                - "{{ $.Values.podAntiAffinity.value }}"
+            topologyKey: "kubernetes.io/hostname"   
+        {{- end }}                
+      {{- end }}      
 ---
 {{- end }}
