@@ -167,12 +167,16 @@ spec:
       - name: log4net-config-volume
         configMap:
           name: log4net-config
-      {{- if $.Values.tolerations.tolerationEnable }}
+      {{- if $.Values.tolerationEnable }}
       tolerations:
-      - key: "{{ $.Values.tolerations.key }}"
-        operator: "{{ $.Values.tolerations.operator }}"
-        value: "{{ $.Values.tolerations.value }}"
-        effect: "{{ $.Values.tolerations.effect }}"
+        {{- range $.Values.tolerations }}
+        - key: "{{ .key }}"
+          operator: "{{ .operator }}"
+          {{- if .value }}
+          value: "{{ .value }}"
+          {{- end }}
+          effect: "{{ .effect }}"
+        {{- end }}
       {{- end }}
       {{- if or $.Values.nodeAffinity.nodeAffinityEnable $.Values.podAffinity.podAffinityEnable $.Values.podAntiAffinity.podAntiAffinityEnable}}
       affinity:
