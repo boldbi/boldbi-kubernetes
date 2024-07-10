@@ -242,13 +242,7 @@ nodeAffinity:
   value: boldbi
 
 podAffinity:
-  podAffinityEnable: true
-  key: app
-  operator: In
-  value: boldbi
+  podAffinityEnable: false
 
 podAntiAffinity:
   podAntiAffinityEnable: true
-  key: app
-  operator: In
-  value: boldbi

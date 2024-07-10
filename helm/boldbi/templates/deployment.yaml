@@ -174,7 +174,7 @@ spec:
         value: "{{ $.Values.tolerations.value }}"
         effect: "{{ $.Values.tolerations.effect }}"
       {{- end }}
-      {{- if or $.Values.nodeAffinity.nodeAffinityEnable $.Values.podAffinity.podAffinityEnable }}
+      {{- if or $.Values.nodeAffinity.nodeAffinityEnable $.Values.podAffinity.podAffinityEnable $.Values.podAntiAffinity.podAntiAffinityEnable}}
       affinity:
         {{- if $.Values.nodeAffinity.nodeAffinityEnable }}
         nodeAffinity:
@@ -191,10 +191,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: "{{ $.Values.nodeAffinity.key }}"
-                operator: "{{ $.Values.nodeAffinity.operator }}"
+              - key: "app.kubernetes.io/name" 
+                operator: "In"
                 values:
-                - "{{ $.Values.nodeAffinity.value }}"
+                - "{{ $service.app }}"
             topologyKey: "kubernetes.io/hostname"
         {{- end }}
         {{- if $.Values.podAntiAffinity.podAntiAffinityEnable }}
@@ -202,10 +202,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: "{{ $.Values.podAntiAffinity.key }}"
-                operator: "{{ $.Values.podAntiAffinity.operator }}"
+              - key: "app.kubernetes.io/name" 
+                operator: "In"
                 values:
-                - "{{ $.Values.podAntiAffinity.value }}"
+                - "{{ $service.app }}"
             topologyKey: "kubernetes.io/hostname"   
         {{- end }}                
       {{- end }}      
