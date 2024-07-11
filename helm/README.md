@@ -180,6 +180,42 @@ For Helm chart, you'll need to craft a `values.yaml`.
        Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
       </td>
     </tr>
+        <tr>
+      <td>
+       tolerationEnable:<br />
+       tolerations:
+      </td>
+      <td>
+       Tolerations allow the pods to be scheduled onto nodes with matching taints.Set this to true if you have use tolerations in your cluster.If you need more than one toleration, you can add tolerations below.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       nodeAffinity:<br />
+         nodeAffinityEnable:
+      </td>
+      <td>
+       Node affinity ensures that the pods are scheduled onto nodes with matching labels. Set this to true if you have use Node affinity in your cluster.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       podAffinity:<br />
+         podAffinityEnable:
+      </td>
+      <td>
+        Pod affinity ensures that the pods are scheduled onto nodes with matching pods.Set this to true if you have use pod Affinity in your cluster.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       podAntiAffinity:<br />
+         podAntiAffinityEnable:
+      </td>
+      <td>
+        Pod anti-affinity ensures that the pods are not scheduled onto nodes with matching pods.Set this to true if you have use pod AntiAffinity in your cluster.
+      </td>
+    </tr>
     </table>
 <br/>
 
