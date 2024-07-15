@@ -182,7 +182,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       tolerationEnable:<br />
+       tolerationEnable: false<br />
        tolerations:
       </td>
       <td>
@@ -191,8 +191,8 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       nodeAffinity:<br />
-         nodeAffinityEnable:
+       nodeAffinityEnable: false<br />
+       nodeAffinity:
       </td>
       <td>
        Node affinity ensures that the pods are scheduled onto nodes with matching labels. Set this to true if you have use Node affinity in your cluster.
@@ -200,8 +200,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       podAffinity:<br />
-         podAffinityEnable:
+         podAffinityEnable: false
       </td>
       <td>
         Pod affinity ensures that the pods are scheduled onto nodes with matching pods.Set this to true if you have use pod Affinity in your cluster.
@@ -209,8 +208,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       podAntiAffinity:<br />
-         podAntiAffinityEnable:
+         podAntiAffinityEnable: false
       </td>
       <td>
         Pod anti-affinity ensures that the pods are not scheduled onto nodes with matching pods.Set this to true if you have use pod AntiAffinity in your cluster.
