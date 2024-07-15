@@ -194,9 +194,9 @@ spec:
           effect: "{{ .effect }}"
         {{- end }}
       {{- end }}
-      {{- if or $.Values.nodeAffinity.nodeAffinityEnable $.Values.podAffinity.podAffinityEnable $.Values.podAntiAffinity.podAntiAffinityEnable}}
+      {{- if or $.Values.nodeAffinityEnable $.Values.podAffinityEnable $.Values.podAntiAffinityEnable}}
       affinity:
-        {{- if $.Values.nodeAffinity.nodeAffinityEnable }}
+        {{- if $.Values.nodeAffinityEnable }}
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
@@ -206,7 +206,7 @@ spec:
                 values:
                 - "{{ $.Values.nodeAffinity.value }}"
         {{- end }} 
-        {{- if $.Values.podAffinity.podAffinityEnable }}
+        {{- if $.Values.podAffinityEnable }}
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -217,7 +217,7 @@ spec:
                 - "{{ $service.app }}"
             topologyKey: "kubernetes.io/hostname"
         {{- end }}
-        {{- if $.Values.podAntiAffinity.podAntiAffinityEnable }}
+        {{- if $.Values.podAntiAffinityEnable }}
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:

@@ -202,7 +202,7 @@ queryMetricsWithQueryInDebugFiles:
 # Tolerations allow the pods to be scheduled onto nodes with matching taints.
 # Set this to true if you have use tolerations in your cluster.
 # If you need more than one toleration, you can add tolerations below.
-tolerationEnable: false
+tolerationEnable: true 
 tolerations:
   - key: ""
     operator: ""
@@ -211,18 +211,16 @@ tolerations:
 
 # Node affinity ensures that the pods are scheduled onto nodes with matching labels.
 # Set this to true if you have use Node affinity in your cluster.
+nodeAffinityEnable: true
 nodeAffinity:
-  nodeAffinityEnable: false
   key: ""
   operator: ""
   value: ""
 
 # Pod affinity ensures that the pods are scheduled onto nodes with matching pods.
 # Set this to true if you have use pod Affinity in your cluster.
-podAffinity:
-  podAffinityEnable: false
+podAffinityEnable: true
 
 # Pod anti-affinity ensures that the pods are not scheduled onto nodes with matching pods.
 # Set this to true if you have use pod AntiAffinity in your cluster.
-podAntiAffinity:
-  podAntiAffinityEnable: false
+podAntiAffinityEnable: true
