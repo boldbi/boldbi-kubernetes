@@ -186,7 +186,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        tolerations:
       </td>
       <td>
-       Tolerations allow the pods to be scheduled onto nodes with matching taints. Set this to true if you use tolerations in your cluster. If you need more than one toleration, you can add multiple tolerations below.
+       Tolerations allow the pods to be scheduled into nodes with matching taints. Set this to true if you use tolerations in your cluster. If you need more than one toleration, you can add multiple tolerations below.
       </td>
     </tr>
         <tr>
@@ -195,7 +195,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        nodeAffinity:
       </td>
       <td>
-       Node affinity ensures that the pods are scheduled onto nodes with matching labels. Set this to true if you use node affinity in your cluster.
+       Node affinity ensures that the pods are scheduled into nodes with matching labels. Set this to true if you use node affinity in your cluster.
       </td>
     </tr>
         <tr>
@@ -203,7 +203,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
          podAffinityEnable: false
       </td>
       <td>
-        Pod affinity ensures that the pods are scheduled onto nodes with matching pods. Set this to true if you use pod affinity in your cluster
+        Pod affinity ensures that the pods are scheduled into nodes with matching pods. Set this to true if you use pod affinity in your cluster
       </td>
     </tr>
         <tr>
@@ -211,7 +211,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
          podAntiAffinityEnable: false
       </td>
       <td>
-        Pod anti-affinity ensures that the pods are not scheduled onto nodes with matching pods. Set this to true if you use pod anti-affinity in your cluster.
+        Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods. Set this to true if you use pod anti-affinity in your cluster.
       </td>
     </tr>
     </table>

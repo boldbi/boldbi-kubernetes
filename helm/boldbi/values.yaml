@@ -238,7 +238,7 @@ licenseKeyDetails:
   # The Bold BI licnece key which you have purchesed.
   licenseKey: ""
 
-# Tolerations allow the pods to be scheduled onto nodes with matching taints.
+# Tolerations allow the pods to be scheduled into nodes with matching taints.
 # Set this to true if you use tolerations in your cluster.
 # If you need more than one toleration, you can add tolerations below.
 tolerationEnable: false 
@@ -248,7 +248,7 @@ tolerations:
     value: ""
     effect: ""
 
-# Node affinity ensures that the pods are scheduled onto nodes with matching labels.
+# Node affinity ensures that the pods are scheduled into nodes with matching labels.
 # Set this to true if you use Node affinity in your cluster.
 nodeAffinityEnable: false
 nodeAffinity:
@@ -256,10 +256,10 @@ nodeAffinity:
   operator: ""
   value: ""
 
-# Pod affinity ensures that the pods are scheduled onto nodes with matching pods.
+# Pod affinity ensures that the pods are scheduled into nodes with matching pods.
 # Set this to true if you use pod Affinity in your cluster.
 podAffinityEnable: false
 
-# Pod anti-affinity ensures that the pods are not scheduled onto nodes with matching pods.
+# Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
 # Set this to true if you use pod AntiAffinity in your cluster.
 podAntiAffinityEnable: false
