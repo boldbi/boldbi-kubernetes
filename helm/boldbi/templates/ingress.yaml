@@ -29,6 +29,9 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "{{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}"
     {{- end }}
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
+    {{- range $key, $value := .Values.loadBalancer.nginxIngressAnnotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
     nginx.ingress.kubernetes.io/server-snippet: |
       client_max_body_size 200m;
       {{- if eq .Release.Namespace "default" }}
