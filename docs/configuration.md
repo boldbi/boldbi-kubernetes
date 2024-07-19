@@ -452,8 +452,8 @@ By default, the necessary annotations are already included in the Nginx Ingress 
   nginxIngressAnnotations:
     # Enter annotations here for adding annotations in nginx ingress
     # Example:
-    #cert-manager.io/cluster-issuer: letsencrypt-prod
-    #nginx.ingress.kubernetes.io/rewrite-target: /
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/rewrite-target: /
 ```
 
 This configuration allows you to tailor the behavior of the Nginx Ingress Controller to meet your requirements by adding appropriate annotations.

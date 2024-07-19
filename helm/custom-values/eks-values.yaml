@@ -34,8 +34,8 @@ loadBalancer:
   nginxIngressAnnotations:
     # Enter annotations here for adding annotations in nginx ingress
     # Example:
-    #cert-manager.io/cluster-issuer: letsencrypt-prod
-    #nginx.ingress.kubernetes.io/rewrite-target: /
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/rewrite-target: /
 
   singleHost: 
     secretName: bold-tls
