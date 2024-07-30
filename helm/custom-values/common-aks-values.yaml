@@ -61,6 +61,13 @@ loadBalancer:
   # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
+
+  nginxIngressAnnotations:
+    # Enter annotations here for adding annotations in nginx ingress
+    # Example:
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+
   singleHost: 
     secretName: bold-tls
   # multipleHost:
@@ -212,3 +219,29 @@ queryMetricsInDebugFiles:
 ## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
 queryMetricsWithQueryInDebugFiles:
   enable: false
+
+# Tolerations allow the pods to be scheduled into nodes with matching taints.
+# Set this to true if you use tolerations in your cluster.
+# If you need more than one toleration, you can add tolerations below.
+tolerationEnable: false 
+tolerations:
+  - key: ""
+    operator: ""
+    value: ""
+    effect: ""
+
+# Node affinity ensures that the pods are scheduled into nodes with matching labels.
+# Set this to true if you use Node affinity in your cluster.
+nodeAffinityEnable: false
+nodeAffinity:
+  key: ""
+  operator: ""
+  value: ""
+
+# Pod affinity ensures that the pods are scheduled into nodes with matching pods.
+# Set this to true if you use pod Affinity in your cluster.
+podAffinityEnable: false
+
+# Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
+# Set this to true if you use pod AntiAffinity in your cluster.
+podAntiAffinityEnable: false

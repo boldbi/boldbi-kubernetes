@@ -167,5 +167,51 @@ spec:
       - name: log4net-config-volume
         configMap:
           name: log4net-config
+      {{- if $.Values.tolerationEnable }}
+      tolerations:
+        {{- range $.Values.tolerations }}
+        - key: "{{ .key }}"
+          operator: "{{ .operator }}"
+          {{- if .value }}
+          value: "{{ .value }}"
+          {{- end }}
+          effect: "{{ .effect }}"
+        {{- end }}
+      {{- end }}
+      {{- if or $.Values.nodeAffinityEnable $.Values.podAffinityEnable $.Values.podAntiAffinityEnable}}
+      affinity:
+        {{- if $.Values.nodeAffinityEnable }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "{{ $.Values.nodeAffinity.key }}"
+                operator: "{{ $.Values.nodeAffinity.operator }}"
+                values:
+                - "{{ $.Values.nodeAffinity.value }}"
+        {{- end }} 
+        {{- if $.Values.podAffinityEnable }}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app.kubernetes.io/name" 
+                operator: "In"
+                values:
+                - "{{ $service.app }}"
+            topologyKey: "kubernetes.io/hostname"
+        {{- end }}
+        {{- if $.Values.podAntiAffinityEnable }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app.kubernetes.io/name" 
+                operator: "In"
+                values:
+                - "{{ $service.app }}"
+            topologyKey: "kubernetes.io/hostname"   
+        {{- end }}                
+      {{- end }}      
 ---
 {{- end }}

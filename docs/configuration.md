@@ -444,6 +444,20 @@ loadBalancer:
         secretName: tls-secret
 ```
 
+### Nginx Annotation Configuration
+
+By default, the necessary annotations are already included in the Nginx Ingress file. If you need to add annotations based on your specific use case, you can specify them in the values.yaml file in the key:value format. Refer to the example below:
+
+```
+  nginxIngressAnnotations:
+    # Enter annotations here for adding annotations in nginx ingress
+    # Example:
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+```
+
+This configuration allows you to tailor the behavior of the Nginx Ingress Controller to meet your requirements by adding appropriate annotations.
+
 ## Auto Scaling
 
 By default, autoscaling is enabled in Bold BI, to disable autoscaling, please set `autoscaling.Enabled=false`.
