@@ -64,7 +64,7 @@ loadBalancer:
         # secretName: bold-tls
 
   # Enable Gzip in nginx-ingress
-  enableGzip: false
+  enableGzip: false 
         
 subApplication:
   enabled: false

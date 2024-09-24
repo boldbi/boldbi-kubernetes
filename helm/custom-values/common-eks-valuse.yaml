@@ -61,7 +61,7 @@ loadBalancer:
         # secretName: bold-tls
 
   # Enable Gzip in nginx-ingress
-  enableGzip: false
+  enableGzip: false 
 
 istioConfig:
   # To use the existing Gateway specify the existing Gateway name.
