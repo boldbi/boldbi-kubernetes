@@ -49,6 +49,9 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
+  # Enable Gzip in nginx-ingress
+  enableGzip: false
+
 instanceConfig:
   - app: id-web
     replicaCount: 1

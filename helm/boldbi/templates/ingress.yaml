@@ -33,6 +33,10 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
     nginx.ingress.kubernetes.io/server-snippet: |
+      {{- if .Values.loadBalancer.enableGzip }}
+      gzip on;
+      gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+      {{- end }}
       client_max_body_size 200m;
       {{- if eq .Release.Namespace "default" }}
       set $bold_namespace "{{ .Values.namespace }}";

@@ -145,6 +145,9 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
+  # Enable Gzip in nginx-ingress
+  enableGzip: false
+
 istioConfig:
   # Specify the existing Gateway name. The default name is 'bold-gateway'
   gatewayName: ''
