@@ -62,6 +62,9 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+
+  # Enable Gzip in nginx-ingress
+  enableGzip: false 
         
 subApplication:
   enabled: false
