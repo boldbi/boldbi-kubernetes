@@ -38,6 +38,10 @@ persistentVolume:
   ack:
     serverName: ''
     filePath: ''
+    
+  # If you are using blockVolumeStorage, set this value to true. Oracle Cloud can create the block volume for use with persistent volumes. 
+  okeBlockVolumeStorage: false
+  okeBlockVolumeStorageCapacity: 50Gi
 
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi

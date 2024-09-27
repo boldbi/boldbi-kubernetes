@@ -20,6 +20,10 @@ persistentVolume:
   oke:
     # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
+
+  # If you are using blockVolumeStorage, set this value to true. Oracle Cloud can create the block volume for use with persistent volumes. 
+  okeBlockVolumeStorage: false
+  okeBlockVolumeStorageCapacity: 50Gi
     
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
