@@ -85,6 +85,12 @@ loadBalancer:
     # cert-manager.io/cluster-issuer: letsencrypt-prod
     # nginx.ingress.kubernetes.io/rewrite-target: /
 
+  kongIngressAnnotations:
+    # Enter annotations here for adding annotations in Kong ingress
+    # Example:
+    # konghq.com/preserve-host: "true"
+    # konghq.com/protocols: "http,https"
+
   singleHost: 
     secretName: bold-tls
   # multipleHost:
