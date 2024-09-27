@@ -6,7 +6,7 @@ metadata:
   labels:
     app: id-web
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: id-web-port
     port: 6000
@@ -23,7 +23,7 @@ metadata:
   labels:
     app: id-api
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: id-api-port
     port: 6001
@@ -40,7 +40,7 @@ metadata:
   labels:
     app: id-ums
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: id-ums-port
     port: 6002
@@ -57,7 +57,7 @@ metadata:
   labels:
     app: bi-web
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: bi-web-port
     port: 6004
@@ -74,7 +74,7 @@ metadata:
   labels:
     app: bi-api
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: bi-api-port
     port: 6005
@@ -91,7 +91,7 @@ metadata:
   labels:
     app: bi-jobs
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: bi-jobs-port
     port: 6006
@@ -108,7 +108,7 @@ metadata:
   labels:
     app: bi-dataservice
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: bi-dataservice-port
     port: 6007
@@ -125,7 +125,7 @@ metadata:
   labels:
     app: bold-etl
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: bold-etl-port
     port: 6009
