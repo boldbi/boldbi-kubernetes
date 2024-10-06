@@ -2,7 +2,7 @@
 {{- $ingressApiIsStable := eq (include "ingress.isStable" .) "true" -}}
 {{- $ingressSupportsIngressClassName := eq (include "ingress.supportsIngressClassName" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "ingress.supportsPathType" .) "true" -}}
-{{- $ingressPathType := "Prefix" -}}
+{{- $ingressPathType := "ImplementationSpecific" -}}
 apiVersion: {{ template "ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -516,6 +516,8 @@ metadata:
 spec:
   {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
   ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
+  {{- else if $ingressSupportsIngressClassName }}
+  ingressClassName: nginx
   {{- end }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:   
