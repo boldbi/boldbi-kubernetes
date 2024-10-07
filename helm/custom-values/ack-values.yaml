@@ -39,6 +39,12 @@ loadBalancer:
     # Example:
     # cert-manager.io/cluster-issuer: letsencrypt-prod
     # nginx.ingress.kubernetes.io/rewrite-target: /
+
+  kongIngressAnnotations:
+    # Enter annotations here for adding annotations in Kong ingress
+    # Example:
+    # konghq.com/preserve-host: "true"
+    # konghq.com/protocols: "http,https"
     
   singleHost: 
     secretName: bold-tls
@@ -48,6 +54,9 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+
+  # Enable Gzip in nginx-ingress
+  enableGzip: false 
 
 instanceConfig:
   - app: id-web
