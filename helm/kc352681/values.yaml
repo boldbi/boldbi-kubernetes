@@ -80,7 +80,7 @@ loadBalancer:
   enableGzip: false 
 
   # ReverseProxy changes in nginx-ingress
-  ReverseProxy: true
+  ReverseProxy: false
   
 instanceConfig:
   - app: id-web
