@@ -165,6 +165,8 @@ spec:
  {{- end }}
  {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
  volumeName: {{ .Values.persistentVolume.name }} 
+ {{- else if .Values.persistentVolume.blockVolume.blockVolumeName }}
+ volumeName: {{ .Values.persistentVolume.blockVolume.blockVolumeName }}
  {{- end }} 
  resources:
    requests:
