@@ -59,6 +59,7 @@ data:
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
 {{- end }}
+{{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -126,6 +127,7 @@ spec:
  - nolock,tcp,noresvport
  - vers=3
  {{- end }}
+{{- end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -139,8 +141,13 @@ metadata:
  namespace: {{ .Release.Namespace }}
  {{- end }}
 spec:
+ {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
  accessModes:
  - ReadWriteMany
+ {{- else }}
+ accessModes:
+ - {{ .Values.persistentVolume.blockVolume.blockVolumeAccessType }}
+ {{- end }}
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
@@ -151,13 +158,19 @@ spec:
  storageClassName: azurefile
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
+ {{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+ storageClassName: {{ .Values.persistentVolume.blockVolume.blockVolumeStorageClass }}
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""
  {{- end }}
  volumeName: {{ .Values.persistentVolume.name }} 
  resources:
    requests:
+     {{- if not .Values.persistentVolume.blockvolume.blockVolumeEnable }}
      storage: {{ .Values.persistentVolume.capacity }}
+     {{- else }}
+     storage: {{ .Values.persistentVolume.blockVolume.blockVolumeCapacity }}
+     {{- end }}
  {{- if eq .Values.clusterProvider "ack" }}
  selector:
    matchLabels:
