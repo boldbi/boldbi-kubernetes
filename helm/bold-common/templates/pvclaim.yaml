@@ -12,7 +12,7 @@ metadata:
   name: bold-storageclass
   {{- end }}
   {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace.name }}
   {{- else }}
   namespace: {{ .Release.Namespace }}
   {{- end }}
@@ -49,7 +49,7 @@ metadata:
   name: bold-azure-secret
   {{- end }}
   {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace.name }}
   {{- else }}
   namespace: {{ .Release.Namespace }}
   {{- end }}
@@ -67,7 +67,7 @@ metadata:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}
  {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace }}
+ namespace: {{ .Values.namespace.name }}
  {{- else }}
  namespace: {{ .Release.Namespace }}
  {{- end }}
@@ -136,7 +136,7 @@ metadata:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}-claim
  {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace }}
+ namespace: {{ .Values.namespace.name }}
  {{- else }}
  namespace: {{ .Release.Namespace }}
  {{- end }}
