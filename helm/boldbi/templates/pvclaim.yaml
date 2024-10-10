@@ -163,7 +163,9 @@ spec:
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""
  {{- end }}
+ {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
  volumeName: {{ .Values.persistentVolume.name }} 
+ {{- end }} 
  resources:
    requests:
      {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
