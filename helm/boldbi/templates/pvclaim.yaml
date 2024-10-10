@@ -166,7 +166,7 @@ spec:
  volumeName: {{ .Values.persistentVolume.name }} 
  resources:
    requests:
-     {{- if not .Values.persistentVolume.blockvolume.blockVolumeEnable }}
+     {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
      storage: {{ .Values.persistentVolume.capacity }}
      {{- else }}
      storage: {{ .Values.persistentVolume.blockVolume.blockVolumeCapacity }}
