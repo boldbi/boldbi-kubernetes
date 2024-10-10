@@ -229,7 +229,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -288,7 +288,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -343,7 +343,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -408,7 +408,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -463,7 +463,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -518,7 +518,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:8.1.41
         ports:
         - containerPort: 80
         resources:
@@ -573,7 +573,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:8.1.41
         ports:
         - containerPort: 80
         env:
@@ -640,7 +640,7 @@ spec:
           name: bold-etl-volume
       containers:
       - name: bold-etl-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-etl:7.11.24
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-etl:8.1.41
         ports:
         - containerPort: 80
         env:

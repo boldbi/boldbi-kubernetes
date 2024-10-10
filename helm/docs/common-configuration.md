@@ -351,11 +351,11 @@ We need to give an image tag for Bold BI, Bold Reports, and ID. By default set t
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  reportsRepo: gcr.io/boldreports
+  reportsRepo: us-docker.pkg.dev/boldreports/v6-2-32
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 7.11.24
-  biTag: 7.11.24
-  reportsTag: 5.4.20
+  idTag: 8.1.41
+  biTag: 8.1.41
+  reportsTag: 6.2.32
 ````
 Repository details are available in the image section to refer to the image tags. No need to change the repository details for idRepo, biRepo, and reportsRepo.
 
@@ -365,8 +365,8 @@ By default, the latest version of Bold BI, Bold Reports, and IDP is in the versi
 ```console
 versions:
   idp: "4.2.1"
-  bi: "7.11.24"
-  reports: "5.4.20"
+  bi: "8.1.41"
+  reports: "6.2.32"
 ````
 > **NOTE:**  We need give a latest version of `idp` when you have latest version of Bold BI or Bold Reports version
 
