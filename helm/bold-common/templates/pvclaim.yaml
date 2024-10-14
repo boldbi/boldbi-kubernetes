@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") (.Values.persistentVolume.aks.nfs.fileShareName) (and .Values.persistentVolume.blockVolume.blockVolumeEnable (ne .Values.persistentVolume.blockVolume.blockVolumeStorageClass "oci-bv")) }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") (.Values.persistentVolume.aks.nfs.fileShareName) (and .Values.persistentVolume.blockVolume.blockVolumeEnable (eq .Values.persistentVolume.blockVolume.blockVolumeStorageClass "bold-storage-account")) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -189,3 +189,4 @@ spec:
      alicloud-pvname: bold-fileserver
  {{- end }}
 
+ 
