@@ -41,7 +41,7 @@ persistentVolume:
     
   blockVolume:
     # Set to true if using block volumes to create a persistent volume claim.
-    # For Oracle block volumes, use the storage class "oci-bv" (default reclaim policy: Delete). To use a Retain policy instead, choose "bold-storage-account". Otherwise, specify your preferred storage class.
+    # For Oracle block volumes, use the storage class "oci-bv" (default reclaim policy: Delete). To use a Retain policy instead, choose "bold-storageclass". Otherwise, specify your preferred storage class.
     # When using block volumes with Oracle, only "ReadWriteOnce" access type is supported. For other storage classes, use the supported access types.
     # For Oracle block volumes, the minimum capacity is "50Gi". For other storage classes, use the minimum value supported by the storage class.
     # If you already have a persistent volume name to use, provide it. Otherwise, ignore this field. Note: the given persistent volume status must be "Available."
