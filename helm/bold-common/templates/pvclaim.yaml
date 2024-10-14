@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") (.Values.persistentVolume.aks.nfs.fileShareName) (and .Values.persistentVolume.blockVolume.blockVolumeEnable (ne .Values.persistentVolume.blockVolume.blockVolumeStorageClass "oci-bv")) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -10,9 +10,11 @@ metadata:
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
+  {{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+  name: {{ .Values.persistentVolume.blockVolume.blockVolumeStorageClass }}
   {{- end }}
   {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace.name }}
+  namespace: {{ .Values.namespace }}
   {{- else }}
   namespace: {{ .Release.Namespace }}
   {{- end }}
@@ -22,6 +24,9 @@ provisioner: efs.csi.aws.com
 provisioner: file.csi.azure.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
 provisioner: kubernetes.io/no-provisioner
+{{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+provisioner: blockvolume.csi.oraclecloud.com
+reclaimPolicy: Retain
 {{- end }}
 {{- if eq .Values.clusterProvider "onpremise" }}
 volumeBindingMode: WaitForFirstConsumer
@@ -34,6 +39,9 @@ parameters:
   protocol: nfs
 mountOptions:
   - nconnect=4
+{{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+parameters:
+  type: "oci-bv"
 {{- end }}
 ---
 {{- end }}
@@ -49,7 +57,7 @@ metadata:
   name: bold-azure-secret
   {{- end }}
   {{- if eq .Release.Namespace "default" }}
-  namespace: {{ .Values.namespace.name }}
+  namespace: {{ .Values.namespace }}
   {{- else }}
   namespace: {{ .Release.Namespace }}
   {{- end }}
@@ -67,7 +75,7 @@ metadata:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}
  {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace.name }}
+ namespace: {{ .Values.namespace }}
  {{- else }}
  namespace: {{ .Release.Namespace }}
  {{- end }}
@@ -136,7 +144,7 @@ metadata:
     {{- include "boldbi.labels" . | nindent 4 }}
  name: {{ .Values.persistentVolume.name }}-claim
  {{- if eq .Release.Namespace "default" }}
- namespace: {{ .Values.namespace.name }}
+ namespace: {{ .Values.namespace }}
  {{- else }}
  namespace: {{ .Release.Namespace }}
  {{- end }}
@@ -180,3 +188,4 @@ spec:
    matchLabels:
      alicloud-pvname: bold-fileserver
  {{- end }}
+
