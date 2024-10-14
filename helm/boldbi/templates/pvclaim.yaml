@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") (.Values.persistentVolume.aks.nfs.fileShareName) (and .Values.persistentVolume.blockVolume.blockVolumeEnable (eq .Values.persistentVolume.blockVolume.blockVolumeStorageClass "bold-storageclass") (ne .Values.persistentVolume.blockVolume.blockVolumeStorageClass "oci-bv")) }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") (.Values.persistentVolume.aks.nfs.fileShareName) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (eq .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass "bold-storageclass") (ne .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass "oci-bv")) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -10,8 +10,8 @@ metadata:
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
-  {{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
-  name: {{ .Values.persistentVolume.blockVolume.blockVolumeStorageClass }}
+  {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+  name: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass }}
   {{- end }}
   {{- if eq .Release.Namespace "default" }}
   namespace: {{ .Values.namespace }}
@@ -24,7 +24,7 @@ provisioner: efs.csi.aws.com
 provisioner: file.csi.azure.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
 provisioner: kubernetes.io/no-provisioner
-{{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+{{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 provisioner: blockvolume.csi.oraclecloud.com
 reclaimPolicy: Retain
 {{- end }}
@@ -39,7 +39,7 @@ parameters:
   protocol: nfs
 mountOptions:
   - nconnect=4
-{{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+{{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 parameters:
   type: "oci-bv"
 {{- end }}
@@ -67,7 +67,7 @@ data:
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
 {{- end }}
-{{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+{{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -149,12 +149,12 @@ metadata:
  namespace: {{ .Release.Namespace }}
  {{- end }}
 spec:
- {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+ {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
  accessModes:
  - ReadWriteMany
  {{- else }}
  accessModes:
- - {{ .Values.persistentVolume.blockVolume.blockVolumeAccessType }}
+ - {{ .Values.persistentVolume.oke.blockVolume.blockVolumeAccessType }}
  {{- end }}
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
@@ -166,22 +166,22 @@ spec:
  storageClassName: azurefile
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
- {{- else if .Values.persistentVolume.blockVolume.blockVolumeEnable }}
- storageClassName: {{ .Values.persistentVolume.blockVolume.blockVolumeStorageClass }}
+ {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ storageClassName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass }}
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""
  {{- end }}
- {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+ {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
  volumeName: {{ .Values.persistentVolume.name }} 
- {{- else if .Values.persistentVolume.blockVolume.blockVolumeName }}
- volumeName: {{ .Values.persistentVolume.blockVolume.blockVolumeName }}
+ {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
+ volumeName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
  {{- end }} 
  resources:
    requests:
-     {{- if not .Values.persistentVolume.blockVolume.blockVolumeEnable }}
+     {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
      storage: {{ .Values.persistentVolume.capacity }}
      {{- else }}
-     storage: {{ .Values.persistentVolume.blockVolume.blockVolumeCapacity }}
+     storage: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeCapacity }}
      {{- end }}
  {{- if eq .Values.clusterProvider "ack" }}
  selector:
