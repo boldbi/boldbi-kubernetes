@@ -18,8 +18,32 @@ persistentVolume:
   name: bold-fileserver
   capacity: 5Gi
   oke:
-    # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
+    # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
+    # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
+
+    blockVolume:
+      # Set this to true only if you are using block volumes. If using a filesystem volume, keep this as false.
+      blockVolumeEnable: false
+
+      # For Oracle block volumes, use the storage class "oci-bv" (default setting will delete the volume when done).
+      # If you have a custom storage class, enter it here (e.g., "bold-storageclass").
+      # If left blank, it will default to "bold-storageclass".
+      blockVolumeStorageClass: ""
+
+      #Set this to true if the storage class already exists, false if you need to create it.
+      storageClassExists: false
+
+      # Define the reclaim policy for the block volume. Choose from: "Retain" or "Delete".
+      blockVolumeReclimPolicy: ""
+
+      # Minimum capacity for block volumes is "50Gi". Set your desired capacity.
+      blockVolumeCapacity: ""
+
+      # If you already have an existing persistent volume, enter its name here.
+      # Otherwise, leave it blank, and OKE will automatically create a block volume for you.
+      # Note that the persistent volume must be in an "Available" state.
+      blockVolumeName: ""
     
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
