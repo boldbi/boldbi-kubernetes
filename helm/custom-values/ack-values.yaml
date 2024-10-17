@@ -58,6 +58,9 @@ loadBalancer:
   # Enable Gzip in nginx-ingress
   enableGzip: false 
 
+  # ReverseProxy changes in nginx-ingress
+  ReverseProxy: false
+
 instanceConfig:
   - app: id-web
     replicaCount: 1

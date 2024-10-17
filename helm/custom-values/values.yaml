@@ -68,7 +68,10 @@ loadBalancer:
         # secretName: bold-tls
 
   # Enable Gzip in nginx-ingress
-  enableGzip: false 
+  enableGzip: false
+
+  # ReverseProxy changes in nginx-ingress
+  ReverseProxy: false
 
 instanceConfig:
   - app: id-web
