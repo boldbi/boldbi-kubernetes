@@ -41,9 +41,29 @@ persistentVolume:
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
       hostName: ''
-    oke:
-       # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
-      volumeHandle: ''
+  oke:
+    # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
+    # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
+    volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
+
+    blockVolume:
+      # Set this to true only if you are using block volumes. If using a filesystem volume, keep this as false.
+      blockVolumeEnable: false
+
+      # For Oracle block volumes, use the storage class "oci-bv" (default reclaim policy: Delete).
+      # To use a custom reclaim policy, provide a different storage class name (e.g., "bold-storageclass").
+      # If no custom storage class name is specified, the default "bold-storageclass" will be used.
+      blockVolumeStorageClass: ""
+
+      # Define the reclaim policy for the block volume. Choose from: "Retain" or "Delete".
+      blockVolumeReclimPolicy: ""
+
+      # Minimum capacity for Oracle block volumes: "50Gi".
+      blockVolumeCapacity: ""
+
+      # If you have an existing persistent volume to use, specify its name. Otherwise, leave this blank.
+      # Note: The persistent volume must be in the "Available" state.
+      blockVolumeName: ""
 
   ack:
     # The host name of the mount target for your NAS file system.
