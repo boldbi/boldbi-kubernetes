@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) ( .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) ( .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -168,9 +168,9 @@ spec:
  storageClassName: azurefile
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
- {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) }}
+ {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) (eq .Values.clusterProvider "oke") }}
  storageClassName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass }}
- {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (eq .Values.clusterProvider "oke") }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""

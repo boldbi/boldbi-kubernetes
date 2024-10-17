@@ -43,26 +43,30 @@ persistentVolume:
       hostName: ''
   oke:
     # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
-    # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
+    # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
 
     blockVolume:
       # Set this to true only if you are using block volumes. If using a filesystem volume, keep this as false.
       blockVolumeEnable: false
 
-      # For Oracle block volumes, use the storage class "oci-bv" (default reclaim policy: Delete).
-      # To use a custom reclaim policy, provide a different storage class name (e.g., "bold-storageclass").
-      # If no custom storage class name is specified, the default "bold-storageclass" will be used.
+      # For Oracle block volumes, use the storage class "oci-bv" (default setting will delete the volume when done).
+      # If you have a custom storage class, enter it here (e.g., "bold-storageclass").
+      # If left blank, it will default to "bold-storageclass".
       blockVolumeStorageClass: ""
+
+      #Set this to true if the storage class already exists, false if you need to create it.
+      storageClassExists: false
 
       # Define the reclaim policy for the block volume. Choose from: "Retain" or "Delete".
       blockVolumeReclimPolicy: ""
 
-      # Minimum capacity for Oracle block volumes: "50Gi".
+      # Minimum capacity for block volumes is "50Gi". Set your desired capacity.
       blockVolumeCapacity: ""
 
-      # If you have an existing persistent volume to use, specify its name. Otherwise, leave this blank.
-      # Note: The persistent volume must be in the "Available" state.
+      # If you already have an existing persistent volume, enter its name here.
+      # Otherwise, leave it blank, and OKE will automatically create a block volume for you.
+      # Note that the persistent volume must be in an "Available" state.
       blockVolumeName: ""
 
   ack:
