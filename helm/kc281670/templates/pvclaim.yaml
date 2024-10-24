@@ -1,0 +1,194 @@
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  {{- if eq .Values.clusterProvider "eks" }}
+  name: efs-sc
+  {{- else if eq .Values.clusterProvider "aks" }}
+  name: azurefile-csi-nfs 
+  {{- else if eq .Values.clusterProvider "onpremise" }}
+  name: bold-storageclass
+  {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) }}
+  name: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass }}
+  {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+  name: bold-storageclass
+  {{- end }}
+  {{- if eq .Release.Namespace "default" }}
+  namespace: {{ .Values.namespace }}
+  {{- else }}
+  namespace: {{ .Release.Namespace }}
+  {{- end }}
+{{- if eq .Values.clusterProvider "eks" }}
+provisioner: efs.csi.aws.com
+{{- else if eq .Values.clusterProvider "aks" }}
+provisioner: file.csi.azure.com
+{{- else if eq .Values.clusterProvider "onpremise" }}
+provisioner: kubernetes.io/no-provisioner
+{{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+provisioner: blockvolume.csi.oraclecloud.com
+reclaimPolicy: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeReclimPolicy }}
+{{- end }}
+{{- if eq .Values.clusterProvider "onpremise" }}
+volumeBindingMode: WaitForFirstConsumer
+{{- end }}
+{{- if eq .Values.clusterProvider "aks" }}
+allowVolumeExpansion: true
+{{- end }}
+{{- if eq .Values.clusterProvider "aks" }}
+parameters:
+  protocol: nfs
+mountOptions:
+  - nconnect=4
+{{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+parameters:
+  type: "oci-bv"
+{{- end }}
+---
+{{- end }}
+{{- if and (eq .Values.clusterProvider "aks") (.Values.persistentVolume.aks.fileShareName) (.Values.persistentVolume.aks.azureStorageAccountName) (.Values.persistentVolume.aks.azureStorageAccountKey) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  {{- if .Values.persistentVolume.aks.secretName }}
+  name: {{ .Values.persistentVolume.aks.secretName }}
+  {{- else }}
+  name: bold-azure-secret
+  {{- end }}
+  {{- if eq .Release.Namespace "default" }}
+  namespace: {{ .Values.namespace }}
+  {{- else }}
+  namespace: {{ .Release.Namespace }}
+  {{- end }}
+type: Opaque
+data:
+  azurestorageaccountname: {{ .Values.persistentVolume.aks.azureStorageAccountName }}
+  azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
+---
+{{- end }}
+{{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+ name: {{ .Values.persistentVolume.name }}
+ {{- if eq .Release.Namespace "default" }}
+ namespace: {{ .Values.namespace }}
+ {{- else }}
+ namespace: {{ .Release.Namespace }}
+ {{- end }}
+ {{- if eq .Values.clusterProvider "ack" }}
+ labels:
+    alicloud-pvname: bold-fileserver
+ {{- end }}
+spec:
+ capacity:
+   storage: {{ .Values.persistentVolume.capacity }}
+ accessModes:
+ - ReadWriteMany
+ {{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "aks") (eq .Values.clusterProvider "oke") }}
+ persistentVolumeReclaimPolicy: Retain
+ {{- end }}
+ {{- if eq .Values.clusterProvider "onpremise" }}
+ storageClassName: bold-storageclass
+ hostPath:
+   path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
+ {{- else if eq .Values.clusterProvider "eks" }}
+ storageClassName: efs-sc
+ csi:
+   driver: efs.csi.aws.com
+   volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
+ storageClassName: azurefile-csi-nfs
+ nfs:
+  path: /{{ .Values.persistentVolume.aks.nfs.fileShareName }}
+  server: {{ .Values.persistentVolume.aks.nfs.hostName }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
+ storageClassName: azurefile
+ azureFile:
+   {{- if .Values.persistentVolume.aks.secretName }}
+   secretName: {{ .Values.persistentVolume.aks.secretName }}
+   {{- else }}
+   secretName: bold-azure-secret
+   {{- end }}
+   shareName: {{ .Values.persistentVolume.aks.fileShareName }}
+   readOnly: false 
+ {{- else if eq .Values.clusterProvider "gke" }}
+ nfs:
+   path: /{{ .Values.persistentVolume.gke.fileShareName }}
+   server: {{ .Values.persistentVolume.gke.fileShareIp }}
+ {{- else if eq .Values.clusterProvider "oke" }}
+ volumeMode: Filesystem
+ csi:
+    driver: fss.csi.oraclecloud.com
+    volumeHandle: {{ .Values.persistentVolume.oke.volumeHandle }}
+ {{- else if eq .Values.clusterProvider "ack" }}
+ csi:
+   driver: nasplugin.csi.alibabacloud.com
+   volumeHandle: bold-fileserver
+   volumeAttributes:
+     server: "{{ .Values.persistentVolume.ack.serverName }}"
+     path: "{{ .Values.persistentVolume.ack.filePath }}"
+ mountOptions:
+ - nolock,tcp,noresvport
+ - vers=3
+ {{- end }}
+---
+{{- end }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+ name: {{ .Values.persistentVolume.name }}-claim
+ {{- if eq .Release.Namespace "default" }}
+ namespace: {{ .Values.namespace }}
+ {{- else }}
+ namespace: {{ .Release.Namespace }}
+ {{- end }}
+spec:
+ {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ accessModes:
+ - ReadWriteMany
+ {{- else }}
+ accessModes:
+ - ReadWriteOnce
+ {{- end }}
+ {{- if eq .Values.clusterProvider "onpremise" }}
+ storageClassName: bold-storageclass
+ {{- else if eq .Values.clusterProvider "eks" }}
+ storageClassName: efs-sc
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
+ storageClassName: azurefile-csi-nfs
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
+ storageClassName: azurefile
+ {{- else if eq .Values.clusterProvider "gke" }}
+ storageClassName: ""
+ {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) (eq .Values.clusterProvider "oke") }}
+ storageClassName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass }}
+ {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (eq .Values.clusterProvider "oke") }}
+ storageClassName: bold-storageclass
+ {{- else if eq .Values.clusterProvider "oke" }}
+ storageClassName: ""
+ {{- end }}
+ {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ volumeName: {{ .Values.persistentVolume.name }} 
+ {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
+ volumeName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
+ {{- end }} 
+ resources:
+   requests:
+     {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+     storage: {{ .Values.persistentVolume.capacity }}
+     {{- else }}
+     storage: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeCapacity }}
+     {{- end }}
+ {{- if eq .Values.clusterProvider "ack" }}
+ selector:
+   matchLabels:
+     alicloud-pvname: bold-fileserver
+ {{- end }}

@@ -1,0 +1,26 @@
+{{- if $.Values.brandingDetails.main_logo }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: branding-config
+{{ include "boldbi.namespace" . | indent 2 }}
+data:
+  BOLD_SERVICES_BRANDING_MAIN_LOGO: "{{ .Values.brandingDetails.main_logo }}"
+  
+  BOLD_SERVICES_BRANDING_LOGIN_LOGO: "{{ .Values.brandingDetails.login_logo }}"
+  
+  BOLD_SERVICES_BRANDING_EMAIL_LOGO: "{{ .Values.brandingDetails.email_logo }}"
+  
+  BOLD_SERVICES_BRANDING_FAVICON: "{{ .Values.brandingDetails.favicon }}"
+  
+  BOLD_SERVICES_BRANDING_FOOTER_LOGO: "{{ .Values.brandingDetails.footer_logo }}"
+  
+  BOLD_SERVICES_SITE_NAME: "{{ .Values.brandingDetails.site_name }}"
+  
+  BOLD_SERVICES_SITE_IDENTIFIER: "{{ .Values.brandingDetails.site_identifier }}"
+ 
+ {{- end }}
+  
+  

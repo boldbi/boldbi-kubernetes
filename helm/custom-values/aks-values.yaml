@@ -71,6 +71,11 @@ loadBalancer:
   # ReverseProxy changes in nginx-ingress
   ReverseProxy: false
 
+subApplication:
+  enabled: false
+  # Specify the subpath. The default subpath value is 'boldservices'
+  subPath: 
+
 instanceConfig:
   - app: id-web
     replicaCount: 1

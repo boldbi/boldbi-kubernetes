@@ -1,0 +1,13 @@
+{{- if not .Values.rootUserDetails.existingSecret -}}
+apiVersion: v1
+kind: Secret
+metadata:  
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: bold-user-secret
+{{ include "boldbi.namespace" . | indent 2 }}
+type: Opaque
+stringData:
+  BOLD_SERVICES_USER_EMAIL: "{{ .Values.rootUserDetails.email }}"
+  BOLD_SERVICES_USER_PASSWORD: "{{ .Values.rootUserDetails.password }}"
+{{- end }}

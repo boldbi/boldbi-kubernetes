@@ -1,0 +1,164 @@
+{{- if eq .Values.loadBalancer.type "istio" }}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: bold-gateway
+{{ include "boldbi.namespace" . | indent 2 }}
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+    tls:
+      httpsRedirect: true
+    {{- end }}
+    {{- if .Values.loadBalancer.multipleHost }}
+    hosts:
+    {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
+    - {{ $host }}
+    {{- end }}
+    {{- else }}
+    hosts:
+    - {{ (split "/" .Values.appBaseUrl)._2 }}
+    {{- end }}
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS   
+    {{- if .Values.loadBalancer.multipleHost }}
+    hosts:
+    {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
+    - {{ $host }}
+    {{- end }}
+    tls:
+      mode: SIMPLE
+      credentialName: {{ ( index .Values.loadBalancer.multipleHost.hostArray 0 ).secretName }}
+    {{- else }}
+    tls:
+      mode: SIMPLE
+      credentialName: {{ .Values.loadBalancer.singleHost.secretName }}
+    hosts:
+    - {{ (split "/" .Values.appBaseUrl)._2 }}
+    {{- end }}
+  {{- end }}
+---
+{{- end }}
+{{- if eq .Values.loadBalancer.type "istio" }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    {{- include "boldbi.labels" . | nindent 4 }}
+  name: bold-virtual-service
+{{ include "boldbi.namespace" . | indent 2 }}
+spec:
+  {{- if .Values.loadBalancer.multipleHost }}
+  hosts:
+  {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
+  - {{ $host }}
+  {{- end }}
+  {{- else }}
+  hosts:
+  - {{ (split "/" .Values.appBaseUrl)._2 }}
+  {{- end }}
+  gateways:
+  - bold-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /bi/api
+    route:
+    - destination:
+        port:
+          number: 6005
+        host: bi-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi/jobs
+    route:
+    - destination:
+        port:
+          number: 6006
+        host: bi-jobs-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi/designer
+    route:
+    - destination:
+        port:
+          number: 6007
+        host: bi-dataservice-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /bi
+    route:
+    - destination:
+        port:
+          number: 6004
+        host: bi-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /api
+    route:
+    - destination:
+        port:
+          number: 6001
+        host: id-api-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /ums
+    route:
+    - destination:
+        port:
+          number: 6002
+        host: id-ums-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /etlservice/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        port:
+          number: 6009
+        host: bold-etl-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 6000
+        host: id-web-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+{{- end }}
