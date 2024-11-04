@@ -80,7 +80,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -147,7 +147,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -214,7 +214,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -281,7 +281,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -348,7 +348,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -415,7 +415,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
@@ -482,7 +482,7 @@ metadata:
         proxy_set_header X-Forwarded-For        $remote_addr;
         proxy_set_header X-Forwarded-Host       $best_http_host;
         proxy_set_header X-Forwarded-Port       $pass_port;
-        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
         proxy_set_header X-Scheme               $pass_access_scheme;
         proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
         proxy_set_header Proxy                  "";
