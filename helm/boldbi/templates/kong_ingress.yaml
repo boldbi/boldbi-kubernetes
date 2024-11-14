@@ -13,7 +13,7 @@ metadata:
     {{- end }}
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  tls:   
+  tls:
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
@@ -26,49 +26,53 @@ spec:
       http:
     {{- end }}
         paths:
-        - path: /bi/api
+        {{- $subPath := "" }}
+        {{- if .Values.subApplication.enabled }}
+          {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+        {{- end }}
+        - path: {{ $subPath }}/bi/api
           pathType: Prefix
           backend:
             service:
               name: bi-api-service
               port:
                 number: 6005
-        - path: /bi/jobs
+        - path: {{ $subPath }}/bi/jobs
           pathType: Prefix
           backend:
             service:
               name: bi-jobs-service
               port:
                 number: 6006
-        - path: /bi/designer
+        - path: {{ $subPath }}/bi/designer
           pathType: Prefix
           backend:
             service:
               name: bi-dataservice-service
               port:
                 number: 6007
-        - path: /bi
+        - path: {{ $subPath }}/bi
           pathType: Prefix
           backend:
             service:
               name: bi-web-service
               port:
                 number: 6004
-        - path: /api
+        - path: {{ $subPath }}/api
           pathType: Prefix
           backend:
             service:
               name: id-api-service
               port:
                 number: 6001
-        - path: /ums
+        - path: {{ $subPath }}/ums
           pathType: Prefix
           backend:
             service:
               name: id-ums-service
               port:
                 number: 6002
-        - path: /
+        - path: {{ $subPath }}/
           pathType: Prefix
           backend:
             service:
@@ -91,7 +95,7 @@ metadata:
     {{- end }}
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  tls:   
+  tls:
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
@@ -104,7 +108,7 @@ spec:
       http:
     {{- end }}
         paths:
-        - path: /etlservice/
+        - path: {{ $subPath }}/etlservice/
           pathType: ImplementationSpecific
           backend:
             service:
