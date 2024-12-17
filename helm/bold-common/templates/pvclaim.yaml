@@ -156,7 +156,7 @@ spec:
  - ReadWriteMany
  {{- else }}
  accessModes:
- - ReadWriteOnce
+ - {{ .Values.persistentVolume.oke.blockVolume.blockVolumeAccessModes }}
  {{- end }}
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
