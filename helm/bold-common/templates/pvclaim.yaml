@@ -122,7 +122,7 @@ spec:
    path: /{{ .Values.persistentVolume.gke.fileShareName }}
    server: {{ .Values.persistentVolume.gke.fileShareIp }}
  {{- else if eq .Values.clusterProvider "oke" }}
- volumeMode: {{ .Values.persistentVolume.oke.volumeMode }}
+ volumeMode: {{ .Values.persistentVolume.oke.volumeMode | default "FileSystem" }}
  csi:
     driver: fss.csi.oraclecloud.com
     volumeHandle: {{ .Values.persistentVolume.oke.volumeHandle }}
