@@ -1,7 +1,7 @@
 # Default values for boldbi.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-namespace: 
+namespace: bold-services
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
 clusterProvider: 'eks'

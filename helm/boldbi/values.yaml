@@ -4,7 +4,7 @@
 namespace: bold-services
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
-clusterProvider: ''
+clusterProvider: 'eks'
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -12,29 +12,20 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
   eks:
     efsFileSystemId: ''
-  aks:
-    fileShareName: ''
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
-  onpremise:
-    hostPath: ''
+    # for custom storage class name enter the name of the storageClass, the default name is 'efs-sc'.
+    storageClassName: 'efs-sc'
     
 image:
-  repo: gcr.io/boldbi-294612
+  repo: us-docker.pkg.dev/boldbi-294612/boldbi
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6.5.8
+  tag: 8.3.17
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 loadBalancer:
-  type: nginx
+  type: alb
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600
@@ -49,6 +40,18 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+
+  # For Application Load Balancer configuration:
+  # The default group name value is 'bold-services'; you can alter this if needed.
+  groupName: 'bold-services'
+
+  ssl:
+    enable: false
+    # You can pass the tls value as 'secret' or 'arn'. 
+    # If 'arn' is chosen, mention the ARN value of the ACM certificate below.
+    # If you choose 'secret', you need to create a secret with the default secret name 'bold-tls'.
+    tls: 'arn'
+    arn: ''
 
 instanceConfig:
   - app: id-web
@@ -93,10 +96,6 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    
-service:
-  type: ClusterIP
-  port: 80
   
 autoscaling:
   enabled: true
@@ -108,7 +107,7 @@ autoscaling:
     podsPeriodSeconds: 60
     percentValue: 10
     percentPeriodSeconds: 60
-
+    
 ## Custom Localization
 localization:
   customLocalePath: ''
@@ -117,6 +116,17 @@ localization:
 bingMapWidget:
   enabled: false
   apiKey: ''
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
+  
+## Site Identifier
+useSiteIdentifier:
+  enable: true
 
 rootUserDetails:
   email: ""
@@ -130,7 +140,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
@@ -159,24 +169,29 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
- 
+  
 brandingDetails:
-
-  main_logo:  ""
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
   
-  login_logo:  ""
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
   
-  email_logo:  ""
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
   
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  footer_logo:  ""
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
   
-  site_name: ""
+  # This is organization name.
+  siteName: ""
   
-  site_identifier: ""
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
   
-  
-  licenseKeyDetails:
+licenseKeyDetails:
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
