@@ -25,7 +25,7 @@ image:
 imagePullSecrets: []
 
 loadBalancer:
-  type: nginx
+  type: alb
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600
