@@ -1094,6 +1094,6 @@ entries:
     name: kc269938
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc281670-8.1.41.tgz
+    - https://boldbi.github.io/boldbi-kubernetes/kc269938-8.3.17.tgz
     version: 8.3.17
 generated: "2022-04-11T13:06:57.3735836+05:30"
