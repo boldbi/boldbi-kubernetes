@@ -1,3 +1,4 @@
+{{- if $.Values.brandingDetails.main_logo }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -19,4 +20,7 @@ data:
   BOLD_SERVICES_SITE_NAME: "{{ .Values.brandingDetails.site_name }}"
   
   BOLD_SERVICES_SITE_IDENTIFIER: "{{ .Values.brandingDetails.site_identifier }}"
+ 
+ {{- end }}
+  
   

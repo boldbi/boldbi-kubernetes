@@ -18,14 +18,14 @@ persistentVolume:
     storageClassName: 'efs-sc'
     
 image:
-  repo: us-docker.pkg.dev/boldbi-294612/boldbi
+  repo: gcr.io/boldbi-294612
   # Overrides the image tag whose default is the chart appVersion.
   tag: 8.3.17
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 loadBalancer:
-  type: alb
+  type: nginx
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600

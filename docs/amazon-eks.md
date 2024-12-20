@@ -4,18 +4,18 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 1. Download the following files for Bold BI deployment in Amazon EKS:
 
-    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/namespace.yaml)
-    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/secrets.yaml)
-    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/db-server-secret.yaml)
-    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/license-key-secret.yaml)
-    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/root-user-details.yaml)
-    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/log4net_config.yaml)
-    * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/branding_config.yaml)
-    * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/pvclaim_eks.yaml)
-    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/deployment.yaml)
-    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/hpa.yaml)
-    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/service.yaml)
-    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v6.5.8/deploy/ingress.yaml)
+    * [namespace.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/namespace.yaml)
+    * [secrets.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/secrets.yaml)
+    * [db-server-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/db-server-secret.yaml)
+    * [license-key-secret.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/license-key-secret.yaml)
+    * [root-user-details.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/root-user-details.yaml)
+    * [log4net_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/log4net_config.yaml)
+    * [branding_config.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/branding_config.yaml)
+    * [pvclaim_eks.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/pvclaim_eks.yaml)
+    * [deployment.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/deployment.yaml)
+    * [hpa.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/hpa.yaml)
+    * [service.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/service.yaml)
+    * [ingress.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/v8.3.17/deploy/ingress.yaml)
 
 2. Create an Amazon EKS cluster and [node group](https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html) to deploy Bold BI.
 
@@ -37,7 +37,7 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 7. Deploy the latest Nginx ingress controller to your cluster using the following command.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/deploy.yaml
 ```
 
 8. Deploy the Kubernetes Metrics Server to use Horizontal Pod Autoscaler(HPA) feature by following the below link.

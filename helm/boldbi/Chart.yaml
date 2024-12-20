@@ -1,8 +1,9 @@
 apiVersion: v2
-appVersion: 6.5.8
-description: Embed powerful analytics inside your apps and turn your customers into success stories with built-in intelligence features.
+appVersion: 8.3.17
+description: Embed powerful analytics inside your apps and turn your customers into
+  success stories with built-in intelligence features.
 home: https://www.boldbi.com/
 icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
-name: boldbi
+name: kc269938
 type: application
-version: 6.5.8
+version: 8.3.17

@@ -5,6 +5,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 ## Deployment prerequisites
 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
+* [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [File Storage](docs/pre-requisites.md#file-storage)
 * [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
@@ -34,7 +35,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   6.5.8           6.5.8         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   8.3.17           8.3.17         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
@@ -44,7 +45,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 For Helm chart, you'll need to craft a `values.yaml`.
 
 * For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/KC269938/helm/custom-values/eks-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/aks-values.yaml).
 
 <br/>
@@ -132,6 +133,32 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        Custom locale file path for Localization.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       customSizePdfExport
+      </td>
+      <td>
+       To utilize a customized page size for A4 PDF export, set this feature to true. By default, this feature is set to false.
+      </td>
+    </tr>
+        <tr>
+      <td>
+       browserTimeZone
+      </td>
+      <td>
+       If you need to use Browser time zone feature , enable this to true. By default this feature will be set to false. 
+      </td>
+    </tr>
+        <tr>
+      <td>
+       useSiteIdendifier
+      </td>
+      <td>
+       The variable is optional, and the default value is TRUE. 
+          By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
+          You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
       </td>
     </tr>
     </table>

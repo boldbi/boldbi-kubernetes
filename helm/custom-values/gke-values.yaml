@@ -19,7 +19,7 @@ persistentVolume:
 # image:
 #   repo: gcr.io/boldbi-294612
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 6.5.8
+#   tag: 8.3.17
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 
@@ -103,6 +103,18 @@ localization:
 bingMapWidget:
   enabled: false
   apiKey: ''
+
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
+  
+## Site Identifier
+useSiteIdentifier:
+  enable: true
 
 rootUserDetails:
   email: ""

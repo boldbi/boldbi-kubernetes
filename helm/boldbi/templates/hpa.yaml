@@ -41,7 +41,7 @@ spec:
         type: Utilization
         averageUtilization: {{ $.Values.autoscaling.targetMemoryUtilizationPercentage }}
   {{- end }}
-  {{- if ne $.Values.clusterProvider "aks" }}
+  {{- if ne $.Values.clusterProvider "eks" }}
   behavior:
     scaleDown:
       stabilizationWindowSeconds: {{ $.Values.autoscaling.behavior.stabilizationWindowSeconds }}

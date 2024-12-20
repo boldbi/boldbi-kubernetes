@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: gcr.io/boldbi-294612/bold-identity:6.5.8
+        image: gcr.io/boldbi-294612/bold-identity:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -34,7 +34,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 30
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: id-web-volume
@@ -74,7 +75,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: gcr.io/boldbi-294612/bold-identity-api:6.5.8
+        image: gcr.io/boldbi-294612/bold-identity-api:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -89,7 +90,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: id-api-volume
@@ -129,7 +131,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: gcr.io/boldbi-294612/bold-ums:6.5.8
+        image: gcr.io/boldbi-294612/bold-ums:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -139,6 +141,8 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
+          value: "true"
         envFrom:
         - secretRef:
               name: bold-user-secret
@@ -154,7 +158,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: id-ums-volume
@@ -194,7 +199,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: gcr.io/boldbi-294612/boldbi-server:6.5.8
+        image: gcr.io/boldbi-294612/boldbi-server:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -209,7 +214,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-web-volume
@@ -249,7 +255,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: gcr.io/boldbi-294612/boldbi-server-api:6.5.8
+        image: gcr.io/boldbi-294612/boldbi-server-api:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -264,7 +270,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-api-volume
@@ -304,7 +311,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: gcr.io/boldbi-294612/boldbi-server-jobs:6.5.8
+        image: gcr.io/boldbi-294612/boldbi-server-jobs:8.3.17
         ports:
         - containerPort: 80
         resources:
@@ -319,7 +326,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-jobs-volume
@@ -359,7 +367,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: gcr.io/boldbi-294612/boldbi-designer:6.5.8
+        image: gcr.io/boldbi-294612/boldbi-designer:8.3.17
         ports:
         - containerPort: 80
         env:
@@ -373,6 +381,10 @@ spec:
             secretKeyRef:
               name: bold-secret
               key: widget_bing_map_api_key_secret
+        - name: AppSettings__CustomSizePDFExport
+          value: "true"
+        - name: AppSettings__BrowserTimezone
+          value: "true"
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         - name: AppSettings__locale-path
@@ -386,7 +398,8 @@ spec:
             path: /health-check
             port: 80
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /application/app_data
           name: bi-dataservice-volume
