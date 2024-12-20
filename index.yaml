@@ -1082,7 +1082,7 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc281670-8.1.41.tgz
     version: 8.1.41
-  KC269938:
+  kc269938:
   - apiVersion: v2
     appVersion: 8.3.17
     created: "2022-04-11T13:06:57.6150424+05:30"
