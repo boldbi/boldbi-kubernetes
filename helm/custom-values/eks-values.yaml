@@ -1,7 +1,7 @@
 # Default values for boldbi.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-namespace: bold-services
+namespace: 
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
 clusterProvider: 'eks'
@@ -14,16 +14,18 @@ persistentVolume:
   capacity: 3Gi
   eks:
     efsFileSystemId: ''
+    # for custom storage class name enter the name of the storageClass, the default name is 'efs-sc'.
+    storageClassName: 'efs-sc'
     
 image:
-  repo: gcr.io/boldbi-294612
+  repo: us-docker.pkg.dev/boldbi-294612/boldbi
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6.5.8
+  tag: 8.3.17
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 loadBalancer:
-  type: nginx
+  type: alb
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600
@@ -38,6 +40,18 @@ loadBalancer:
           # - kubernetes.docker.internal
           # - example.com
         # secretName: bold-tls
+
+  # For Application Load Balancer configuration:
+  # The default group name value is 'bold-services'; you can alter this if needed.
+  groupName: 'bold-services'
+
+  ssl:
+    enable: false
+    # You can pass the tls value as 'secret' or 'arn'. 
+    # If 'arn' is chosen, mention the ARN value of the ACM certificate below.
+    # If you choose 'secret', you need to create a secret with the default secret name 'bold-tls'.
+    tls: 'arn'
+    arn: ''
 
 instanceConfig:
   - app: id-web
@@ -102,6 +116,17 @@ localization:
 bingMapWidget:
   enabled: false
   apiKey: ''
+## Custom Size PDFExport
+customSizePdfExport:
+  enable: false
+  
+## BrowserTimezone
+browserTimeZone:
+  enable: false
+  
+## Site Identifier
+useSiteIdentifier:
+  enable: true
 
 rootUserDetails:
   email: ""
