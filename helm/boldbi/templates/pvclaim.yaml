@@ -69,7 +69,7 @@ data:
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
 {{- end }}
-{{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+{{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.clusterProvider "rook")}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -151,7 +151,7 @@ metadata:
  namespace: {{ .Release.Namespace }}
  {{- end }}
 spec:
- {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.persistentVolume.rook.volumeType "block")}}
  accessModes:
  - ReadWriteMany
  {{- else }}
