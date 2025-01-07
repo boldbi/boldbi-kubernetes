@@ -4,7 +4,7 @@
 
 appBaseUrl: ''
 optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
-clusterProvider: 'oke'
+clusterProvider: 'rook'
 
 namespace:
   name: bold-services
