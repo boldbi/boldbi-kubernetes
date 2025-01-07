@@ -177,7 +177,7 @@ spec:
  {{- else if eq .Values.clusterProvider "rook" }}
  storageClassName: {{ .Values.persistentVolume.rook.blockVolumeStorageClass }}
  {{- end }}
- {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.clusterProvider "rook")}}
  volumeName: {{ .Values.persistentVolume.name }} 
  {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
  volumeName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
