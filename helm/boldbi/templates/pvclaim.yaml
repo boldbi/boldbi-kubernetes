@@ -151,7 +151,7 @@ metadata:
  namespace: {{ .Release.Namespace }}
  {{- end }}
 spec:
- {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.persistentVolume.rook.volumeType "block") (or (eq .Values.persistentVolume.rook.volumeType "fileshare") (eq .Values.persistentVolume.rook.volumeType "")}}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.persistentVolume.rook.volumeType "block") (or (eq .Values.persistentVolume.rook.volumeType "fileshare") (eq .Values.persistentVolume.rook.volumeType "")) }}
  accessModes:
  - ReadWriteMany
  {{- else }}
