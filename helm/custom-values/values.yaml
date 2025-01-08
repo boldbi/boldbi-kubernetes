@@ -29,6 +29,14 @@ persistentVolume:
     serverName: ''
     # This field represents the file path of the app_data files. The default location is "/bold-services".
     filePath: '/bold-services'
+  rook:
+  # Specify the type of volume to use for storage:
+  # "block" - For block storage, which supports RWO (ReadWriteOnce). Suitable for single-pod access.
+  # "fileshare" - For file share storage, which supports RWM (ReadWriteMany). Suitable for shared access across multiple pods.
+  volumeType: ""
+
+  # Provide the rook storage class name
+  blockVolumeStorageClass: ""
     
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
