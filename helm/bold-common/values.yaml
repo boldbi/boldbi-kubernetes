@@ -81,14 +81,14 @@ persistentVolume:
     # This field represents the file path of the app_data files. The default location is "/bold-services".
     filePath: '/bold-services'
 
-    rook:
-      # Specify the type of volume to use for storage:
-      # "block" - For block storage, which supports RWO (ReadWriteOnce). Suitable for single-pod access.
-      # "fileshare" - For file share storage, which supports RWM (ReadWriteMany). Suitable for shared access across multiple pods.
-      volumeType: ""
+  rook:
+    # Specify the type of volume to use for storage:
+    # "block" - For block storage, which supports RWO (ReadWriteOnce). Suitable for single-pod access.
+    # "fileshare" - For file share storage, which supports RWM (ReadWriteMany). Suitable for shared access across multiple pods.
+    volumeType: ""
 
-      # Provide the rook storage class name
-      blockVolumeStorageClass: ""
+    # Provide the rook storage class name
+    blockVolumeStorageClass: ""
 
   onpremise:
     hostPath: ''
