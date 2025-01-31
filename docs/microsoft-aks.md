@@ -27,7 +27,7 @@
 
 6. Connect with your Microsoft AKS cluster.
 
-7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster and aloow **allow-snippet-annotations** using the following commands.
+7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster and set **allow-snippet-annotations** as true using the following commands.
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
