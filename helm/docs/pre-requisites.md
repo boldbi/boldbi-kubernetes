@@ -170,6 +170,13 @@ After install the nginx-ingress run the below command to set **allow-snippet-ann
 ``` 
 kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":{\"allow-snippet-annotations\":\"true\"}}' --type=strategic
 ```
+
+### Install Ingress-nginx using helm
+If you need to configure latest Ingress-Nginx using helm in your cluster, please use below command.
+
+```
+helm install  ingress-nginx ingress-nginx/ingress-nginx --version 4.11.3 --namespace ingress-nginx --set controller.service.externalTrafficPolicy=Local --set controller.config.allow-snippet-annotations="true"
+```
 ### Istio Ingress Gateway
 
 If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster please refer to the corresponing reference links
