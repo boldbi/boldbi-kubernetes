@@ -135,7 +135,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        GKE Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -143,7 +143,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        EKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -151,7 +151,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        AKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
     <tr>
@@ -159,12 +159,17 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        OnPremise
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
       </td>
     </tr>
 </table>
 <br/>
 
+After install the nginx-ingress run the below command to set **allow-snippet-annotations** as true.
+
+``` 
+kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":{\"allow-snippet-annotations\":\"true\"}}' --type=strategic
+```
 ### Istio Ingress Gateway
 
 If you need to configure Bold BI with Istio, [Install Istio ingress gateway](https://istio.io/latest/docs/setup/install/) in your cluster please refer to the corresponing reference links
