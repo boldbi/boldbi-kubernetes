@@ -143,7 +143,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
        EKS Cluster
       </td>
       <td>
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/aws/deploy.yaml
       </td>
     </tr>
     <tr>
