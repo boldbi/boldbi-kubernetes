@@ -34,10 +34,12 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
 ![PV Claim](images/eks_pvclaim.png)
 
-7. Deploy the latest Nginx ingress controller to your cluster using the following command.
+7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster and aloow **allow-snippet-annotations** using the following commands.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
+
+kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":{\"allow-snippet-annotations\":\"true\"}}' --type=strategic
 ```
 
 8. Deploy the Kubernetes Metrics Server to use Horizontal Pod Autoscaler(HPA) feature by following the below link.

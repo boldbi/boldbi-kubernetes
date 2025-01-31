@@ -37,10 +37,12 @@ For fresh installation, continue with the following steps to deploy Bold BI On-P
 
    https://cloud.google.com/kubernetes-engine/docs/quickstart 
 
-7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster using the following command.
+7. After connecting with your cluster, deploy the latest Nginx ingress controller to your cluster and aloow **allow-snippet-annotations** using the following commands.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/cloud/deploy.yaml
+
+kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":{\"allow-snippet-annotations\":\"true\"}}' --type=strategic
 ```
 
 8. Navigate to the folder where the deployment files were downloaded from **Step 1**.

@@ -500,56 +500,56 @@ spec:
     http:
       paths:
       - path: /
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: id-web-service
             port:
               number: 6000       
-      - path: /idapi6001(/|$)(.*)
-        pathType: Prefix
+      - path: /idapi6001/*
+        pathType: ImplementationSpecific
         backend:
           service:
             name: id-api-service
             port:
               number: 6001
-      - path: /idums6002(/|$)(.*)
-        pathType: Prefix     
+      - path: /idums6002/*
+        pathType: ImplementationSpecific     
         backend:
           service:
             name: id-ums-service
             port:
               number: 6002      
-      - path: /biweb6004(/|$)(.*)
-        pathType: Prefix      
+      - path: /biweb6004/*
+        pathType: ImplementationSpecific      
         backend:
           service:
             name: bi-web-service
             port:
               number: 6004     
-      - path: /biapi6005(/|$)(.*)
-        pathType: Prefix     
+      - path: /biapi6005/*
+        pathType: ImplementationSpecific     
         backend:
           service:
             name: bi-api-service
             port:
               number: 6005         
-      - path: /bijobs6006(/|$)(.*)
-        pathType: Prefix      
+      - path: /bijobs6006/*
+        pathType: ImplementationSpecific      
         backend:
           service:
             name: bi-jobs-service
             port:
               number: 6006      
-      - path: /bidataservice6007(/|$)(.*)
-        pathType: Prefix      
+      - path: /bidataservice6007/*
+        pathType: ImplementationSpecific      
         backend:
           service:
             name: bi-dataservice-service
             port:
               number: 6007
-      - path: /boldetl/(/|$)(.*)
-        pathType: Prefix
+      - path: /boldetl/*
+        pathType: ImplementationSpecific
         backend:
           service:
             name: bold-etl-service
