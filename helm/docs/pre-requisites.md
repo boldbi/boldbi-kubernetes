@@ -175,7 +175,7 @@ kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":
 If you need to configure latest Ingress-Nginx using helm in your cluster, please use below command.
 
 ```
-helm install  ingress-nginx ingress-nginx/ingress-nginx --version 4.11.3 --namespace ingress-nginx --set controller.service.externalTrafficPolicy=Local --set controller.config.allow-snippet-annotations="true"
+helm install  ingress-nginx ingress-nginx/ingress-nginx --version 4.11.3 --namespace ingress-nginx --create-namespace --set controller.service.externalTrafficPolicy=Local --set controller.config.allow-snippet-annotations="true"
 ```
 ### Istio Ingress Gateway
 
