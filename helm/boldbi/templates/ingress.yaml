@@ -520,6 +520,72 @@ metadata:
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
+      location ~* "^/aiservice(/|$)(.*)" {
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
+        set $service_name   "";
+        set $service_port   "";
+        set $location_path  "/aiservice(/|${literal_dollar})(.*)";
+        rewrite_by_lua_block {
+                lua_ingress.rewrite({
+                        force_ssl_redirect = false,
+                        ssl_redirect = true,
+                        force_no_ssl_redirect = false,
+                        use_port_in_redirects = false,
+                })
+                balancer.rewrite()
+                plugins.run()
+        }
+        header_filter_by_lua_block {
+                lua_ingress.header()
+                plugins.run()
+        }
+        body_filter_by_lua_block {
+        }
+        log_by_lua_block {
+                balancer.log()
+                monitor.call()
+                plugins.run()
+        }
+        port_in_redirect off;
+        set $balancer_ewma_score -1;
+        set $proxy_upstream_name "${bold_namespace}-bold-ai-service-6010";
+        set $proxy_host          $proxy_upstream_name;
+        set $pass_access_scheme  $scheme;
+        set $pass_server_port    $server_port;
+        set $best_http_host      $http_host;
+        set $pass_port           $pass_server_port;
+        set $proxy_alternative_upstream_name "";
+        proxy_set_header Host                   $best_http_host;
+        proxy_set_header                        Upgrade           $http_upgrade;
+        proxy_set_header                        Connection        $connection_upgrade;
+        proxy_set_header X-Request-ID           $req_id;
+        proxy_set_header X-Real-IP              $remote_addr;
+        proxy_set_header X-Forwarded-For        $remote_addr;
+        proxy_set_header X-Forwarded-Host       $best_http_host;
+        proxy_set_header X-Forwarded-Port       $pass_port;
+        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Scheme               $pass_access_scheme;
+        proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
+        proxy_set_header Proxy                  "";
+        proxy_connect_timeout                   300s;
+        proxy_send_timeout                      300s;
+        proxy_read_timeout                      300s;
+        proxy_buffering                         off;
+        proxy_buffer_size                       4k;
+        proxy_buffers                           4 4k;
+        proxy_max_temp_file_size                1024m;
+        proxy_request_buffering                 on;
+        proxy_http_version                      1.1;
+        proxy_cookie_domain                     off;
+        proxy_cookie_path                       off;
+        proxy_next_upstream                     error timeout;
+        proxy_next_upstream_timeout             0;
+        proxy_next_upstream_tries               3;
+        rewrite "(?i)/aiservice(/|$)(.*)" /$2 break;
+        proxy_pass http://upstream_balancer;
+        proxy_redirect                          off;
+      }
     {{- else }}
     nginx.ingress.kubernetes.io/server-snippet: |
       {{- if .Values.loadBalancer.enableGzip }}
@@ -1002,6 +1068,72 @@ metadata:
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
+      location ~* "^/{{ $.Values.subApplication.subPath }}/aiservice(/|$)(.*)" {
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
+        set $service_name   "";
+        set $service_port   "";
+        set $location_path  "/{{ $.Values.subApplication.subPath }}/aiservice(/|${literal_dollar})(.*)";
+        rewrite_by_lua_block {
+                lua_ingress.rewrite({
+                        force_ssl_redirect = false,
+                        ssl_redirect = true,
+                        force_no_ssl_redirect = false,
+                        use_port_in_redirects = false,
+                })
+                balancer.rewrite()
+                plugins.run()
+        }
+        header_filter_by_lua_block {
+                lua_ingress.header()
+                plugins.run()
+        }
+        body_filter_by_lua_block {
+        }
+        log_by_lua_block {
+                balancer.log()
+                monitor.call()
+                plugins.run()
+        }
+        port_in_redirect off;
+        set $balancer_ewma_score -1;
+        set $proxy_upstream_name "${bold_namespace}-bold-ai-service-6010";
+        set $proxy_host          $proxy_upstream_name;
+        set $pass_access_scheme  $scheme;
+        set $pass_server_port    $server_port;
+        set $best_http_host      $http_host;
+        set $pass_port           $pass_server_port;
+        set $proxy_alternative_upstream_name "";
+        proxy_set_header Host                   $best_http_host;
+        proxy_set_header                        Upgrade           $http_upgrade;
+        proxy_set_header                        Connection        $connection_upgrade;
+        proxy_set_header X-Request-ID           $req_id;
+        proxy_set_header X-Real-IP              $remote_addr;
+        proxy_set_header X-Forwarded-For        $remote_addr;
+        proxy_set_header X-Forwarded-Host       $best_http_host;
+        proxy_set_header X-Forwarded-Port       $pass_port;
+        proxy_set_header X-Forwarded-Proto      $pass_access_scheme;
+        proxy_set_header X-Scheme               $pass_access_scheme;
+        proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
+        proxy_set_header Proxy                  "";
+        proxy_connect_timeout                   300s;
+        proxy_send_timeout                      300s;
+        proxy_read_timeout                      300s;
+        proxy_buffering                         off;
+        proxy_buffer_size                       4k;
+        proxy_buffers                           4 4k;
+        proxy_max_temp_file_size                1024m;
+        proxy_request_buffering                 on;
+        proxy_http_version                      1.1;
+        proxy_cookie_domain                     off;
+        proxy_cookie_path                       off;
+        proxy_next_upstream                     error timeout;
+        proxy_next_upstream_timeout             0;
+        proxy_next_upstream_tries               3;
+        rewrite "(?i)/{{ $.Values.subApplication.subPath }}/aiservice(/|$)(.*)" /$2 break;
+        proxy_pass http://upstream_balancer;
+        proxy_redirect                          off;
+      }
     {{- end }} 
 
 spec:
@@ -1182,6 +1314,24 @@ spec:
               serviceName: bold-etl-service
               servicePort: 6009
               {{- end }}
+          {{- if not .Values.subApplication.subPath }}
+          - path: /boldservices/aiservice(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+          {{- else }}        
+          - path: /{{ $.Values.subApplication.subPath }}/aiservice(/|$)(.*)
+          {{- end }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
+              {{- else }}
+              serviceName: bold-ai-service
+              servicePort: 6010
+              {{- end }}
   {{- end }}
   {{- end }}
   {{- else }}
@@ -1338,6 +1488,25 @@ spec:
               {{- else }}
               serviceName: bold-etl-service
               servicePort: 6009
+              {{- end }}
+          
+          {{- if not .Values.subApplication.subPath }}
+          - path: /boldservices/aiservice(/|$)(.*)
+          {{- else }}
+          - path: /{{ $.Values.subApplication.subPath }}/aiservice(/|$)(.*)
+          {{- end }}
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
+              {{- else }}
+              serviceName: bold-ai-service
+              servicePort: 6010
               {{- end }}
       {{- end }}
 {{- else}} 
@@ -1855,6 +2024,72 @@ metadata:
         proxy_pass http://upstream_balancer;
         proxy_redirect                          off;
       }
+      location ~* "^/aiservice(/|$)(.*)" {
+        set $namespace      $bold_namespace;
+        set $ingress_name   "bold-ingress";
+        set $service_name   "";
+        set $service_port   "";
+        set $location_path  "/aiservice(/|${literal_dollar})(.*)";
+        rewrite_by_lua_block {
+                lua_ingress.rewrite({
+                        force_ssl_redirect = false,
+                        ssl_redirect = true,
+                        force_no_ssl_redirect = false,
+                        use_port_in_redirects = false,
+                })
+                balancer.rewrite()
+                plugins.run()
+        }
+        header_filter_by_lua_block {
+                lua_ingress.header()
+                plugins.run()
+        }
+        body_filter_by_lua_block {
+        }
+        log_by_lua_block {
+                balancer.log()
+                monitor.call()
+                plugins.run()
+        }
+        port_in_redirect off;
+        set $balancer_ewma_score -1;
+        set $proxy_upstream_name "${bold_namespace}-bold-ai-service-6010";
+        set $proxy_host          $proxy_upstream_name;
+        set $pass_access_scheme  $scheme;
+        set $pass_server_port    $server_port;
+        set $best_http_host      $http_host;
+        set $pass_port           $pass_server_port;
+        set $proxy_alternative_upstream_name "";
+        proxy_set_header Host                   $best_http_host;
+        proxy_set_header                        Upgrade           $http_upgrade;
+        proxy_set_header                        Connection        $connection_upgrade;
+        proxy_set_header X-Request-ID           $req_id;
+        proxy_set_header X-Real-IP              $remote_addr;
+        proxy_set_header X-Forwarded-For        $remote_addr;
+        proxy_set_header X-Forwarded-Host       $best_http_host;
+        proxy_set_header X-Forwarded-Port       $pass_port;
+        proxy_set_header X-Forwarded-Proto      {{ if .Values.loadBalancer.ReverseProxy }}$http_x_forwarded_proto{{ else }}$pass_access_scheme{{ end }};
+        proxy_set_header X-Scheme               $pass_access_scheme;
+        proxy_set_header X-Original-Forwarded-For $http_x_forwarded_for;
+        proxy_set_header Proxy                  "";
+        proxy_connect_timeout                   300s;
+        proxy_send_timeout                      300s;
+        proxy_read_timeout                      300s;
+        proxy_buffering                         off;
+        proxy_buffer_size                       4k;
+        proxy_buffers                           4 4k;
+        proxy_max_temp_file_size                1024m;
+        proxy_request_buffering                 on;
+        proxy_http_version                      1.1;
+        proxy_cookie_domain                     off;
+        proxy_cookie_path                       off;
+        proxy_next_upstream                     error timeout;
+        proxy_next_upstream_timeout             0;
+        proxy_next_upstream_tries               3;
+        rewrite "(?i)/aiservice(/|$)(.*)" /$2 break;
+        proxy_pass http://upstream_balancer;
+        proxy_redirect                          off;
+      }
 spec:
   {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
   ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
@@ -2001,6 +2236,21 @@ spec:
               serviceName: bold-etl-service
               servicePort: 6009
               {{- end }}
+          
+          - path: /aiservice(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
+              {{- else }}
+              serviceName: bold-ai-service
+              servicePort: 6010
+              {{- end }}
   {{- end }}
   {{- end }}
   {{- else }}
@@ -2125,6 +2375,21 @@ spec:
               {{- else }}
               serviceName: bold-etl-service
               servicePort: 6009
+              {{- end }}
+
+          - path: /aiservice(/|$)(.*)
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
+              {{- else }}
+              serviceName: bold-ai-service
+              servicePort: 6010
               {{- end }}
       {{- end }}
 {{- end }}

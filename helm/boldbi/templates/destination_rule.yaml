@@ -38,6 +38,8 @@ spec:
           name: bold.k8s.bi.dataservice.pod.id
           {{- else if eq $service.app "bold-etl" }}
           name: bold.k8s.bold.etl.pod.id
+          {{- else if eq $service.app "bold-ai" }}
+          name: bold.k8s.bold.ai.pod.id
           {{- end }}
           ttl: {{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s
 ---

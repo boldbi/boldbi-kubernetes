@@ -60,6 +60,8 @@ spec:
         image: "{{ $.Values.image.biRepo }}/boldbi-designer:{{ $.Values.image.biTag }}"
         {{- else if eq $service.app "bold-etl" }}
         image: "{{ $.Values.image.biRepo }}/bold-etl:{{ $.Values.image.biTag }}"
+        {{- else if eq $service.app "bold-ai" }}
+        image: "{{ $.Values.image.biRepo }}/bold-ai:{{ $.Values.image.biTag }}"
         {{- else if eq $service.app "reports-web" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-server:{{ $.Values.image.reportsTag }}"
         {{- else if eq $service.app "reports-api" }}
@@ -71,8 +73,13 @@ spec:
         {{- else if eq $service.app "reports-viewer" }}
         image: "{{ $.Values.image.reportsRepo }}/boldreports-viewer:{{ $.Values.image.reportsTag }}"
         {{- end }}
+        {{- if eq $service.app "bold-ai" }}
+        ports:
+        - containerPort: 8080
+        {{- else }}
         ports:
         - containerPort: 80
+        {{- end}}
         resources:
           requests:
             cpu: {{ $service.cpuResourceRequests }}
@@ -127,17 +134,33 @@ spec:
         {{- end }}
         {{- end }}
         {{- end }}
+        {{- if eq $service.app "bold-ai" }}
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
+          initialDelaySeconds: 30
+          {{- else }}
+          initialDelaySeconds: 20
+          {{- end }}
+          periodSeconds: 15
+          failureThreshold: 3
+          timeoutSeconds: 30
+        {{- else }}
         readinessProbe:
           httpGet:
             path: /health-check
             port: 80
-          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") (eq $service.app "id-api") }}
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
           initialDelaySeconds: 30
           {{- else }}
-          initialDelaySeconds: 40
+          initialDelaySeconds: 20
           {{- end }}
           periodSeconds: 15
+          failureThreshold: 3
           timeoutSeconds: 30
+        {{- end }}
         volumeMounts:
         {{- if or (eq $service.product "boldid") (eq $service.product "boldbi") }}
         - mountPath: /application/app_data
@@ -158,6 +181,8 @@ spec:
         - mountPath: /application/bi/dataservice/logs/k8s
         {{- else if eq $service.app "bold-etl" }}
         - mountPath: /application/etl/etlservice/logs/k8s
+        {{- else if eq $service.app "bold-ai" }}
+        - mountPath: /application/ai/aiservice/logs/k8s
         {{- end }}
         {{- else if eq $service.product "boldreports" }}
         - mountPath: /application/app_data

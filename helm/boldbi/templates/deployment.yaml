@@ -60,9 +60,16 @@ spec:
         image: "{{ $.Values.image.repo }}/boldbi-designer:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "bold-etl" }}
         image: "{{ $.Values.image.repo }}/bold-etl:{{ $.Values.image.tag }}"
+        {{- else if eq $service.app "bold-ai" }}
+        image: "{{ $.Values.image.repo }}/bold-ai:{{ $.Values.image.tag }}"
         {{- end }}
+        {{- if eq $service.app "bold-ai" }}
+        ports:
+        - containerPort: 8080
+        {{- else }}
         ports:
         - containerPort: 80
+        {{- end}}
         resources:
           requests:
             cpu: {{ $service.cpuResourceRequests }}
@@ -126,6 +133,20 @@ spec:
           value: {{ $.Values.localization.customLocalePath }}
         {{- end }}
         {{- end }}
+        {{- if eq $service.app "bold-ai" }}
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: 8080
+          {{- if or (eq $service.app "id-web") (eq $service.app "bi-web") }}
+          initialDelaySeconds: 30
+          {{- else }}
+          initialDelaySeconds: 20
+          {{- end }}
+          periodSeconds: 15
+          failureThreshold: 3
+          timeoutSeconds: 30
+        {{- else }}
         readinessProbe:
           httpGet:
             path: /health-check
@@ -138,6 +159,7 @@ spec:
           periodSeconds: 15
           failureThreshold: 3
           timeoutSeconds: 30
+        {{- end }}
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
@@ -157,6 +179,8 @@ spec:
         - mountPath: /application/bi/dataservice/logs/k8s
         {{- else if eq $service.app "bold-etl" }}
         - mountPath: /application/etl/etlservice/logs/k8s
+        {{- else if eq $service.app "bold-ai" }}
+        - mountPath: /application/ai/aiservice/logs/k8s
         {{- end }}
           name: log4net-config-volume
       volumes:
