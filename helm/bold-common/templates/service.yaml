@@ -46,8 +46,14 @@ spec:
     port: 6553
     {{- else if eq $service.app "reports-viewer" }}
     port: 6554
+    {{- else if eq $service.app "bold-ai" }}
+    port: 6010
     {{- end }}
+    {{- if eq $service.app "bold-ai" }}
+    targetPort: 8080
+    {{- else }}
     targetPort: {{ $.Values.service.port }}
+    {{- end }}
     protocol: TCP
   selector:
     app.kubernetes.io/name: {{ $service.app }}

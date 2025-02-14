@@ -36,8 +36,14 @@ spec:
     port: 6007
     {{- else if eq $service.app "bold-etl" }}
     port: 6009
+    {{- else if eq $service.app "bold-ai" }}
+    port: 6010
     {{- end }}
+    {{- if eq $service.app "bold-ai" }}
+    targetPort: 8080
+    {{- else }}
     targetPort: {{ $.Values.service.port }}
+    {{- end }}
     protocol: TCP
   selector:
     app.kubernetes.io/name: {{ $service.app }}

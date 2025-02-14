@@ -152,6 +152,17 @@ spec:
       retryOn: gateway-error,connect-failure,refused-stream
   - match:
     - uri:
+        prefix: /aiservice
+    route:
+    - destination:
+        port:
+          number: 6010
+        host: bold-ai-service
+    retries:
+      attempts: 3
+      retryOn: gateway-error,connect-failure,refused-stream
+  - match:
+    - uri:
         prefix: /
     route:
     - destination:

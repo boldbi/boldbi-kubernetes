@@ -215,6 +215,15 @@ instanceConfig:
     memoryResourceRequests: 750Mi
     cpuResourceLimits: 500m
     memoryResourceLimits: 2Gi
+  - app: bold-ai  
+    product: boldbi
+    replicaCount: 1
+    minReplicas: 1
+    maxReplicas: 20
+    cpuResourceRequests: 250m
+    memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 2Gi
   - app: bi-dataservice
     product: boldbi
     replicaCount: 1

@@ -14,92 +14,117 @@ metadata:
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:
+    {{- if .Values.loadBalancer.multipleHost }}
+    {{- range .Values.loadBalancer.multipleHost }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . }}
+        {{- end }}
+      secretName: {{ .secretName }}
+      {{- end }}
+      {{- else }}
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
   {{- end }}
   rules:
+    {{- if .Values.loadBalancer.multipleHost }}
+    - http:
+    {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
+    {{- end }}
         paths:
-        - path: /reporting/reportservice
+        {{- $subPath := "" }}
+        {{- if .Values.subApplication.enabled }}
+          {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+        {{- end }}
+        - path: {{ $subPath }}/reporting/reportservice
           pathType: Prefix
           backend:
             service:
               name: reports-reportservice-service
               port:
                 number: 6553 
-        - path: /reporting/api
+        - path: {{ $subPath }}/reporting/api
           pathType: Prefix
           backend:
             service:
               name: reports-api-service
               port:
                 number: 6551
-        - path: /reporting/jobs
+        - path: {{ $subPath }}/reporting/jobs
           pathType: Prefix
           backend:
             service:
               name: reports-jobs-service
               port:
                 number: 6552
-        - path: /reporting/viewer
+        - path: {{ $subPath }}/reporting/viewer
           pathType: Prefix
           backend:
             service:
               name: reports-viewer-service
               port:
                 number: 6554  
-        - path: /bi/api
+        - path: {{ $subPath }}/bi/api
           pathType: Prefix
           backend:
             service:
               name: bi-api-service
               port:
                 number: 6005
-        - path: /bi/jobs
+        - path: {{ $subPath }}/bi/jobs
           pathType: Prefix
           backend:
             service:
               name: bi-jobs-service
               port:
                 number: 6006
-        - path: /bi/designer
+        - path: {{ $subPath }}/bi/designer
           pathType: Prefix
           backend:
             service:
               name: bi-dataservice-service
               port:
                 number: 6007
-        - path: /reporting
+        - path: {{ $subPath }}/reporting
           pathType: Prefix
           backend:
             service:
               name: reports-web-service
               port:
                 number: 6550
-        - path: /bi
+        - path: {{ $subPath }}/bi
           pathType: Prefix
           backend:
             service:
               name: bi-web-service
               port:
                 number: 6004 
-        - path: /api
+        - path: {{ $subPath }}/api
           pathType: Prefix
           backend:
             service:
               name: id-api-service
               port:
                 number: 6001  
-        - path: /ums
+        - path: {{ $subPath }}/ums
           pathType: Prefix
           backend:
             service:
               name: id-ums-service
               port:
                 number: 6002  
-        - path: /
+        - path: {{ $subPath }}/aiservice/
+          pathType: Prefix
+          backend:
+            service:
+              name: bold-ai-service
+              port:
+                number: 6010
+        - path: {{ $subPath }}/
           pathType: Prefix
           backend:
             service:
@@ -121,11 +146,21 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
-  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
-  tls:   
+   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  tls:
+    {{- if .Values.loadBalancer.multipleHost }}
+    {{- range .Values.loadBalancer.multipleHost }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . }}
+        {{- end }}
+      secretName: {{ .secretName }}
+        {{- end }}
+    {{- else }} 
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
   {{- end }}
   rules:
     {{- if .Values.loadBalancer.multipleHost }}
@@ -135,7 +170,7 @@ spec:
       http:
     {{- end }}
         paths:
-        - path: /etlservice/
+        - path: {{ $subPath }}/etlservice/
           pathType: ImplementationSpecific
           backend:
             service:
