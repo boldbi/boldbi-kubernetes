@@ -116,7 +116,7 @@ For encoding the values to base64 please run the following command in powershell
 
 Currently we have provided support for `Nginx` and `Istio` as Load Balancers in Bold BI. By default Nginx is used as reverse proxy for Bold BI.
 
-### Ingress-Nginx
+### Install Ingress-nginx using kubectl
 
 If you need to configure Bold BI with Ingress, [Install Nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) in your cluster please refer below and run the command accordingly.
 
@@ -165,7 +165,7 @@ If you need to configure Bold BI with Ingress, [Install Nginx ingress controller
 </table>
 <br/>
 
-After install the nginx-ingress run the below command to set **allow-snippet-annotations** as true.
+After installed the nginx-ingress using kubectl, run the below command to set **allow-snippet-annotations** as true.
 
 ``` 
 kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":{\"allow-snippet-annotations\":\"true\"}}' --type=strategic
