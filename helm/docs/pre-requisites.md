@@ -172,8 +172,13 @@ kubectl patch configmap ingress-nginx-controller -n ingress-nginx -p '{\"data\":
 ```
 
 ### Install Ingress-nginx using helm
-If you need to configure latest Ingress-Nginx using helm in your cluster, please use below command.
+If you want to configure latest Ingress-Nginx using helm in your cluster, please use below commands.
 
+Add the Ingress-Nginx helm repository.
+```
+helm repo add nginx-stable https://helm.nginx.com/stable
+```
+Run the following command to delpoy Ingress-Nginx in your cluster.
 ```
 helm install ingress-nginx ingress-nginx/ingress-nginx --version 4.11.3 --namespace ingress-nginx --create-namespace --set controller.service.externalTrafficPolicy=Local --set controller.config.allow-snippet-annotations="true"
 ```
