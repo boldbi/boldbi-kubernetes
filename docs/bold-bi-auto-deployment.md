@@ -1009,7 +1009,7 @@ helm repo update
 helm search repo boldbi
 
 NAME            CHART VERSION   APP VERSION     DESCRIPTION
-boldbi/boldbi   10.1.18           10.1.18         Embed powerful analytics inside your apps and t...
+boldbi/boldbi   11.1.5           11.1.5         Embed powerful analytics inside your apps and t...
 ```
 
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
