@@ -24,18 +24,18 @@ persistentVolume:
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  reportsRepo: us-docker.pkg.dev/boldreports/v7-1-9
+  reportsRepo: us-docker.pkg.dev/boldreports/v8-1-1
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 11.1.5
-  biTag: 11.1.5
-  reportsTag: 7.1.9
+  idTag: 11.2.7
+  biTag: 11.2.7
+  reportsTag: 8.1.1
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: "4.19.1"
-  bi: "11.1.5"
-  reports: "7.1.9"
+  bi: "11.2.7"
+  reports: "8.1.1"
 
 loadBalancer:
   type: nginx
