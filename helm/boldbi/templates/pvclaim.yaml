@@ -1,4 +1,4 @@
-{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
+{{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( eq .Values.clusterProvider "aks" ) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -24,6 +24,7 @@ metadata:
 provisioner: efs.csi.aws.com
 {{- else if eq .Values.clusterProvider "aks" }}
 provisioner: file.csi.azure.com
+allowVolumeExpansion: true
 {{- else if eq .Values.clusterProvider "onpremise" }}
 provisioner: kubernetes.io/no-provisioner
 {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
@@ -34,13 +35,22 @@ reclaimPolicy: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeReclimPoli
 volumeBindingMode: WaitForFirstConsumer
 {{- end }}
 {{- if eq .Values.clusterProvider "aks" }}
-allowVolumeExpansion: true
-{{- end }}
-{{- if eq .Values.clusterProvider "aks" }}
 parameters:
+  {{- if .Values.persistentVolume.aks.nfs.fileShareName }}
   protocol: nfs
+  {{- end }}
 mountOptions:
+  {{- if .Values.persistentVolume.aks.nfs.fileShareName }}
   - nconnect=4
+  {{- else }}
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - actimeo=30
+  {{- end }}
 {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 parameters:
   type: "oci-bv"
