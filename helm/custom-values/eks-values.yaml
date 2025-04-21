@@ -18,7 +18,7 @@ persistentVolume:
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 11.2.7
+  tag: 11.3.24
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
