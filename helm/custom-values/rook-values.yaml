@@ -1,15 +1,10 @@
 # Default values for boldbi.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+namespace: bold-services
 appBaseUrl: ''
-optionalLibs: 'phantomjs,mongodb,mysql,influxdb,snowflake,oracle,npgsql'
-clusterProvider: ''
-
-namespace:
-  name: bold-services
-  annotations: {}
-  labels: {}
+optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
+clusterProvider: 'rook'
 
 persistentVolume:
   # persistent volumes were global resources. 
@@ -17,70 +12,6 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  gke:
-    fileShareName: ''
-    fileShareIp: ''
-  eks:
-    efsFileSystemId: ''
-  aks:
-    # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
-    secretName: ''
-    # Mention the Azure file share name.
-    fileShareName: ''
-    # You can ignore the following values if you are using an azure existing secret.
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
-    
-    # To configure persistent volume using NFS fileshare, provide the following values:
-    # Note: The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
-    nfs:
-      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
-
-      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
-  oke:
-    # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
-    # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>
-    volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
-
-    # By default, Oracle filesystem volume uses 'Filesystem' mode. To use a different mode, set the volumeMode field accordingly
-    volumeMode: ''
-
-    blockVolume:
-      # Set this to true only if you are using block volumes. If using a filesystem volume, keep this as false.
-      blockVolumeEnable: false
-
-      # For Oracle block volumes, use the storage class "oci-bv" (default setting will delete the volume when done).
-      # If you have a custom storage class, enter it here (e.g., "bold-storageclass").
-      # If left blank, it will default to "bold-storageclass".
-      blockVolumeStorageClass: ""
-
-      #Set this to true if the storage class already exists, false if you need to create it.
-      storageClassExists: false
-
-      # Define the reclaim policy for the block volume. Choose from: "Retain" or "Delete".
-      blockVolumeReclimPolicy: ""
-
-      # Minimum capacity for block volumes is "50Gi". Set your desired capacity.
-      blockVolumeCapacity: ""
-
-      # When using block volumes with Oracle, only "ReadWriteOnce" access mode is supported. For other storage classes, use the supported access types.
-      blockVolumeAccessModes: ""
-
-      # If you already have an existing persistent volume, enter its name here.
-      # Otherwise, leave it blank, and OKE will automatically create a block volume for you.
-      # Note that the persistent volume must be in an "Available" state.
-      blockVolumeName: ""
-
-  ack:
-    # The host name of the mount target for your NAS file system.
-    serverName: ''
-    # This field represents the file path of the app_data files. The default location is "/bold-services".
-    filePath: '/bold-services'
-
   rook:
     # Specify the type of volume to use for storage:
     # "block" - For block storage, which supports RWO (ReadWriteOnce). Suitable for single-pod access.
@@ -89,25 +20,13 @@ persistentVolume:
 
     # Provide the rook storage class name
     blockVolumeStorageClass: ""
-
-  onpremise:
-    hostPath: ''
-    
-image:
-  idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  reportsRepo: us-docker.pkg.dev/boldreports/v9-1-7
-  # Overrides the image tag whose default is the chart appVersion.
-  idTag: 11.3.24
-  biTag: 11.3.24
-  reportsTag: 9.1.7
-  pullPolicy: IfNotPresent
-imagePullSecrets: []
-
-versions:
-  idp: 4.11.1
-  bi: 11.3.24
-  reports: 9.1.7
+      
+# image:
+#   repo: us-docker.pkg.dev/boldbi-294612/boldbi
+#   # Overrides the image tag whose default is the chart appVersion.
+#   tag: 8.3.17
+#   pullPolicy: IfNotPresent
+# imagePullSecrets: []
 
 loadBalancer:
   type: nginx
@@ -129,9 +48,9 @@ loadBalancer:
     # Example:
     # konghq.com/preserve-host: "true"
     # konghq.com/protocols: "http,https"
-
+    
   singleHost: 
-    secretName: bold-tls
+    secretName: bold-tls   
   # multipleHost:
     # hostArray:
       # - hosts: 
@@ -141,124 +60,65 @@ loadBalancer:
 
   # Enable Gzip in nginx-ingress
   enableGzip: false 
-        
+
+  # ReverseProxy changes in nginx-ingress
+  ReverseProxy: false
+
 subApplication:
   enabled: false
   # Specify the subpath. The default subpath value is 'boldservices'
-  subPath: ''
-
-istioConfig:
-  # To use the existing Gateway specify the existing Gateway name.
-  # If not specified a new Gateway will applied. The default name is 'bold-gateway'
-  gatewayName: ''
-
-  # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
-  virtualServiceName: ''
+  subPath: 
 
 instanceConfig:
   - app: id-web
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-api
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: id-ums
-    product: boldid
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-web
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-api
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-jobs
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bi-dataservice
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
   - app: bold-etl
-    product: boldbi
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-  - app: bold-ai
-    product: boldbi
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-web
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-api
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-jobs
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-viewer
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-  - app: reports-reportservice
-    product: boldreports
-    replicaCount: 1
-    minReplicas: 1
-    maxReplicas: 20
-    cpuResourceRequests: 250m
-    memoryResourceRequests: 750Mi
-    
-service:
-  type: ClusterIP
-  port: 80
-  
+
 autoscaling:
   enabled: true
   targetCPUUtilizationPercentage: 80
@@ -270,9 +130,12 @@ autoscaling:
     percentValue: 10
     percentPeriodSeconds: 60
     
+## Custom Localization
+localization:
+  customLocalePath: ''
+
+## Bold BI Secrets
 bingMapWidget:
-  # Specify the existing bingMap Secret Name. The default is 'bold-secret'
-  bingMapSecretName: ''
   enabled: false
   apiKey: ''
 
@@ -283,12 +146,33 @@ customSizePdfExport:
 ## BrowserTimezone
 browserTimeZone:
   enable: false
-  
+
+## Use Site Identifier
+useSiteIdentifier:
+  enable: true
+
+## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
+queryMetricsInDebugFiles:
+  enable: false
+
+## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
+queryMetricsWithQueryInDebugFiles:
+  enable: false
+
+##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
+azureApplicationInsights:
+  connectionString: ""
+
 rootUserDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
   email: ""
   password: ""
 
 databaseServerDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
+
   # Type of database server can be used for configuring the Bold BI. Eg: mssql, mysql and postgresql
   dbType: ""
 
@@ -296,7 +180,7 @@ databaseServerDetails:
   dbHost: ""
 
   # The system will use the following default port numbers based on the database server type.
-  # PostgrSQL – 5234 and MySQL -3306
+  # PostgrSQL – 5432 and MySQL -3306
   # Please specify the port number for your database server if it is configured on a different port.
   # For MS SQL Server, this parameter is not necessary.
   dbPort: ""
@@ -325,19 +209,42 @@ databaseServerDetails:
   # MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
   # Note: A semicolon(;) should be used to separate multiple parameters.
   dbAdditionalParameters: ""
+
+  #A database schema defines the structure, organization, and constraints of data within a database, including tables, fields, relationships, and indexes.
+  #In MSSQL, the default schema is dbo.
+  #In PostgreSQL, the default schema is public.
+  #Both schemas contain tables and other database objects by default.
+  dbSchema: ""
+
+brandingDetails:
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
+  
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
+  
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
+  
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
+  favicon:  ""
+  
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
+  
+  # This is organization name.
+  siteName: ""
+  
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
   
 licenseKeyDetails:
+  # Set this to true if you have existing details in your cluster.
+  existingSecret: false
+  
   #  The Bold BI licnece key which you have purchesed.
   licenseKey: ""
-
-## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
-queryMetricsInDebugFiles:
-  enable: false
-
-## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
-queryMetricsWithQueryInDebugFiles:
-  enable: false
-
+  
 # Tolerations allow the pods to be scheduled into nodes with matching taints.
 # Set this to true if you use tolerations in your cluster.
 # If you need more than one toleration, you can add tolerations below.

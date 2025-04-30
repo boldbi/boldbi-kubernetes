@@ -79,7 +79,7 @@ data:
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
 {{- end }}
-{{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+{{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.clusterProvider "rook")}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -161,7 +161,7 @@ metadata:
  namespace: {{ .Release.Namespace }}
  {{- end }}
 spec:
- {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.persistentVolume.rook.volumeType "block") (or (eq .Values.persistentVolume.rook.volumeType "fileshare") (eq .Values.persistentVolume.rook.volumeType "")) }}
  accessModes:
  - ReadWriteMany
  {{- else }}
@@ -184,8 +184,10 @@ spec:
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""
+ {{- else if eq .Values.clusterProvider "rook" }}
+ storageClassName: {{ .Values.persistentVolume.rook.blockVolumeStorageClass }}
  {{- end }}
- {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (ne .Values.clusterProvider "rook")}}
  volumeName: {{ .Values.persistentVolume.name }} 
  {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
  volumeName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
