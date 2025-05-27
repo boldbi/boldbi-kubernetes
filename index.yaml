@@ -1225,7 +1225,7 @@ entries:
     type: application
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc8343-11.3.24.tgz
-    version: 8.1.41
+    version: 11.3.24
   kc269938:
   - apiVersion: v2
     appVersion: 9.1.73
