@@ -1,3 +1,4 @@
+{{- if not .Values.persistentVolume.useExistingClaim }}
 {{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName ) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -192,4 +193,4 @@ spec:
    matchLabels:
      alicloud-pvname: bold-fileserver
  {{- end }}
-
+{{- end }}
