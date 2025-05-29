@@ -70,6 +70,11 @@ persistentVolume:
     serverName: ''
     filePath: ''
 
+  # Set 'useExistingClaim' to 'true' to use an existing PVC or 'false' to create a new PVC.
+  # The 'claimName' should be provided only if 'useExistingClaim' is set to 'true'.
+  useExistingClaim: false
+  claimName: '<Existing-Claim-Name>'
+
 
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
