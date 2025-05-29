@@ -70,10 +70,11 @@ persistentVolume:
     serverName: ''
     filePath: ''
 
-  # Set 'useExistingClaim' to 'true' to use an existing PVC or 'false' to create a new PVC.
-  # The 'claimName' should be provided only if 'useExistingClaim' is set to 'true'.
+  #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false
-  claimName: '<Existing-Claim-Name>'
+  
+  #If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
 
 
 image:
