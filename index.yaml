@@ -1238,6 +1238,20 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc281670-8.1.41.tgz
     version: 8.1.41
+  kc8343:
+  - apiVersion: v2
+    appVersion: 11.3.24
+    created: "2022-04-11T13:06:57.6150424+05:30"
+    description: Embed powerful analytics inside your apps and turn your customers
+      into success stories with built-in intelligence features.
+    digest: C069E166A0D47753EA0F77179E838791E533966F73CA7B2E884A99C53EE2957B
+    home: https://www.boldbi.com/
+    icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
+    name: kc8343
+    type: application
+    urls:
+    - https://boldbi.github.io/boldbi-kubernetes/kc8343-11.3.24.tgz
+    version: 11.3.24
   kc269938:
   - apiVersion: v2
     appVersion: 9.1.73
