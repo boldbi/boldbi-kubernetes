@@ -189,7 +189,7 @@ spec:
     kind: Deployment
     name: bi-jobs-deployment
   minReplicas: 1
-  maxReplicas: 20
+  maxReplicas: 1
   metrics:
   - type: Resource
     resource:
