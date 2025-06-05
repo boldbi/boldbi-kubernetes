@@ -20,6 +20,12 @@ persistentVolume:
   gke:
     fileShareName: ''
     fileShareIp: ''
+
+  #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
+  useExistingClaim: false
+  
+  #If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
   
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
