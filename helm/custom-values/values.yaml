@@ -29,6 +29,12 @@ persistentVolume:
     serverName: ''
     # This field represents the file path of the app_data files. The default location is "/bold-services".
     filePath: '/bold-services'
+
+  # Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
+  useExistingClaim: false
+  
+  # If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
     
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
