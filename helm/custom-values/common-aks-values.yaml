@@ -36,6 +36,12 @@ persistentVolume:
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
       hostName: ''
+      
+  #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
+  useExistingClaim: false
+  
+  #If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
     
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi

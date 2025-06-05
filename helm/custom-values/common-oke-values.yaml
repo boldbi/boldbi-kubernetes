@@ -50,6 +50,12 @@ persistentVolume:
       # Otherwise, leave it blank, and OKE will automatically create a block volume for you.
       # Note that the persistent volume must be in an "Available" state.
       blockVolumeName: ""
+
+  #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
+  useExistingClaim: false
+  
+  #If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
     
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi

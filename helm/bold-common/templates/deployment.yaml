@@ -203,7 +203,11 @@ spec:
       volumes:
       - name: {{ $service.app }}-volume
         persistentVolumeClaim:
-          claimName: {{ $.Values.persistentVolume.name }}-claim
+          {{- if $.Values.persistentVolume.useExistingClaim }}
+          claimName: {{ $.Values.persistentVolume.claimName }}
+          {{- else }}
+          claimName: {{ printf "%s-claim" $.Values.persistentVolume.name }}
+          {{- end }}
           readOnly: false
       - name: log4net-config-volume
         configMap:
