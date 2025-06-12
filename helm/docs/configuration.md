@@ -83,7 +83,6 @@ persistentVolume:
   capacity: 3Gi
 ```
 
-
 ### Persistent volume configuration for each cluster
 
 1. GKE
