@@ -31,6 +31,47 @@ persistentVolume:
   name: bold-fileserver
 ```
 
+### Use Existing Persistent Volume Claim
+
+To use an existing PersistentVolumeClaim (PVC) instead of creating a new one, set useExistingClaim to true and specify the claimName of the existing PVC.
+
+```console
+persistentVolume:
+  # Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
+  useExistingClaim: false
+  # If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
+  claimName: ''
+```
+
+<br/>
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.useExistingClaim
+      </td>
+      <td>
+       Determines whether to use an existing PersistentVolumeClaim. Set to true to use an existing PVC, or false to create a new one.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       persistentVolume.claimName
+      </td>
+      <td>
+       The name of the existing PersistentVolumeClaim to use when useExistingClaim is set to true.
+      </td>
+    </tr>
+</table>
+<br/>
+
 ### Capacity
 
 Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
