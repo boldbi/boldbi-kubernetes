@@ -66,7 +66,7 @@ persistentVolume:
        persistentVolume.claimName
       </td>
       <td>
-       The name of the existing PersistentVolumeClaim to use when useExistingClaim is set to true. Leave empty if creating a new PVC.
+       The name of the existing PersistentVolumeClaim to use when useExistingClaim is set to true.
       </td>
     </tr>
 </table>
