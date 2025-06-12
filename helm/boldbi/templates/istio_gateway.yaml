@@ -21,11 +21,11 @@ spec:
     {{- if .Values.loadBalancer.multipleHost }}
     hosts:
     {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
-    - {{ $host }}
+    - {{ $host | quote }}
     {{- end }}
     {{- else }}
     hosts:
-    - {{ (split "/" .Values.appBaseUrl)._2 }}
+    - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
     {{- end }}
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   - port:
@@ -35,7 +35,7 @@ spec:
     {{- if .Values.loadBalancer.multipleHost }}
     hosts:
     {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
-    - {{ $host }}
+    - {{ $host | quote }}
     {{- end }}
     tls:
       mode: SIMPLE
@@ -45,7 +45,7 @@ spec:
       mode: SIMPLE
       credentialName: {{ .Values.loadBalancer.singleHost.secretName }}
     hosts:
-    - {{ (split "/" .Values.appBaseUrl)._2 }}
+    - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
     {{- end }}
   {{- end }}
 ---
@@ -62,11 +62,11 @@ spec:
   {{- if .Values.loadBalancer.multipleHost }}
   hosts:
   {{- range $host := ( index .Values.loadBalancer.multipleHost.hostArray 0 ).hosts }}
-  - {{ $host }}
+  - {{ $host | quote }}
   {{- end }}
   {{- else }}
   hosts:
-  - {{ (split "/" .Values.appBaseUrl)._2 }}
+  - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
   {{- end }}
   gateways:
   - bold-gateway

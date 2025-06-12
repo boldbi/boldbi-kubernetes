@@ -18,13 +18,13 @@ spec:
     {{- range .Values.loadBalancer.multipleHost }}
     - hosts:
         {{- range .hosts }}
-        - {{ . }}
+        - {{ . | quote }}
         {{- end }}
       secretName: {{ .secretName }}
       {{- end }}
       {{- else }}
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}
@@ -117,13 +117,13 @@ spec:
     {{- range .Values.loadBalancer.multipleHost }}
     - hosts:
         {{- range .hosts }}
-        - {{ . }}
+        - {{ . | quote }}
         {{- end }}
       secretName: {{ .secretName }}
         {{- end }}
     {{- else }} 
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}

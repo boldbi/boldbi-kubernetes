@@ -1146,13 +1146,13 @@ spec:
     {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
       {{- range $dns := $host.hosts }}
-        - {{ $dns }}
+        - {{ $dns | quote }}
       {{- end }}
       secretName: {{ $host.secretName }}
     {{- end }}
     {{- else }}
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}
@@ -1160,7 +1160,7 @@ spec:
   {{- if .Values.loadBalancer.multipleHost }}
   {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
   {{- range $dns := $host.hosts }}
-    - host: {{ $dns }}
+    - host: {{ $dns | quote }}
       http:
         paths:
           {{- if not .Values.subApplication.subPath }}
@@ -2100,13 +2100,13 @@ spec:
     {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
       {{- range $dns := $host.hosts }}
-        - {{ $dns }}
+        - {{ $dns | quote }}
       {{- end }}
       secretName: {{ $host.secretName }}
     {{- end }}
     {{- else }}
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}
@@ -2114,7 +2114,7 @@ spec:
   {{- if .Values.loadBalancer.multipleHost }}
   {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
   {{- range $dns := $host.hosts }}
-    - host: {{ $dns }}
+    - host: {{ $dns | quote }}
       http:
         paths:
           - path: /
