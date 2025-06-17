@@ -1146,13 +1146,13 @@ spec:
     {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
       {{- range $dns := $host.hosts }}
-        - {{ $dns }}
+        - {{ $dns | quote }}
       {{- end }}
       secretName: {{ $host.secretName }}
     {{- end }}
     {{- else }}
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}
@@ -1160,10 +1160,10 @@ spec:
   {{- if .Values.loadBalancer.multipleHost }}
   {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
   {{- range $dns := $host.hosts }}
-    - host: {{ $dns }}
+    - host: {{ $dns | quote }}
       http:
         paths:
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}
@@ -1182,7 +1182,7 @@ spec:
               servicePort: 6000
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/idapi6001(/|$)(.*)
           {{- else }}    
           - path: /{{ $.Values.subApplication.subPath }}/idapi6001(/|$)(.*)
@@ -1201,7 +1201,7 @@ spec:
               servicePort: 6001
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/idums6002(/|$)(.*)
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}/idums6002(/|$)(.*)
@@ -1220,7 +1220,7 @@ spec:
               servicePort: 6002
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/biweb6004(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/biweb6004(/|$)(.*)
@@ -1239,7 +1239,7 @@ spec:
               servicePort: 6004
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/biapi6005(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/biapi6005(/|$)(.*)
@@ -1258,7 +1258,7 @@ spec:
               servicePort: 6005
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/bijobs6006(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/bijobs6006(/|$)(.*)
@@ -1277,7 +1277,7 @@ spec:
               servicePort: 6006
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/bidataservice6007(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/bidataservice6007(/|$)(.*)
@@ -1296,7 +1296,7 @@ spec:
               servicePort: 6007
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/boldetl(/|$)(.*)
             {{- if $ingressSupportsPathType }}
           {{- else }}        
@@ -1314,7 +1314,7 @@ spec:
               serviceName: bold-etl-service
               servicePort: 6009
               {{- end }}
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/aiservice(/|$)(.*)
             {{- if $ingressSupportsPathType }}
           {{- else }}        
@@ -1338,7 +1338,7 @@ spec:
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
         paths:
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}
@@ -1357,7 +1357,7 @@ spec:
               servicePort: 6000
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}              
+          {{- if not $.Values.subApplication.subPath }}              
           - path: /boldservices/idapi6001(/|$)(.*)
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}/idapi6001(/|$)(.*)
@@ -1376,7 +1376,7 @@ spec:
               servicePort: 6001
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}   
+          {{- if not $.Values.subApplication.subPath }}   
           - path: /boldservices/idums6002(/|$)(.*)
           {{- else }}          
           - path: /{{ $.Values.subApplication.subPath }}/idums6002(/|$)(.*)
@@ -1395,7 +1395,7 @@ spec:
               servicePort: 6002
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}              
+          {{- if not $.Values.subApplication.subPath }}              
           - path: /boldservices/biweb6004(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/biweb6004(/|$)(.*)
@@ -1414,7 +1414,7 @@ spec:
               servicePort: 6004
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}              
+          {{- if not $.Values.subApplication.subPath }}              
           - path: /boldservices/biapi6005(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/biapi6005(/|$)(.*)
@@ -1433,7 +1433,7 @@ spec:
               servicePort: 6005
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}              
+          {{- if not $.Values.subApplication.subPath }}              
           - path: /boldservices/bijobs6006(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/bijobs6006(/|$)(.*)
@@ -1452,7 +1452,7 @@ spec:
               servicePort: 6006
               {{- end }}
               
-          {{- if not .Values.subApplication.subPath }}  
+          {{- if not $.Values.subApplication.subPath }}  
           - path: /boldservices/bidataservice6007(/|$)(.*)
           {{- else }}        
           - path: /{{ $.Values.subApplication.subPath }}/bidataservice6007(/|$)(.*)
@@ -1471,7 +1471,7 @@ spec:
               servicePort: 6007
               {{- end }}
 
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/boldetl/(/|$)(.*)
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}/boldetl/(/|$)(.*)
@@ -1490,7 +1490,7 @@ spec:
               servicePort: 6009
               {{- end }}
           
-          {{- if not .Values.subApplication.subPath }}
+          {{- if not $.Values.subApplication.subPath }}
           - path: /boldservices/aiservice(/|$)(.*)
           {{- else }}
           - path: /{{ $.Values.subApplication.subPath }}/aiservice(/|$)(.*)
@@ -2100,13 +2100,13 @@ spec:
     {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
       {{- range $dns := $host.hosts }}
-        - {{ $dns }}
+        - {{ $dns | quote }}
       {{- end }}
       secretName: {{ $host.secretName }}
     {{- end }}
     {{- else }}
     - hosts:
-        - {{ (split "/" .Values.appBaseUrl)._2 }}
+        - {{ ((split "/" .Values.appBaseUrl)._2) | quote }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
     {{- end }}
   {{- end }}
@@ -2114,7 +2114,7 @@ spec:
   {{- if .Values.loadBalancer.multipleHost }}
   {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
   {{- range $dns := $host.hosts }}
-    - host: {{ $dns }}
+    - host: {{ $dns | quote }}
       http:
         paths:
           - path: /
