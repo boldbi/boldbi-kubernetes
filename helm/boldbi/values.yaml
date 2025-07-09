@@ -12,9 +12,6 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
-  # Provide a value for 'storageClass' only if deploying Bold BI alongside Bold Reports to avoid storage class conflicts.
-  # Otherwise, leave it blank to use the default 'efs-sc' during standalone Bold BI deployment.
-  storageClass: ''
   gke:
     fileShareName: ''
     fileShareIp: ''
