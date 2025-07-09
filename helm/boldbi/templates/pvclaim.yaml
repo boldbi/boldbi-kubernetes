@@ -1,3 +1,4 @@
+{{- $sc := .Values.persistentVolume.storageClass | trim }}
 {{- if not .Values.persistentVolume.useExistingClaim }}
 {{- if or (eq .Values.clusterProvider "eks") (eq .Values.clusterProvider "onpremise") ( .Values.persistentVolume.aks.nfs.fileShareName  ) (and .Values.persistentVolume.oke.blockVolume.blockVolumeEnable (not .Values.persistentVolume.oke.blockVolume.storageClassExists)) }}
 apiVersion: storage.k8s.io/v1
@@ -6,7 +7,7 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   {{- if eq .Values.clusterProvider "eks" }}
-  name: efs-sc-{{ .Release.Namespace }}
+  name: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
   {{- else if eq .Values.clusterProvider "aks" }}
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -99,7 +100,7 @@ spec:
  hostPath:
    path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: efs-sc-{{ .Release.Namespace }}
+ storageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
  csi:
    driver: efs.csi.aws.com
    volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
@@ -162,7 +163,7 @@ spec:
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: efs-sc-{{ .Release.Namespace }}
+ torageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
