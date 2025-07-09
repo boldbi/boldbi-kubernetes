@@ -163,7 +163,7 @@ spec:
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
- torageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+ storageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
