@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   {{- if eq .Values.clusterProvider "eks" }}
-  name: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+  name: efs-sc-{{ .Release.Namespace }}
   {{- else if eq .Values.clusterProvider "aks" }}
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -22,7 +22,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   {{- end }}
 {{- if eq .Values.clusterProvider "eks" }}
-name: efs-sc-{{ .Release.Namespace }}
+provisioner: efs.csi.aws.com
 {{- else if eq .Values.clusterProvider "aks" }}
 provisioner: file.csi.azure.com
 {{- else if eq .Values.clusterProvider "onpremise" }}
