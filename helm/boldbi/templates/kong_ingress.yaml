@@ -14,88 +14,152 @@ metadata:
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:
-    {{- if .Values.loadBalancer.multipleHost }}
-    {{- range .Values.loadBalancer.multipleHost }}
-    - hosts:
-        {{- range .hosts }}
-        - {{ . }}
-        {{- end }}
-      secretName: {{ .secretName }}
-      {{- end }}
-      {{- else }}
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- if .Values.loadBalancer.multipleHost }}
+      {{- range .Values.loadBalancer.multipleHost.hostArray }}
+    - hosts:
+        {{- range .hosts }}
+        - "{{ . }}"
+        {{- end }}
+      secretName: {{ .secretName }}
+      {{- end }}
     {{- end }}
   {{- end }}
   rules:
-    {{- if .Values.loadBalancer.multipleHost }}
-    - http:
-    {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
-    {{- end }}
         paths:
-        {{- $subPath := "" }}
-        {{- if .Values.subApplication.enabled }}
-          {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+          {{- $subPath := "" }}
+          {{- if .Values.subApplication.enabled }}
+            {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+          {{- end }}
+          - path: {{ $subPath }}/bi/api
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-api-service
+                port:
+                  number: 6005
+          - path: {{ $subPath }}/bi/jobs
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-jobs-service
+                port:
+                  number: 6006
+          - path: {{ $subPath }}/bi/designer
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-dataservice-service
+                port:
+                  number: 6007
+          - path: {{ $subPath }}/bi
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-web-service
+                port:
+                  number: 6004
+          - path: {{ $subPath }}/api
+            pathType: Prefix
+            backend:
+              service:
+                name: id-api-service
+                port:
+                  number: 6001
+          - path: {{ $subPath }}/ums
+            pathType: Prefix
+            backend:
+              service:
+                name: id-ums-service
+                port:
+                  number: 6002
+          - path: {{ $subPath }}/
+            pathType: Prefix
+            backend:
+              service:
+                name: id-web-service
+                port:
+                  number: 6000
+          - path: {{ $subPath }}/aiservice
+            pathType: Prefix
+            backend:
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
+    {{- if .Values.loadBalancer.multipleHost }}
+      {{- range .Values.loadBalancer.multipleHost.hostArray }}
+        {{- range .hosts }}
+    - host: "{{ . }}"
+      http:
+        paths:
+          {{- $subPath := "" }}
+          {{- if $.Values.subApplication.enabled }}
+            {{- $subPath = printf "/%s" ($.Values.subApplication.subPath | default "boldservices") }}
+          {{- end }}
+          - path: {{ $subPath }}/bi/api
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-api-service
+                port:
+                  number: 6005
+          - path: {{ $subPath }}/bi/jobs
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-jobs-service
+                port:
+                  number: 6006
+          - path: {{ $subPath }}/bi/designer
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-dataservice-service
+                port:
+                  number: 6007
+          - path: {{ $subPath }}/bi
+            pathType: Prefix
+            backend:
+              service:
+                name: bi-web-service
+                port:
+                  number: 6004
+          - path: {{ $subPath }}/api
+            pathType: Prefix
+            backend:
+              service:
+                name: id-api-service
+                port:
+                  number: 6001
+          - path: {{ $subPath }}/ums
+            pathType: Prefix
+            backend:
+              service:
+                name: id-ums-service
+                port:
+                  number: 6002
+          - path: {{ $subPath }}/
+            pathType: Prefix
+            backend:
+              service:
+                name: id-web-service
+                port:
+                  number: 6000
+          - path: {{ $subPath }}/aiservice
+            pathType: Prefix
+            backend:
+              service:
+                name: bold-ai-service
+                port:
+                  number: 6010
         {{- end }}
-        - path: {{ $subPath }}/bi/api
-          pathType: Prefix
-          backend:
-            service:
-              name: bi-api-service
-              port:
-                number: 6005
-        - path: {{ $subPath }}/bi/jobs
-          pathType: Prefix
-          backend:
-            service:
-              name: bi-jobs-service
-              port:
-                number: 6006
-        - path: {{ $subPath }}/bi/designer
-          pathType: Prefix
-          backend:
-            service:
-              name: bi-dataservice-service
-              port:
-                number: 6007
-        - path: {{ $subPath }}/bi
-          pathType: Prefix
-          backend:
-            service:
-              name: bi-web-service
-              port:
-                number: 6004
-        - path: {{ $subPath }}/api
-          pathType: Prefix
-          backend:
-            service:
-              name: id-api-service
-              port:
-                number: 6001
-        - path: {{ $subPath }}/ums
-          pathType: Prefix
-          backend:
-            service:
-              name: id-ums-service
-              port:
-                number: 6002
-        - path: {{ $subPath }}/
-          pathType: Prefix
-          backend:
-            service:
-              name: id-web-service
-              port:
-                number: 6000
-        - path: {{ $subPath }}/aiservice
-          pathType: Prefix
-          backend:
-            service:
-              name: bold-ai-service
-              port:
-                number: 6010
+      {{- end }}
+    {{- end }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -113,33 +177,44 @@ metadata:
 spec:
   {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:
-    {{- if .Values.loadBalancer.multipleHost }}
-    {{- range .Values.loadBalancer.multipleHost }}
-    - hosts:
-        {{- range .hosts }}
-        - {{ . }}
-        {{- end }}
-      secretName: {{ .secretName }}
-        {{- end }}
-    {{- else }} 
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- if .Values.loadBalancer.multipleHost }}
+      {{- range .Values.loadBalancer.multipleHost.hostArray }}
+    - hosts:
+        {{- range .hosts }}
+        - "{{ . }}"
+        {{- end }}
+      secretName: {{ .secretName }}
+      {{- end }}
     {{- end }}
   {{- end }}
   rules:
-    {{- if .Values.loadBalancer.multipleHost }}
-    - http:
-    {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
-    {{- end }}
         paths:
-        - path: {{ $subPath }}/etlservice/
-          pathType: ImplementationSpecific
-          backend:
-            service:
-              name: bold-etl-service
-              port:
-                number: 6009
+          - path: /etlservice/
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: bold-etl-service
+                port:
+                  number: 6009
+    {{- if .Values.loadBalancer.multipleHost }}
+      {{- range .Values.loadBalancer.multipleHost.hostArray }}
+        {{- range .hosts }}
+    - host: "{{ . }}"
+      http:
+        paths:
+          - path: /etlservice/
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: bold-etl-service
+                port:
+                  number: 6009
+        {{- end }}
+      {{- end }}
+    {{- end }}
 {{- end }}
