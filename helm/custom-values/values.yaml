@@ -13,6 +13,10 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
+  # storageClass were global resources.
+  # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
+  # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'efs-sc'
+  storageClass: 'efs-sc'
   gke:
     fileShareName: ''
     fileShareIp: ''
