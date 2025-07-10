@@ -1292,6 +1292,7 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc269938-7.1.18.tgz
     version: 7.1.18
+  kc336123:
   - apiVersion: v2
     appVersion: 12.1.5
     created: "2022-04-11T13:06:57.6150424+05:30"
