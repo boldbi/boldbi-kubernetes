@@ -15,12 +15,12 @@ persistentVolume:
   # Provide a value for 'storageClass' only if deploying Bold BI alongside Bold Reports to avoid storage class conflicts.
   # Otherwise, leave it blank to use the default 'efs-sc' during standalone Bold BI deployment.
   storageClass: ''
+  efsAccessPoint: false
   gke:
     fileShareName: ''
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
-    efsAccessPoint: false
   oke:
     # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
     # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>
