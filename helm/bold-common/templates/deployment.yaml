@@ -33,7 +33,7 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        args: ["if [ ! -f /application/app_data/configuration/config.json ]; then echo waiting for id-web; sleep 10; else echo config.json file exist; fi"]
+        args: args: ["while [ ! -f /application/app_data/configuration/config.json ] || [ ! -f /application/app_data/configuration/privatekeys.dat ]; do echo 'Waiting for required files...'; sleep 10; done; echo 'Both config.json and privatekeys.dat files exist.'"]
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
