@@ -22,6 +22,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPoint: false
   aks:
     # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
     secretName: ''

@@ -20,6 +20,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPoint: false
   oke:
     # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
     # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>

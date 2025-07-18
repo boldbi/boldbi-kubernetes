@@ -18,6 +18,8 @@ persistentVolume:
   storageClass: 'efs-sc'
   eks:
     efsFileSystemId: ''
+    efsAccessPoint: false
+
 
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false

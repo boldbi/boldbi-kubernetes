@@ -6,8 +6,10 @@ kind: StorageClass
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  {{- if eq .Values.clusterProvider "eks" }}
+  {{- if and (eq .Values.clusterProvider "eks") (not .Values.persistentVolume.eks.efsAccessPoint) }} 
   name: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+  {{- else if and (eq .Values.clusterProvider "eks") (.Values.persistentVolume.eks.efsAccessPoint) }}
+  name: "{{ .Values.namespace }}-efs-sc"
   {{- else if eq .Values.clusterProvider "aks" }}
   name: azurefile-csi-nfs 
   {{- else if eq .Values.clusterProvider "onpremise" }}
@@ -34,6 +36,9 @@ reclaimPolicy: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeReclimPoli
 {{- end }}
 {{- if eq .Values.clusterProvider "onpremise" }}
 volumeBindingMode: WaitForFirstConsumer
+{{- else if (and (eq .Values.clusterProvider "eks") .Values.persistentVolume.eks.efsAccessPoint) }}
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
 {{- end }}
 {{- if eq .Values.clusterProvider "aks" }}
 allowVolumeExpansion: true
@@ -46,6 +51,14 @@ mountOptions:
 {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 parameters:
   type: "oci-bv"
+{{- else if .Values.persistentVolume.eks.efsAccessPoint }}
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: {{ .Values.persistentVolume.eks.efsFileSystemId }}
+  directoryPerms: "0777"
+  basePath: "{{ .Values.namespace }}_path"
+  uid: "1000"
+  gid: "1000"
 {{- end }}
 ---
 {{- end }}
@@ -71,7 +84,7 @@ data:
   azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
 ---
 {{- end }}
-{{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+{{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (not .Values.persistentVolume.eks.efsAccessPoint) }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -162,8 +175,10 @@ spec:
  {{- end }}
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
- {{- else if eq .Values.clusterProvider "eks" }}
+ {{- else if and (eq .Values.clusterProvider "eks") (not .Values.persistentVolume.eks.efsAccessPoint) }} 
  storageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+ {{- else if and (eq .Values.clusterProvider "eks") (.Values.persistentVolume.eks.efsAccessPoint) }}
+ storageClassName: "{{ .Values.namespace }}-efs-sc"
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
@@ -177,7 +192,7 @@ spec:
  {{- else if eq .Values.clusterProvider "oke" }}
  storageClassName: ""
  {{- end }}
- {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
+ {{- if and (not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (not .Values.persistentVolume.eks.efsAccessPoint) }}
  volumeName: {{ .Values.persistentVolume.name }} 
  {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
  volumeName: {{ .Values.persistentVolume.oke.blockVolume.blockVolumeName }}
