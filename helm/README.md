@@ -439,17 +439,17 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 - Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
   ```console
-  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n bold-services
   ```
 
-  Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
+  Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
 
 ## Uninstall Chart
 
 ```console
 helm uninstall [RELEASE_NAME]
 ```
-Ex:  `helm uninstall boldbi`
+Ex:  `helm uninstall boldbi -n bold-services`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
