@@ -161,9 +161,9 @@ For Helm chart, you'll need to craft a `values.yaml`.
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
+helm install [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file] --create-namespace -n bold-services
 ```
-Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/bold-common -f my-values.yaml --create-namespace -n bold-services`
 
 Refer [here](/helm/docs/common-configuration.md) for advanced configuration including SSL configuration, optional client libraries, etc.
 
@@ -180,17 +180,17 @@ helm repo update
 Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
 ```console
-helm upgrade [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file]
+helm upgrade [RELEASE_NAME] boldbi/bold-common -f [Crafted values.yaml file] -n bold-services
 ```
 
-Ex:  `helm upgrade boldbi boldbi/bold-common -f my-values.yaml`
+Ex:  `helm upgrade boldbi boldbi/bold-common -f my-values.yaml -n bold-services`
 
 ## Uninstall Chart
 
 ```console
 helm uninstall [RELEASE_NAME]
 ```
-Ex:  `helm uninstall boldbi`
+Ex:  `helm uninstall boldbi -n bold-services`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
