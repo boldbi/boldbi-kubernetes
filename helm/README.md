@@ -416,9 +416,9 @@ The following environment variables are optional. If they are not provided, Bold
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] --create-namespace -n bold-services
 ```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml --create-namespace -n bold-services`
 
 Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
