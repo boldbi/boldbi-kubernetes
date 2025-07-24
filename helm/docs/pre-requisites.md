@@ -54,13 +54,27 @@ For encoding the values to base64 please run the following command in powershell
 
 #### NFS
 
-1. Create an NFS file share instance within your premium storage account. Take note of the storage account and file share name, as these will be used to store shared folders for application usage.
+For optimal persistence and performance, **it is highly recommended to configure an NFS file share from a Premium Storage Account**. NFS provides reliable, high-throughput storage, making it an ideal choice for Linux-based containers and stateful applications running on AKS.
 
-2. Identify the hostname in the properties of the file share. Make a note of the hostname as illustrated in the image below.
+##### Steps to Configure NFS File Share:
 
-   ![File Share details](images/nfs-hostname.png)
+1. **Create an NFS File Share**
 
-> **NOTE:** The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
+   * Navigate to your **Premium Storage Account** in Azure.
+   * Create a **new NFS file share**.
+   * Note down the **Storage Account Name** and **File Share Name**. These will be referenced in your Persistent Volume configuration.
+
+     ![File Share details](images/Storage-account-nfs.png)
+
+2. **Locate the Hostname**
+
+   * Go to the **Properties** section of the NFS File Share.
+   * Identify and note the **hostname**. This will be used for mounting the file share in Kubernetes Persistent Volumes.
+   * Example Hostname Format: `premiumstorage1234.file.core.windows.net`.
+
+     ![File Share details](images/nfs-hostname.png)
+
+**NOTE:** The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
 
 ### ACK File Sotrage
 
