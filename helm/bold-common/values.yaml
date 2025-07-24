@@ -22,6 +22,10 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    # storageClass were global resources.
+    # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
+    # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'efs-sc'
+    storageClass: 'efs-sc'
   aks:
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.

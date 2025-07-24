@@ -116,7 +116,7 @@ spec:
    {{- else }}
    secretName: bold-azure-secret
    {{- end }}
-   shareName: {{ .Values.persistentVolume.aks.fileShareName }}
+   shareName: {{ .Values.persistentVolume.aks.smb.fileShareName }}
    readOnly: false 
  {{- else if eq .Values.clusterProvider "gke" }}
  nfs:
