@@ -165,7 +165,7 @@ spec:
  storageClassName: {{ default "efs-sc" .Values.persistentVolume.eks.storageClass }}
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
  storageClassName: {{ default "azurefile-csi-nfs" .Values.persistentVolume.aks.storageClass }}
- {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.smb.fileShareName ) }}
  storageClassName: azurefile
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
