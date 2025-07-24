@@ -54,8 +54,8 @@ kind: Secret
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  {{- if .Values.persistentVolume.aks.secretName }}
-  name: {{ .Values.persistentVolume.aks.secretName }}
+  {{- if .Values.persistentVolume.aks.smb.secretName }}
+  name: {{ .Values.persistentVolume.aks.smb.secretName }}
   {{- else }}
   name: bold-azure-secret
   {{- end }}
@@ -66,8 +66,8 @@ metadata:
   {{- end }}
 type: Opaque
 data:
-  azurestorageaccountname: {{ .Values.persistentVolume.aks.azureStorageAccountName }}
-  azurestorageaccountkey: {{ .Values.persistentVolume.aks.azureStorageAccountKey }}
+  azurestorageaccountname: {{ .Values.persistentVolume.aks.smb.azureStorageAccountName }}
+  azurestorageaccountkey: {{ .Values.persistentVolume.aks.smb.azureStorageAccountKey }}
 ---
 {{- end }}
 {{- if not .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
