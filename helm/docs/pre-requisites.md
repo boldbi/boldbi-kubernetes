@@ -72,7 +72,7 @@ For optimal persistence and performance, **it is highly recommended to configure
    * Identify and note the **hostname**. This will be used for mounting the file share in Kubernetes Persistent Volumes.
    * Example Hostname Format: `premiumstorage1234.file.core.windows.net`.
 
-   ![File Share details](images/nfs-hostname.png)
+     ![File Share details](images/nfs-hostname.png)
 
 **NOTE:** The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
 
