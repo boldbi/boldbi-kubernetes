@@ -99,7 +99,7 @@ spec:
  hostPath:
    path: "{{ .Values.persistentVolume.onpremise.hostPath }}"
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+ storageClassName: {{ default "efs-sc" .Values.persistentVolume.eks.storageClass }}
  csi:
    driver: efs.csi.aws.com
    volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
@@ -162,7 +162,7 @@ spec:
  {{- if eq .Values.clusterProvider "onpremise" }}
  storageClassName: bold-storageclass
  {{- else if eq .Values.clusterProvider "eks" }}
- storageClassName: {{ if $sc }}{{ $sc }}{{ else }}efs-sc{{ end }}
+ storageClassName: {{ default "efs-sc" .Values.persistentVolume.eks.storageClass }}
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
