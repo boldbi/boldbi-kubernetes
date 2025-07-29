@@ -58,13 +58,7 @@ persistentVolume:
       # Note that the persistent volume must be in an "Available" state.
       blockVolumeName: ""
 
-  aks:
-    fileShareName: ''
-    # base64 string
-    azureStorageAccountName: ''
-    # base64 string
-    azureStorageAccountKey: ''
-    
+  aks:    
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.
     nfs:
@@ -78,6 +72,13 @@ persistentVolume:
       # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
       # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'azurefile-csi-nfs'
       storageClass: 'azurefile-csi-nfs'
+    # To configure SMB file share, specify the following values:
+    # Mention the Azure file share name.
+    fileShareName: ''
+    # base64 string
+    azureStorageAccountName: ''
+    # base64 string
+    azureStorageAccountKey: ''
 
   ack:
     serverName: ''
