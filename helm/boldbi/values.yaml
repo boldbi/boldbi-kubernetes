@@ -12,6 +12,9 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
   capacity: 3Gi
+  # Provide a value for 'storageClass' only if deploying Bold BI alongside Bold Reports to avoid storage class conflicts.
+  # Otherwise, leave it blank to use the default 'efs-sc' during standalone Bold BI deployment.
+  storageClass: ''
   gke:
     fileShareName: ''
     fileShareIp: ''
@@ -56,29 +59,26 @@ persistentVolume:
       blockVolumeName: ""
 
   aks:
+    fileShareName: ''
+    # base64 string
+    azureStorageAccountName: ''
+    # base64 string
+    azureStorageAccountKey: ''
+    
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.
-    # Format: 'storageaccountname/filesharename' (e.g., premiumstorage1234/boldbi)
-    fileShareName: ''
-
-    # Provide the hostname of the NFS file share.
-    # Example: premiumstorage1234.file.core.windows.net
-    hostName: ''
-    
-    # storageClass were global resources.
-    # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
-    # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'azurefile-csi-nfs'
-    storageClass: 'azurefile-csi-nfs'
-
-    smb:
-      # To configure the persistent volume using an SMB file share, provide the following values:
+    nfs:
+      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
       fileShareName: ''
-      
-      # Base64-encoded Azure Storage account name
-      azureStorageAccountName: ''
-      
-      # Base64-encoded Azure Storage account key
-      azureStorageAccountKey: ''
+
+      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
+      hostName: ''
+
+      # storageClass were global resources.
+      # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
+      # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'azurefile-csi-nfs'
+      storageClass: 'azurefile-csi-nfs'
+
   ack:
     serverName: ''
     filePath: ''
