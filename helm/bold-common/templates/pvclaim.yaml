@@ -6,9 +6,9 @@ metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
   {{- if eq .Values.clusterProvider "eks" }}
-  name: efs-sc
+  name: {{ default "efs-sc" .Values.persistentVolume.eks.storageClass }}
   {{- else if eq .Values.clusterProvider "aks" }}
-  name: azurefile-csi-nfs 
+  name: {{ default "azurefile-csi-nfs" .Values.persistentVolume.aks.storageClass }} 
   {{- else if eq .Values.clusterProvider "onpremise" }}
   name: bold-storageclass
   {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) }}
@@ -194,4 +194,3 @@ spec:
      alicloud-pvname: bold-fileserver
  {{- end }}
 {{- end }}
-

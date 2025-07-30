@@ -18,6 +18,21 @@ persistentVolume:
   name: bold-fileserver
   capacity: 3Gi
   aks:
+    # Recommended for Linux containers: use NFS file shares for better performance and persistence.
+    # NFS is supported only with Azure Premium FileStorage accounts.
+    nfs:
+      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
+      fileShareName: ''
+
+      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
+      hostName: ''
+
+      # storageClass were global resources.
+      # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
+      # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'azurefile-csi-nfs'
+      storageClass: 'azurefile-csi-nfs'
+      
+    # To configure SMB file share, specify the following values:
     # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
     secretName: ''
     # Mention the Azure file share name.
@@ -27,15 +42,6 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
-
-    # To configure persistent volume using NFS fileshare, provide the following values:
-    # Note: The premium storage account of the NFS fileshare must be within the same subscription as the AKS cluster.
-    nfs:
-      # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
-
-      # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
       
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false
