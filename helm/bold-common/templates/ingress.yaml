@@ -1,4 +1,6 @@
 {{- if eq .Values.loadBalancer.type "nginx" }}
+{{- $baseHost := (split "/" .Values.appBaseUrl)._2 }}
+{{- $isIP := regexMatch "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$" $baseHost }}
 {{- if $.Values.subApplication.enabled }}
 {{- $ingressApiIsStable := eq (include "ingress.isStable" .) "true" -}}
 {{- $ingressSupportsIngressClassName := eq (include "ingress.supportsIngressClassName" .) "true" -}}
@@ -1807,7 +1809,7 @@ spec:
   {{- if and $ingressSupportsIngressClassName .Values.loadBalancer.ingressClassName }}
   ingressClassName: {{ .Values.loadBalancer.ingressClassName }}
   {{- end }}
-  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  {{- if and (eq (split ":" .Values.appBaseUrl)._0 "https") (not $isIP) }}
   tls:   
     {{- if .Values.loadBalancer.multipleHost }}
     {{- range $host := .Values.loadBalancer.multipleHost.hostArray }}
@@ -1827,8 +1829,12 @@ spec:
     {{- if .Values.loadBalancer.multipleHost }}
     - http:
     {{- else }}
+      {{- if $isIP }}
+    - http:
+    {{- else }}   
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
+    {{- end }}
     {{- end }}
         paths:
           {{- if not .Values.subApplication.subPath }}
@@ -3034,8 +3040,12 @@ spec:
     {{- if .Values.loadBalancer.multipleHost }}
     - http:
     {{- else }}
+      {{- if $isIP }}
+    - http:
+      {{- else }}
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
+    {{- end }}
     {{- end }}
         paths:
           - path: /
