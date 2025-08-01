@@ -22,6 +22,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPointId: ''
   aks:
     fileShareName: ''
     # base64 string

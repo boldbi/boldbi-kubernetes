@@ -22,6 +22,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPointId: ''
   aks:    
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.

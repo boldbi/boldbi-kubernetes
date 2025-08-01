@@ -20,6 +20,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPointId: ''
     # storageClass were global resources.
     # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
     # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'efs-sc'
