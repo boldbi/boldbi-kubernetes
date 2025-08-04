@@ -45,6 +45,10 @@ mountOptions:
 {{- else if .Values.persistentVolume.oke.blockVolume.blockVolumeEnable }}
 parameters:
   type: "oci-bv"
+{{- else if and (eq .Values.clusterProvider "eks") (.Values.persistentVolume.eks.efsAccessPointId) }}
+parameters:
+  fileSystemId: {{ .Values.persistentVolume.eks.efsFileSystemId }}
+  directoryPerms: "0777"
 {{- end }}
 ---
 {{- end }}
@@ -102,7 +106,12 @@ spec:
  storageClassName: efs-sc
  csi:
    driver: efs.csi.aws.com
-   volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}
+   volumeHandle: {{ .Values.persistentVolume.eks.efsFileSystemId }}{{- if .Values.persistentVolume.eks.efsAccessPointId }}::{{ .Values.persistentVolume.eks.efsAccessPointId }}{{- end }}
+{{- if and (eq .Values.clusterProvider "eks") (.Values.persistentVolume.eks.efsAccessPointId) }}
+ mountOptions:
+  - rw
+  - vers=4.1
+{{- end }}
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.nfs.fileShareName ) }}
  storageClassName: azurefile-csi-nfs
  nfs:
