@@ -1,6 +1,6 @@
 # Kubernetes Compatibility for Bold BI
 
-This document provides detailed information on the Kubernetes versions, ingress controllers, storage options, and environments tested for compatibility with Bold BI deployments. For production use, we recommend adhering to the validated configurations listed below.
+This document provides detailed information on the Kubernetes versions, ingress controllers, and release date for compatibility with Bold BI deployments. For production use, we recommend adhering to the validated configurations listed below.
 
 ## Compatibility Overview
 
@@ -8,7 +8,7 @@ Bold BI is tested on specific Kubernetes versions and environments to ensure sta
 
 | Bold BI Version | Kubernetes Supported Versions | Ingress-Nginx Tested Versions | Date of Release | Notes |
 |-----------------|-------------------------------|-------------------------------|-----------------|-------|
-| 12.1.5          | 1.31.x, 1.32.x                | 4.11.3                        | 2025-06-04 | Recommended for production. Supports Helm and Kubectl deployments. |
+| 12.1.5          |        1.31.x, 1.32.x         |            4.11.3             |     2025-06-04  | Recommended for production. Supports Helm and Kubectl deployments. |
 
 ### Notes
 
