@@ -47,6 +47,10 @@ The following requirements are necessary to run the Bold BI solution.
 * **Web Browser:** Microsoft Edge | Mozilla Firefox | Chrome
 * **Database:** PostgreSQL 13.0+ | Microsoft SQL Server 2016+ | MySQL 8.0+ | Oracle Database 19c+
 
+## Kubernetes Compatibility
+
+For detailed information on supported Kubernetes versions, tested environments, and compatibility notes, refer to the [Kubernetes Compatibility Guide](docs/compatibility.md). This includes supported Kubernetes providers, ingress controllers, tested environments and recommendations for production deployments.
+
 ## Deployment Methods
 
 There are two ways to deploy Bold BI on the Kubernetes cluster. Please refer to the following documents for Bold BI deployment:
