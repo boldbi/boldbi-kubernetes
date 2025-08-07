@@ -598,7 +598,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-13.1.10.tgz
+    - https://boldbi.github.io/boldbi-kubernetes/boldbi-13.1.10.tgz
     version: 13.1.10
   - apiVersion: v2
     appVersion: 12.1.5
