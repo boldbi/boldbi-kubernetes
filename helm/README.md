@@ -7,7 +7,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
 * [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [File Storage](docs/pre-requisites.md#file-storage)
-* [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
+* [Create and connect a cluster](docs/pre-requisites.md#create-and-connect-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
 
 > **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to crafting values.yaml when installing Bold BI with helm chart.
@@ -40,6 +40,8 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/aks-values.yaml).
 * For `OKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/oke-values.yaml).
+
+> **Note:** Items marked with `*` are mandatory fields in values.yaml
 
 <br/>
 
@@ -85,7 +87,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The type of kubernetes cluster provider you are using.<br/>
-       The recommended values are '<i>gke,eks and aks</i>'
+       The recommended values are '<i>gke,eks, aks and oke</i>'
       </td>
     </tr>
     <tr>
@@ -410,8 +412,6 @@ The following environment variables are optional. If they are not provided, Bold
 </table>
 <br/>
 
-
-> **Note:** Items marked with `*` are mandatory fields in values.yaml
 
 Run the following command to delpoy Bold BI in your cluster.
 

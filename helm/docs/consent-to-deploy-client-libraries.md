@@ -1,6 +1,6 @@
 # Consent to deploy client libraries
 
-By giving consent to install client libraries to connect with Oracle, PostgreSQL, MySQL, MongoDB, InfluxDB, and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
+By giving consent to install client libraries to connect with ClickHouse, Google, Oracle, MySQL, MongoDB, InfluxDB, and Snowflake.Data, you can use the following libraries in your kubernetes pods. Bold BI uses these client libraries to connect with their respective SQL database variants. Read about the licenses of each library to give consent for usage. 
 
 ## mongo-csharp-driver
 * MongoDB
@@ -18,8 +18,9 @@ By giving consent to install client libraries to connect with Oracle, PostgreSQL
 [Oracle License](https://www.oracle.com/downloads/licenses/distribution-license.html)
 
 ## Npgsql 4.0.0
-* PostgreSQL
 * Amazon Redshift
+* Click house
+* Google
 * Google Cloud - PostgreSQL
 * Amazon Aurora - PostgreSQL
 
@@ -49,7 +50,6 @@ Find the names of client libraries, which needs to be passed as a comma separate
 | mongo-csharp-driver       | mongodb       |
 | Snowflake.Data            | snowflake     |
 | Oracle.ManagedDataAccess  | oracle        |
-| Npgsql 4.0.0              | npgsql        |
 | MySQLConnector 0.45.1     | mysql         |
 | InfluxData.Net            | influxdb      |
 | Google.Cloud.BigQuery.V2  | google        |
