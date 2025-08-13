@@ -190,8 +190,11 @@ persistentVolume:
 </table>
 <br/>
 
-> **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+> **NOTE:** 
 
+  * The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+  * Both the cluster and the storage account need to be in the same region to avoid latency issues.
+  
 5. AKS WITH NFS FILESHARE
 
 ```console
@@ -258,7 +261,7 @@ persistentVolume:
   # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
-  capacity: 5Gi
+  capacity: 3Gi
   oke:
     # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
