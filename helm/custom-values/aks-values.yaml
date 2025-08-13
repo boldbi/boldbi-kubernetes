@@ -17,10 +17,10 @@ persistentVolume:
     # NFS is supported only with Azure Premium FileStorage accounts.
     nfs:
       # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
+      fileShareName: '<storageaccountname/filesharename>'
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
+      hostName: '<hostname>'
 
       # storageClass were global resources.
       # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
@@ -29,11 +29,11 @@ persistentVolume:
       
     # To configure SMB file share, specify the following values:
     # Mention the Azure file share name.
-    fileShareName: ''
+    fileShareName: '<file_share_name>'
     # base64 string
-    azureStorageAccountName: ''
+    azureStorageAccountName: '<base64_azurestorageaccountname>'
     # base64 string
-    azureStorageAccountKey: ''
+    azureStorageAccountKey: '<base64_azurestorageaccountkey>'
     
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false
@@ -78,10 +78,10 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
-  # Enable Gzip in nginx-ingress
+  # Enable Gzip in nginx-ingress to reduce the size of HTTP responses.
   enableGzip: false 
 
-  # ReverseProxy changes in nginx-ingress
+  # Enable ReverseProxy changes in nginx-ingress to forward client requests to backend web servers.
   ReverseProxy: false
 
 subApplication:
@@ -219,7 +219,7 @@ databaseServerDetails:
   # The database user's password
   dbPassword: ""
 
-  # If the database name is not specified, the system will create a new database called bold services.
+  # If the database name is not specified, the system will create a new database called bold-services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
 
@@ -268,7 +268,7 @@ licenseKeyDetails:
   # Set this to true if you have existing details in your cluster.
   existingSecret: false
   
-  #  The Bold BI licnece key which you have purchesed.
+  #  The Bold BI license key that you purchased.
   licenseKey: ""
   
 # Tolerations allow the pods to be scheduled into nodes with matching taints.

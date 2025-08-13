@@ -142,7 +142,7 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
-  # Enable Gzip in nginx-ingress
+  # Enable Gzip in nginx-ingress to reduce the size of HTTP responses.
   enableGzip: false 
         
 subApplication:
@@ -312,7 +312,7 @@ databaseServerDetails:
   # The database user's password
   dbPassword: ""
 
-  # If the database name is not specified, the system will create a new database called bold services.
+  # If the database name is not specified, the system will create a new database called bold-services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
 
@@ -330,7 +330,8 @@ databaseServerDetails:
   dbAdditionalParameters: ""
   
 licenseKeyDetails:
-  #  The Bold BI licnece key which you have purchesed.
+
+  #  The Bold BI license key that you purchased.
   licenseKey: ""
 
 ## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.

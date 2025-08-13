@@ -77,10 +77,10 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
-  # Enable Gzip in nginx-ingress
+  # Enable Gzip in nginx-ingress to reduce the size of HTTP responses.
   enableGzip: false
 
-  # ReverseProxy changes in nginx-ingress
+  # Enable ReverseProxy changes in nginx-ingress to forward client requests to backend web servers.
   ReverseProxy: false
 
 subApplication:
@@ -175,7 +175,7 @@ licenseKeyDetails:
   # Set this to true if you have existing details in your cluster.
   existingSecret: false
 
-  #  The Bold BI licnece key which you have purchesed.
+  #  The Bold BI license key that you purchased.
   licenseKey: ""
   
 ##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
@@ -220,7 +220,7 @@ databaseServerDetails:
   # The database user's password
   dbPassword: ""
 
-  # If the database name is not specified, the system will create a new database called bold services.
+  # If the database name is not specified, the system will create a new database called bold-services.
   # If you specify a database name, it should already exist on the server.
   dbName: ""
 

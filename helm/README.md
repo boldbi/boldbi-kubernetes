@@ -1,6 +1,6 @@
 # Deploy Bold BI using Helm
 
-This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE,AKS and EKS). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE, AKS, EKS and OKE). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
     
 ## Deployment prerequisites
 
@@ -40,7 +40,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/aks-values.yaml).
 * For `OKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/oke-values.yaml).
-* For `ACK` please download the values.yaml file [here](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/custom-values/ack-values.yaml)
+* For `ACK` please download the values.yaml file [here](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/custom-values/ack-values.yaml).
 
 > **Note:** Items marked with `*` are mandatory fields in values.yaml
 
@@ -61,7 +61,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The namespace in which the Bold BI resources will be deployed in the kubernetes cluster.<br/>
-       The default namespace is <i>bold-services</i>
+       The default namespace is <i>bold-services</i>.
       </td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The type of kubernetes cluster provider you are using.<br/>
-       The recommended values are '<i>gke,eks, aks and oke</i>'
+       The recommended values are '<i>gke,eks, aks and oke</i>'.
       </td>
     </tr>
     <tr>
@@ -104,7 +104,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+       Currently we have provided support for Nginx, Istio and Kong as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
       </td>
     </tr>
     <tr>
@@ -153,8 +153,8 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The variable is optional, and the default value is TRUE. 
-          By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
-          You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
+       By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
+       You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
       </td>
     </tr>
         <tr>
@@ -206,7 +206,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
          podAffinityEnable: false
       </td>
       <td>
-        Pod affinity ensures that the pods are scheduled into nodes with matching pods. Set this to true if you use pod affinity in your cluster
+        Pod affinity ensures that the pods are scheduled into nodes with matching pods. Set this to true if you use pod affinity in your cluster.
       </td>
     </tr>
         <tr>
@@ -238,7 +238,7 @@ The following environment variables are optional. If not provided, a manual Appl
        licenseKey
       </td>
       <td>
-       License key of Bold BI
+       License key of Bold BI.
       </td>
     </tr>
     <tr>
@@ -254,7 +254,7 @@ The following environment variables are optional. If not provided, a manual Appl
        password *
       </td>
       <td>
-       It should meet our password requirements. <br /> <br />Note: <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
+       It should meet our password requirements. <br /> <br />Note: <br />The password must meet the following requirements: it must contain at least 6 characters, including 1 uppercase letter, 1 lowercase letter, 1 numeric character, and 1 special character. 
       </td>
     </tr>
     <tr>
@@ -262,7 +262,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbType *
       </td>
       <td>
-       Type of database server can be used for configuring the Bold BI.<br/><br />The following DB types are accepted:<br />1. mssql – Microsoft SQL Server/Azure SQL Database<br />2. postgresql – PostgreSQL Server<br />3. mysql – MySQL/MariaDB Server
+       Type of database server can be used for configuring the Bold BI.<br/><br />The following DB types are accepted:<br />1. mssql – Microsoft SQL Server/Azure SQL Database<br />2. postgresql – PostgreSQL Server<br />3. mysql – MySQL/MariaDB Server<br />4. oracle – Oracle Server
       </td>
     </tr>
     <tr>
@@ -278,7 +278,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbPort
       </td>
       <td>
-       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5432<br />MySQL -3306<br /><br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
+       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5432<br />MySQL -3306<br />Oracle - 1521<br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
       </td>
     </tr>
     <tr>
@@ -286,7 +286,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbUser *
       </td>
       <td>
-       Username for the database server<br /><br />Please refer to [this documentation](https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/) for information on the user's permissions.
+       Username for the database server<br /><br />Please refer to [this documentation](https://support.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/) for information on the user's permissions.
       </td>
     </tr>
     <tr>
@@ -318,7 +318,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbAdditionalParameters
       </td>
       <td>
-       If your database server requires additional connection string parameters, include them here.<br /><br />Connection string parameters can be found in the official document.<br />My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html<br />PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html<br />MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring<br /><br /><b>Note:</b> A semicolon(;) should be used to separate multiple parameters.
+       If your database server requires additional connection string parameters, include them here.<br /><br />Connection string parameters can be found in the official document.<br />My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html<br />PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html<br />MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring<br />Oracle: https://docs.oracle.com/en/database/oracle/oracle-database/19/odpnt/ConnectionConnectionString.html<br /><br /><b>Note:</b> A semicolon(;) should be used to separate multiple parameters.
       </td>
     </tr>
     <tr>
@@ -352,7 +352,7 @@ The following environment variables are optional. If they are not provided, Bold
        mainLogo
       </td>
       <td>   
-       This is header logo for the applicationand the preferred image size is 40 x 40 pixels.
+       This is header logo for the application and the preferred image size is 40 x 40 pixels.
       </td>
     </tr>
     <tr>
@@ -417,9 +417,12 @@ The following environment variables are optional. If they are not provided, Bold
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] --create-namespace -n bold-services
+kubectl create namespace <namespace-name>
+
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]  -n [namespace-name]
+
 ```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml --create-namespace -n bold-services`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
 
 Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
@@ -433,14 +436,21 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
   helm repo update
   ```
 
-- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. You can access the latest updated YAML file from the location below:
+- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. Uncomment the lines by removing the # symbols and update the image tag as shown below. While upgrading, use the same YAML file that was used during installation.
 
-  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
+  ```console
+     image:
+       repo: us-docker.pkg.dev/boldbi-294612/boldbi
+       # Overrides the image tag whose default is the chart appVersion.
+       tag: 12.1.5
+       pullPolicy: IfNotPresent
+     imagePullSecrets: []
+  ```
 
 - Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
   ```console
-  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n bold-services
+  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [namespace-name]
   ```
 
   Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
@@ -448,7 +458,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 ## Uninstall Chart
 
 ```console
-helm uninstall [RELEASE_NAME]
+helm uninstall [RELEASE_NAME] -n [namespace-name]
 ```
 Ex:  `helm uninstall boldbi -n bold-services`
 
