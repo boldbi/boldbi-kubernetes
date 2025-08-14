@@ -296,11 +296,12 @@ spec:
               servicePort: 6553
               {{- end }}
 {{- else}} 
+
 {{- $ingressApiIsStable := eq (include "ingress.isStable" .) "true" -}}
 {{- $ingressSupportsIngressClassName := eq (include "ingress.supportsIngressClassName" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "ingress.supportsPathType" .) "true" -}}
 {{- $ingressPathType := "ImplementationSpecific" -}}
----
+
 apiVersion: {{ template "ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -538,12 +539,8 @@ spec:
               serviceName: reports-reportservice-service
               servicePort: 6553
               {{- end }} 
-{{- end }}      
+      
 ---
-{{- $ingressApiIsStable := eq (include "ingress.isStable" .) "true" -}}
-{{- $ingressSupportsIngressClassName := eq (include "ingress.supportsIngressClassName" .) "true" -}}
-{{- $ingressSupportsPathType := eq (include "ingress.supportsPathType" .) "true" -}}
-{{- $ingressPathType := "ImplementationSpecific" -}}
 
 apiVersion: {{ template "ingress.apiVersion" . }}
 kind: Ingress
@@ -619,4 +616,5 @@ spec:
               serviceName: bold-etl-service
               servicePort: 6009
               {{- end }} 
-{{- end }}                                 
+    {{- end }}                                 
+{{- end }} 
