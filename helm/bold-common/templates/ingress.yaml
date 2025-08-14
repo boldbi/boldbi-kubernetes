@@ -541,7 +541,7 @@ kind: Ingress
 metadata:
   labels:
     {{- include "boldbi.labels" . | nindent 4 }}
-  name: bold-ingress
+  name: bold-etl-ingress
 {{ include "boldbi.namespace" . | indent 2 }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
