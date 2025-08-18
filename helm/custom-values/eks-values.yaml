@@ -14,6 +14,8 @@ persistentVolume:
   capacity: 3Gi
   eks:
     efsFileSystemId: ''
+    # Optional: If you want to use the same EFS file system for multiple deployments, 
+    # you can achieve it by creating and attaching an EFS Access Point.
     efsAccessPointId: ''
 
     # storageClass were global resources.
