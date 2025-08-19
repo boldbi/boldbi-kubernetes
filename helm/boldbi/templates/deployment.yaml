@@ -123,10 +123,6 @@ spec:
           value: "{{ $.Values.queryMetricsInDebugFiles.enable }}"
         - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
           value: "{{ $.Values.queryMetricsWithQueryInDebugFiles.enable }}"
-        {{- if $.Values.optionalLibs }}
-        - name: INSTALL_OPTIONAL_LIBS
-          value: {{ $.Values.optionalLibs }}
-        {{- end }}
         {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:
