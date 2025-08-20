@@ -465,6 +465,7 @@ While mapping multiple domains, you must include the `appBaseUrl` in **any one**
 
 For a multiple-domain scenario, the `singleHost` secret will **not** be used — you must specify the certificate secret inside the `multipleHost` section.
 
+
 **Example:**
 
 ```yaml

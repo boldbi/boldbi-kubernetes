@@ -109,6 +109,14 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
     <tr>
       <td>
+       subApplication
+      </td>
+      <td>
+       Set **enabled: true** if you want to host your application under a subpath. Use subPath to specify the desired subpath (default is boldservices).
+      </td>
+    </tr>
+    <tr>
+      <td>
        autoscaling
       </td>
       <td>
@@ -159,7 +167,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       AppSettings__EnableQueryMetricsInDebugFiles
+       queryMetricsInDebugFiles
       </td>
       <td>
        If the query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
@@ -167,7 +175,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+       queryMetricsWithQueryInDebugFiles
       </td>
       <td>
        If the query and query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
@@ -185,36 +193,70 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       tolerationEnable: false<br />
-       tolerations:
+        tolerationEnable: false<br />
+        tolerations:
       </td>
       <td>
-       Tolerations allow the pods to be scheduled into nodes with matching taints. Set this to true if you use tolerations in your cluster. If you need more than one toleration, you can add multiple tolerations below.
-      </td>
-    </tr>
-        <tr>
-      <td>
-       nodeAffinityEnable: false<br />
-       nodeAffinity:
-      </td>
-      <td>
-       Node affinity ensures that the pods are scheduled into nodes with matching labels. Set this to true if you use node affinity in your cluster.
-      </td>
-    </tr>
-        <tr>
-      <td>
-         podAffinityEnable: false
-      </td>
-      <td>
-        Pod affinity ensures that the pods are scheduled into nodes with matching pods. Set this to true if you use pod affinity in your cluster.
+        Tolerations allow pods to be scheduled onto nodes with matching <b>taints</b>. 
+        By default, this is set to <code>false</code>. 
+        <br /> 
+        Set this to <code>true</code> if your cluster uses tolerations. 
+        <br />
+        You can define multiple tolerations with the following fields:
+        <ul>
+          <li><b>key</b>: The taint key to tolerate.</li>
+          <li><b>operator</b>: Defines how the key is compared (e.g., <code>Equal</code>, <code>Exists</code>).</li>
+          <li><b>value</b>: The taint value to match.</li>
+          <li><b>effect</b>: The effect of the taint to tolerate (e.g., <code>NoSchedule</code>, <code>NoExecute</code>).</li>
+        </ul>
+        For more details, see the Kubernetes documentation on 
+        <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/" target="_blank">Taints and Tolerations</a>.
       </td>
     </tr>
-        <tr>
+    <tr>
       <td>
-         podAntiAffinityEnable: false
+        nodeAffinityEnable: false<br />
+        nodeAffinity:
       </td>
       <td>
-        Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods. Set this to true if you use pod anti-affinity in your cluster.
+        Node affinity ensures that pods are scheduled onto nodes with matching <b>labels</b>. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Set this to <code>true</code> if you want to enforce node affinity in your cluster. 
+        <br />
+        Define affinity rules using:
+        <ul>
+          <li><b>key</b>: Node label key.</li>
+          <li><b>operator</b>: How the key is compared (e.g., <code>In</code>, <code>NotIn</code>).</li>
+          <li><b>value</b>: Label values to match.</li>
+        </ul>
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity" target="_blank">Kubernetes Node Affinity</a>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        podAffinityEnable: false
+      </td>
+      <td>
+        Pod affinity allows you to schedule pods onto nodes where other specific pods are already running. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Use pod affinity when you want pods to run <b>together</b> for performance, locality, or dependency reasons. 
+        <br />
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity" target="_blank">Kubernetes Pod Affinity</a>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        podAntiAffinityEnable: false
+      </td>
+      <td>
+        Pod anti-affinity ensures that pods are <b>not</b> scheduled onto nodes where other specific pods are running. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Use pod anti-affinity to improve reliability by spreading pods across different nodes. 
+        <br />
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity" target="_blank">Kubernetes Pod Anti-Affinity</a>.
       </td>
     </tr>
     </table>

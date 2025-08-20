@@ -415,12 +415,12 @@ You can map mutiple domains in both Ingress Nginx and Istio like below. While ma
 
 FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
 
-`Ingress Nginx`
+**Example:**
 
-```console
+```yaml
 loadBalancer:
   singleHost:
-    secretName: bold-tls
+    secretName: bold-tls  # Used only for single domain setups
 
   multipleHost:
     hostArray:
@@ -432,21 +432,6 @@ loadBalancer:
           - cd1.xyz.com
           - cd2.xyz.com
         secretName: tls-secret2
-```
-
-`Istio Ingress Gateway`
-
-```console
-loadBalancer:
-  singleHost:
-    secretName: bold-tls
-
-  multipleHost:
-    hostArray:
-      - hosts: 
-          - cd1.abc.com
-          - cd2.abc.com
-        secretName: tls-secret
 ```
 
 ## Auto Scaling
