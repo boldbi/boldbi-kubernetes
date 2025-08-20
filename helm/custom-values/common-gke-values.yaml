@@ -18,8 +18,8 @@ persistentVolume:
   name: bold-fileserver
   capacity: 3Gi
   gke:
-    fileShareName: ''
-    fileShareIp: ''
+    fileShareName: '<file_share_name>'
+    fileShareIp: '<file_share_ip_address>'
 
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false

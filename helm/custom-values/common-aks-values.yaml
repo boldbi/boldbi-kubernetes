@@ -22,10 +22,10 @@ persistentVolume:
     # NFS is supported only with Azure Premium FileStorage accounts.
     nfs:
       # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: ''
+      fileShareName: '<storageaccountname/filesharename>'
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: ''
+      hostName: '<hostname>'
 
       # storageClass were global resources.
       # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
@@ -36,12 +36,12 @@ persistentVolume:
     # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
     secretName: ''
     # Mention the Azure file share name.
-    fileShareName: ''
+    fileShareName: '<file_share_name>'
     # You can ignore the following values if you are using an azure existing secret.
     # base64 string
-    azureStorageAccountName: ''
+    azureStorageAccountName: '<base64_azurestorageaccountname>'
     # base64 string
-    azureStorageAccountKey: ''
+    azureStorageAccountKey: '<base64_azurestorageaccountkey>'
       
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false

@@ -18,10 +18,10 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'efs-sc'
   storageClass: 'efs-sc'
   gke:
-    fileShareName: ''
-    fileShareIp: ''
+    fileShareName: '<file_share_name>'
+    fileShareIp: '<file_share_ip_address>'
   eks:
-    efsFileSystemId: ''
+    efsFileSystemId: '<efs_file_system_id>'
   aks:
     fileShareName: ''
     # base64 string

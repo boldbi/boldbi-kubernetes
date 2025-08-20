@@ -33,7 +33,7 @@ persistentVolume:
 
 ### Capacity
 
-Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
+Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) to understand the units expected by capacity.
 
 By default the persistent volume capacity used in Bold BI is `3Gi`. 
 
