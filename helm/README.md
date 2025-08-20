@@ -128,7 +128,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        customLocalePath
       </td>
       <td>
-       Custom locale file path for Localization.
+       `customLocalePath` specifies the file path to a customer-provided localization resource. This file contains translations of strings, labels, messages, and other UI text elements customized for the customer’s language and regional preferences.
       </td>
     </tr>
         <tr>
@@ -397,7 +397,7 @@ The following environment variables are optional. If they are not provided, Bold
       <td>
       This is organization name.     
       <br />
-       If the value is not given, the site will be deployed using the default name.
+       If no value is provided, the site will be deployed with the default name: <b>Bold BI Enterprise Dashboards</b>.
       </td>
     </tr>
     <tr>
@@ -407,7 +407,7 @@ The following environment variables are optional. If they are not provided, Bold
       <td>     
        This is site identifier, and it will be the part of the application URL.
       <br />
-      If the value is not given, the site will be deployed using the default value.
+      If no value is provided, the site will be deployed with the default identifier: <b>site1</b>.
       </td>
     </tr>
 </table>
@@ -417,14 +417,12 @@ The following environment variables are optional. If they are not provided, Bold
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-kubectl create namespace <namespace-name>
+kubectl create namespace [namespace-name]
 
 helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]  -n [namespace-name]
 
 ```
 Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
-
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
