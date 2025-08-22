@@ -52,6 +52,17 @@ persistentVolume:
   #If 'useExistingClaim' is true, you must also provide the 'claimName' of the existing PVC.
   claimName: ''
 
+#For OCI configuration , You need to set enabled as true.
+ociStorage:
+  enabled: false
+  accessKey: 
+  bucketName: 
+  namespace: 
+  region: 
+  rootFolderName:
+  secretKey: 
+  storageType:
+  
 # image:
 #   repo: us-docker.pkg.dev/boldbi-294612/boldbi
 #   # Overrides the image tag whose default is the chart appVersion.
