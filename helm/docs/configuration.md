@@ -261,7 +261,7 @@ persistentVolume:
   # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
   name: bold-fileserver
-  capacity: 3Gi
+  capacity: 5Gi
   oke:
     # Mention your filesystem volume handle in the format of <FileSystemOCID>:<MountTargetIP>:<path>
     volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
