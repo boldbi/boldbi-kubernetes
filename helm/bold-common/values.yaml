@@ -18,19 +18,19 @@ persistentVolume:
   name: bold-fileserver
   capacity: 3Gi
   gke:
-    fileShareName: '<file_share_name>'
-    fileShareIp: '<file_share_ip_address>'
+    fileShareName: ''
+    fileShareIp: ''
   eks:
-    efsFileSystemId: '<efs_file_system_id>'
+    efsFileSystemId: ''
   aks:    
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.
     nfs:
       # fileshare name as 'storageaccountname/filesharename' Ex:premiumstorage1234/boldbi.
-      fileShareName: '<storageaccountname/filesharename>'
+      fileShareName: ''
 
       # hostname of the fileshare Ex:premiumstorage1234.file.core.windows.net.
-      hostName: '<hostname>'
+      hostName: ''
       
       # storageClass were global resources.
       # so if you already have Bold BI installed in your cluster, then the previous storage class name will conflict with current installation.
@@ -40,12 +40,12 @@ persistentVolume:
     # If you have an Azure Storage secret you can use the same by mentioning the secret name below. The default name is 'bold-azure-secret'
     secretName: ''
     # Mention the Azure file share name.
-    fileShareName: '<file_share_name>'
+    fileShareName: ''
     # You can ignore the following values if you are using an azure existing secret.
     # base64 string
-    azureStorageAccountName: '<base64_azurestorageaccountname>'
+    azureStorageAccountName: ''
     # base64 string
-    azureStorageAccountKey: '<base64_azurestorageaccountkey>'
+    azureStorageAccountKey: ''
 
   oke:
     # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
