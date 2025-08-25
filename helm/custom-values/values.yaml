@@ -18,10 +18,10 @@ persistentVolume:
   # Change this name to avoid conflicts with previous Bold BI StorageClass. The default value is 'efs-sc'
   storageClass: 'efs-sc'
   gke:
-    fileShareName: '<file_share_name>'
-    fileShareIp: '<file_share_ip_address>'
+    fileShareName: ''
+    fileShareIp: ''
   eks:
-    efsFileSystemId: '<efs_file_system_id>'
+    efsFileSystemId: ''
   aks:
     fileShareName: ''
     # base64 string
@@ -301,3 +301,4 @@ podAffinityEnable: false
 # Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
 # Set this to true if you use pod AntiAffinity in your cluster.
 podAntiAffinityEnable: false
+
