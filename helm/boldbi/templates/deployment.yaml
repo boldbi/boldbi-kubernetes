@@ -77,6 +77,10 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        {{- if $.Values.optionalLibs }}
+        - name: INSTALL_OPTIONAL_LIBS
+          value: {{ $.Values.optionalLibs }}
+        {{- end }}
         {{- if $.Values.azureApplicationInsights.connectionString }}
         - name: APPLICATIONINSIGHTS_CONNECTION_STRING
           valueFrom:
@@ -87,11 +91,14 @@ spec:
         {{- if eq $service.app "id-web" }}
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}
-        {{- if $.Values.optionalLibs }}
-        - name: INSTALL_OPTIONAL_LIBS
-          value: {{ $.Values.optionalLibs }}
-        {{- end }}
+        - name: SUB_APP
+          value: "{{ $.Values.subApplication.enabled }}"
+        {{- else if eq $service.app "id-api" }}
+        - name: SUB_APP
+          value: "{{ $.Values.subApplication.enabled }}"
         {{- else if eq $service.app "id-ums" }}
+        - name: SUB_APP
+          value: "{{ $.Values.subApplication.enabled }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "{{ $.Values.useSiteIdentifier.enable }}"
         envFrom:

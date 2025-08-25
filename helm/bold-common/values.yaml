@@ -22,6 +22,7 @@ persistentVolume:
     fileShareIp: ''
   eks:
     efsFileSystemId: ''
+    efsAccessPointId: ''
   aks:    
     # Recommended for Linux containers: use NFS file shares for better performance and persistence.
     # NFS is supported only with Azure Premium FileStorage accounts.
@@ -99,18 +100,18 @@ persistentVolume:
 image:
   idRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
-  reportsRepo: us-docker.pkg.dev/boldreports/v9-1-7
+  reportsRepo: us-docker.pkg.dev/boldreports/v10-1-11
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 12.1.5
-  biTag: 12.1.5
-  reportsTag: 9.1.7
+  idTag: 13.1.10
+  biTag: 13.1.10
+  reportsTag: 10.1.11
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: 4.11.1
-  bi: 12.1.5
-  reports: 9.1.7
+  bi: 13.1.10
+  reports: 10.1.11
 
 loadBalancer:
   type: nginx

@@ -12,21 +12,27 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
-  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+{{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:
+    {{- if not .Values.loadBalancer.multipleHost }}
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
     {{- if .Values.loadBalancer.multipleHost }}
       {{- range .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
+        {{- $appBaseHost := (split "/" $.Values.appBaseUrl)._2 }}
+        {{- if not (has $appBaseHost .hosts) }}
+        - {{ $appBaseHost }}
+        {{- end }}
         {{- range .hosts }}
         - "{{ . }}"
         {{- end }}
       secretName: {{ .secretName }}
       {{- end }}
     {{- end }}
-  {{- end }}
+{{- end }}
   rules:
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
@@ -175,26 +181,36 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
-  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+{{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
   tls:
+    {{- if not .Values.loadBalancer.multipleHost }}
     - hosts:
         - {{ (split "/" .Values.appBaseUrl)._2 }}
       secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    {{- end }}
     {{- if .Values.loadBalancer.multipleHost }}
       {{- range .Values.loadBalancer.multipleHost.hostArray }}
     - hosts:
+        {{- $appBaseHost := (split "/" $.Values.appBaseUrl)._2 }}
+        {{- if not (has $appBaseHost .hosts) }}
+        - {{ $appBaseHost }}
+        {{- end }}
         {{- range .hosts }}
         - "{{ . }}"
         {{- end }}
       secretName: {{ .secretName }}
       {{- end }}
     {{- end }}
-  {{- end }}
+{{- end }}
   rules:
     - host: {{ (split "/" .Values.appBaseUrl)._2 }}
       http:
         paths:
-          - path: /etlservice/
+          {{- $subPath := "" }}
+          {{- if .Values.subApplication.enabled }}
+            {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+          {{- end }}
+          - path: {{ $subPath }}/etlservice/
             pathType: ImplementationSpecific
             backend:
               service:
@@ -203,17 +219,24 @@ spec:
                   number: 6009
     {{- if .Values.loadBalancer.multipleHost }}
       {{- range .Values.loadBalancer.multipleHost.hostArray }}
+        {{- $appBaseHost := (split "/" $.Values.appBaseUrl)._2 }}
         {{- range .hosts }}
+          {{- if ne . $appBaseHost }}
     - host: "{{ . }}"
       http:
         paths:
-          - path: /etlservice/
+          {{- $subPath := "" }}
+          {{- if $.Values.subApplication.enabled }}
+            {{- $subPath = printf "/%s" ($.Values.subApplication.subPath | default "boldservices") }}
+          {{- end }}
+          - path: {{ $subPath }}/etlservice/
             pathType: ImplementationSpecific
             backend:
               service:
                 name: bold-etl-service
                 port:
                   number: 6009
+          {{- end }}
         {{- end }}
       {{- end }}
     {{- end }}
