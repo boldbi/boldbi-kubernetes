@@ -328,7 +328,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbUser *
       </td>
       <td>
-       Username for the database server<br /><br />Please refer to [this documentation](https://support.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/) for information on the user's permissions.
+       Username for the database server<br /><br />Please refer to [this documentation](https://help.boldbi.com/embedded-bi/faq/what-are-the-database-permissions-required-to-set-up-bold-bi-embedded/) for information on the user's permissions.
       </td>
     </tr>
     <tr>
@@ -477,6 +477,8 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
   ```
 
 - Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. Uncomment the lines by removing the # symbols and update the image tag as shown below. While upgrading, use the same YAML file that was used during installation.
+  
+  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
 
   ```console
      image:
