@@ -320,5 +320,4 @@ podAffinityEnable: false
 
 # Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
 # Set this to true if you use pod AntiAffinity in your cluster.
-
 podAntiAffinityEnable: false
