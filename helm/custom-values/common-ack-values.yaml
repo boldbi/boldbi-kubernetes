@@ -75,7 +75,7 @@ loadBalancer:
           # - example.com
         # secretName: bold-tls
 
-  # Enable Gzip in nginx-ingress
+  # Enable Gzip in nginx-ingress to reduce the size of HTTP responses.
   enableGzip: false 
         
 subApplication:

@@ -423,30 +423,55 @@ loadBalancer:
 
 If you have the SSL certificate for your DNS and need to configure the site with your SSL certificate, just pass your DNS with the `https` protocol to `appBaseUrl`, by doing this it will automatically enable SSL in both Ingress and Istio.
 
-> **NOTE:**  You have to create the TLS Secret with name `bold-tls` or else change the secret name in your values.yaml
+> **NOTE:**  You need to create a TLS secret named bold-tls. If you choose a different name for the secret, make sure to update the values.yaml file accordingly so it matches the name of the secret you created.
 
-Run the following command to create a TLS secret with your SSL certificate:
+#### Creating TLS Secrets for Ingress Controllers in Kubernetes
 
-```console
-# Nginx Ingress and Kong-API-Gateway Ingress
-kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
+To enable HTTPS (SSL) in your Kubernetes cluster, you need to create a TLS secret that contains your certificate and private key. The process differs slightly depending on the ingress controller you're using.
 
-# Istio
-kubectl create secret tls bold-tls -n istio-system --key <key-path> --cert <certificate-path>
+##### **For NGINX Ingress or Kong API Gateway**
+
+Use the following command to create a TLS secret in your desired namespace:
+
+```bash
+kubectl create secret tls <tls secret name> -n <namespace>  --key <key-path> --cert <certificate-path>
 ```
+
+##### **For Istio Ingress Gateway**
+
+Istio requires the TLS secret to be created in the `istio-system` namespace. Use the command below:
+
+```bash
+kubectl create secret tls <tls secret name> -n istio-system --key <key-path> --cert <certificate-path>
+```
+
+**Example:**
+
+```bash
+kubectl create secret tls bold-tls -n bold-services --key <key-path> --cert <certificate-path>
+```
+
+#### Notes
+
+* Replace `<path-to-certificate-file>` and `<path-to-key-file>` with the actual paths to your certificate and private key files.
+* The secret name (`bold-tls` in the examples) must match the one referenced in your Ingress configuration.
+* Ensure the namespace (`-n`) matches the one where your ingress controller is running.
+
 
 ### Map multiple domains
 
-You can map multiple domains in both Ingress Nginx and Istio like below. While mapping multiple domains you have to include the `appBaseUrl` in any of the matching host array.
+You can map multiple domains for **both Ingress NGINX** and **Istio Ingress Gateway** using the same configuration format.
+While mapping multiple domains, you must include the `appBaseUrl` in **any one** of the matching host arrays.
 
-FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside the `multipleHost` section.
+For a multiple-domain scenario, the `singleHost` secret will **not** be used — you must specify the certificate secret inside the `multipleHost` section.
 
-`Ingress Nginx`
 
-```console
+**Example:**
+
+```yaml
 loadBalancer:
   singleHost:
-    secretName: bold-tls
+    secretName: bold-tls  # Used only for single domain setups
 
   multipleHost:
     hostArray:
@@ -459,22 +484,6 @@ loadBalancer:
           - cd2.xyz.com
         secretName: tls-secret2
 ```
-
-`Istio Ingress Gateway`
-
-```console
-loadBalancer:
-  singleHost:
-    secretName: bold-tls
-
-  multipleHost:
-    hostArray:
-      - hosts: 
-          - cd1.abc.com
-          - cd2.abc.com
-        secretName: tls-secret
-```
-
 ## Auto Scaling
 
 By default, autoscaling is enabled in Bold BI, to disable autoscaling please set `autoscaling.enabled=false`.

@@ -33,7 +33,7 @@ persistentVolume:
 
 ### Capacity
 
-Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://git.k8s.io/community/contributors/design-proposals/scheduling/resources.md) to understand the units expected by capacity.
+Generally, a PV will have a specific storage capacity. This is set using the PV's capacity attribute. See the [Kubernetes Resource Model](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#capacity) to understand the units expected by capacity.
 
 By default the persistent volume capacity used in Bold BI is `3Gi`. 
 
@@ -190,8 +190,11 @@ persistentVolume:
 </table>
 <br/>
 
-> **NOTE:** The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+> **NOTE:** 
 
+  * The Azure storage account credentials will be maintained in a secret named `bold-azure-secret`
+  * Both the cluster and the storage account need to be in the same region to avoid latency issues.
+  
 5. AKS WITH NFS FILESHARE
 
 ```console
@@ -412,12 +415,12 @@ You can map mutiple domains in both Ingress Nginx and Istio like below. While ma
 
 FOr multiple domain scenerio the `singleHost` secret will not be considered, you have to mention your secret inside `multipleHost` section.
 
-`Ingress Nginx`
+**Example:**
 
-```console
+```yaml
 loadBalancer:
   singleHost:
-    secretName: bold-tls
+    secretName: bold-tls  # Used only for single domain setups
 
   multipleHost:
     hostArray:
@@ -429,21 +432,6 @@ loadBalancer:
           - cd1.xyz.com
           - cd2.xyz.com
         secretName: tls-secret2
-```
-
-`Istio Ingress Gateway`
-
-```console
-loadBalancer:
-  singleHost:
-    secretName: bold-tls
-
-  multipleHost:
-    hostArray:
-      - hosts: 
-          - cd1.abc.com
-          - cd2.abc.com
-        secretName: tls-secret
 ```
 
 ## Auto Scaling
@@ -486,7 +474,7 @@ autoscaling:
        autoscaling.targetCPUUtilizationPercentage
       </td>
       <td>
-       The CPU utilization is the average CPU usage of a all pods in a deployment across the last minute divided by the requested CPU of this deployment.
+        The CPU utilization is the **average CPU usage of all pods in the deployment over the last minute**, divided by the **total requested CPU** of those pods. This rolling average smooths out short CPU spikes.
       </td>
     </tr>
     <tr>
@@ -494,7 +482,7 @@ autoscaling:
        autoscaling.targetMemoryUtilizationPercentage
       </td>
       <td>
-       With this metric the HPA controller will keep the average utilization of the pods in the scaling target at the value mentioned (80%). Utilization is the ratio between the current usage of resource to the requested resources of the pod.
+       The memory utilization is the **current memory usage of each pod**, divided by the **requested memory** of that pod. The HPA then takes the **average utilization across all pods**. Memory is measured as an instantaneous value, not averaged over time.
       </td>
     </tr>
     <tr>
@@ -511,7 +499,7 @@ autoscaling:
        autoscaling.behavior.podsPeriodSeconds
       </td>
       <td>
-       This policy (Pods) allows 1 replicas to be scaled down in one minute.
+       Defines the maximum number of pods that can be added or removed within the specified period.
       </td>
     </tr>
     <tr>
@@ -528,7 +516,7 @@ autoscaling:
 
 ## Bing Map Widget
 
-If you need to use **Bing Map** widget feature, enable this to `true` and API key value for `<widget_bing_map_api_key>`. By default this feature will be set to false.
+If you want to use the **Bing Map** widget, set `enabled` to `true` and provide the API key in `<widget_bing_map_api_key>`. By default, this feature is disabled (`false`).
 
 ```console
 bingMapWidget:
@@ -536,4 +524,4 @@ bingMapWidget:
   apiKey: <widget_bing_map_api_key>
 ```
 
-> **Note:** The Bing Map keys will be maintained in a secret named `bold-secret`
+> **Note:** The Bing Map API key will be stored in a secret named `bold-secret`.

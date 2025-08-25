@@ -1,13 +1,13 @@
 # Deploy Bold BI using Helm
 
-This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE,AKS and EKS). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
+This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE, AKS, EKS and OKE). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
     
 ## Deployment prerequisites
 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
 * [Install Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [File Storage](docs/pre-requisites.md#file-storage)
-* [Create and connect a cluster](docs/pre-requisites.md#create-a-cluster)
+* [Create and connect a cluster](docs/pre-requisites.md#create-and-connect-a-cluster)
 * [Load Balancing](docs/pre-requisites.md#load-balancing)
 
 > **Note:** Note the [Ingress IP address](docs/pre-requisites.md#get-ingress-ip) and map it with a DNS to crafting values.yaml when installing Bold BI with helm chart.
@@ -40,6 +40,9 @@ For Helm chart, you'll need to craft a `values.yaml`.
 * For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml).
 * For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/aks-values.yaml).
 * For `OKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/oke-values.yaml).
+* For `ACK` please download the values.yaml file [here](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/custom-values/ack-values.yaml).
+
+> **Note:** Items marked with `*` are mandatory fields in values.yaml
 
 <br/>
 
@@ -58,7 +61,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The namespace in which the Bold BI resources will be deployed in the kubernetes cluster.<br/>
-       The default namespace is <i>bold-services</i>
+       The default namespace is <i>bold-services</i>.
       </td>
     </tr>
     <tr>
@@ -85,7 +88,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The type of kubernetes cluster provider you are using.<br/>
-       The recommended values are '<i>gke,eks and aks</i>'
+       The recommended values are '<i>gke,eks, aks and oke</i>'.
       </td>
     </tr>
     <tr>
@@ -101,7 +104,15 @@ For Helm chart, you'll need to craft a `values.yaml`.
        loadBalancer
       </td>
       <td>
-       Currently we have provided support for Nginx and Istio as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+       Currently we have provided support for Nginx, Istio and Kong as Load Balancers in Bold BI. Please refer to <a href='docs/configuration.md#load-balancing'>this</a> section for configuring Load balancer for Bold BI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       subApplication
+      </td>
+      <td>
+       Set **enabled: true** if you want to host your application under a subpath. Use subPath to specify the desired subpath (default is boldservices).
       </td>
     </tr>
     <tr>
@@ -125,7 +136,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        customLocalePath
       </td>
       <td>
-       Custom locale file path for Localization.
+       `customLocalePath` specifies the file path to a customer-provided localization resource. This file contains translations of strings, labels, messages, and other UI text elements customized for the customer’s language and regional preferences.
       </td>
     </tr>
         <tr>
@@ -150,13 +161,13 @@ For Helm chart, you'll need to craft a `values.yaml`.
       </td>
       <td>
        The variable is optional, and the default value is TRUE. 
-          By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
-          You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
+       By default, all sites in Bold BI require a site identifier, which differentiates sites on the same domain. That is https://example.com/bi/site/<site_identifier>
+       You can ignore the site identifier by setting the value as FALSE. If the site identifier is disabled, each site requires a unique domain.
       </td>
     </tr>
         <tr>
       <td>
-       AppSettings__EnableQueryMetricsInDebugFiles
+       queryMetricsInDebugFiles
       </td>
       <td>
        If the query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
@@ -164,7 +175,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       AppSettings__EnableQueryMetricsWithQueryInDebugFiles
+       queryMetricsWithQueryInDebugFiles
       </td>
       <td>
        If the query and query metrics needs to be logged in debug files, enable this to true. By default, this option is set to false.
@@ -182,36 +193,70 @@ For Helm chart, you'll need to craft a `values.yaml`.
     </tr>
         <tr>
       <td>
-       tolerationEnable: false<br />
-       tolerations:
+        tolerationEnable: false<br />
+        tolerations:
       </td>
       <td>
-       Tolerations allow the pods to be scheduled into nodes with matching taints. Set this to true if you use tolerations in your cluster. If you need more than one toleration, you can add multiple tolerations below.
-      </td>
-    </tr>
-        <tr>
-      <td>
-       nodeAffinityEnable: false<br />
-       nodeAffinity:
-      </td>
-      <td>
-       Node affinity ensures that the pods are scheduled into nodes with matching labels. Set this to true if you use node affinity in your cluster.
-      </td>
-    </tr>
-        <tr>
-      <td>
-         podAffinityEnable: false
-      </td>
-      <td>
-        Pod affinity ensures that the pods are scheduled into nodes with matching pods. Set this to true if you use pod affinity in your cluster
+        Tolerations allow pods to be scheduled onto nodes with matching <b>taints</b>. 
+        By default, this is set to <code>false</code>. 
+        <br /> 
+        Set this to <code>true</code> if your cluster uses tolerations. 
+        <br />
+        You can define multiple tolerations with the following fields:
+        <ul>
+          <li><b>key</b>: The taint key to tolerate.</li>
+          <li><b>operator</b>: Defines how the key is compared (e.g., <code>Equal</code>, <code>Exists</code>).</li>
+          <li><b>value</b>: The taint value to match.</li>
+          <li><b>effect</b>: The effect of the taint to tolerate (e.g., <code>NoSchedule</code>, <code>NoExecute</code>).</li>
+        </ul>
+        For more details, see the Kubernetes documentation on 
+        <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/" target="_blank">Taints and Tolerations</a>.
       </td>
     </tr>
-        <tr>
+    <tr>
       <td>
-         podAntiAffinityEnable: false
+        nodeAffinityEnable: false<br />
+        nodeAffinity:
       </td>
       <td>
-        Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods. Set this to true if you use pod anti-affinity in your cluster.
+        Node affinity ensures that pods are scheduled onto nodes with matching <b>labels</b>. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Set this to <code>true</code> if you want to enforce node affinity in your cluster. 
+        <br />
+        Define affinity rules using:
+        <ul>
+          <li><b>key</b>: Node label key.</li>
+          <li><b>operator</b>: How the key is compared (e.g., <code>In</code>, <code>NotIn</code>).</li>
+          <li><b>value</b>: Label values to match.</li>
+        </ul>
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity" target="_blank">Kubernetes Node Affinity</a>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        podAffinityEnable: false
+      </td>
+      <td>
+        Pod affinity allows you to schedule pods onto nodes where other specific pods are already running. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Use pod affinity when you want pods to run <b>together</b> for performance, locality, or dependency reasons. 
+        <br />
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity" target="_blank">Kubernetes Pod Affinity</a>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        podAntiAffinityEnable: false
+      </td>
+      <td>
+        Pod anti-affinity ensures that pods are <b>not</b> scheduled onto nodes where other specific pods are running. 
+        By default, this is set to <code>false</code>. 
+        <br />
+        Use pod anti-affinity to improve reliability by spreading pods across different nodes. 
+        <br />
+        Reference: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity" target="_blank">Kubernetes Pod Anti-Affinity</a>.
       </td>
     </tr>
     </table>
@@ -235,7 +280,7 @@ The following environment variables are optional. If not provided, a manual Appl
        licenseKey
       </td>
       <td>
-       License key of Bold BI
+       License key of Bold BI.
       </td>
     </tr>
     <tr>
@@ -251,7 +296,7 @@ The following environment variables are optional. If not provided, a manual Appl
        password *
       </td>
       <td>
-       It should meet our password requirements. <br /> <br />Note: <br />Password must meet the following requirements. It must contain,At least 6 characters, 1 uppercase character, 1 lowercase character, 1 numeric character, 1 special character
+       It should meet our password requirements. <br /> <br />Note: <br />The password must meet the following requirements: it must contain at least 6 characters, including 1 uppercase letter, 1 lowercase letter, 1 numeric character, and 1 special character. 
       </td>
     </tr>
     <tr>
@@ -259,7 +304,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbType *
       </td>
       <td>
-       Type of database server can be used for configuring the Bold BI.<br/><br />The following DB types are accepted:<br />1. mssql – Microsoft SQL Server/Azure SQL Database<br />2. postgresql – PostgreSQL Server<br />3. mysql – MySQL/MariaDB Server
+       Type of database server can be used for configuring the Bold BI.<br/><br />The following DB types are accepted:<br />1. mssql – Microsoft SQL Server/Azure SQL Database<br />2. postgresql – PostgreSQL Server<br />3. mysql – MySQL/MariaDB Server<br />4. oracle – Oracle Server
       </td>
     </tr>
     <tr>
@@ -275,7 +320,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbPort
       </td>
       <td>
-       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5432<br />MySQL -3306<br /><br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
+       The system will use the following default port numbers based on the database server type.<br />PostgrSQL – 5432<br />MySQL -3306<br />Oracle - 1521<br />Please specify the port number for your database server if it is configured on a different port.<br /><br />For MS SQL Server, this parameter is not necessary.
       </td>
     </tr>
     <tr>
@@ -315,7 +360,7 @@ The following environment variables are optional. If not provided, a manual Appl
        dbAdditionalParameters
       </td>
       <td>
-       If your database server requires additional connection string parameters, include them here.<br /><br />Connection string parameters can be found in the official document.<br />My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html<br />PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html<br />MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring<br /><br /><b>Note:</b> A semicolon(;) should be used to separate multiple parameters.
+       If your database server requires additional connection string parameters, include them here.<br /><br />Connection string parameters can be found in the official document.<br />My SQL: https://dev.mysql.com/doc/connector-net/en/connector-net-8-0-connection-options.html<br />PostgreSQL: https://www.npgsql.org/doc/connection-string-parameters.html<br />MS SQL: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring<br />Oracle: https://docs.oracle.com/en/database/oracle/oracle-database/19/odpnt/ConnectionConnectionString.html<br /><br /><b>Note:</b> A semicolon(;) should be used to separate multiple parameters.
       </td>
     </tr>
     <tr>
@@ -349,7 +394,7 @@ The following environment variables are optional. If they are not provided, Bold
        mainLogo
       </td>
       <td>   
-       This is header logo for the applicationand the preferred image size is 40 x 40 pixels.
+       This is header logo for the application and the preferred image size is 40 x 40 pixels.
       </td>
     </tr>
     <tr>
@@ -394,7 +439,7 @@ The following environment variables are optional. If they are not provided, Bold
       <td>
       This is organization name.     
       <br />
-       If the value is not given, the site will be deployed using the default name.
+       If no value is provided, the site will be deployed with the default name: <b>Bold BI Enterprise Dashboards</b>.
       </td>
     </tr>
     <tr>
@@ -404,23 +449,22 @@ The following environment variables are optional. If they are not provided, Bold
       <td>     
        This is site identifier, and it will be the part of the application URL.
       <br />
-      If the value is not given, the site will be deployed using the default value.
+      If no value is provided, the site will be deployed with the default identifier: <b>site1</b>.
       </td>
     </tr>
 </table>
 <br/>
 
 
-> **Note:** Items marked with `*` are mandatory fields in values.yaml
-
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] --create-namespace -n bold-services
-```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml --create-namespace -n bold-services`
+kubectl create namespace [namespace-name]
 
-Refer [here](docs/configuration.md) for advanced configuration including SSL termination, optional client libraries, etc.
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]  -n [namespace-name]
+
+```
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
@@ -432,14 +476,23 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
   helm repo update
   ```
 
-- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. You can access the latest updated YAML file from the location below:
-
+- Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. Uncomment the lines by removing the # symbols and update the image tag as shown below. While upgrading, use the same YAML file that was used during installation.
+  
   [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
+
+  ```console
+     image:
+       repo: us-docker.pkg.dev/boldbi-294612/boldbi
+       # Overrides the image tag whose default is the chart appVersion.
+       tag: 12.1.5
+       pullPolicy: IfNotPresent
+     imagePullSecrets: []
+  ```
 
 - Run the below command to apply changes in your Bold BI release or upgrading Bold BI to latest version.
 
   ```console
-  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n bold-services
+  helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [namespace-name]
   ```
 
   Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
@@ -447,7 +500,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 ## Uninstall Chart
 
 ```console
-helm uninstall [RELEASE_NAME]
+helm uninstall [RELEASE_NAME] -n [namespace-name]
 ```
 Ex:  `helm uninstall boldbi -n bold-services`
 

@@ -1099,6 +1099,14 @@ The following table allows you to craft the values.yaml file with required value
     </tr>
     <tr>
       <td>
+       subApplication
+      </td>
+      <td>
+       Set **enabled: true** if you want to host your application under a subpath. Use subPath to specify the desired subpath (default is boldservices).
+      </td>
+    </tr>
+    <tr>
+      <td>
        autoscaling
       </td>
       <td>
@@ -1405,9 +1413,9 @@ The following environment variables allow you to customize the branding.
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
-helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+helm install [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [namespace-name]
 ```
-Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
@@ -1422,17 +1430,17 @@ helm repo update
 Run the following command to apply changes in your Bold BI release or upgrade Bold BI to the latest version.
 
 ```console
-helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file]
+helm upgrade [RELEASE_NAME] boldbi/boldbi -f [Crafted values.yaml file] -n [namespace-name]
 ```
 
-Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml`
+Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
 
 ## Uninstall Chart
 
 ```console
-helm uninstall [RELEASE_NAME]
+helm uninstall [RELEASE_NAME] -n [namespace-name]
 ```
-Ex:  `helm uninstall boldbi`
+Ex:  `helm uninstall boldbi -n bold-services`
 
 This removes all the Kubernetes components associated with the chart and deletes the release.
 

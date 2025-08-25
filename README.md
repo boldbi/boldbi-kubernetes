@@ -27,7 +27,7 @@ With deep embedding, you can interact more with your data and get insights direc
 The following requirements are necessary to run the Bold BI solution.
 
 * **Kubernetes Cluster: Kubernetes Version – 1.29+**
-    * Amazon Elastic Kubernetes Service (EKS) | Google Kubernetes Engine (GKE) | Microsoft Azure Kubernetes Service (AKS) | Alibaba Cloud Kubernetes (ACK) | Oracle Kubernetes Engine (OKE) |On-Premises Cluster 
+    * Amazon Elastic Kubernetes Service (EKS) | Google Kubernetes Engine (GKE) | Microsoft Azure Kubernetes Service (AKS) | Alibaba Cloud Kubernetes (ACK) | Oracle Kubernetes Engine (OKE) | On-Premises Cluster 
 
 * **CLI:**
     * Kubectl (installation required)
