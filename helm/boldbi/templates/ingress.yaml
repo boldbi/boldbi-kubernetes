@@ -445,10 +445,10 @@ spec:
       http:
         paths:
           {{- if not .Values.subApplication.subPath }}
-          - path: /boldservices/etlservice/(.*)
+          - path: /boldservices/etlservice(/|$)(.*)
             {{- if $ingressSupportsPathType }}
           {{- else }}        
-          - path: /{{ $.Values.subApplication.subPath }}/etlservice/(.*)
+          - path: /{{ $.Values.subApplication.subPath }}/etlservice(/|$)(.*)
           {{- end }}
             pathType: {{ $ingressPathType }}
             {{- end }}
@@ -859,7 +859,7 @@ spec:
     {{- end }}
       http:
         paths:
-          - path: /etlservice/(.*)
+          - path: /etlservice(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
             {{- end }}
@@ -881,7 +881,7 @@ spec:
     {{- end }}
       http:
         paths:
-          - path: /etlservice/(.*)
+          - path: /etlservice(/|$)(.*)
             {{- if $ingressSupportsPathType }}
             pathType: {{ $ingressPathType }}
             {{- end }}
