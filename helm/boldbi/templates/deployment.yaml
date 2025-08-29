@@ -108,13 +108,19 @@ spec:
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}
         - name: SUB_APP
-          value: "{{ $.Values.subApplication.enabled }}"
+          value: "{{ $.Values.subApplication.enabled | default "false" }}"
+        - name: SUB_PATH
+          value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         {{- else if eq $service.app "id-api" }}
         - name: SUB_APP
-          value: "{{ $.Values.subApplication.enabled }}"
+          value: "{{ $.Values.subApplication.enabled | default "false" }}"
+        - name: SUB_PATH
+          value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         {{- else if eq $service.app "id-ums" }}
         - name: SUB_APP
-          value: "{{ $.Values.subApplication.enabled }}"
+          value: "{{ $.Values.subApplication.enabled | default "false" }}"
+        - name: SUB_PATH
+          value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "{{ $.Values.useSiteIdentifier.enable }}" 
         envFrom:
