@@ -88,6 +88,22 @@ spec:
               name: bold-secret
               key: application_insights_connection_string_secret
         {{- end }}
+        {{- if and (hasKey $.Values "ociStorage") (hasKey $.Values.ociStorage "enabled") ( $.Values.ociStorage.enabled | default false ) }}
+        - name: BOLD_SERVICES_OCI_ACCESS_KEY
+          value: "{{ $.Values.ociStorage.accessKey | default "" }}"
+        - name: BOLD_SERVICES_OCI_BUCKET_NAME
+          value: "{{ $.Values.ociStorage.bucketName | default "" }}"
+        - name: BOLD_SERVICES_OCI_NAME_SPACE
+          value: "{{ $.Values.ociStorage.namespace | default "" }}"
+        - name: BOLD_SERVICES_OCI_REGION
+          value: "{{ $.Values.ociStorage.region | default "" }}"
+        - name: BOLD_SERVICES_OCI_ROOTFOLDER_NAME
+          value: "{{ $.Values.ociStorage.rootFolderName | default "" }}"
+        - name: BOLD_SERVICES_OCI_SECRET_KEY
+          value: "{{ $.Values.ociStorage.secretKey | default "" }}"
+        - name: BOLD_SERVICES_STORAGETYPE
+          value: "{{ $.Values.ociStorage.storageType | default "" }}"
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}
