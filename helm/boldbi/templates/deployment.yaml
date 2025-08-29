@@ -116,7 +116,7 @@ spec:
         - name: SUB_APP
           value: "{{ $.Values.subApplication.enabled }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
-          value: "{{ $.Values.useSiteIdentifier.enable }}"
+          value: "{{ $.Values.useSiteIdentifier.enable }}" 
         envFrom:
         - secretRef:
               name: bold-user-secret
