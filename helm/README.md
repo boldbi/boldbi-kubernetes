@@ -46,13 +46,13 @@ kubectl create namespace [namespace-name]
 2. **Install the Bold BI:**
 
 ```bash
-helm install [RELEASE_NAME] boldbi/boldbi -f [path-to-values.yaml] -n [namespace-name] --set appBaseUrl="https://your-application-domain-name" --set clusterProvider="aks" --set persistentVolume.aks.nfs.fileShareName="your-storageaccount-name/your-fileshare-name" --set persistentVolume.aks.nfs.hostName="your-storageaccount-name.file.core.windows.net"
+helm install [RELEASE_NAME] boldbi/boldbi -n [namespace-name] --set appBaseUrl="https://your-application-domain-name" --set clusterProvider="aks" --set persistentVolume.aks.nfs.fileShareName="your-storageaccount-name/your-fileshare-name" --set persistentVolume.aks.nfs.hostName="your-storageaccount-name.file.core.windows.net"
 ```
 
 **Example:**
 
 ```bash
-helm install boldbi boldbi/boldbi -f my-values.yaml -n bold-services --set appBaseUrl="https://boldbi.example.com" --set clusterProvider="aks" --set persistentVolume.aks.nfs.fileShareName="premiumstorage1234/boldbi" --set persistentVolume.aks.nfs.hostName="premiumstorage1234.file.core.windows.net"
+helm install boldbi boldbi/boldbi -n bold-services --set appBaseUrl="https://boldbi.example.com" --set clusterProvider="aks" --set persistentVolume.aks.nfs.fileShareName="premiumstorage1234/boldbi" --set persistentVolume.aks.nfs.hostName="premiumstorage1234.file.core.windows.net"
 ```
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
