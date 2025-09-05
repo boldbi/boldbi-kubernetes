@@ -61,9 +61,14 @@ Use the following steps to quickly set up and deploy Bold BI.
 
    ```bash
    helm repo add nginx-stable https://helm.nginx.com/stable
+
+   helm repo update
    
-   helm install ingress-nginx ingress-nginx/ingress-nginx --version 4.11.3 --namespace ingress-nginx --create-namespace --set controller.service.externalTrafficPolicy=Local
+   helm install ingress-nginx ingress-nginx/ingress-nginx --version 4.13.1 --namespace ingress-nginx --create-namespace --set controller.service.externalTrafficPolicy=Local
    ```
+
+  Refer to the Helm chart release details here: https://github.com/kubernetes/ingress-nginx
+
 **Note**:
 
   * If you are using a domain name, make sure the Ingress Controller’s External IP is mapped to your DNS.
