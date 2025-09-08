@@ -196,6 +196,15 @@ kubectl create secret tls bold-tls -n bold-services --key tls.key --cert tls.crt
 
 Now your Bold BI site is available at the IP address or domain name specified in your appBaseUrl.
 
+## Advanced Deployment Options
+
+For more advanced deployment scenarios using **Helm** and **kubectl**, refer to the following guides:
+
+* [Deploy Bold BI using Kubectl](docs/index.md)
+* Deploy using Helm
+    1. [Deploy Bold BI using Helm](helm/README.md)
+    2. [Common Deployment(BI and Reports) using Helm](helm/bold-common/README.md)
+  
 # License
 
 [https://www.boldbi.com/terms-of-use#embedded](<https://www.boldbi.com/terms-of-use#embedded?utm_source=github&utm_medium=backlinks>)</br>
