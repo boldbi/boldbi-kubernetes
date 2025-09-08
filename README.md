@@ -100,19 +100,20 @@ kubectl create namespace [namespace-name]
 
 #### Step 2: Install Bold BI
 
-General command:
+##### Standard Bold BI Installation Command
 
 ```bash
 helm install [RELEASE_NAME] boldbi/boldbi -n [namespace-name] \
   --set appBaseUrl="https://<your-domain-or-ip>" \
   --set clusterProvider="<aks/eks/gke/oke>" \
-  --set persistentVolume.<provider>.nfs.fileShareName="<storage-account>/<fileshare-name>" \
-  --set persistentVolume.<provider>.nfs.hostName="<storage-account>.file.core.windows.net"
-```
+  [provider-specific-storage-settings]
+````
 
-#### Example Installations
+> **Note:** Replace the placeholders based on your cloud provider. Refer to the provider-specific commands below.
 
-##### 🔹 AKS
+##### Commands to Install Bold BI in Different Cloud Providers
+
+**🔹 AKS**
 
 ```bash
 helm install boldbi boldbi/boldbi -n bold-services \
@@ -124,7 +125,7 @@ helm install boldbi boldbi/boldbi -n bold-services \
 
 *Replace `premiumstorage1234/boldbi` with your FileShareName share name and `premiumstorage1234.file.core.windows.net` with your storage account’s HostName.*
 
-##### 🔹 EKS
+**🔹 EKS**
 
 ```bash
 helm install boldbi boldbi/boldbi -n bold-services \
@@ -135,7 +136,7 @@ helm install boldbi boldbi/boldbi -n bold-services \
 
 *Replace `fs-12345678` with your actual EFS File System ID.*
 
-##### 🔹 GKE
+**🔹 GKE**
 
 ```bash
 helm install boldbi boldbi/boldbi -n bold-services \
@@ -147,7 +148,7 @@ helm install boldbi boldbi/boldbi -n bold-services \
 
 *Replace `boldbi-share` with your Filestore share name and `10.0.0.5` with the Filestore IP address.*
 
-#### 🔹 OKE
+**🔹 OKE**
 
 ```bash
 helm install boldbi boldbi/boldbi -n bold-services \
