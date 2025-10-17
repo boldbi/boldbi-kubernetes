@@ -1414,7 +1414,7 @@ entries:
     version: 13.1.25
   kc8343:
   - apiVersion: v2
-    appVersion: 13.1.25
+    appVersion: 13.2.5
     created: "2022-04-11T13:06:57.6150424+05:30"
     description: Embed powerful analytics inside your apps and turn your customers
       into success stories with built-in intelligence features.
@@ -1425,5 +1425,5 @@ entries:
     type: application
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc8343-13.2.5.tgz
-    version: 13.1.25
+    version: 13.2.5
 generated: "2022-04-11T13:06:57.3735836+05:30"
