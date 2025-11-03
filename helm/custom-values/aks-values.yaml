@@ -80,7 +80,7 @@ s3Storage:
 # image:
 #   repo: us-docker.pkg.dev/boldbi-294612/boldbi
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 13.2.5
+#   tag: 14.1.11
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 
