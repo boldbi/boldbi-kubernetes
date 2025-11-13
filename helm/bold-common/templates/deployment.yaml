@@ -88,14 +88,16 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        {{- if $.Values.optionalLibs }}
+        - name: INSTALL_OPTIONAL_LIBS
+          value: {{ $.Values.optionalLibs }}
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - name: APP_BASE_URL
           value: {{ $.Values.appBaseUrl }}
         - name: SUB_APP
           value: "{{ $.Values.subApplication.enabled }}"
         {{- if $.Values.optionalLibs }}
-        - name: INSTALL_OPTIONAL_LIBS
-          value: {{ $.Values.optionalLibs }}
         - name: ID_Version
           value: {{ $.Values.versions.idp }}
         - name: BI_Version
