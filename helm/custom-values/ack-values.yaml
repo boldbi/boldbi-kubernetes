@@ -41,7 +41,7 @@ ociStorage:
   # OCI secret key for authentication (e.g., your OCI user secret key)
   secretKey: 
   # Type of OCI storage
-  storageType: 3
+  storageType: 4
 
 # For Amazon S3 Bucket configuration, set enabled as true.
 s3Storage:
