@@ -72,6 +72,7 @@ loadBalancer:
     affinityCookieExpiration: 600
   # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # If you want to use a custom ingressClassName, make sure that the corresponding IngressClass is already created in your ingress controller. Ex: ingressClassName: nginx-bi
   # ingressClassName: nginx
   
   nginxIngressAnnotations:
@@ -113,54 +114,72 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: id-api
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: id-ums
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bi-web
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bi-api
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bi-jobs
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bi-dataservice
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bold-etl
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   - app: bold-ai
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
+    cpuResourceLimits: 500m
+    memoryResourceLimits: 1Gi
   
 autoscaling:
   enabled: true
