@@ -74,6 +74,9 @@ spec:
           requests:
             cpu: {{ $service.cpuResourceRequests }}
             memory: {{ $service.memoryResourceRequests }}
+          limits:
+            cpu: {{ $service.cpuResourceLimits }}
+            memory: {{ $service.memoryResourceLimits }}
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
