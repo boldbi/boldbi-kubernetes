@@ -116,72 +116,54 @@ instanceConfig:
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: id-api
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: id-ums
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bi-web
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bi-api
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bi-jobs
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bi-dataservice
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bold-etl
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
   - app: bold-ai
     replicaCount: 1
     minReplicas: 1
     maxReplicas: 20
     cpuResourceRequests: 250m
     memoryResourceRequests: 750Mi
-    cpuResourceLimits: 500m
-    memoryResourceLimits: 1Gi
 
 autoscaling:
   enabled: true
