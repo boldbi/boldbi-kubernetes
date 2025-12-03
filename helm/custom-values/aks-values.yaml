@@ -34,6 +34,22 @@ persistentVolume:
     azureStorageAccountName: ''
     # base64 string
     azureStorageAccountKey: ''
+
+    # When using AKS workload identity or a user-assigned managed identity,
+    # provide the following values. The identity must have the
+    # "Storage Account Key Operator Service Role" (or equivalent) role on storage account.
+    managedIdentity:
+      # Name of the Azure Files share (no path)
+      fileShareName: ''
+
+      # Name of the storage account (not base64)
+      azureStorageAccountName: ''
+
+      # Resource group that contains the storage account
+      resourceGroup: ''
+      
+      # Azure subscription ID that contains the storage account
+      subscriptionId: ''
     
   #Set 'useExistingClaim' to true to use an existing PersistentVolumeClaim (PVC).
   useExistingClaim: false
@@ -125,6 +141,10 @@ subApplication:
   enabled: false
   # Specify the subpath. The default subpath value is 'boldservices'
   subPath: 
+
+# Redirect application logs to stdout/stderr so they appear in kubectl logs
+applicationLogsToStdout:
+  enabled: false
 
 instanceConfig:
   - app: id-web
@@ -333,3 +353,4 @@ podAffinityEnable: false
 # Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
 # Set this to true if you use pod AntiAffinity in your cluster.
 podAntiAffinityEnable: false
+

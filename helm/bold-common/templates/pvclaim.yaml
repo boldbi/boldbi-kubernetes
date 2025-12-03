@@ -127,6 +127,20 @@ spec:
    {{- end }}
    shareName: {{ .Values.persistentVolume.aks.fileShareName }}
    readOnly: false 
+ {{- else if and (eq .Values.clusterProvider "aks") (.Values.persistentVolume.aks.managedIdentity.fileShareName) }}
+ storageClassName: ""
+ csi:
+   driver: file.csi.azure.com
+   readOnly: false
+   volumeHandle: "{{ .Values.persistentVolume.aks.managedIdentity.azureStorageAccountName }}#{{ .Values.persistentVolume.aks.managedIdentity.fileShareName }}"
+   volumeAttributes:
+     resourceGroup: {{ .Values.persistentVolume.aks.managedIdentity.resourceGroup }}
+     storageAccount: {{ .Values.persistentVolume.aks.managedIdentity.azureStorageAccountName }}
+     shareName: {{ .Values.persistentVolume.aks.managedIdentity.fileShareName }}
+     useAAD: "true"
+     {{- if .Values.persistentVolume.aks.managedIdentity.subscriptionId }}
+     subscriptionId: {{ .Values.persistentVolume.aks.managedIdentity.subscriptionId }}
+     {{- end }}
  {{- else if eq .Values.clusterProvider "gke" }}
  nfs:
    path: /{{ .Values.persistentVolume.gke.fileShareName }}
@@ -176,6 +190,8 @@ spec:
  storageClassName: azurefile-csi-nfs
  {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.fileShareName ) }}
  storageClassName: azurefile
+ {{- else if and (eq .Values.clusterProvider "aks") ( .Values.persistentVolume.aks.managedIdentity.fileShareName ) }}
+ storageClassName: ""
  {{- else if eq .Values.clusterProvider "gke" }}
  storageClassName: ""
  {{- else if and (.Values.persistentVolume.oke.blockVolume.blockVolumeEnable) (.Values.persistentVolume.oke.blockVolume.blockVolumeStorageClass) (eq .Values.clusterProvider "oke") }}
