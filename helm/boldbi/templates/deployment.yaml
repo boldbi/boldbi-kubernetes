@@ -75,6 +75,14 @@ spec:
             cpu: {{ $service.cpuResourceRequests }}
             memory: {{ $service.memoryResourceRequests }}
         env:
+        {{- if $.Values.additionalEnvironment }}
+        {{- range $env := $.Values.additionalEnvironment }}
+        {{- if and (hasKey $env "environment") (or (eq $env.environment.services "all-services") (contains $service.app $env.environment.services)) }}
+        - name: {{ $env.environment.name }}
+          value: {{ $env.environment.value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         {{- if $.Values.optionalLibs }}
@@ -137,19 +145,6 @@ spec:
           value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "{{ $.Values.useSiteIdentifier.enable }}" 
-        envFrom:
-        - secretRef:
-              name: bold-user-secret
-        - secretRef:
-              name: bold-db-secret
-        - secretRef:
-              name: bold-license-key
-        - configMapRef:
-              name: branding-config
-              optional: true
-        - configMapRef:
-              name: version-config
-              optional: true
         {{- else if eq $service.app "bi-dataservice" }}
         - name: AppSettings__CustomSizePDFExport
           value: "{{ $.Values.customSizePdfExport.enable }}"
@@ -174,6 +169,35 @@ spec:
         {{- if $.Values.localization.customLocalePath }}
         - name: AppSettings__locale-path
           value: {{ $.Values.localization.customLocalePath }}
+        {{- end }}
+        {{- end }}
+        envFrom:
+        {{- if eq $service.app "id-ums" }}
+        - secretRef:
+              name: bold-user-secret
+        - secretRef:
+              name: bold-db-secret
+        - secretRef:
+              name: bold-license-key
+        - configMapRef:
+              name: branding-config
+              optional: true
+        - configMapRef:
+              name: version-config
+              optional: true
+        {{- end }}
+        {{- if $.Values.additionalEnvironment }}
+        {{- range $env := $.Values.additionalEnvironment }}
+        {{- if and (hasKey $env "secret") (or (eq $env.secret.services "all-services") (contains $service.app $env.secret.services)) }}
+        - secretRef:
+            name: {{ $env.secret.name }}
+            optional: true
+        {{- end }}
+        {{- if and (hasKey $env "configmap") (or (eq $env.configmap.services "all-services") (contains $service.app $env.configmap.services)) }}
+        - configMapRef:
+            name: {{ $env.configmap.name }}
+            optional: true
+        {{- end }}
         {{- end }}
         {{- end }}
         {{- if eq $service.app "bold-ai" }}

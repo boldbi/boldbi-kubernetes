@@ -86,6 +86,14 @@ spec:
             memory: {{ $service.memoryResourceRequests }}
         {{- if ne $service.product "boldreports" }}
         env:
+        {{- if $.Values.additionalEnvironment }}
+        {{- range $env := $.Values.additionalEnvironment }}
+        {{- if and (hasKey $env "environment") (or (eq $env.environment.services "all-services") (contains $service.app $env.environment.services)) }}
+        - name: {{ $env.environment.name }}
+          value: {{ $env.environment.value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
         {{- if eq $service.app "id-web" }}
@@ -139,6 +147,21 @@ spec:
               name: bold-secret
               {{- end }}
               key: widget_bing_map_api_key_secret
+        {{- end }}
+        {{- end }}
+        {{- end }}
+        envFrom:
+        {{- if $.Values.additionalEnvironment }}
+        {{- range $env := $.Values.additionalEnvironment }}
+        {{- if and (hasKey $env "secret") (or (eq $env.secret.services "all-services") (contains $service.app $env.secret.services)) }}
+        - secretRef:
+            name: {{ $env.secret.name }}
+            optional: true
+        {{- end }}
+        {{- if and (hasKey $env "configmap") (or (eq $env.configmap.services "all-services") (contains $service.app $env.configmap.services)) }}
+        - configMapRef:
+            name: {{ $env.configmap.name }}
+            optional: true
         {{- end }}
         {{- end }}
         {{- end }}

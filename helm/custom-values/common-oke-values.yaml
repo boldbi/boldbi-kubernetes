@@ -119,6 +119,11 @@ istioConfig:
   # Specify the existing VirtualService name. The default name is 'bold-virtual-service'
   virtualServiceName: ''
 
+# Redirect application logs to stdout/stderr so they appear in kubectl logs
+applicationLogsToStdout:
+  enabled: false
+
+
 instanceConfig:
   - app: id-web
     product: boldid
@@ -281,3 +286,31 @@ podAffinityEnable: false
 # Pod anti-affinity ensures that the pods are not scheduled into nodes with matching pods.
 # Set this to true if you use pod AntiAffinity in your cluster.
 podAntiAffinityEnable: false
+
+# Additional environment configurations to be applied to specific services or all services.
+# Use this section to define one or more environment variables, Kubernetes Secrets and ConfigMaps to be mounted as environment variables.
+# Each entry can be one of the following:
+#   - environment: Defines a single environment variable with a name and value.
+#     - name: The name of the environment variable.
+#     - value: The value of the environment variable.
+#     - services: The services to which the variable applies. Use "all-services" to apply to all,
+#       or a comma-separated list of service names (e.g., "id-web,id-ums,bold-etl").
+#   - secret: References a Kubernetes Secret to be mounted as environment variables.
+#     - name: The name of the Secret resource.
+#     - services: The services to which the Secret applies (same format as above).
+#   - configmap: References a Kubernetes ConfigMap to be mounted as environment variables.
+#     - name: The name of the ConfigMap resource.
+#     - services: The services to which the ConfigMap applies (same format as above).
+# Example:
+# additionalEnvironment:
+#   - environment:
+#       name: "LOG_LEVEL"
+#       value: "debug"
+#       services: "all-services"
+#   - secret:
+#       name: "database-credentials"
+#       services: "id-web,id-ums"
+#   - configmap:
+#       name: "app-settings"
+#       services: "bold-etl"
+additionalEnvironment: []

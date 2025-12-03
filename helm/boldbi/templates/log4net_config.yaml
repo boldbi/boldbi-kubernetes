@@ -12,7 +12,9 @@ data:
       <log4net threshold="ALL">
         <root>
           <level value="ALL" />
-           <!-- <appender-ref ref="ConsoleAppender" /> -->
+          {{- if .Values.applicationLogsToStdout.enabled }}
+          <appender-ref ref="ConsoleAppender" />
+          {{- end }}
           <appender-ref ref="FILE_DEBUG_APPENDER" />
           <appender-ref ref="FILE_ERROR_APPENDER" />
         </root>
