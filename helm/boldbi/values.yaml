@@ -176,6 +176,10 @@ subApplication:
   # Specify the subpath. The default subpath value is 'boldservices'
   subPath: 
 
+logging:
+  level: "both"      # info | error | both
+  output: "file"  # console | file | both
+
 instanceConfig:
   - app: id-web
     replicaCount: 1

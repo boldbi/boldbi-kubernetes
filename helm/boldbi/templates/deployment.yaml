@@ -77,6 +77,10 @@ spec:
         env:
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        {{- if eq $.Values.logging.output "console" }}
+        - name: BOLD_SERVICES_CONSOLE_LOG_ENABLED
+          value: "false"
+        {{- end }}
         {{- if $.Values.optionalLibs }}
         - name: INSTALL_OPTIONAL_LIBS
           value: {{ $.Values.optionalLibs }}
