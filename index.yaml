@@ -1544,7 +1544,7 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc270850-13.1.25.tgz
     version: 13.1.25
-  kc281670:
+  kc281670-beta:
   - apiVersion: v2
     appVersion: 14.2.50
     created: "2022-04-11T13:06:57.6150424+05:30"
