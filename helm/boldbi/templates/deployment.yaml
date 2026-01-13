@@ -34,9 +34,11 @@ spec:
         image: busybox:1.28
         command: ["/bin/sh","-c"]
         args: ["while [ ! -f /application/app_data/configuration/config.json ] || [ ! -f /application/app_data/configuration/privatekeys.dat ]; do echo 'Waiting for required files...'; sleep 10; done; echo 'Both config.json and privatekeys.dat files exist.'"]
+        {{- if $.Values.persistentVolume.enabled }}
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
+        {{- end }}
       {{- end }}
       {{- if $.Values.imagePullSecrets }}
       imagePullSecrets:
@@ -44,6 +46,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ $service.app }}-container
+        imagePullPolicy: Always
         {{- if eq $service.app "id-web" }}
         image: "{{ $.Values.image.repo }}/bold-identity:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-api" }}
@@ -79,6 +82,13 @@ spec:
           value: k8s
         {{- if eq $.Values.logging.output "console" }}
         - name: BOLD_SERVICES_CONSOLE_LOG_ENABLED
+          value: "true"
+        {{- end }}
+        {{- if $.Values.persistentVolume.enabled }}
+        - name: BOLD_SERVICES_PV_USED
+          value: "true"
+        {{- else }}
+        - name: BOLD_SERVICES_PV_USED
           value: "false"
         {{- end }}
         {{- if $.Values.optionalLibs }}
@@ -141,19 +151,7 @@ spec:
           value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "{{ $.Values.useSiteIdentifier.enable }}" 
-        envFrom:
-        - secretRef:
-              name: bold-user-secret
-        - secretRef:
-              name: bold-db-secret
-        - secretRef:
-              name: bold-license-key
-        - configMapRef:
-              name: branding-config
-              optional: true
-        - configMapRef:
-              name: version-config
-              optional: true
+        {{- end }}
         {{- else if eq $service.app "bi-dataservice" }}
         - name: AppSettings__CustomSizePDFExport
           value: "{{ $.Values.customSizePdfExport.enable }}"
@@ -180,6 +178,23 @@ spec:
           value: {{ $.Values.localization.customLocalePath }}
         {{- end }}
         {{- end }}
+        envFrom:
+        {{- if eq $service.app "id-ums" }}
+        - secretRef:
+              name: bold-user-secret
+        - secretRef:
+              name: bold-db-secret
+        - secretRef:
+              name: bold-license-key
+        - configMapRef:
+              name: branding-config
+              optional: true
+        - configMapRef:
+              name: version-config
+              optional: true
+        {{- end }}
+        - configMapRef:
+              name: service-urls-config
         {{- if eq $service.app "bold-ai" }}
         readinessProbe:
           httpGet:
@@ -208,8 +223,10 @@ spec:
           timeoutSeconds: 30
         {{- end }}
         volumeMounts:
+        {{- if $.Values.persistentVolume.enabled }}
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - mountPath: /application/idp/web/logs/k8s
         {{- else if eq $service.app "id-api" }}
@@ -233,12 +250,14 @@ spec:
       volumes:
       - name: {{ $service.app }}-volume
         persistentVolumeClaim:
+          {{- if $.Values.persistentVolume.enabled }}
           {{- if $.Values.persistentVolume.useExistingClaim }}
           claimName: {{ $.Values.persistentVolume.claimName }}
           {{- else }}
           claimName: {{ printf "%s-claim" $.Values.persistentVolume.name }}
           {{- end }}
           readOnly: false
+          {{- end }}
       - name: log4net-config-volume
         configMap:
           name: log4net-config

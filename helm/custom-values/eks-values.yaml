@@ -7,6 +7,7 @@ optionalLibs: 'mongodb,mysql,influxdb,snowflake,oracle,google,clickhouse'
 clusterProvider: 'eks'
 
 persistentVolume:
+  enabled: true
   # persistent volumes were global resources. 
   # so if you already have Bold BI installed in your cluster, then the previous persistent volume name will conflict with current installation.
   # Change this name to avoid conflicts with previous Bold BI persistent volumes.
