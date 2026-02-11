@@ -273,6 +273,12 @@ brandingDetails:
   
   # This is site identifier, and it will be the part of the application URL.
   siteIdentifier: ""
+
+  # To show or hide the copy right info. (true or false)
+  showCopyRightInfo: ""
+
+  # To show or hide the powered by logo information. (true or false)
+  showPoweredBySyncfusion: ""
   
 licenseKeyDetails:
   # Set this to true if you have existing details in your cluster.

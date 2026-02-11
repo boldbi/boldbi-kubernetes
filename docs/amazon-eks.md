@@ -72,6 +72,8 @@ kubectl apply -f root-user-details.yaml
 kubectl apply -f log4net_config.yaml
 
 kubectl apply -f branding_config.yaml
+
+kubectl apply -f bold-services-urls-config.yaml
 ```
 
 13. If you have a DNS to map with the application, you can continue with the following steps, else skip to **Step 16**. 
