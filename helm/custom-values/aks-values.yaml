@@ -93,8 +93,8 @@ loadBalancer:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # If you want to use a custom ingressClassName, make sure that the corresponding IngressClass is already created in your ingress controller. Ex: ingressClassName: nginx-bi
   # ingressClassName: nginx
-  # azureAlbGatewayName:
-  # azureAlbGatewayNamespace: 
+  # gatewayName: 
+  # gatewayNamespace: 
 
   nginxIngressAnnotations:
     # Enter annotations here for adding annotations in nginx ingress

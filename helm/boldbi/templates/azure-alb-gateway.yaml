@@ -11,11 +11,13 @@ spec:
     name: bold-main-route
   default:
     timeouts:
-      request: 300s
+      routeTimeout: 300s
+    {{- if .Values.loadBalancer.affinityCookie.enable }}
     sessionAffinity:
       affinityType: application-cookie
       cookieName: bold.k8s.pod.id
-      cookieDuration: 3600s
+      cookieDuration: "{{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}s"
+    {{- end }}
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -28,8 +30,8 @@ spec:
   - "{{ index (splitList "/" .Values.appBaseUrl) 2 }}"
   {{- end }}
   parentRefs:
-  - name: {{ .Values.loadBalancer.azureAlbGatewayName }}
-    namespace: {{ .Values.loadBalancer.azureAlbGatewayNamespace }}
+  - name: {{ .Values.loadBalancer.gatewayName }}
+    namespace: {{ .Values.loadBalancer.gatewayNamespace }}
     {{- if hasPrefix "https://" .Values.appBaseUrl }}
     sectionName: https
     {{- else }}
