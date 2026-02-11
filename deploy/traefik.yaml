@@ -13,8 +13,8 @@ spec:
   tls:
     secretName: bold-tls
   routes:
-    - match: Host(`example.com`)
-    # - match: PathPrefix(`/`)
+    # - match: Host(`example.com`)
+    - match: PathPrefix(`/`)
       kind: Rule
       middlewares:
         - name: gzip-compress
@@ -27,8 +27,8 @@ spec:
             cookie:
               name: bold.k8s.pod.id
               maxAge: 600
-    - match: Host(`example.com`) && PathPrefix(`/api`)
-    # - match: PathPrefix(`/api`)
+    # - match: Host(`example.com`) && PathPrefix(`/api`)
+    - match: PathPrefix(`/api`)
       kind: Rule
       middlewares:
         - name: gzip-compress
