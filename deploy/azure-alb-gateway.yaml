@@ -17,28 +17,6 @@ spec:
       cookieDuration: 3600s
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: bold-gateway
-  namespace: bold-services
-  annotations:
-    alb.networking.azure.io/alb-namespace: <Enter-your-alb-namespace>
-    alb.networking.azure.io/alb-name: <Enter-your-alb-name>
-spec:
-  gatewayClassName: azure-alb-external
-  listeners:
-  - name: http
-    protocol: HTTP
-    port: 80
-#   - name: https
-#     protocol: HTTPS
-#     port: 443
-#     tls:
-#       mode: Terminate
-#       certificateRefs:
-#       - name: bold-tls
----
-apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: bold-main-route
@@ -47,10 +25,9 @@ spec:
 #   hostnames:
 #   - "example.com"
   parentRefs:
-#   - name: bold-gateway
-#     sectionName: https
-  - name: bold-gateway
-    sectionName: http
+    - name: <azure-gateway-name>          # e.g., appgw-gateway
+      namespace: <azure-gateway-namespace> # e.g., default
+      sectionName: <listener-name>         # Azure ALB Listener name (http or https)
   rules:
   - matches:
     - path:

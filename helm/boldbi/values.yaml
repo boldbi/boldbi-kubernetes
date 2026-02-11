@@ -134,6 +134,10 @@ image:
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
+logging:
+ level: "both"      # info | error | both
+ output: "file"  # console | file | both 
+
 loadBalancer:
   type: nginx
   affinityCookie:
@@ -143,6 +147,8 @@ loadBalancer:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # If you want to use a custom ingressClassName, make sure that the corresponding IngressClass is already created in your ingress controller. Ex: ingressClassName: nginx-bi
   # ingressClassName: nginx
+  # azureAlbGatewayName:
+  # azureAlbGatewayNamespace: 
 
   nginxIngressAnnotations:
     # Enter annotations here for adding annotations in nginx ingress
@@ -348,6 +354,10 @@ brandingDetails:
   site_name: ""
   
   site_identifier: ""
+
+  show_copy_right_info: ""
+
+  show_powered_by_syncfusion: ""
   
   
 licenseKeyDetails:

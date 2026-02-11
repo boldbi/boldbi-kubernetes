@@ -20,6 +20,10 @@ data:
   BOLD_SERVICES_SITE_NAME: "{{ .Values.brandingDetails.site_name }}"
   
   BOLD_SERVICES_SITE_IDENTIFIER: "{{ .Values.brandingDetails.site_identifier }}"
+
+  BOLD_SERVICES_SHOW_COPY_RIGHT_INFO: "{{ .Values.brandingDetails.show_copy_right_info }}"
+
+  BOLD_SERVICES_SHOW_POWERED_BY_SYNCFUSION: "{{ .Values.brandingDetails.show_powered_by_syncfusion }}"
  
  {{- end }}
   
