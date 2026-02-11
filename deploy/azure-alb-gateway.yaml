@@ -25,8 +25,8 @@ spec:
 #   hostnames:
 #   - "example.com"
   parentRefs:
-    - name: <azure-gateway-name>          # e.g., appgw-gateway
-      namespace: <azure-gateway-namespace> # e.g., default
+    - name: <gateway-name>          # e.g., appgw-gateway
+      namespace: <gateway-namespace> # e.g., default
       sectionName: <listener-name>         # Azure ALB Listener name (http or https)
   rules:
   - matches:
