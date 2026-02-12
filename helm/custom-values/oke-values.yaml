@@ -15,7 +15,7 @@ persistentVolume:
   oke:
     # Note: You can use only one type of volume at a time - either a filesystem volume or a block volume.
     # For filesystem volumes, specify your volume handle in this format: <FileSystemOCID>:<MountTargetIP>:<path>
-    volumeHandle: '<FileSystemOCID>:<MountTargetIP>:<path>'
+    volumeHandle: ''
     
     # By default, Oracle filesystem volume uses 'Filesystem' mode. To use a different mode, set the volumeMode field accordingly
     volumeMode: ''
