@@ -1,4 +1,22 @@
 {{- range $service := .Values.instanceConfig}}
+{{- /* Define PV check ONCE here — reuse $hasRealPV everywhere */ -}}
+{{- $hasRealPV := or
+    $.Values.persistentVolume.useExistingClaim
+    (and (eq $.Values.clusterProvider "aks")
+         (or (ne (default "" $.Values.persistentVolume.aks.nfs.fileShareName) "")
+             (ne (default "" $.Values.persistentVolume.aks.fileShareName) "")))
+    (and (eq $.Values.clusterProvider "eks")
+         (ne (default "" $.Values.persistentVolume.eks.efsFileSystemId) ""))
+    (and (eq $.Values.clusterProvider "gke")
+         (and (ne (default "" $.Values.persistentVolume.gke.fileShareIp) "")
+              (ne (default "" $.Values.persistentVolume.gke.fileShareName) "")))
+    (and (eq $.Values.clusterProvider "ack")
+         (ne (default "" $.Values.persistentVolume.ack.serverName) ""))
+    (and (eq $.Values.clusterProvider "oke")
+         (or (ne (default "" $.Values.persistentVolume.oke.volumeHandle) "")
+             (and $.Values.persistentVolume.oke.blockVolume.blockVolumeEnable
+                  (ne (default "" $.Values.persistentVolume.oke.blockVolume.blockVolumeCapacity) ""))))
+-}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,10 +51,22 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
+        {{- if $hasRealPV }}
         args: ["while [ ! -f /application/app_data/configuration/config.json ] || [ ! -f /application/app_data/configuration/privatekeys.dat ]; do echo 'Waiting for required files...'; sleep 10; done; echo 'Both config.json and privatekeys.dat files exist.'"]
+        {{- else if eq $service.app "id-api" }}
+        args: ["sleep 100;"]
+        {{- else if eq $service.app "bi-web" }}
+        args: ["sleep 140;"]
+        {{- else if eq $service.app "bi-api" }}
+        args: ["sleep 180;"]
+        {{- else }}
+        args: ["sleep 240;"]
+        {{- end }}
+        {{- if $hasRealPV }}
         volumeMounts:
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
+        {{- end }}
       {{- end }}
       {{- if $.Values.imagePullSecrets }}
       imagePullSecrets:
@@ -75,8 +105,21 @@ spec:
             cpu: {{ $service.cpuResourceRequests }}
             memory: {{ $service.memoryResourceRequests }}
         env:
+        - name: APP_BASE_URL
+          value: {{ $.Values.appBaseUrl }}
         - name: BOLD_SERVICES_HOSTING_ENVIRONMENT
           value: k8s
+        {{- if eq $.Values.logging.output "console" }}
+        - name: BOLD_SERVICES_CONSOLE_LOG_ENABLED
+          value: "true"
+        {{- end }}
+        {{- if $hasRealPV }}
+        - name: BOLD_SERVICES_PV_USED
+          value: "true"
+        {{- else }}
+        - name: BOLD_SERVICES_PV_USED
+          value: "false"
+        {{- end }}
         {{- if $.Values.optionalLibs }}
         - name: INSTALL_OPTIONAL_LIBS
           value: {{ $.Values.optionalLibs }}
@@ -91,15 +134,21 @@ spec:
         {{- if and (hasKey $.Values "ociStorage") (hasKey $.Values.ociStorage "enabled") ( $.Values.ociStorage.enabled | default false ) }}
         - name: BOLD_SERVICES_OCI_ACCESS_KEY
           value: "{{ $.Values.ociStorage.accessKey | default "" }}"
+        - name: OCI_ACCESS_KEY
+          value: "{{ $.Values.ociStorage.accessKey | default "" }}"
         - name: BOLD_SERVICES_OCI_BUCKET_NAME
           value: "{{ $.Values.ociStorage.bucketName | default "" }}"
         - name: BOLD_SERVICES_OCI_NAME_SPACE
           value: "{{ $.Values.ociStorage.namespace | default "" }}"
         - name: BOLD_SERVICES_OCI_REGION
           value: "{{ $.Values.ociStorage.region | default "" }}"
+        - name: OCI_REGION
+          value: "{{ $.Values.ociStorage.region | default "" }}"
         - name: BOLD_SERVICES_OCI_ROOTFOLDER_NAME
           value: "{{ $.Values.ociStorage.rootFolderName | default "" }}"
         - name: BOLD_SERVICES_OCI_SECRET_KEY
+          value: "{{ $.Values.ociStorage.secretKey | default "" }}"
+        - name: OCI_SECRET_KEY
           value: "{{ $.Values.ociStorage.secretKey | default "" }}"
         - name: BOLD_SERVICES_STORAGETYPE
           value: "{{ $.Values.ociStorage.storageType | default "" }}"
@@ -119,8 +168,6 @@ spec:
           value: "{{ $.Values.s3Storage.storageType | default "" }}"
         {{- end }}
         {{- if eq $service.app "id-web" }}
-        - name: APP_BASE_URL
-          value: {{ $.Values.appBaseUrl }}
         - name: SUB_APP
           value: "{{ $.Values.subApplication.enabled | default "false" }}"
         - name: SUB_PATH
@@ -137,19 +184,6 @@ spec:
           value: "{{ $.Values.subApplication.subPath | default "boldservices" }}"
         - name: BOLD_SERVICES_USE_SITE_IDENTIFIER
           value: "{{ $.Values.useSiteIdentifier.enable }}" 
-        envFrom:
-        - secretRef:
-              name: bold-user-secret
-        - secretRef:
-              name: bold-db-secret
-        - secretRef:
-              name: bold-license-key
-        - configMapRef:
-              name: branding-config
-              optional: true
-        - configMapRef:
-              name: version-config
-              optional: true
         {{- else if eq $service.app "bi-dataservice" }}
         - name: AppSettings__CustomSizePDFExport
           value: "{{ $.Values.customSizePdfExport.enable }}"
@@ -176,6 +210,24 @@ spec:
           value: {{ $.Values.localization.customLocalePath }}
         {{- end }}
         {{- end }}
+        envFrom:
+        {{- if eq $service.app "id-ums" }}
+        - secretRef:
+              name: bold-user-secret
+        - secretRef:
+              name: bold-db-secret
+        - secretRef:
+              name: bold-license-key
+        - configMapRef:
+              name: branding-config
+              optional: true
+        - configMapRef:
+              name: version-config
+              optional: true
+        {{- end }}
+        - configMapRef:
+              name: service-urls-config
+              optional: true
         {{- if eq $service.app "bold-ai" }}
         readinessProbe:
           httpGet:
@@ -204,8 +256,10 @@ spec:
           timeoutSeconds: 30
         {{- end }}
         volumeMounts:
+        {{- if $hasRealPV }}
         - mountPath: /application/app_data
           name: {{ $service.app }}-volume
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - mountPath: /application/idp/web/logs/k8s
         {{- else if eq $service.app "id-api" }}
@@ -227,6 +281,7 @@ spec:
         {{- end }}
           name: log4net-config-volume
       volumes:
+      {{- if $hasRealPV }}
       - name: {{ $service.app }}-volume
         persistentVolumeClaim:
           {{- if $.Values.persistentVolume.useExistingClaim }}
@@ -235,6 +290,7 @@ spec:
           claimName: {{ printf "%s-claim" $.Values.persistentVolume.name }}
           {{- end }}
           readOnly: false
+      {{- end }}
       - name: log4net-config-volume
         configMap:
           name: log4net-config

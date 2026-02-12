@@ -235,6 +235,26 @@ The following links explain Bold BI Kubernetes deployment in specific cloud envi
               If the value is not given, the site will be deployed using the default value.
               </td>
             </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_SHOW_COPY_RIGHT_INFO
+              </td>
+              <td>     
+               To show or hide the copy right info
+              <br />
+              If the value is not given, the site will be deployed using the default value.
+              </td>
+            </tr>
+            <tr>
+              <td>
+               BOLD_SERVICES_SHOW_POWERED_BY_SYNCFUSION
+              </td>
+              <td>     
+               To show or hide the powered by logo information.
+              <br />
+              If the value is not given, the site will be deployed using the default value.
+              </td>
+            </tr>
         </table>
         <br/>
         <details>

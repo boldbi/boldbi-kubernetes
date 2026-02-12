@@ -27,6 +27,12 @@ data:
   
   # This is site identifier, and it will be the part of the application URL.
   BOLD_SERVICES_SITE_IDENTIFIER: ""
+  
+  # To show or hide the copy right info. (true or false)
+  BOLD_SERVICES_SHOW_COPY_RIGHT_INFO: ""
+  
+  # To show or hide the powered by logo information. (true or false)
+  BOLD_SERVICES_SHOW_POWERED_BY_SYNCFUSION: ""
 
   # Note: If you want to use the custom branding, provide the value for all branding variables 
   # If all variable values are given, application will use the branding images,

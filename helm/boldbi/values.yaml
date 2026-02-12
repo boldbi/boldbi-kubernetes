@@ -134,6 +134,10 @@ image:
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
+logging:
+ level: "both"      # info | error | both
+ output: "file"  # console | file | both 
+
 loadBalancer:
   type: nginx
   affinityCookie:
@@ -143,6 +147,8 @@ loadBalancer:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # If you want to use a custom ingressClassName, make sure that the corresponding IngressClass is already created in your ingress controller. Ex: ingressClassName: nginx-bi
   # ingressClassName: nginx
+  # gatewayName:
+  # gatewayNamespace: 
 
   nginxIngressAnnotations:
     # Enter annotations here for adding annotations in nginx ingress
@@ -334,20 +340,32 @@ databaseServerDetails:
   dbSchema: ""
  
 brandingDetails:
-
-  main_logo:  ""
+  # This is the header logo for the application, and the preferred image size is 40 x 40 pixels.
+  mainLogo:  ""
   
-  login_logo:  ""
+  # This is the login logo for the application, and the preferred image size is 200 x 40 pixels.
+  loginLogo:  ""
   
-  email_logo:  ""
+  # This is an email logo, and the preferred image size is 200 x 40 pixels.
+  emailLogo:  ""
   
+   # This is a favicon, and the preferred image size is 40 x 40 pixels.
   favicon:  ""
   
-  footer_logo:  ""
+  # This is powered by the logo, and the preferred size is 100 x 25 pixels.
+  footerLogo:  ""
   
-  site_name: ""
+  # This is organization name.
+  siteName: ""
   
-  site_identifier: ""
+  # This is site identifier, and it will be the part of the application URL.
+  siteIdentifier: ""
+  
+  # To show or hide the copy right info. (true or false)
+  showCopyRightInfo: ""
+
+  # To show or hide the powered by logo information. (true or false)
+  showPoweredBySyncfusion: ""
   
   
 licenseKeyDetails:
