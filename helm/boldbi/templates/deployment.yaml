@@ -74,7 +74,6 @@ spec:
       {{- end }}
       containers:
       - name: {{ $service.app }}-container
-        imagePullPolicy: Always
         {{- if eq $service.app "id-web" }}
         image: "{{ $.Values.image.repo }}/bold-identity:{{ $.Values.image.tag }}"
         {{- else if eq $service.app "id-api" }}
