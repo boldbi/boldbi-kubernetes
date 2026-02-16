@@ -70,6 +70,8 @@ Wait until the migration completes successfully.
 After migration:
 
 - Remove all PV-related config from `values.yaml`
+  ![oci_remove_pv](images/oci_remove_pv.png)
+
 - Upgrade again:
 
 ```sh
