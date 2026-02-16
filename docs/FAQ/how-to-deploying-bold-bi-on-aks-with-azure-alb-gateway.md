@@ -11,14 +11,14 @@ This guide explains how to deploy **Bold BI** on an **Azure Kubernetes Service (
 # Prerequisites
  Before starting the deployment, ensure the following are in place:
 ## 1. AKS Cluster Setup:
-* Create a new AKS cluster or update an existing one to support Azure ALB Controller. Refer to the official Microsoft documentation for detailed instructions:
+* Create a new AKS cluster or update an existing one to support Azure ALB Controller. Refer to the official Microsoft documentation for detailed instructions
 
 * Documentation: [Deploy Application Gateway for Containers ALB Controller add-on](https://learn.microsoft.com/en-us/azure/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller-addon)
 
 * This step enables the ALB ingress controller, which is essential for routing traffic to your Bold BI application.
 
 ## 2. Azure Storage Account:
-* Set up an Azure Files storage account for persistent storage in AKS. This is required for Bold BI's data persistence.Follow the guidelines in the Bold BI Kubernetes repository. [Documentation Link](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/docs/pre-requisites.md#aks-file-storage)
+* Set up an Azure Files storage account for persistent storage in AKS. This is required for Bold BI's data persistence. Follow the guidelines in the Bold BI Kubernetes repository. [Documentation Link](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/docs/pre-requisites.md#aks-file-storage)
 
 * Note the storage account details (e.g., account name, file share name, and access key), as they will be used later for persistent volumes.
 
@@ -60,7 +60,7 @@ kubectl get nodes
 This should list the nodes in your AKS cluster.
 
 ## 2. Download the Azure ALB Pre-Config File
-Download the pre-configuration YAML file for Azure ALB integration with Bold BI.Use the following command or download directly from the URL
+Download the pre-configuration YAML file for Azure ALB integration with Bold BI. Use the following command or download directly from the URL
 ```sh
 curl -O https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/refs/heads/main/deploy/azure-alb-pre-config.yaml
 ```
