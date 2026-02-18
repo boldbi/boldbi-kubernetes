@@ -98,7 +98,7 @@ Further edit azure-alb-pre-config.yaml to specify:
 
 ![update_alb_namespace](images/update_alb_namespace.png)
 
-Ensure these match your ALB setup from Prerequisite 1.
+Ensure these match your ALB setup from Prerequisite one.
 
 ## 7. Apply ALB Config
 For reference:
@@ -116,7 +116,7 @@ Apply the configured YAML to create the Gateway resources.
 kubectl apply -f azure-alb-pre-config.yaml
 ```
 
-## 7. Retrieve the CNAME for the ALB Gateway, which will be used for DNS mapping.
+## 7. Obtain CNAME for Azure Gateway
 Retrieve the CNAME for the ALB Gateway, which will be used for DNS mapping.
 
 ```sh
