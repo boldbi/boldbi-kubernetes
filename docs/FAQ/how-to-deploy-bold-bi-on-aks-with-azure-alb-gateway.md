@@ -98,7 +98,7 @@ Further edit azure-alb-pre-config.yaml to specify:
 
 ![update_alb_namespace](images/update_alb_namespace.png)
 
-Ensure these match your ALB setup from Prerequisite one.
+Ensure these match your ALB setup from [Prerequisite](#1-aks-cluster-setup).
 
 ## 7. Apply ALB Config
 For reference:
