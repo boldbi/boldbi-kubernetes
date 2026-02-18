@@ -10,26 +10,26 @@ This guide explains how to deploy **Bold BI** on an **Azure Kubernetes Service (
 
 # Prerequisites
  Before starting the deployment, ensure the following are in place:
-## 1. AKS Cluster Setup:
+## 1. AKS Cluster Setup
 * Create a new AKS cluster or update an existing one to support Azure ALB Controller. Refer to the official Microsoft documentation for detailed instructions
 
 * Documentation: [Deploy Application Gateway for Containers ALB Controller add-on](https://learn.microsoft.com/en-us/azure/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller-addon)
 
 * This step enables the ALB ingress controller, which is essential for routing traffic to your Bold BI application.
 
-## 2. Azure Storage Account:
+## 2. Azure Storage Account
 * Set up an Azure Files storage account for persistent storage in AKS. This is required for Bold BI's data persistence. Follow the guidelines in the Bold BI Kubernetes repository. [Documentation Link](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/docs/pre-requisites.md#aks-file-storage)
 
 * Note the storage account details (e.g., account name, file share name, and access key), as they will be used later for persistent volumes.
 
-## 3. Helm Installation:
+## 3. Helm Installation
 * Install Helm on your local machine to manage Kubernetes charts.
 
 * Download and install from the official Helm documentation: [Helm Installation Guide](https://helm.sh/docs/intro/install/)
 
 * Verify the installation by running `helm version` in your terminal.
 
-## 4. Additional Tools:
+## 4. Additional Tools
 * Azure CLI (az) installed and authenticated.
 
 * kubectl installed and configured.
@@ -162,7 +162,7 @@ Configure persistent volumes in aks-values.yaml using your Azure Storage Account
     ![azure-nfs-file-share](images/azure-nfs-file-share.png)
 
 
-## 11. Deploy Bold BI to the AKS cluster using the Helm chart.
+## 11. Deploy Bold BI to the AKS cluster using the Helm chart
 ```sh
 helm install boldbi boldbi/boldbi -f <your-values.yaml> -n <namespace>
 ```
