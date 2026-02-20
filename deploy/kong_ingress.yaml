@@ -5,6 +5,12 @@ metadata:
   namespace: bold-services
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/connect-timeout: "300000"
+    konghq.com/read-timeout: "300000"
+    konghq.com/write-timeout: "300000"
+    konghq.com/strip-path: "false"
+    konghq.com/request-buffering: "on"
+    konghq.com/response-buffering: "on
 spec:
   #tls:
   #- hosts:
