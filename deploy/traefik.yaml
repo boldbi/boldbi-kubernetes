@@ -6,12 +6,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
-  entryPoints:
-    - websecure
   # entryPoints:
-  #   - web
-  tls:
-    secretName: bold-tls
+  #   - websecure
+  entryPoints:
+    - web
+  # tls:
+  #   secretName: bold-tls
   routes:
     # - match: Host(`example.com`)
     - match: PathPrefix(`/`)
