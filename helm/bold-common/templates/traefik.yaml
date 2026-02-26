@@ -1,0 +1,372 @@
+{{- if eq .Values.loadBalancer.type "traefik" }}
+{{- $baseHost := (split "/" .Values.appBaseUrl)._2 }}
+{{- $isIP := regexMatch "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$" $baseHost }}
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: long-timeouts-transport
+  {{- include "boldbi.namespace" . | nindent 2 }}
+spec:
+  forwardingTimeouts:
+    dialTimeout: 300s
+    responseHeaderTimeout: 300s
+    idleConnTimeout: 300s
+    readIdleTimeout: 300s
+---
+{{- if .Values.loadBalancer.enableGzip }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: gzip-compress
+  {{- include "boldbi.namespace" . | nindent 2 }}
+spec:
+  compress:
+    minResponseBodyBytes: 1024
+---
+{{- end }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: body-limit-200m
+  {{- include "boldbi.namespace" . | nindent 2 }}
+spec:
+  buffering:
+    maxRequestBodyBytes: 209715200
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: etl-rewrite
+  {{- include "boldbi.namespace" . | nindent 2 }}
+spec:
+  replacePathRegex:
+    regex: ^/etlservice(/|$)(.*)
+    replacement: /$2
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bold-ingressroute
+  {{- include "boldbi.namespace" . | nindent 2 }}
+  annotations:
+    kubernetes.io/ingress.class: {{ default "traefik" .Values.loadBalancer.ingressClassName }}
+spec:
+  {{- if eq (split ":" .Values.appBaseUrl)._0 "https" }}
+  entryPoints:
+    - websecure
+  tls:
+    secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+  {{- else }}
+  entryPoints:
+    - web
+  {{- end }}
+  routes:
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`)
+    {{- else }}
+    - match: PathPrefix(`/`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-web-service
+          port: 6000
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/api`)
+    {{- else }}
+    - match: PathPrefix(`/api`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-api-service
+          port: 6001
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/ums`)
+    {{- else }}
+    - match: PathPrefix(`/ums`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-ums-service
+          port: 6002
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/reporting/api`)
+    {{- else }}
+    - match: PathPrefix(`/reporting/api`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: reports-api-service
+          port: 6551
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/reporting/jobs`)
+    {{- else }}
+    - match: PathPrefix(`/reporting/jobs`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: reports-jobs-service
+          port: 6552
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/reporting/viewer`)
+    {{- else }}
+    - match: PathPrefix(`/reporting/viewer`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: reports-viewer-service
+          port: 6554
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/reporting/reportservice`)
+    {{- else }}
+    - match: PathPrefix(`/reporting/reportservice`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: reports-reportservice-service
+          port: 6553
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/reporting`)
+    {{- else }}
+    - match: PathPrefix(`/reporting`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: reports-web-service
+          port: 6550
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/api`)
+    {{- else }}
+    - match: PathPrefix(`/bi/api`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-api-service
+          port: 6005
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/jobs`)
+    {{- else }}
+    - match: PathPrefix(`/bi/jobs`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-jobs-service
+          port: 6006
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/designer`)
+    {{- else }}
+    - match: PathPrefix(`/bi/designer`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-dataservice-service
+          port: 6007
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi`)
+    {{- else }}
+    - match: PathPrefix(`/bi`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-web-service
+          port: 6004
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/aiservice`)
+    {{- else }}
+    - match: PathPrefix(`/aiservice`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bold-ai-service
+          port: 6010
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+
+    {{- if not $isIP }}
+    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathRegexp(`^/etlservice(/|$)(.*)`)
+    {{- else }}
+    - match: PathRegexp(`^/etlservice(/|$)(.*)`)
+    {{- end }}
+      kind: Rule
+      middlewares:
+      {{- if .Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+      {{- end }}
+        - name: body-limit-200m
+        - name: etl-rewrite
+      services:
+        - name: bold-etl-service
+          port: 6009
+          serversTransport: long-timeouts-transport
+          {{- if .Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+{{- end }}
