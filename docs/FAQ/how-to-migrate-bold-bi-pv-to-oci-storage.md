@@ -18,7 +18,7 @@ helm repo update
 If using an existing `values.yaml` file, update the image repository and tag with the latest values provided.
 
 - **Image Repo:** us-docker.pkg.dev/boldbi-294612/boldbi
-- **Image Tag:** 15.1.65
+- **Image Tag:** 15.2.6
 
 ## 3. Update Logging Configuration
 Inside your `values.yaml`, update logging settings:
