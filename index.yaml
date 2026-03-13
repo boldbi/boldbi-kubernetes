@@ -1499,6 +1499,19 @@ entries:
     urls:
     - https://boldbi.github.io/boldbi-kubernetes/kc282383-15.1.65.tgz
     version: 15.1.65
+  - apiVersion: v2
+    appVersion: 15.2.12
+    created: "2026-02-13T15:00:00.0000000+05:30"
+    description: Embed powerful analytics inside your apps and turn your customers
+      into success stories with built-in intelligence features.
+    digest: 4b1db9c3d491326af276dd259d723972a43e37c824e13920225614318b85628d
+    home: https://www.boldbi.com/
+    icon: https://website-assets.boldbi.com/wp-content/uploads/2019/05/boldbi-header-menu-logo.svg
+    name: kc282383
+    type: application
+    urls:
+    - https://boldbi.github.io/boldbi-kubernetes/kc282383-15.2.12.tgz
+    version: 15.2.12
   kc8343:
   - apiVersion: v2
     appVersion: 11.3.24
