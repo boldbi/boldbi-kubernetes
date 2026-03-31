@@ -1,6 +1,7 @@
 {{- $hasRealPV := or
     $.Values.persistentVolume.useExistingClaim
-    (and (ne (default "" $.Values.persistentVolume.onpremise.hostPath) ""))
+    (and (eq $.Values.clusterProvider "onpremise")
+         (ne (default "" $.Values.persistentVolume.onpremise.hostPath) ""))
     (and (eq $.Values.clusterProvider "aks")
          (or (ne (default "" $.Values.persistentVolume.aks.nfs.fileShareName) "")
              (ne (default "" $.Values.persistentVolume.aks.fileShareName) "")))
