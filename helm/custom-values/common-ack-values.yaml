@@ -34,16 +34,16 @@ image:
   biRepo: us-docker.pkg.dev/boldbi-294612/boldbi
   reportsRepo: us-docker.pkg.dev/boldreports/multi-container
   # Overrides the image tag whose default is the chart appVersion.
-  idTag: 15.2.6
-  biTag: 15.2.6
-  reportsTag: 12.2.6
+  idTag: 15.3.8
+  biTag: 15.3.8
+  reportsTag: 13.1.26
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 
 versions:
   idp: "4.19.1"
-  bi: "15.2.6"
-  reports: "12.2.6"
+  bi: "15.3.8"
+  reports: "13.1.26"
 
 loadBalancer:
   type: nginx
@@ -222,6 +222,10 @@ browserTimeZone:
 
 ## If the query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.
 queryMetricsInDebugFiles:
+  enable: false
+
+## If the query metrics need to be logged in HAR files, set this option to true. By default, this option is set to false.
+querymetricswithqueryinHAR:
   enable: false
 
 ## If the query and query metrics need to be logged in debug files, set this option to true. By default, this option is set to false.

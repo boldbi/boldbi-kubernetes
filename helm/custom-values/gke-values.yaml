@@ -61,7 +61,7 @@ s3Storage:
 # image:
 #   repo: us-docker.pkg.dev/boldbi-294612/boldbi
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 15.2.6
+#   tag: 15.3.8
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 
@@ -198,6 +198,10 @@ useSiteIdentifier:
 ##Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
 azureApplicationInsights:
   connectionString: ""
+  
+## If the query metrics need to be logged in HAR files, set this option to true. By default, this option is set to false.
+querymetricswithqueryinHAR:
+  enable: false
   
 rootUserDetails:
   # Set this to true if you have existing details in your cluster.

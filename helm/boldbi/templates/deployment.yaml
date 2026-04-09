@@ -195,6 +195,8 @@ spec:
           value: "{{ $.Values.queryMetricsInDebugFiles.enable }}"
         - name: AppSettings__EnableQueryMetricsWithQueryInDebugFiles
           value: "{{ $.Values.queryMetricsWithQueryInDebugFiles.enable }}"
+        - name: AppSettings__EnableQueryMetricsWithQueryInHAR
+          value: "{{ $.Values.querymetricswithqueryinHAR.enable }}"
         {{- if $.Values.bingMapWidget.enabled }}
         - name: widget_bing_map_enable
           valueFrom:

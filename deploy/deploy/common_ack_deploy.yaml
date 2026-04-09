@@ -244,7 +244,7 @@ spec:
     spec:
       containers:
       - name: id-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -264,9 +264,9 @@ spec:
         - name: ID_Version
           value: "4.2.1"
         - name: BI_Version
-          value: "15.2.6"
+          value: "15.3.8"
         - name: Reports_Version
-          value: "12.2.6"
+          value: "13.1.26"
         - name: Is_Common_IDP
           value: "true"
         readinessProbe:
@@ -317,7 +317,7 @@ spec:
           name: id-api-volume
       containers:
       - name: id-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-identity-api:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -378,7 +378,7 @@ spec:
           name: id-ums-volume
       containers:
       - name: id-ums-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/bold-ums:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -445,7 +445,7 @@ spec:
           name: bi-web-volume
       containers:
       - name: bi-web-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -503,7 +503,7 @@ spec:
           name: bi-api-volume
       containers:
       - name: bi-api-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-api:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -561,7 +561,7 @@ spec:
           name: bi-jobs-volume
       containers:
       - name: bi-jobs-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-server-jobs:15.3.8
         ports:
         - containerPort: 80
         resources:
@@ -619,7 +619,7 @@ spec:
           name: bi-dataservice-volume
       containers:
       - name: bi-dataservice-container
-        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:15.2.6
+        image: us-docker.pkg.dev/boldbi-294612/boldbi/boldbi-designer:15.3.8
         ports:
         - containerPort: 80
         env:
@@ -681,7 +681,7 @@ spec:
     spec:
       containers:
       - name: reports-web-container
-        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server:12.2.6
+        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server:13.1.26
         ports:
         - containerPort: 80
         env:
@@ -734,7 +734,7 @@ spec:
     spec:
       containers:
       - name: reports-api-container
-        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server-api:12.2.6
+        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server-api:13.1.26
         ports:
         - containerPort: 80
         env:
@@ -787,7 +787,7 @@ spec:
     spec:
       containers:
       - name: reports-jobs-container
-        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server-jobs:12.2.6
+        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-server-jobs:13.1.26
         ports:
         - containerPort: 80
         env:
@@ -840,7 +840,7 @@ spec:
     spec:
       containers:
       - name: reports-reportservice-container
-        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-designer:12.2.6
+        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-designer:13.1.26
         ports:
         - containerPort: 80
         env:
@@ -897,7 +897,7 @@ spec:
     spec:
       containers:
       - name: reports-viewer-container
-        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-viewer:12.2.6
+        image: us-docker.pkg.dev/boldreports/multi-container/boldreports-viewer:13.1.26
         ports:
         - containerPort: 80
         resources:
