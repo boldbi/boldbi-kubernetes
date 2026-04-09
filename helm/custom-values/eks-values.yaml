@@ -301,6 +301,10 @@ queryMetricsInDebugFiles:
 queryMetricsWithQueryInDebugFiles:
   enable: false
 
+## If the query metrics need to be logged in HAR files, set this option to true. By default, this option is set to false.
+querymetricswithqueryinHAR:
+  enable: false
+
 # Tolerations allow the pods to be scheduled into nodes with matching taints.
 # Set this to true if you use tolerations in your cluster.
 # If you need more than one toleration, you can add tolerations below.
