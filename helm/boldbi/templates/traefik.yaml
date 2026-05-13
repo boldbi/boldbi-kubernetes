@@ -1,6 +1,10 @@
 {{- if eq .Values.loadBalancer.type "traefik" }}
 {{- $baseHost := (split "/" .Values.appBaseUrl)._2 }}
 {{- $isIP := regexMatch "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$" $baseHost }}
+{{- $subPath := "" }}
+{{- if .Values.subApplication.enabled }}
+  {{- $subPath = printf "/%s" (.Values.subApplication.subPath | default "boldservices") }}
+{{- end }}
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
 metadata:
@@ -22,8 +26,8 @@ metadata:
 spec:
   compress:
     minResponseBodyBytes: 1024
----
 {{- end }}
+---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -43,6 +47,237 @@ spec:
     regex: ^/etlservice(/|$)(.*)
     replacement: /$2
 ---
+{{- if (and (hasKey .Values.loadBalancer "multipleHost") (hasKey .Values.loadBalancer.multipleHost "hostArray") (gt (len .Values.loadBalancer.multipleHost.hostArray) 0)) }}
+  {{- range $groupIdx, $group := .Values.loadBalancer.multipleHost.hostArray }}
+    {{- range $hostIdx, $host := $group.hosts }}
+      {{- $ingressName := printf "bold-ingressroute-group%d-host%d" $groupIdx $hostIdx }}
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $ingressName }}
+  {{- include "boldbi.namespace" $ | nindent 2 }}
+  annotations:
+    kubernetes.io/ingress.class: {{ default "traefik" $.Values.loadBalancer.ingressClassName }}
+spec:
+  {{- if eq (split ":" $.Values.appBaseUrl)._0 "https" }}
+  entryPoints:
+    - websecure
+  tls:
+    secretName: {{ $group.secretName | quote }}
+  {{- else }}
+  entryPoints:
+    - web
+  {{- end }}
+  routes:
+    - match: |
+        {{- if and $isIP $.Values.subApplication.enabled }}
+        PathPrefix(`{{ $subPath }}`)
+        {{- else if $isIP }}
+        PathPrefix(`/`)
+        {{- else }}
+          {{- if $.Values.subApplication.enabled }}  
+        Host(`{{ $host }}`) && PathPrefix(`{{ $subPath }}`)
+          {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`/`)
+          {{- end }}
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-web-service
+          port: 6000
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/api" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/api" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-api-service
+          port: 6001
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/ums" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/ums" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: id-ums-service
+          port: 6002
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/api" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/bi/api" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-api-service
+          port: 6005
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/jobs" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/bi/jobs" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-jobs-service
+          port: 6006
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/designer" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/bi/designer" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-dataservice-service
+          port: 6007
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/bi" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bi-web-service
+          port: 6004
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/aiservice" $subPath }}`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathPrefix(`{{ printf "%s/aiservice" $subPath }}`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+      services:
+        - name: bold-ai-service
+          port: 6010
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathRegexp(`^{{ $subPath }}/etlservice(/|$)(.*)`)
+        {{- else }}
+        Host(`{{ $host }}`) && PathRegexp(`^{{ $subPath }}/etlservice(/|$)(.*)`)
+        {{- end }}
+      kind: Rule
+      middlewares:
+        {{- if $.Values.loadBalancer.enableGzip }}
+        - name: gzip-compress
+        {{- end }}
+        - name: body-limit-200m
+        - name: etl-rewrite
+      services:
+        - name: bold-etl-service
+          port: 6009
+          serversTransport: long-timeouts-transport
+          {{- if $.Values.loadBalancer.affinityCookie.enable }}
+          sticky:
+            cookie:
+              name: bold.k8s.pod.id
+              maxAge: {{ default "600" $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
+          {{- end }}
+---
+    {{- end }}  {{- /* end per-host */ -}}
+  {{- end }}  {{- /* end per-group */ -}}
+{{- else }}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -55,22 +290,29 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: {{ .Values.loadBalancer.singleHost.secretName }}
+    secretName: {{ .Values.loadBalancer.singleHost.secretName | default "bold-tls" }}
   {{- else }}
   entryPoints:
     - web
   {{- end }}
   routes:
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`)
-    {{- else }}
-    - match: PathPrefix(`/`)
-    {{- end }}
+    - match: |
+        {{- if and $isIP $.Values.subApplication.enabled }}
+        PathPrefix(`{{ $subPath }}`)
+        {{- else if $isIP }}
+        PathPrefix(`/`)
+        {{- else }}
+          {{- if $.Values.subApplication.enabled }}  
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ $subPath }}`)
+          {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`/`)
+          {{- end }}
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: id-web-service
@@ -82,17 +324,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/api`)
-    {{- else }}
-    - match: PathPrefix(`/api`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/api" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/api" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: id-api-service
@@ -104,17 +346,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/ums`)
-    {{- else }}
-    - match: PathPrefix(`/ums`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/ums" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/ums" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: id-ums-service
@@ -126,17 +368,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/api`)
-    {{- else }}
-    - match: PathPrefix(`/bi/api`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/api" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/bi/api" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: bi-api-service
@@ -148,17 +390,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/jobs`)
-    {{- else }}
-    - match: PathPrefix(`/bi/jobs`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/jobs" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/bi/jobs" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: bi-jobs-service
@@ -170,17 +412,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi/designer`)
-    {{- else }}
-    - match: PathPrefix(`/bi/designer`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi/designer" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/bi/designer" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: bi-dataservice-service
@@ -192,17 +434,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/bi`)
-    {{- else }}
-    - match: PathPrefix(`/bi`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/bi" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/bi" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: bi-web-service
@@ -214,17 +456,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathPrefix(`/aiservice`)
-    {{- else }}
-    - match: PathPrefix(`/aiservice`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathPrefix(`{{ printf "%s/aiservice" $subPath }}`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathPrefix(`{{ printf "%s/aiservice" $subPath }}`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
       services:
         - name: bold-ai-service
@@ -236,17 +478,17 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
-
-    {{- if not $isIP }}
-    - match: Host(`{{ (split "/" .Values.appBaseUrl)._2 }}`) && PathRegexp(`^/etlservice(/|$)(.*)`)
-    {{- else }}
-    - match: PathRegexp(`^/etlservice(/|$)(.*)`)
-    {{- end }}
+    - match: |
+        {{- if $isIP }}
+        PathRegexp(`^{{ $subPath }}/etlservice(/|$)(.*)`)
+        {{- else }}
+        Host(`{{ $baseHost }}`) && PathRegexp(`^{{ $subPath }}/etlservice(/|$)(.*)`)
+        {{- end }}
       kind: Rule
       middlewares:
-      {{- if .Values.loadBalancer.enableGzip }}
+        {{- if .Values.loadBalancer.enableGzip }}
         - name: gzip-compress
-      {{- end }}
+        {{- end }}
         - name: body-limit-200m
         - name: etl-rewrite
       services:
@@ -259,4 +501,5 @@ spec:
               name: bold.k8s.pod.id
               maxAge: {{ default "600" .Values.loadBalancer.affinityCookie.affinityCookieExpiration }}
           {{- end }}
+{{- end }}
 {{- end }}
