@@ -9,6 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=432000
     alb.ingress.kubernetes.io/session-cookie-name: "bold.k8s.pod.id"
     alb.ingress.kubernetes.io/session-cookie-max-age: "432000"
     alb.ingress.kubernetes.io/session-cookie-expires: "200"
