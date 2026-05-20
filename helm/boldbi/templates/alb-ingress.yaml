@@ -12,8 +12,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: {{ .Values.loadBalancer.targetType | default "ip" }}
     alb.ingress.kubernetes.io/healthcheck-path: /health-check
     {{- if .Values.loadBalancer.affinityCookie.enable }}
-    alb.ingress.kubernetes.io/auth-session-cookie: bold.k8s.pod.id
-    alb.ingress.kubernetes.io/auth-session-timeout: "{{ $.Values.loadBalancer.affinityCookie.affinityCookieExpiration }}"
+    alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=432000
     {{- end }}
     {{- if and .Values.loadBalancer.ssl.enable (eq .Values.loadBalancer.ssl.tls "arn") }}
     alb.ingress.kubernetes.io/certificate-arn: "{{ $.Values.loadBalancer.ssl.arn }}"
