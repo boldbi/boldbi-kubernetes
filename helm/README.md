@@ -613,6 +613,79 @@ To use Amazon S3 storage, set `s3Storage.enabled: true`.
 </table>
 <br/>
 
+### Azure Blob Storage Configuration
+
+To use Azure Blob storage, set `azureStorage.enabled: true`.
+
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.enabled
+      </td>
+      <td>
+       Enable Azure Blob storage backend. Set to <code>true</code> to use Azure Blob storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.accessKey
+      </td>
+      <td>
+       Azure Blob storage access key for authentication.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.accountName
+      </td>
+      <td>
+       Azure Blob storage account name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.containerName
+      </td>
+      <td>
+       Name of the Azure Blob container to use for storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.connectionType
+      </td>
+      <td>
+       Azure Blob connection type (e.g., DefaultEndpointsProtocol).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.storageUri
+      </td>
+      <td>
+       Azure Blob storage URI endpoint.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       azureStorage.storageType
+      </td>
+      <td>
+       Type of Azure Blob storage. Default value is <code>1</code>.
+      </td>
+    </tr>
+</table>
+<br/>
+
+
 Run the following command to delpoy Bold BI in your cluster.
 
 ```console
