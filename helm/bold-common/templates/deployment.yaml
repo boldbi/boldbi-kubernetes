@@ -21,7 +21,9 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ $service.app }}
       app.kubernetes.io/instance: {{ $.Release.Name }}
+  {{- if not $.Values.autoscaling.enabled }}
   replicas: {{ $service.replicaCount }}
+  {{- end }}
   template:
     metadata:
       labels:

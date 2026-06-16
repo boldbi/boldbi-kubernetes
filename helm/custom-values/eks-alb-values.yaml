@@ -64,7 +64,7 @@ s3Storage:
   secretKey: 
   # Type of S3 storage
   storageType: 3
-  
+
 image:
   repo: us-docker.pkg.dev/boldbi-294612/boldbi
   # Overrides the image tag whose default is the chart appVersion.

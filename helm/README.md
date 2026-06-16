@@ -1,7 +1,7 @@
 # Deploy Bold BI using Helm
 
 This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE, AKS, EKS and OKE). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
-    
+
 ## Deployment prerequisites
 
 * [Install Helm](https://helm.sh/docs/intro/install/) to deploy Bold BI using Helm.
@@ -136,7 +136,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        customLocalePath
       </td>
       <td>
-       `customLocalePath` specifies the file path to a customer-provided localization resource. This file contains translations of strings, labels, messages, and other UI text elements customized for the customer’s language and regional preferences.
+       `customLocalePath` specifies the file path to a customer-provided localization resource. This file contains translations of strings, labels, messages, and other UI text elements customized for the customer's language and regional preferences.
       </td>
     </tr>
         <tr>
@@ -188,7 +188,7 @@ For Helm chart, you'll need to craft a `values.yaml`.
        connectionString: ""
       </td>
       <td>
-       Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application’s performance, detect issues, and enhance your application’s overall reliability.
+       Integrating Azure Application Insights with Bold BI Enterprise Edition enables you to track and visualize your application's performance, detect issues, and enhance your application's overall reliability.
       </td>
     </tr>
         <tr>
@@ -437,7 +437,7 @@ The following environment variables are optional. If they are not provided, Bold
        siteName
       </td>
       <td>
-      This is organization name.     
+      This is organization name.      
       <br />
        If no value is provided, the site will be deployed with the default name: <b>Bold BI Enterprise Dashboards</b>.
       </td>
@@ -455,6 +455,163 @@ The following environment variables are optional. If they are not provided, Bold
 </table>
 <br/>
 
+## Environment variables for configuring Storage in backend
+
+The following environment variables are optional. If not provided, Bold BI will use the default configured values.
+
+<br/>
+
+### OCI Storage Configuration
+
+To use OCI storage, set `ociStorage.enabled: true`.
+
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.enabled
+      </td>
+      <td>
+       Enable OCI storage backend. Set to <code>true</code> to use OCI storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.accessKey
+      </td>
+      <td>
+       OCI access key for authentication (e.g., your OCI user access key).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.bucketName
+      </td>
+      <td>
+       Name of the OCI bucket to use for storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.namespace
+      </td>
+      <td>
+       OCI namespace (tenant OCID or namespace name).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.region
+      </td>
+      <td>
+       OCI region where the bucket is located (e.g., us-ashburn-1).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.rootFolderName
+      </td>
+      <td>
+       Root folder path within the bucket for storing data.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.secretKey
+      </td>
+      <td>
+       OCI secret key for authentication (e.g., your OCI user secret key).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       ociStorage.storageType
+      </td>
+      <td>
+       Type of OCI storage. Default value is <code>4</code>.
+      </td>
+    </tr>
+</table>
+<br/>
+
+### S3 Storage Configuration
+
+To use Amazon S3 storage, set `s3Storage.enabled: true`.
+
+<table>
+    <tr>
+      <td>
+       <b>Name</b>
+      </td>
+      <td>
+       <b>Description</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.enabled
+      </td>
+      <td>
+       Enable S3 storage backend. Set to <code>true</code> to use S3 storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.accessKey
+      </td>
+      <td>
+       AWS access key ID for authentication (e.g., your IAM user access key ID).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.bucketName
+      </td>
+      <td>
+       Name of the S3 bucket to use for storage.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.region
+      </td>
+      <td>
+       AWS region where the bucket is located (e.g., us-east-1).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.rootFolderName
+      </td>
+      <td>
+       Root folder path within the bucket for storing data.
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.secretKey
+      </td>
+      <td>
+       AWS secret access key for authentication (e.g., your IAM user secret access key).
+      </td>
+    </tr>
+    <tr>
+      <td>
+       s3Storage.storageType
+      </td>
+      <td>
+       Type of S3 storage. Default value is <code>3</code>.
+      </td>
+    </tr>
+</table>
+<br/>
 
 Run the following command to delpoy Bold BI in your cluster.
 
