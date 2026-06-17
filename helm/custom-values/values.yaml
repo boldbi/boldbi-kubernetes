@@ -102,7 +102,7 @@ image:
 imagePullSecrets: []
 
 loadBalancer:
-  type: nginx
+  type: traefik
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600

@@ -156,7 +156,7 @@ logging:
  output: "file"  # console | file | both 
 
 loadBalancer:
-  type: nginx
+  type: traefik
   affinityCookie:
     enable: true
     affinityCookieExpiration: 600

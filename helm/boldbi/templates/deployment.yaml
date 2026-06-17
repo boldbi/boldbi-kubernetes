@@ -165,6 +165,20 @@ spec:
         - name: BOLD_SERVICES_STORAGETYPE
           value: "{{ $.Values.s3Storage.storageType | default "" }}"
         {{- end }}
+        {{- if and (hasKey $.Values "azureStorage") (hasKey $.Values.azureStorage "enabled") ( $.Values.azureStorage.enabled | default false ) }}
+        - name: BOLD_SERVICES_AZUREBLOB_ACCESSKEY
+          value: "{{ $.Values.azureStorage.accessKey | default "" }}"
+        - name: BOLD_SERVICES_AZUREBLOB_ACCOUNT_NAME
+          value: "{{ $.Values.azureStorage.accountName | default "" }}"
+        - name: BOLD_SERVICES_AZUREBLOB_CONTAINER_NAME
+          value: "{{ $.Values.azureStorage.containerName | default "" }}"
+        - name: BOLD_SERVICES_AZUREBLOB_CONNECTION_TYPE
+          value: "{{ $.Values.azureStorage.connectionType | default "" }}"
+        - name: BOLD_SERVICES_AZUREBLOB_STORAGE_URI
+          value: "{{ $.Values.azureStorage.storageUri | default "" }}"
+        - name: BOLD_SERVICES_STORAGETYPE
+          value: "{{ $.Values.azureStorage.storageType | default "" }}"
+        {{- end }}
         {{- if eq $service.app "id-web" }}
         - name: SUB_APP
           value: "{{ $.Values.subApplication.enabled | default "false" }}"
