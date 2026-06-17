@@ -60,10 +60,27 @@ s3Storage:
   # Type of S3 storage
   storageType: 3
 
+# For Azure Blob Storage configuration, set enabled as true.
+azureStorage:
+  # Enable Azure Blob storage backend (required: set to true to use Azure)
+  enabled: false
+  # Azure Blob access key for authentication
+  accessKey:
+  # Azure Blob account name
+  accountName:
+  # Name of the Azure Blob container to use for storage
+  containerName:
+  # Azure Blob connection type (e.g., default, managedidentity)
+  connectionType:
+  # Azure Blob storage URI (e.g., for managed identity authentication)
+  storageUri:
+  # Type of Azure storage (set to 1 for Azure Blob)
+  storageType: 1
+
 # image:
 #   repo: us-docker.pkg.dev/boldbi-294612/boldbi
 #   # Overrides the image tag whose default is the chart appVersion.
-#   tag: 15.3.8
+#   tag: 16.1.70
 #   pullPolicy: IfNotPresent
 # imagePullSecrets: []
 
