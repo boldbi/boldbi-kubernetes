@@ -57,14 +57,8 @@ spec:
         command: ["/bin/sh","-c"]
         {{- if and $hasRealPV (not ($.Values.ociStorage.enabled | default false)) (not ($.Values.s3Storage.enabled | default false)) (not ($.Values.azureStorage.enabled | default false)) }}
         args: ["while [ ! -f /application/app_data/configuration/config.json ] || [ ! -f /application/app_data/configuration/privatekeys.dat ]; do echo 'Waiting for required files...'; sleep 10; done; echo 'Both config.json and privatekeys.dat files exist.'"]
-        {{- else if eq $service.app "id-api" }}
-        args: ["sleep 100;"]
-        {{- else if eq $service.app "bi-web" }}
-        args: ["sleep 140;"]
-        {{- else if eq $service.app "bi-api" }}
-        args: ["sleep 180;"]
         {{- else }}
-        args: ["sleep 240;"]
+        args: ["echo 'Waiting for id-web service...'; while ! nc -z id-web-service 6000; do echo 'Still waiting...'; sleep 5; done; echo 'id-web is ready'"]
         {{- end }}
         {{- if $hasRealPV }}
         volumeMounts:
