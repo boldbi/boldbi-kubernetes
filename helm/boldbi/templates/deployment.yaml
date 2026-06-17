@@ -55,7 +55,7 @@ spec:
       - name: id-web-initialization
         image: busybox:1.28
         command: ["/bin/sh","-c"]
-        {{- if $hasRealPV }}
+        {{- if and $hasRealPV (not ($.Values.ociStorage.enabled | default false)) (not ($.Values.s3Storage.enabled | default false)) (not ($.Values.azureStorage.enabled | default false)) }}
         args: ["while [ ! -f /application/app_data/configuration/config.json ] || [ ! -f /application/app_data/configuration/privatekeys.dat ]; do echo 'Waiting for required files...'; sleep 10; done; echo 'Both config.json and privatekeys.dat files exist.'"]
         {{- else if eq $service.app "id-api" }}
         args: ["sleep 100;"]
