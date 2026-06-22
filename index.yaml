@@ -12,7 +12,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-4.2.69.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-4.2.69.tgz
     version: 4.2.69
   - apiVersion: v2
     appVersion: 5.1.55
@@ -25,7 +25,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-5.1.55.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-5.1.55.tgz
     version: 5.1.55
   - apiVersion: v2
     appVersion: 5.2.48
@@ -38,7 +38,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-5.2.48.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-5.2.48.tgz
     version: 5.2.48
   - apiVersion: v2
     appVersion: 5.2.49
@@ -51,7 +51,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-5.2.49.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-5.2.49.tgz
     version: 5.2.49
   - apiVersion: v2
     appVersion: 6.1.8
@@ -64,7 +64,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.1.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.1.8.tgz
     version: 6.1.8
   - apiVersion: v2
     appVersion: 6.2.7
@@ -77,7 +77,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.2.7.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.2.7.tgz
     version: 6.2.7
   - apiVersion: v2
     appVersion: 6.3.3
@@ -90,7 +90,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.3.3.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.3.3.tgz
     version: 6.3.3
   - apiVersion: v2
     appVersion: 6.4.6
@@ -103,7 +103,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.4.6.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.4.6.tgz
     version: 6.4.6
   - apiVersion: v2
     appVersion: 6.5.8
@@ -116,7 +116,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.5.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.5.8.tgz
     version: 6.5.8
   - apiVersion: v2
     appVersion: 6.6.12
@@ -129,7 +129,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.6.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.6.12.tgz
     version: 6.6.12
   - apiVersion: v2
     appVersion: 6.7.11
@@ -142,7 +142,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.7.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.7.11.tgz
     version: 6.7.11
   - apiVersion: v2
     appVersion: 6.8.9
@@ -155,7 +155,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.8.9.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.8.9.tgz
     version: 6.8.9
   - apiVersion: v2
     appVersion: 6.9.10
@@ -168,7 +168,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.9.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.9.10.tgz
     version: 6.9.10
   - apiVersion: v2
     appVersion: 6.10.12
@@ -181,7 +181,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.10.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.10.12.tgz
     version: 6.10.12
   - apiVersion: v2
     appVersion: 6.11.10
@@ -194,7 +194,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.11.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.11.10.tgz
     version: 6.11.10
   - apiVersion: v2
     appVersion: 6.12.12
@@ -207,7 +207,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.12.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.12.12.tgz
     version: 6.12.12
   - apiVersion: v2
     appVersion: 6.13.11
@@ -220,7 +220,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.13.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.13.11.tgz
     version: 6.13.11
   - apiVersion: v2
     appVersion: 6.14.12
@@ -233,7 +233,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.14.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.14.12.tgz
     version: 6.14.12
   - apiVersion: v2
     appVersion: 6.15.11
@@ -246,7 +246,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.15.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.15.11.tgz
     version: 6.15.11
   - apiVersion: v2
     appVersion: 6.16.12
@@ -259,7 +259,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.16.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.16.12.tgz
     version: 6.16.12
   - apiVersion: v2
     appVersion: 6.17.13
@@ -272,7 +272,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.17.13.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.17.13.tgz
     version: 6.17.13
   - apiVersion: v2
     appVersion: 6.18.11
@@ -285,7 +285,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.18.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.18.11.tgz
     version: 6.18.11
   - apiVersion: v2
     appVersion: 6.19.14
@@ -298,7 +298,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-6.19.14.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-6.19.14.tgz
     version: 6.19.14
   - apiVersion: v2
     appVersion: 7.1.16
@@ -311,7 +311,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.1.16.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.1.16.tgz
     version: 7.1.16
   - apiVersion: v2
     appVersion: 7.2.8
@@ -324,7 +324,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.2.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.2.8.tgz
     version: 7.2.8
   - apiVersion: v2
     appVersion: 7.3.8
@@ -337,7 +337,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.3.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.3.8.tgz
     version: 7.3.8
   - apiVersion: v2
     appVersion: 7.4.11
@@ -350,7 +350,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.4.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.4.11.tgz
     version: 7.4.11
   - apiVersion: v2
     appVersion: 7.5.13
@@ -363,7 +363,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.5.13.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.5.13.tgz
     version: 7.5.13
   - apiVersion: v2
     appVersion: 7.6.12
@@ -376,7 +376,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.6.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.6.12.tgz
     version: 7.6.12
   - apiVersion: v2
     appVersion: 7.7.9
@@ -389,7 +389,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.7.9.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.7.9.tgz
     version: 7.7.9
   - apiVersion: v2
     appVersion: 7.8.18
@@ -402,7 +402,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.8.18.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.8.18.tgz
     version: 7.8.18
   - apiVersion: v2
     appVersion: 7.9.27
@@ -415,7 +415,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.9.27.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.9.27.tgz
     version: 7.9.27
   - apiVersion: v2
     appVersion: 7.9.50
@@ -428,7 +428,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.9.50.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.9.50.tgz
     version: 7.9.50
   - apiVersion: v2
     appVersion: 7.10.16
@@ -441,7 +441,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.10.16.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.10.16.tgz
     version: 7.10.16
   - apiVersion: v2
     appVersion: 7.11.24
@@ -454,7 +454,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-7.11.24.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-7.11.24.tgz
     version: 7.11.24
   - apiVersion: v2
     appVersion: 8.1.41
@@ -467,7 +467,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-8.1.41.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-8.1.41.tgz
     version: 8.1.41
   - apiVersion: v2
     appVersion: 8.2.22
@@ -480,7 +480,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-8.2.22.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-8.2.22.tgz
     version: 8.2.22
   - apiVersion: v2
     appVersion: 8.3.17
@@ -493,7 +493,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-8.3.17.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-8.3.17.tgz
     version: 8.3.17
   - apiVersion: v2
     appVersion: 9.1.73
@@ -506,7 +506,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-9.1.73.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-9.1.73.tgz
     version: 9.1.73
   - apiVersion: v2
     appVersion: 10.1.18
@@ -519,7 +519,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-10.1.18.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-10.1.18.tgz
     version: 10.1.18
   - apiVersion: v2
     appVersion: 11.1.5
@@ -532,7 +532,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-11.1.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-11.1.5.tgz
     version: 11.1.5
   - apiVersion: v2
     appVersion: 11.2.7
@@ -545,7 +545,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-11.2.7.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-11.2.7.tgz
     version: 11.2.7
   - apiVersion: v2
     appVersion: 11.3.24
@@ -558,7 +558,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-11.3.24.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-11.3.24.tgz
     version: 11.3.24
   - apiVersion: v2
     appVersion: 12.1.5
@@ -571,7 +571,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-12.1.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-12.1.5.tgz
     version: 12.1.5
   - apiVersion: v2
     appVersion: 13.1.10
@@ -584,7 +584,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-13.1.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-13.1.10.tgz
     version: 13.1.10
   - apiVersion: v2
     appVersion: 13.1.11
@@ -597,7 +597,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-13.1.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-13.1.11.tgz
     version: 13.1.11
   - apiVersion: v2
     appVersion: 13.2.5
@@ -610,7 +610,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-13.2.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-13.2.5.tgz
     version: 13.2.5
   - apiVersion: v2
     appVersion: 14.1.11
@@ -623,7 +623,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-14.1.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-14.1.11.tgz
     version: 14.1.11
   - apiVersion: v2
     appVersion: 14.1.20
@@ -636,7 +636,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-14.1.20.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-14.1.20.tgz
     version: 14.1.20
   - apiVersion: v2
     appVersion: 14.2.4
@@ -649,7 +649,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-14.2.4.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-14.2.4.tgz
     version: 14.2.4
   - apiVersion: v2
     appVersion: 15.1.65
@@ -662,7 +662,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-15.1.65.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-15.1.65.tgz
     version: 15.1.65
   - apiVersion: v2
     appVersion: 15.2.6
@@ -675,7 +675,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-15.2.6.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-15.2.6.tgz
     version: 15.2.6
   - apiVersion: v2
     appVersion: 15.3.8
@@ -688,7 +688,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-15.3.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-15.3.8.tgz
     version: 15.3.8
   - apiVersion: v2
     appVersion: 16.1.70
@@ -701,7 +701,7 @@ entries:
     name: bold-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/bold-common-16.1.70.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/bold-common-16.1.70.tgz
     version: 16.1.70
   boldbi:
   - apiVersion: v2
@@ -715,7 +715,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-15.2.6.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-15.2.6.tgz
     version: 15.2.6
   - apiVersion: v2
     appVersion: 16.1.70
@@ -728,7 +728,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-16.1.70.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-16.1.70.tgz
     version: 16.1.70
   - apiVersion: v2
     appVersion: 15.3.8
@@ -741,7 +741,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-15.3.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-15.3.8.tgz
     version: 15.3.8
   - apiVersion: v2
     appVersion: 13.1.11
@@ -754,7 +754,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-13.1.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-13.1.11.tgz
     version: 13.1.11
   - apiVersion: v2
     appVersion: 12.1.5
@@ -767,7 +767,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-12.1.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-12.1.5.tgz
     version: 12.1.5
   - apiVersion: v2
     appVersion: 13.1.10
@@ -780,7 +780,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-13.1.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-13.1.10.tgz
     version: 13.1.10
   - apiVersion: v2
     appVersion: 13.2.5
@@ -793,7 +793,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-13.2.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-13.2.5.tgz
     version: 13.2.5
   - apiVersion: v2
     appVersion: 14.1.11
@@ -806,7 +806,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-14.1.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-14.1.11.tgz
     version: 14.1.11
   - apiVersion: v2
     appVersion: 14.1.20
@@ -819,7 +819,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-14.1.20.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-14.1.20.tgz
     version: 14.1.20
   - apiVersion: v2
     appVersion: 14.2.4
@@ -832,7 +832,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-14.2.4.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-14.2.4.tgz
     version: 14.2.4
   - apiVersion: v2
     appVersion: 15.1.65
@@ -845,7 +845,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-15.1.65.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-15.1.65.tgz
     version: 15.1.65
   - apiVersion: v2
     appVersion: 11.1.5
@@ -858,7 +858,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-11.1.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-11.1.5.tgz
     version: 11.1.5
   - apiVersion: v2
     appVersion: 11.2.7
@@ -871,7 +871,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-11.2.7.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-11.2.7.tgz
     version: 11.2.7
   - apiVersion: v2
     appVersion: 11.3.24
@@ -884,7 +884,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-11.3.24.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-11.3.24.tgz
     version: 11.3.24
   - apiVersion: v2
     appVersion: 10.1.18
@@ -897,7 +897,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-10.1.18.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-10.1.18.tgz
     version: 10.1.18
   - apiVersion: v2
     appVersion: 8.2.22
@@ -910,7 +910,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-8.2.22.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-8.2.22.tgz
     version: 8.2.22
   - apiVersion: v2
     appVersion: 9.1.73
@@ -923,7 +923,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-9.1.73.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-9.1.73.tgz
     version: 9.1.73
   - apiVersion: v2
     appVersion: 8.3.17
@@ -936,7 +936,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-8.3.17.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-8.3.17.tgz
     version: 8.3.17
   - apiVersion: v2
     appVersion: 8.1.41
@@ -949,7 +949,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-8.1.41.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-8.1.41.tgz
     version: 8.1.41
   - apiVersion: v2
     appVersion: 7.11.24
@@ -962,7 +962,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.11.24.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.11.24.tgz
     version: 7.11.24 
   - apiVersion: v2
     appVersion: 7.10.16
@@ -975,7 +975,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.10.16.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.10.16.tgz
     version: 7.10.16 
   - apiVersion: v2
     appVersion: 7.9.50
@@ -988,7 +988,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.9.50.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.9.50.tgz
     version: 7.9.50 
   - apiVersion: v2
     appVersion: 7.9.27
@@ -1001,7 +1001,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.9.27.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.9.27.tgz
     version: 7.9.27 
   - apiVersion: v2
     appVersion: 7.8.18
@@ -1014,7 +1014,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.8.18.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.8.18.tgz
     version: 7.8.18 
   - apiVersion: v2
     appVersion: 7.7.9
@@ -1027,7 +1027,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.7.9.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.7.9.tgz
     version: 7.7.9
   - apiVersion: v2
     appVersion: 7.6.12
@@ -1040,7 +1040,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.6.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.6.12.tgz
     version: 7.6.12
   - apiVersion: v2
     appVersion: 7.5.13
@@ -1053,7 +1053,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.5.13.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.5.13.tgz
     version: 7.5.13
   - apiVersion: v2
     appVersion: 7.4.11
@@ -1066,7 +1066,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.4.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.4.11.tgz
     version: 7.4.11
   - apiVersion: v2
     appVersion: 7.3.8
@@ -1079,7 +1079,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.3.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.3.8.tgz
     version: 7.3.8
   - apiVersion: v2
     appVersion: 7.2.8
@@ -1092,7 +1092,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.2.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.2.8.tgz
     version: 7.2.8
   - apiVersion: v2
     appVersion: 7.1.16
@@ -1105,7 +1105,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-7.1.16.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-7.1.16.tgz
     version: 7.1.16
   - apiVersion: v2
     appVersion: 6.19.14
@@ -1118,7 +1118,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.19.14.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.19.14.tgz
     version: 6.19.14
   - apiVersion: v2
     appVersion: 6.18.11
@@ -1131,7 +1131,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.18.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.18.11.tgz
     version: 6.18.11
   - apiVersion: v2
     appVersion: 6.17.13
@@ -1144,7 +1144,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.17.13.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.17.13.tgz
     version: 6.17.13
   - apiVersion: v2
     appVersion: 6.16.12
@@ -1157,7 +1157,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.16.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.16.12.tgz
     version: 6.16.12
   - apiVersion: v2
     appVersion: 6.15.11
@@ -1170,7 +1170,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.15.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.15.11.tgz
     version: 6.15.11
   - apiVersion: v2
     appVersion: 6.14.12
@@ -1183,7 +1183,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.14.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.14.12.tgz
     version: 6.14.12
   - apiVersion: v2
     appVersion: 6.13.11
@@ -1196,7 +1196,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.13.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.13.11.tgz
     version: 6.13.11
   - apiVersion: v2
     appVersion: 6.12.12
@@ -1209,7 +1209,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.12.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.12.12.tgz
     version: 6.12.12
   - apiVersion: v2
     appVersion: 6.11.10
@@ -1222,7 +1222,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.11.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.11.10.tgz
     version: 6.11.10
   - apiVersion: v2
     appVersion: 6.10.12
@@ -1235,7 +1235,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.10.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.10.12.tgz
     version: 6.10.12
   - apiVersion: v2
     appVersion: 6.9.10
@@ -1248,7 +1248,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.9.10.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.9.10.tgz
     version: 6.9.10
   - apiVersion: v2
     appVersion: 6.8.9
@@ -1261,7 +1261,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.8.9.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.8.9.tgz
     version: 6.8.9
   - apiVersion: v2
     appVersion: 6.7.11
@@ -1274,7 +1274,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.7.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.7.11.tgz
     version: 6.7.11
   - apiVersion: v2
     appVersion: 6.6.12
@@ -1287,7 +1287,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.6.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.6.12.tgz
     version: 6.6.12
   - apiVersion: v2
     appVersion: 6.5.8
@@ -1300,7 +1300,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.5.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.5.8.tgz
     version: 6.5.8
   - apiVersion: v2
     appVersion: 6.4.6
@@ -1313,7 +1313,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.4.6.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.4.6.tgz
     version: 6.4.6
   - apiVersion: v2
     appVersion: 6.3.3
@@ -1326,7 +1326,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.3.3.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.3.3.tgz
     version: 6.3.3
   - apiVersion: v2
     appVersion: 6.2.7
@@ -1339,7 +1339,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.2.7.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.2.7.tgz
     version: 6.2.7
   - apiVersion: v2
     appVersion: 6.1.8
@@ -1352,7 +1352,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-6.1.8.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-6.1.8.tgz
     version: 6.1.8
   - apiVersion: v2
     appVersion: 5.3.83
@@ -1365,7 +1365,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.3.83.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-5.3.83.tgz
     version: 5.3.83
   - apiVersion: v2
     appVersion: 5.3.82
@@ -1378,7 +1378,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.3.82.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-5.3.82.tgz
     version: 5.3.82
   - apiVersion: v2
     appVersion: 5.3.53
@@ -1391,7 +1391,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.3.53.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-5.3.53.tgz
     version: 5.3.53
   - apiVersion: v2
     appVersion: 5.2.48
@@ -1404,7 +1404,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.2.48.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-5.2.48.tgz
     version: 5.2.48
   - apiVersion: v2
     appVersion: 5.1.55
@@ -1417,7 +1417,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-5.1.55.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-5.1.55.tgz
     version: 5.1.55
   - apiVersion: v2
     appVersion: 4.2.69
@@ -1430,7 +1430,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.2.69.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-4.2.69.tgz
     version: 4.2.69
   - apiVersion: v2
     appVersion: 4.2.68
@@ -1443,7 +1443,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.2.68.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-4.2.68.tgz
     version: 4.2.68
   - apiVersion: v2
     appVersion: 4.1.45
@@ -1456,7 +1456,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.1.45.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-4.1.45.tgz
     version: 4.1.45
   - apiVersion: v2
     appVersion: 4.1.43
@@ -1469,7 +1469,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.1.43.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-4.1.43.tgz
     version: 4.1.43
   - apiVersion: v2
     appVersion: 4.1.36
@@ -1482,7 +1482,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/boldbi-4.1.36.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/boldbi-4.1.36.tgz
     version: 4.1.36
   kc281670:
   - apiVersion: v2
@@ -1496,7 +1496,7 @@ entries:
     name: kc281670
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc281670-8.1.41.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc281670-8.1.41.tgz
     version: 8.1.41
   - apiVersion: v2
     appVersion: 15.1.56
@@ -1509,7 +1509,7 @@ entries:
     name: kc281670
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc281670-15.1.56.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc281670-15.1.56.tgz
     version: 15.1.56
   kc282383:
   - apiVersion: v2
@@ -1523,7 +1523,7 @@ entries:
     name: kc282383
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc282383-14.1.20.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc282383-14.1.20.tgz
     version: 14.1.20
   - apiVersion: v2
     appVersion: 14.2.4
@@ -1536,7 +1536,7 @@ entries:
     name: kc282383
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc282383-14.2.4.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc282383-14.2.4.tgz
     version: 14.2.4
   - apiVersion: v2
     appVersion: 15.1.65
@@ -1549,7 +1549,7 @@ entries:
     name: kc282383
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc282383-15.1.65.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc282383-15.1.65.tgz
     version: 15.1.65
   - apiVersion: v2
     appVersion: 15.2.12
@@ -1562,7 +1562,7 @@ entries:
     name: kc282383
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc282383-15.2.12.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc282383-15.2.12.tgz
     version: 15.2.12
   kc8343:
   - apiVersion: v2
@@ -1576,7 +1576,7 @@ entries:
     name: kc8343
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc8343-11.3.24.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc8343-11.3.24.tgz
     version: 11.3.24
   - apiVersion: v2
     appVersion: 13.2.5
@@ -1589,7 +1589,7 @@ entries:
     name: kc8343-boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc8343-13.2.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc8343-13.2.5.tgz
     version: 13.2.5
   - apiVersion: v2
     appVersion: 15.1.65
@@ -1602,7 +1602,7 @@ entries:
     name: kc8343-boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc8343-15.1.65.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc8343-15.1.65.tgz
     version: 15.1.65
   kc269938:
   - apiVersion: v2
@@ -1616,7 +1616,7 @@ entries:
     name: kc269938-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc269938-9.1.73.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc269938-9.1.73.tgz
     version: 9.1.73
   - apiVersion: v2
     appVersion: 8.3.17
@@ -1629,7 +1629,7 @@ entries:
     name: kc269938
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc269938-8.3.17.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc269938-8.3.17.tgz
     version: 8.3.17
   - apiVersion: v2
     appVersion: 7.1.18
@@ -1642,7 +1642,7 @@ entries:
     name: kc269938-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc269938-7.1.18.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc269938-7.1.18.tgz
     version: 7.1.18
   kc336123:
   - apiVersion: v2
@@ -1656,7 +1656,7 @@ entries:
     name: kc269938-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc336123-12.1.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc336123-12.1.5.tgz
     version: 12.1.5
   kc132118:
   - apiVersion: v2
@@ -1670,7 +1670,7 @@ entries:
     name: kc269938-common
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc132118-13.1.11.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc132118-13.1.11.tgz
     version: 13.1.11
   kc79064:
   - apiVersion: v2
@@ -1684,7 +1684,7 @@ entries:
     name: boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc79064-13.2.5.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc79064-13.2.5.tgz
     version: 13.2.5
   kc270850:
   - apiVersion: v2
@@ -1698,7 +1698,7 @@ entries:
     name: kc270850-boldbi
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc270850-13.1.25.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc270850-13.1.25.tgz
     version: 13.1.25
   kc281670-beta:
   - apiVersion: v2
@@ -1712,7 +1712,7 @@ entries:
     name: kc281670-beta
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/kc281670-beta-14.2.50.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/kc281670-beta-14.2.50.tgz
     version: 14.2.50
   KC276755:
   - apiVersion: v2
@@ -1726,6 +1726,6 @@ entries:
     name: KC276755
     type: application
     urls:
-    - https://boldbi.github.io/boldbi-kubernetes/KC276755-16.1.61.tgz
+    - https://boldbi.github.io/boldbi-server-in-kubernetes/KC276755-16.1.61.tgz
     version: 16.1.61
 generated: "2022-04-11T13:06:57.3735836+05:30"
