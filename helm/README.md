@@ -714,7 +714,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
      image:
        repo: us-docker.pkg.dev/boldbi-294612/boldbi
        # Overrides the image tag whose default is the chart appVersion.
-       tag: 12.1.5
+       tag: 16.1.70
        pullPolicy: IfNotPresent
      imagePullSecrets: []
   ```
