@@ -1,4 +1,4 @@
-# Deploy Bold BI using Helm
+﻿# Deploy Bold BI using Helm
 
 This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can create Kubernetes cluster in cloud cluster providers(GKE, AKS, EKS and OKE). Please follow the below documentation for Bold BI deployment in a specific cloud environments.
 
@@ -17,7 +17,7 @@ This chart installs [Bold BI](https://www.boldbi.com/) on Kubernetes. You can cr
 1. Add the Bold BI helm repository
 
 ```console
-helm repo add boldbi https://boldbi.github.io/boldbi-kubernetes
+helm repo add boldbi https://boldbi.github.io/boldbi-server-in-kubernetes
 helm repo update
 ```
 
@@ -36,11 +36,11 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 For Helm chart, you'll need to craft a `values.yaml`.
 
-* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/gke-values.yaml).
-* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/eks-values.yaml).
-* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/aks-values.yaml).
-* For `OKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/custom-values/oke-values.yaml).
-* For `ACK` please download the values.yaml file [here](https://github.com/boldbi/boldbi-kubernetes/blob/main/helm/custom-values/ack-values.yaml).
+* For `GKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-server-in-kubernetes/main/helm/custom-values/gke-values.yaml).
+* For `EKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-server-in-kubernetes/main/helm/custom-values/eks-values.yaml).
+* For `AKS` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-server-in-kubernetes/main/helm/custom-values/aks-values.yaml).
+* For `OKE` please download the values.yaml file [here](https://raw.githubusercontent.com/boldbi/boldbi-server-in-kubernetes/main/helm/custom-values/oke-values.yaml).
+* For `ACK` please download the values.yaml file [here](https://github.com/boldbi/boldbi-server-in-kubernetes/blob/main/helm/custom-values/ack-values.yaml).
 
 > **Note:** Items marked with `*` are mandatory fields in values.yaml
 
@@ -708,7 +708,7 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
 
 - Create a new YAML file or update the existing one with changes such as a new image tag, environment variables, and other configuration details. Uncomment the lines by removing the # symbols and update the image tag as shown below. While upgrading, use the same YAML file that was used during installation.
   
-  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-kubernetes/main/helm/boldbi/values.yaml)
+  [boldbi/values.yaml](https://raw.githubusercontent.com/boldbi/boldbi-server-in-kubernetes/main/helm/boldbi/values.yaml)
 
   ```console
      image:
@@ -726,6 +726,26 @@ _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documen
   ```
 
   Ex:  `helm upgrade boldbi boldbi/boldbi -f my-values.yaml -n bold-services`
+
+**Troubleshooting: repo 404 when running `helm repo update`**
+
+If you see an error like:
+
+```
+Hang tight while we grab the latest from your chart repositories...
+...Unable to get an update from the "boldbi" chart repository (https://boldbi.github.io/boldbi-kubernetes):
+        failed to fetch https://boldbi.github.io/boldbi-kubernetes/index.yaml : 404 Not Found
+```
+
+remove and re-add the repository (this fixes a stale/incorrect repo entry), then update:
+
+```console
+helm repo remove boldbi
+helm repo add boldbi https://boldbi.github.io/boldbi-server-in-kubernetes
+helm repo update
+```
+
+After this, retry the upgrade command shown above.
 
 ## Uninstall Chart
 
