@@ -1,6 +1,6 @@
-# Bold BI PV to OCI Storage Migration on Kubernetes
+# Bold BI PV to Azure Blob Storage Migration on Kubernetes
 
-This document describes the steps to migrate Bold BI application data from a Persistent Volume (PV) to **OCI Object Storage** on a Kubernetes cluster.
+This document describes the steps to migrate Bold BI application data from a Persistent Volume (PV) to **Azure Blob Storage** on a Kubernetes cluster.
 
 ---
 
@@ -43,15 +43,15 @@ logging:
   output: "console"  # console | file | both
 ```
 
-## 4. Configure PV and OCI Storage Details
+## 4. Configure PV and Azure Blob Storage Details
 If using a new `values.yaml`, ensure the following are configured:
 
 - Existing Persistent Volume (PV) details
-- OCI Object Storage configuration values
+- Azure Blob Storage configuration values
 
-![oci_pv](images/oci_pv.png)
+![oci_pv](images/azure_nfs_pv.png)
 
-![oci_value](images/oci_storage.png)
+![oci_value](images/azure_blob_storage_value.png)
 
 ## 5. Upgrade the Bold BI Deployment
 Run the following command to upgrade Bold BI using the updated `values.yaml` file:
@@ -59,7 +59,7 @@ Run the following command to upgrade Bold BI using the updated `values.yaml` fil
 ```sh
 helm upgrade boldbi boldbi/boldbi -f <my-values.yaml> -n bold-services
 ```
-`Note:` After upgrading Bold BI with OCI storage values using the Helm chart, the bi-web and bi-api services may temporarily become unavailable. This is expected behavior; you can proceed with the next step.
+`Note:` After upgrading Bold BI with Azure Blob storage values using the Helm chart, the bi-web and bi-api services may temporarily become unavailable. This is expected behavior; you can proceed with the next step.
 
 ## 6. Access the idp-web Pod
 Verify pods are running and open a shell into the **idp-web** pod:
@@ -76,10 +76,10 @@ Inside the pod, navigate and execute migration command:
 
 ```sh
 cd /application/utilities/adminutils
-dotnet Syncfusion.Server.Commands.Utility.dll migrate storage pv-to-oci
+dotnet Syncfusion.Server.Commands.Utility.dll migrate storage pv-to-azureblob
 ```
 
-![pod_exec](images/run_utility.png)
+![pod_exec](images/azure_blob_utility.png)
 
 Wait until the migration completes successfully.
 
@@ -88,7 +88,7 @@ After migration:
 
 - Remove all PV-related config from `values.yaml`
   
-  ![oci_remove_pv](images/oci_remove_pv.png)
+  ![oci_remove_pv](images/azure_nfs_pv_remove.png)
 
 - Upgrade again:
 
@@ -101,5 +101,5 @@ Once all pods are running, open the Bold BI application using the configured bas
 
 ![pod_status_without_pv](images/pod_status_without_pv.png)
 
-Migration is now complete, and Bold BI is fully running on **OCI Object Storage**.
+Migration is now complete, and Bold BI is fully running on **Azure Blob Object Storage**.
 
