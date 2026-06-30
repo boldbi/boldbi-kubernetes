@@ -43,7 +43,7 @@ logging:
   output: "console"  # console | file | both
 ```
 
-## 4. Configure PV and Azure Blob Storage Details
+## 4. Configure Azure Blob Storage Details
 Update your Azure Blob Storage configuration values in the `values.yaml` file.
 
 ```yaml
