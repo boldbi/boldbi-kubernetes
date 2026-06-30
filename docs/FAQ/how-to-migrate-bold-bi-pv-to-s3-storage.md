@@ -1,6 +1,6 @@
-# Bold BI PV to OCI Storage Migration on Kubernetes
+# Bold BI PV to AWS S3 Storage Migration on Kubernetes
 
-This document describes the steps to migrate Bold BI application data from a Persistent Volume (PV) to **OCI Object Storage** on a Kubernetes cluster.
+This document describes the steps to migrate Bold BI application data from a Persistent Volume (PV) to **AWS S3 Storage** on a Kubernetes cluster.
 
 ---
 
@@ -43,31 +43,29 @@ logging:
   output: "console"  # console | file | both
 ```
 
-## 4. Configure OCI Storage Details
-Update your OCI Object Storage configuration values in the `values.yaml` file.
+## 4. Configure AWS S3 Storage Details
+Update your AWS s3 Storage configuration values in the `values.yaml` file.
 
 ```yaml
-# For OCI configuration, set enabled as true.
-ociStorage:
-  # Enable OCI storage backend (required: set to true to use OCI)
+# For Amazon S3 Bucket configuration, set enabled as true.
+s3Storage:
+  # Enable S3 storage backend (required: set to true to use S3)
   enabled: false
-  # OCI access key for authentication (e.g., your OCI user access key)
-  accessKey: ""
-  # Name of the OCI bucket to use for storage
-  bucketName: ""
-  # OCI namespace (tenant OCID or namespace name)
-  namespace: ""
-  # OCI region where the bucket is located (e.g., us-ashburn-1)
-  region: ""
+  # AWS access key ID for authentication (e.g., your IAM user access key ID)
+  accessKey: 
+  # Name of the S3 bucket to use for storage
+  bucketName: 
+  # AWS region where the bucket is located (e.g., us-east-1)
+  region: 
   # Root folder path within the bucket for storing data
-  rootFolderName: ""
-  # OCI secret key for authentication (e.g., your OCI user secret key)
-  secretKey: ""
-  # Type of OCI storage
+  rootFolderName:
+  # AWS secret access key for authentication (e.g., your IAM user secret access key)
+  secretKey: 
+  # Type of S3 storage
   storageType: 3
 ```
 
-![oci_value](images/oci_storage.png)
+![oci_value](images/s3-storage-value.png)
 
 ## 5. Upgrade the Bold BI Deployment
 Run the following command to upgrade Bold BI using the updated `values.yaml` file:
@@ -75,7 +73,7 @@ Run the following command to upgrade Bold BI using the updated `values.yaml` fil
 ```sh
 helm upgrade boldbi boldbi/boldbi -f <my-values.yaml> -n bold-services
 ```
-`Note:` After upgrading Bold BI with OCI storage values using the Helm chart, the bi-web and bi-api services may temporarily become unavailable. This is expected behavior; you can proceed with the next step.
+`Note:` After upgrading Bold BI with AWS S3 storage values using the Helm chart, the bi-web and bi-api services may temporarily become unavailable. This is expected behavior; you can proceed with the next step.
 
 ## 6. Access the idp-web Pod
 Verify pods are running and open a shell into the **idp-web** pod:
@@ -92,16 +90,16 @@ Inside the pod, navigate and execute migration command:
 
 ```sh
 cd /application/utilities/adminutils
-dotnet Syncfusion.Server.Commands.Utility.dll migrate storage pv-to-oci
+dotnet Syncfusion.Server.Commands.Utility.dll migrate storage local-to-s3
 ```
 
-![pod_exec](images/run_utility.png)
+![pod_exec](images/aws-s3-utility.png)
 
 Wait until the migration completes successfully.
 
 ## 8. Remove PV Configuration and Upgrade Again
 
-- After migration from Persistent Volumes to OCI Storage, remove all Persistent Volume (PV) configurations value from `values.yaml`
+- After migration from Persistent Volumes to AWS s3 Storage, remove all Persistent Volume (PV) configurations value from `values.yaml`
   
   ![oci_remove_pv](images/remove_pv.png)
 
@@ -116,5 +114,5 @@ Once all pods are running, open the Bold BI application using the configured bas
 
 ![pod_status_without_pv](images/pod_status_without_pv.png)
 
-Migration is now complete, and Bold BI is fully running on **OCI Object Storage**.
+Migration is now complete, and Bold BI is fully running on **AWS S3 Object Storage**.
 
