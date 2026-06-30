@@ -43,7 +43,7 @@ logging:
   output: "console"  # console | file | both
 ```
 
-## 4. Configure PV and AWS S3 Storage Details
+## 4. Configure AWS S3 Storage Details
 Update your AWS s3 Storage configuration values in the `values.yaml` file.
 
 ```yaml
