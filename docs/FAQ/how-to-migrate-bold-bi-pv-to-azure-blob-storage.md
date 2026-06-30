@@ -99,7 +99,7 @@ Wait until the migration completes successfully.
 ## 8. Remove PV Configuration and Upgrade Again
 After migration:
 
-- Remove all PV-related config from `values.yaml`
+- After migration from Persistent Volumes to Azure Blob Storage, remove all Persistent Volume (PV) configurations value from `values.yaml`
   
   ![oci_remove_pv](images/remove_pv.png)
 
