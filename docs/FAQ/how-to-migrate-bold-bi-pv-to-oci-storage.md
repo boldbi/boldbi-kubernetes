@@ -100,9 +100,8 @@ dotnet Syncfusion.Server.Commands.Utility.dll migrate storage pv-to-oci
 Wait until the migration completes successfully.
 
 ## 8. Remove PV Configuration and Upgrade Again
-After migration:
 
-After migration from Persistent Volumes to OCI Storage, remove all Persistent Volume (PV) configurations value from `values.yaml`
+- After migration from Persistent Volumes to OCI Storage, remove all Persistent Volume (PV) configurations value from `values.yaml`
   
   ![oci_remove_pv](images/remove_pv.png)
 
