@@ -4,7 +4,7 @@ This document describes the steps to migrate Bold BI application data from a Per
 
 ---
 
-## 1. update the Bold BI Helm Repository
+## 1. Update the Bold BI Helm Repository
 Use the following commands to update the Bold BI Helm repository:
 
 ```sh
@@ -43,13 +43,29 @@ logging:
   output: "console"  # console | file | both
 ```
 
-## 4. Configure PV and OCI Storage Details
-If using a new `values.yaml`, ensure the following are configured:
+## 4. Configure OCI Storage Details
+Update your OCI Object Storage configuration values in the `values.yaml` file.
 
-- Existing Persistent Volume (PV) details
-- OCI Object Storage configuration values
-
-![oci_pv](images/oci_pv.png)
+```yaml
+# For OCI configuration, set enabled as true.
+ociStorage:
+  # Enable OCI storage backend (required: set to true to use OCI)
+  enabled: false
+  # OCI access key for authentication (e.g., your OCI user access key)
+  accessKey: ""
+  # Name of the OCI bucket to use for storage
+  bucketName: ""
+  # OCI namespace (tenant OCID or namespace name)
+  namespace: ""
+  # OCI region where the bucket is located (e.g., us-ashburn-1)
+  region: ""
+  # Root folder path within the bucket for storing data
+  rootFolderName: ""
+  # OCI secret key for authentication (e.g., your OCI user secret key)
+  secretKey: ""
+  # Type of OCI storage
+  storageType: 3
+```
 
 ![oci_value](images/oci_storage.png)
 
@@ -88,7 +104,7 @@ After migration:
 
 - Remove all PV-related config from `values.yaml`
   
-  ![oci_remove_pv](images/oci_remove_pv.png)
+  ![oci_remove_pv](images/remove_pv.png)
 
 - Upgrade again:
 

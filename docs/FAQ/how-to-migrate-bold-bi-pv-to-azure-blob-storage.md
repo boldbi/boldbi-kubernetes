@@ -4,7 +4,7 @@ This document describes the steps to migrate Bold BI application data from a Per
 
 ---
 
-## 1. update the Bold BI Helm Repository
+## 1. Update the Bold BI Helm Repository
 Use the following commands to update the Bold BI Helm repository:
 
 ```sh
@@ -44,12 +44,25 @@ logging:
 ```
 
 ## 4. Configure PV and Azure Blob Storage Details
-If using a new `values.yaml`, ensure the following are configured:
+Update your Azure Blob Storage configuration values in the `values.yaml` file.
 
-- Existing Persistent Volume (PV) details
-- Azure Blob Storage configuration values
-
-![oci_pv](images/azure_nfs_pv.png)
+```yaml
+azureStorage:
+  # Enable Azure Blob storage backend (required: set to true to use Azure)
+  enabled: false
+  # Azure Blob access key for authentication
+  accessKey: 
+  # Azure Blob account name
+  accountName: 
+  # Name of the Azure Blob container to use for storage
+  containerName: 
+  # Azure Blob connection type (e.g., default, managedidentity)
+  connectionType: 
+  # Azure Blob storage URI (e.g., for managed identity authentication)
+  storageUri: 
+  # Type of Azure storage (set to 1 for Azure Blob)
+  storageType: 1
+```
 
 ![oci_value](images/azure_blob_storage_value.png)
 
@@ -88,7 +101,7 @@ After migration:
 
 - Remove all PV-related config from `values.yaml`
   
-  ![oci_remove_pv](images/azure_nfs_pv_remove.png)
+  ![oci_remove_pv](images/remove_pv.png)
 
 - Upgrade again:
 

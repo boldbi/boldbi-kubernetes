@@ -4,7 +4,7 @@ This document describes the steps to migrate Bold BI application data from a Per
 
 ---
 
-## 1. update the Bold BI Helm Repository
+## 1. Update the Bold BI Helm Repository
 Use the following commands to update the Bold BI Helm repository:
 
 ```sh
@@ -44,12 +44,26 @@ logging:
 ```
 
 ## 4. Configure PV and AWS S3 Storage Details
-If using a new `values.yaml`, ensure the following are configured:
+Update your AWS s3 Storage configuration values in the `values.yaml` file.
 
-- Existing Persistent Volume (PV) details
-- AWS S3 Storage configuration values
-
-![oci_pv](images/eks_pv.png)
+```yaml
+# For Amazon S3 Bucket configuration, set enabled as true.
+s3Storage:
+  # Enable S3 storage backend (required: set to true to use S3)
+  enabled: false
+  # AWS access key ID for authentication (e.g., your IAM user access key ID)
+  accessKey: 
+  # Name of the S3 bucket to use for storage
+  bucketName: 
+  # AWS region where the bucket is located (e.g., us-east-1)
+  region: 
+  # Root folder path within the bucket for storing data
+  rootFolderName:
+  # AWS secret access key for authentication (e.g., your IAM user secret access key)
+  secretKey: 
+  # Type of S3 storage
+  storageType: 3
+```
 
 ![oci_value](images/s3-storage-value.png)
 
@@ -88,7 +102,7 @@ After migration:
 
 - Remove all PV-related config from `values.yaml`
   
-  ![oci_remove_pv](images/eks_pv_remove.png)
+  ![oci_remove_pv](images/remove_pv.png)
 
 - Upgrade again:
 
